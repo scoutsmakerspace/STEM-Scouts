@@ -1,0 +1,26 @@
+# Badge requirement links (store links, not copied requirement text).
+# Replace example.com URLs with official or trusted sources you choose.
+
+- section_name: "Beavers"
+  badges:
+    - badge: "Experiment"
+      notes: "Official requirements / reference"
+      url: "https://example.com/beavers-experiment"
+
+- section_name: "Cubs"
+  badges:
+    - badge: "Scientist"
+      notes: "Official requirements / reference"
+      url: "https://example.com/cubs-scientist"
+
+- section_name: "Scouts"
+  badges:
+    - badge: "Electronics"
+      notes: "Official requirements / reference"
+      url: "https://example.com/scouts-electronics"
+
+- section_name: "Explorers"
+  badges:
+    - badge: "STEM / Skills"
+      notes: "Official requirements / reference"
+      url: "https://example.com/explorers-stem"

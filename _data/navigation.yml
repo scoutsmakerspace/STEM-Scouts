@@ -1,0 +1,15 @@
+main:
+  - title: "Beavers"
+    url: /beavers/
+  - title: "Cubs"
+    url: /cubs/
+  - title: "Scouts"
+    url: /scouts/
+  - title: "Explorers"
+    url: /explorers/
+  - title: "All Activities"
+    url: /activities/
+  - title: "Leaders & Safety"
+    url: /leaders/
+  - title: "Badges"
+    url: /badges/
