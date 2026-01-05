@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  jekyll (~> 4.3)
+  jekyll-include-cache
+  jekyll-remote-theme
+  minimal-mistakes-jekyll
+
+BUNDLED WITH
+   2.4.22
