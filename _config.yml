@@ -3,7 +3,7 @@ description: "A practical STEM activity library for Scout leaders."
 url: "https://stemscouts.space"
 baseurl: ""
 
-remote_theme: "mmistakes/minimal-mistakes"
+theme: "minimal-mistakes-jekyll"
 
 plugins:
   - jekyll-include-cache
