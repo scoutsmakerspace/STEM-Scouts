@@ -1,0 +1,41 @@
+title: "STEM Scouts"
+description: "A practical STEM activity library for Scout leaders."
+url: "https://stemscouts.space"
+baseurl: ""
+
+remote_theme: "mmistakes/minimal-mistakes"
+
+plugins:
+  - jekyll-include-cache
+  - jekyll-sitemap
+  - jekyll-feed
+
+markdown: kramdown
+
+# Collections
+collections:
+  activities:
+    output: true
+    permalink: /activities/:name/
+  risk_assessments:
+    output: true
+    permalink: /risk/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: activities
+    values:
+      layout: single
+      classes: wide
+      toc: true
+      toc_sticky: true
+
+  - scope:
+      path: ""
+      type: risk_assessments
+    values:
+      layout: single
+      classes: wide
+      toc: true
+      toc_sticky: true
