@@ -1,0 +1,100 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "activities"
+    label: "Activities"
+    folder: "_activities"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Summary", name: "summary", widget: "text" }
+
+      - label: "Sections"
+        name: "sections"
+        widget: "select"
+        multiple: true
+        options: ["beavers", "cubs", "scouts", "explorers"]
+
+      - { label: "Difficulty (1-5)", name: "difficulty", widget: "number", min: 1, max: 5, value_type: "int" }
+      - { label: "Time (minutes)", name: "time_minutes", widget: "number", min: 5, max: 240, value_type: "int" }
+
+      - { label: "Type", name: "type", widget: "select", options: ["electronics", "coding", "science", "outdoors", "craft", "radio", "other"] }
+      - { label: "Location", name: "location", widget: "select", options: ["indoors", "outdoors", "both"] }
+      - { label: "Supervision", name: "supervision", widget: "select", options: ["low", "medium", "high"] }
+
+      - label: "Kit list"
+        name: "kit"
+        widget: "list"
+        field: { label: "Item", name: "item", widget: "string" }
+
+      - { label: "Risk assessment ID", name: "risk_id", widget: "string", hint: "Must match ra_id of a Risk Assessment (e.g. led_torch)" }
+
+      - label: "External docs"
+        name: "external_docs"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "URL", name: "url", widget: "string" }
+
+      - label: "Badge links"
+        name: "badges"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Section", name: "section", widget: "select", options: ["Beavers", "Cubs", "Scouts", "Explorers"] }
+          - { label: "Badge", name: "badge", widget: "string" }
+          - { label: "Requirement note", name: "requirement_note", widget: "string" }
+          - { label: "URL", name: "url", widget: "string" }
+
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "risk_assessments"
+    label: "Risk Assessments"
+    folder: "_risk_assessments"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "RA ID", name: "ra_id", widget: "string", hint: "Used by activities as risk_id" }
+
+      - label: "Sections"
+        name: "sections"
+        widget: "select"
+        multiple: true
+        options: ["beavers", "cubs", "scouts", "explorers"]
+
+      - { label: "Location", name: "location", widget: "select", options: ["indoors", "outdoors", "both"] }
+      - { label: "Supervision", name: "supervision", widget: "select", options: ["low", "medium", "high"] }
+
+      - { label: "Prepared by", name: "prepared_by", widget: "string" }
+      - { label: "Created date", name: "created_date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      - { label: "Review date", name: "review_date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      - { label: "Version", name: "version", widget: "string" }
+
+      - label: "Hazards"
+        name: "hazards"
+        widget: "list"
+        fields:
+          - { label: "Hazard", name: "hazard", widget: "string" }
+          - { label: "Who might be harmed", name: "who", widget: "string" }
+          - { label: "Initial risk", name: "risk_level", widget: "select", options: ["Low", "Medium", "High"] }
+          - { label: "Control measures", name: "controls", widget: "text" }
+          - { label: "Residual risk", name: "residual", widget: "select", options: ["Low", "Medium", "High"] }
+
+      - label: "Emergency"
+        name: "emergency"
+        widget: "object"
+        fields:
+          - { label: "First aid", name: "first_aid", widget: "text" }
+          - { label: "Fire", name: "fire", widget: "text" }
+
+      - { label: "Extra notes (optional)", name: "body", widget: "markdown", required: false }
