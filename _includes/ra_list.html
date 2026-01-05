@@ -1,0 +1,13 @@
+{% assign items = include.items %}
+
+<ul class="list__item">
+  {% for r in items %}
+    <li style="margin-bottom: 1rem;">
+      <strong><a href="{{ r.url }}">{{ r.title }}</a></strong><br>
+      <small>
+        Applies to: {{ r.sections | join: ", " }} ·
+        Review date: {{ r.review_date }}
+      </small>
+    </li>
+  {% endfor %}
+</ul>

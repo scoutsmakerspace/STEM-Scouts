@@ -1,0 +1,16 @@
+{% assign items = include.items %}
+
+<ul class="list__item">
+  {% for a in items %}
+    <li style="margin-bottom: 1rem;">
+      <strong><a href="{{ a.url }}">{{ a.title }}</a></strong><br>
+      <small>
+        Sections: {{ a.sections | join: ", " }} ·
+        Difficulty: {{ a.difficulty }} ·
+        Time: {{ a.time_minutes }} min ·
+        Type: {{ a.type }}
+      </small><br>
+      {% if a.summary %}{{ a.summary }}{% endif %}
+    </li>
+  {% endfor %}
+</ul>
