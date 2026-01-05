@@ -10,6 +10,9 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
 
+include:
+  - _pages
+
 markdown: kramdown
 
 # Collections
