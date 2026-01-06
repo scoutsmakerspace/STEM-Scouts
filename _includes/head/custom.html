@@ -1,0 +1,20 @@
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  (function () {
+    // If a Netlify Identity token is present in the URL (invite/recovery),
+    // open the Identity widget and send the user to /admin afterwards.
+    var hash = window.location.hash || "";
+    if (hash.includes("invite_token") || hash.includes("recovery_token")) {
+      window.netlifyIdentity = window.netlifyIdentity || {};
+      // Wait a moment for the widget to load, then open it.
+      setTimeout(function () {
+        if (window.netlifyIdentity && window.netlifyIdentity.open) {
+          window.netlifyIdentity.open();
+          window.netlifyIdentity.on("login", function () {
+            window.location.href = "/admin/";
+          });
+        }
+      }, 300);
+    }
+  })();
+</script>
