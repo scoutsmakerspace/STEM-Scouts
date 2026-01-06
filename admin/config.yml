@@ -21,7 +21,7 @@ collections:
         name: "sections"
         widget: "select"
         multiple: true
-        options: ["beavers", "cubs", "scouts", "explorers"]
+        options: ["Squirrels", "Beavers", "Cubs", "Scouts", "Explorers"]
 
       - { label: "Difficulty (1-5)", name: "difficulty", widget: "number", min: 1, max: 5, value_type: "int" }
       - { label: "Time (minutes)", name: "time_minutes", widget: "number", min: 5, max: 240, value_type: "int" }
@@ -35,7 +35,7 @@ collections:
         widget: "list"
         field: { label: "Item", name: "item", widget: "string" }
 
-      - { label: "Risk assessment ID", name: "risk_id", widget: "string", hint: "Must match ra_id of a Risk Assessment (e.g. led_torch)" }
+      - { label: "Risk assessment ID", name: "risk_id", widget: "string", required: false, hint: "Must match ra_id of a Risk Assessment (e.g. ra_led_torch)." }
 
       - label: "External docs"
         name: "external_docs"
@@ -50,10 +50,10 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Section", name: "section", widget: "select", options: ["Beavers", "Cubs", "Scouts", "Explorers"] }
+          - { label: "Section", name: "section", widget: "select", options: ["Squirrels", "Beavers", "Cubs", "Scouts", "Explorers"] }
           - { label: "Badge", name: "badge", widget: "string" }
-          - { label: "Requirement note", name: "requirement_note", widget: "string" }
-          - { label: "URL", name: "url", widget: "string" }
+          - { label: "Requirement note", name: "requirement_note", widget: "string", required: false }
+          - { label: "URL", name: "url", widget: "string", required: false }
 
       - { label: "Body", name: "body", widget: "markdown" }
 
@@ -66,16 +66,16 @@ collections:
     extension: "md"
     format: "frontmatter"
     editor:
-     preview: false
+      preview: false
     fields:
-     - { label: "Layout", name: "layout", widget: "hidden", default: "risk_assessment" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "risk_assessment" }
 
-     - { label: "Title", name: "title", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
 
-     - label: "Name of activity, event, and location"
-       name: "activity_name_location"
-       widget: "string"
-       hint: "This appears in the top table (e.g. 'LED Torch Build (Scout hut)')."
+      - label: "Name of activity, event, and location"
+        name: "activity_name_location"
+        widget: "string"
+        hint: "This appears in the top table (e.g. 'LED Torch Build (Scout hut)')."
 
       - { label: "Date of risk assessment", name: "date_of_ra", widget: "datetime", time_format: false, format: "YYYY-MM-DD" }
       - { label: "Date of next review", name: "next_review", widget: "datetime", time_format: false, format: "YYYY-MM-DD", required: false }
@@ -114,4 +114,3 @@ collections:
         buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
         editor_components: []
         hint: "Optional extra notes. Not required for the Scouts-style table."
-
