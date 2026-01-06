@@ -1,20 +1,20 @@
 # Site settings
 title: "STEM Scouts"
 description: "A practical STEM activity library for Scout leaders."
-url: "https://USERNAME.github.io"
-baseurl: "/stemscouts"   # e.g. "/STEM-Scouts"  (IMPORTANT)
+url: "https://YOUR-USERNAME.github.io"
+baseurl: "/stemscouts"
 
 # Theme
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 
-# Plugins (needed for Minimal Mistakes + your site features)
+# Plugins
 plugins:
   - jekyll-remote-theme
   - jekyll-include-cache
   - jekyll-sitemap
   - jekyll-feed
 
-# Build / content structure
+# Content structure
 include:
   - "_pages"
 
@@ -29,7 +29,7 @@ collections:
     output: true
     permalink: /risk/:name/
 
-# Defaults (applied automatically)
+# Defaults
 defaults:
   - scope:
       path: ""
@@ -44,7 +44,7 @@ defaults:
       path: ""
       type: risk_assessments
     values:
-      layout: risk_assessment   # <-- IMPORTANT (use your RA layout)
+      layout: risk_assessment
       classes: wide
       toc: false
       toc_sticky: false
