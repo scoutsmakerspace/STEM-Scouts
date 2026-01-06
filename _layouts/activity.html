@@ -1,0 +1,91 @@
+---
+layout: single
+---
+
+{% assign a = page %}
+
+{% comment %}
+Activity template:
+- Uses Minimal Mistakes "single" layout shell
+- Adds a consistent "At a glance" box + RA link + external docs + badges
+- Wraps content in js-card-sections so ## headings become cards
+{% endcomment %}
+
+<section class="activity-card">
+  <h3 class="activity-card__title">At a glance</h3>
+
+  <ul class="activity-glance">
+    {% if a.sections %}
+      <li><strong>Sections:</strong>
+        {% for s in a.sections %}
+          {{ s | downcase | capitalize }}{% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+      </li>
+    {% endif %}
+    {% if a.difficulty %}<li><strong>Difficulty:</strong> {{ a.difficulty }}/5</li>{% endif %}
+    {% if a.time_minutes %}<li><strong>Time:</strong> {{ a.time_minutes }} min</li>{% endif %}
+    {% if a.supervision %}<li><strong>Supervision:</strong> {{ a.supervision }}</li>{% endif %}
+    {% if a.location %}<li><strong>Location:</strong> {{ a.location }}</li>{% endif %}
+    {% if a.type %}<li><strong>Type:</strong> {{ a.type }}</li>{% endif %}
+  </ul>
+
+  <div class="activity-ra">
+    <strong>Risk assessment:</strong>
+    {% assign match = nil %}
+
+    {% if a.risk_id %}
+      {% for ra in site.risk_assessments %}
+        {% if ra.ra_id == a.risk_id %}
+          {% assign match = ra %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if match %}
+      <a href="{{ match.url | relative_url }}">{{ match.title }}</a>
+    {% else %}
+      <span class="activity-muted">Not linked yet</span>
+    {% endif %}
+  </div>
+</section>
+
+<section class="activity-content js-card-sections">
+  {% if a.kit and a.kit.size > 0 %}
+    <h2>You will need</h2>
+    <ul>
+      {% for item in a.kit %}
+        <li>{% if item.item %}{{ item.item }}{% else %}{{ item }}{% endif %}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {{ content }}
+</section>
+
+{% if a.external_docs and a.external_docs.size > 0 %}
+<section class="activity-card">
+  <h3 class="activity-card__title">External tutorials</h3>
+  <ul>
+    {% for d in a.external_docs %}
+      <li><a href="{{ d.url }}">{{ d.title }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if a.badges and a.badges.size > 0 %}
+<section class="activity-card">
+  <h3 class="activity-card__title">Badge links (reference)</h3>
+  <ul>
+    {% for b in a.badges %}
+      <li>
+        <strong>{{ b.section | downcase | capitalize }}:</strong> {{ b.badge }}
+        {% if b.requirement_note %} — {{ b.requirement_note }}{% endif %}
+        {% if b.url %} (<a href="{{ b.url }}">link</a>){% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  <p class="activity-muted">Badge requirements change. Always check the official source.</p>
+</section>
+{% endif %}

@@ -10,18 +10,31 @@ publish_mode: editorial_workflow
 collections:
   - name: "activities"
     label: "Activities"
+    label_singular: "Activity"
     folder: "_activities"
     create: true
     slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    editor:
+      preview: false
     fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "activity" }
+      - { label: "Card sections", name: "card_sections", widget: "hidden", default: true }
+
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Summary", name: "summary", widget: "text", required: false }
 
       - label: "Sections"
         name: "sections"
         widget: "select"
         multiple: true
-        options: ["Squirrels", "Beavers", "Cubs", "Scouts", "Explorers"]
+        options:
+          - { label: "Squirrels", value: "squirrels" }
+          - { label: "Beavers", value: "beavers" }
+          - { label: "Cubs", value: "cubs" }
+          - { label: "Scouts", value: "scouts" }
+          - { label: "Explorers", value: "explorers" }
 
       - { label: "Difficulty (1-5)", name: "difficulty", widget: "number", min: 1, max: 5, value_type: "int" }
       - { label: "Time (minutes)", name: "time_minutes", widget: "number", min: 5, max: 240, value_type: "int" }
@@ -33,6 +46,7 @@ collections:
       - label: "Kit list"
         name: "kit"
         widget: "list"
+        required: false
         field: { label: "Item", name: "item", widget: "string" }
 
       - { label: "Risk assessment ID", name: "risk_id", widget: "string", required: false, hint: "Must match ra_id of a Risk Assessment (e.g. ra_led_torch)." }
@@ -50,12 +64,20 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Section", name: "section", widget: "select", options: ["Squirrels", "Beavers", "Cubs", "Scouts", "Explorers"] }
+          - label: "Section"
+            name: "section"
+            widget: "select"
+            options:
+              - { label: "Squirrels", value: "squirrels" }
+              - { label: "Beavers", value: "beavers" }
+              - { label: "Cubs", value: "cubs" }
+              - { label: "Scouts", value: "scouts" }
+              - { label: "Explorers", value: "explorers" }
           - { label: "Badge", name: "badge", widget: "string" }
           - { label: "Requirement note", name: "requirement_note", widget: "string", required: false }
           - { label: "URL", name: "url", widget: "string", required: false }
 
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
 
   - name: "risk_assessments"
     label: "Risk Assessments"
@@ -75,7 +97,6 @@ collections:
       - label: "Name of activity, event, and location"
         name: "activity_name_location"
         widget: "string"
-        hint: "This appears in the top table (e.g. 'LED Torch Build (Scout hut)')."
 
       - { label: "Date of risk assessment", name: "date_of_ra", widget: "datetime", time_format: false, format: "YYYY-MM-DD" }
       - { label: "Date of next review", name: "next_review", widget: "datetime", time_format: false, format: "YYYY-MM-DD", required: false }
@@ -86,9 +107,14 @@ collections:
         name: "sections"
         widget: "select"
         multiple: true
-        options: ["Squirrels", "Beavers", "Cubs", "Scouts", "Explorers"]
+        options:
+          - { label: "Squirrels", value: "squirrels" }
+          - { label: "Beavers", value: "beavers" }
+          - { label: "Cubs", value: "cubs" }
+          - { label: "Scouts", value: "scouts" }
+          - { label: "Explorers", value: "explorers" }
 
-      - { label: "RA ID (internal)", name: "ra_id", widget: "string", required: false, hint: "Optional stable ID for linking from activities (e.g. ra_led_torch)." }
+      - { label: "RA ID (internal)", name: "ra_id", widget: "string", required: false }
 
       - label: "Hazards (table)"
         name: "hazards"
@@ -96,16 +122,15 @@ collections:
         summary: "{{fields.hazard}}"
         allow_add: true
         fields:
-          - { label: "Hazard", name: "hazard", widget: "string", hint: "What could go wrong? (e.g. 'Hot glue gun')" }
-          - { label: "Risk", name: "risk", widget: "string", required: false, hint: "What harm could occur? (e.g. 'Burns')" }
-          - { label: "Who is at risk?", name: "who", widget: "string", hint: "Young people, leaders, visitors, etc." }
+          - { label: "Hazard", name: "hazard", widget: "string" }
+          - { label: "Risk", name: "risk", widget: "string", required: false }
+          - { label: "Who is at risk?", name: "who", widget: "string" }
           - label: "What are you going to do about it? (controls)"
             name: "controls"
             widget: "markdown"
             buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
             editor_components: []
-            hint: "Use bullet points. Include existing controls + extra controls + how you’ll communicate them."
-          - { label: "Review & revise", name: "review", widget: "text", required: false, hint: "What might change? What would you do differently next time?" }
+          - { label: "Review & revise", name: "review", widget: "text", required: false }
 
       - label: "Notes (optional)"
         name: "body"
@@ -113,4 +138,3 @@ collections:
         required: false
         buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
         editor_components: []
-        hint: "Optional extra notes. Not required for the Scouts-style table."

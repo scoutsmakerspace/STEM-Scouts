@@ -1,15 +1,23 @@
 {% assign items = include.items %}
 
-<ul class="list__item">
+<ul class="list-unstyled">
   {% for a in items %}
     <li style="margin-bottom: 1rem;">
-      <strong><a href="{{ a.url }}">{{ a.title }}</a></strong><br>
+      <strong><a href="{{ a.url | relative_url }}">{{ a.title }}</a></strong><br>
+
       <small>
-        Sections: {{ a.sections | join: ", " }} ·
-        Difficulty: {{ a.difficulty }} ·
-        Time: {{ a.time_minutes }} min ·
-        Type: {{ a.type }}
+        {% if a.sections %}
+          Sections:
+          {% for s in a.sections %}
+            {{ s | downcase | capitalize }}{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+          ·
+        {% endif %}
+        {% if a.difficulty %}Difficulty: {{ a.difficulty }} ·{% endif %}
+        {% if a.time_minutes %} Time: {{ a.time_minutes }} min ·{% endif %}
+        {% if a.type %} Type: {{ a.type }}{% endif %}
       </small><br>
+
       {% if a.summary %}{{ a.summary }}{% endif %}
     </li>
   {% endfor %}

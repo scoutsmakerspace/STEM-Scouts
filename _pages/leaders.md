@@ -9,6 +9,13 @@ toc: true
 {% assign ras = site.risk_assessments | sort: "review_date" %}
 {% include ra_list.html items=ras %}
 
+## Official Scouts risk assessment guidance (recommended reading)
+Use these as the reference point for how risk assessments should be approached and reviewed:
+
+- [Risk assessments (guidance)](https://www.scouts.org.uk/volunteers/staying-safe-and-safeguarding/risk-assessments/)
+- [Example risk assessments](https://www.scouts.org.uk/volunteers/staying-safe-and-safeguarding/risk-assessments/example-risk-assessments/)
+- [Planning and assessing risk](https://www.scouts.org.uk/volunteers/staying-safe-and-safeguarding/safety/planning-and-assessing-risk/)
+
 ## How to use this site
 1. Pick an activity.
 2. Check the **At a glance** box (time, difficulty, supervision).

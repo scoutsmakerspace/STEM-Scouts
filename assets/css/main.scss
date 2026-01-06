@@ -68,3 +68,115 @@
   .masthead, .page__footer, .page__meta, .toc { display: none !important; }
   .ra-card{ break-inside: avoid; }
 }
+
+/* =========================
+   Site typography tweaks
+   (make it feel like a handbook, not a blog)
+   ========================= */
+
+/* Reduce base size slightly */
+html { font-size: 16px; } /* keep standard browser default */
+body { font-size: 0.95rem; line-height: 1.55; }
+
+/* Tone down headings */
+.page__content h1 { font-size: 1.9rem; margin-top: 0.8em; }
+.page__content h2 { font-size: 1.45rem; margin-top: 1.2em; }
+.page__content h3 { font-size: 1.15rem; margin-top: 1.0em; }
+
+/* Reduce the big divider look under headings */
+.page__content h2 {
+  padding-bottom: 0.25rem;
+  border-bottom-width: 1px;
+  margin-bottom: 0.6rem;
+}
+
+/* Lists a bit tighter (your kit list / steps) */
+.page__content ul,
+.page__content ol { margin: 0.4rem 0 0.9rem 1.2rem; }
+.page__content li { margin: 0.25rem 0; }
+
+/* =========================
+   Card sections (opt-in per page)
+   ========================= */
+
+.section-card{
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 12px;
+  background: #fff;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.section-card__header{
+  padding: .65rem .9rem;
+  font-weight: 800;
+  background: rgba(0,0,0,.04);
+  border-bottom: 1px solid rgba(0,0,0,.10);
+}
+
+.section-card__body{
+  padding: .75rem .9rem;
+}
+
+/* Tidy lists inside cards */
+.section-card__body ul,
+.section-card__body ol{
+  margin: .4rem 0 .2rem 1.1rem;
+}
+
+.section-card__body li{
+  margin: .2rem 0;
+}
+
+/* =========================
+   Activity template styling
+   ========================= */
+
+.activity-card{
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: #fff;
+  margin: 1rem 0;
+}
+
+.activity-card__title{
+  margin: 0 0 .6rem 0;
+  font-size: 1.15rem;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.activity-glance{
+  margin: .2rem 0 .8rem 1.1rem;
+}
+
+.activity-ra{
+  margin-top: .25rem;
+}
+
+.activity-muted{
+  opacity: .75;
+}
+
+/* Tighten typography site-wide */
+.page__content {
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* Reduce heading sizes + spacing */
+.page__content h1 { font-size: 1.85rem; margin: 0.7em 0 0.45em; }
+.page__content h2 { font-size: 1.35rem; margin: 1.0em 0 0.5em; }
+.page__content h3 { font-size: 1.10rem; margin: 0.9em 0 0.4em; }
+
+/* Make the h2 underline/divider subtle */
+.page__content h2 {
+  padding-bottom: 0.2rem;
+  border-bottom-width: 1px;
+}
+
+/* Tighter lists */
+.page__content ul,
+.page__content ol { margin: 0.35rem 0 0.85rem 1.15rem; }
+.page__content li { margin: 0.2rem 0; }
