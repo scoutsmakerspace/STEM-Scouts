@@ -42,7 +42,7 @@ defaults:
       path: ""
       type: risk_assessments
     values:
-      layout: single
+      layout: risk_assessment
       classes: wide
       toc: false
       toc_sticky: false

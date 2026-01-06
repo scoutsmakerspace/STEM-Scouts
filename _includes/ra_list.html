@@ -1,12 +1,14 @@
 {% assign items = include.items %}
 
-<ul class="list__item">
+<ul class="ra-list">
   {% for r in items %}
-    <li style="margin-bottom: 1rem;">
-      <strong><a href="{{ r.url }}">{{ r.title }}</a></strong><br>
+    <li class="ra-list__item" style="margin-bottom: 1rem;">
+      <strong>
+        <a href="{{ r.url | relative_url }}">{{ r.title }}</a>
+      </strong><br>
       <small>
-        Applies to: {{ r.sections | join: ", " }} ·
-        Review date: {{ r.review_date }}
+        {% if r.sections %}Applies to: {{ r.sections | join: ", " }}{% endif %}
+        {% if r.next_review %} · Next review: {{ r.next_review }}{% endif %}
       </small>
     </li>
   {% endfor %}
