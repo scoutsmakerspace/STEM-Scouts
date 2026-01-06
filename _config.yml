@@ -5,7 +5,7 @@ description: "A practical STEM activity library for Scout leaders."
 # NOTE: the build workflow sets the correct baseurl automatically as /<repo-name>.
 # Keep baseurl empty here to avoid mismatches.
 url: "https://scoutsmakerspace.github.io"
-baseurl: "/STEM-Scouts"
+baseurl: ""
 
 # Minimal Mistakes skin (optional):
 minimal_mistakes_skin: "contrast"
