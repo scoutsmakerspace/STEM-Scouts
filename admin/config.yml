@@ -57,44 +57,61 @@ collections:
 
       - { label: "Body", name: "body", widget: "markdown" }
 
-  - name: "risk_assessments"
+    - name: "risk_assessments"
     label: "Risk Assessments"
+    label_singular: "Risk Assessment"
     folder: "_risk_assessments"
     create: true
     slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    editor:
+      preview: false
     fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "risk_assessment" }
+
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "RA ID", name: "ra_id", widget: "string", hint: "Used by activities as risk_id" }
+
+      - label: "Name of activity, event, and location"
+        name: "activity_name_location"
+        widget: "string"
+        hint: "This appears in the top table (e.g. 'LED Torch Build (Scout hut)')."
+
+      - { label: "Date of risk assessment", name: "date_of_ra", widget: "datetime", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Date of next review", name: "next_review", widget: "datetime", time_format: false, format: "YYYY-MM-DD", required: false }
+
+      - { label: "Name of person doing this risk assessment", name: "assessor", widget: "string", required: false }
 
       - label: "Sections"
         name: "sections"
         widget: "select"
         multiple: true
-        options: ["beavers", "cubs", "scouts", "explorers"]
+        options: ["Squirrels", "Beavers", "Cubs", "Scouts", "Explorers"]
 
-      - { label: "Location", name: "location", widget: "select", options: ["indoors", "outdoors", "both"] }
-      - { label: "Supervision", name: "supervision", widget: "select", options: ["low", "medium", "high"] }
+      - { label: "RA ID (internal)", name: "ra_id", widget: "string", required: false, hint: "Optional stable ID for linking from activities (e.g. ra_led_torch)." }
 
-      - { label: "Prepared by", name: "prepared_by", widget: "string" }
-      - { label: "Created date", name: "created_date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
-      - { label: "Review date", name: "review_date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
-      - { label: "Version", name: "version", widget: "string" }
-
-      - label: "Hazards"
+      - label: "Hazards (table)"
         name: "hazards"
         widget: "list"
+        summary: "{{fields.hazard}}"
+        allow_add: true
         fields:
-          - { label: "Hazard", name: "hazard", widget: "string" }
-          - { label: "Who might be harmed", name: "who", widget: "string" }
-          - { label: "Initial risk", name: "risk_level", widget: "select", options: ["Low", "Medium", "High"] }
-          - { label: "Control measures", name: "controls", widget: "text" }
-          - { label: "Residual risk", name: "residual", widget: "select", options: ["Low", "Medium", "High"] }
+          - { label: "Hazard", name: "hazard", widget: "string", hint: "What could go wrong? (e.g. 'Hot glue gun')" }
+          - { label: "Risk", name: "risk", widget: "string", required: false, hint: "What harm could occur? (e.g. 'Burns')" }
+          - { label: "Who is at risk?", name: "who", widget: "string", hint: "Young people, leaders, visitors, etc." }
+          - label: "What are you going to do about it? (controls)"
+            name: "controls"
+            widget: "markdown"
+            buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+            editor_components: []
+            hint: "Use bullet points. Include existing controls + extra controls + how you’ll communicate them."
+          - { label: "Review & revise", name: "review", widget: "text", required: false, hint: "What might change? What would you do differently next time?" }
 
-      - label: "Emergency"
-        name: "emergency"
-        widget: "object"
-        fields:
-          - { label: "First aid", name: "first_aid", widget: "text" }
-          - { label: "Fire", name: "fire", widget: "text" }
+      - label: "Notes (optional)"
+        name: "body"
+        widget: "markdown"
+        required: false
+        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+        editor_components: []
+        hint: "Optional extra notes. Not required for the Scouts-style table."
 
-      - { label: "Extra notes (optional)", name: "body", widget: "markdown", required: false }
