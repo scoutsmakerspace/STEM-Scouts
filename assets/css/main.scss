@@ -1,0 +1,70 @@
+---
+---
+
+@import "minimal-mistakes";
+
+
+/* =========================
+   Risk Assessment styling
+   ========================= */
+
+.ra-titleblock { margin-bottom: 1rem; }
+.ra-subtle { opacity: .85; }
+
+.ra-card{
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: #fff;
+  margin: 1rem 0;
+}
+
+.ra-header-table{
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.ra-header-table th{
+  background: rgba(0,0,0,.05);
+  font-weight: 700;
+  padding: .6rem .7rem;
+  border: 1px solid rgba(0,0,0,.12);
+  vertical-align: top;
+}
+.ra-header-table td{
+  padding: .6rem .7rem;
+  border: 1px solid rgba(0,0,0,.12);
+  vertical-align: top;
+}
+
+.ra-main-table{
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.ra-main-table th{
+  background: rgba(0,0,0,.05);
+  padding: .65rem .75rem;
+  border: 1px solid rgba(0,0,0,.12);
+  vertical-align: top;
+}
+.ra-headnote{
+  margin-top: .35rem;
+  font-weight: 400;
+  opacity: .8;
+  font-size: .92em;
+}
+.ra-main-table td{
+  padding: .65rem .75rem;
+  border: 1px solid rgba(0,0,0,.12);
+  vertical-align: top;
+}
+.ra-main-table tbody tr:nth-child(even) td{
+  background: rgba(0,0,0,.015);
+}
+
+/* Print-friendly */
+@media print{
+  .masthead, .page__footer, .page__meta, .toc { display: none !important; }
+  .ra-card{ break-inside: avoid; }
+}
