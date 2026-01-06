@@ -6,8 +6,9 @@ toc: true
 ---
 
 ## Risk Assessments (Index)
-{% assign ras = site.risk_assessments | sort: "review_date" %}
+{% assign ras = site.risk_assessments | sort: "next_review" %}
 {% include ra_list.html items=ras %}
+
 
 ## Official Scouts risk assessment guidance (recommended reading)
 Use these as the reference point for how risk assessments should be approached and reviewed:
