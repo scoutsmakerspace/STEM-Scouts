@@ -29,10 +29,8 @@ defaults:
       path: ""
       type: activities
     values:
-      layout: single
-      classes: wide
-      toc: true
-      toc_sticky: true
+      layout: activity
+      card_sections: true
 
   - scope:
       path: ""
