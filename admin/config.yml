@@ -1,6 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: scoutsmakerspace/STEM-Scouts
   branch: main
+  base_url: https://stemscouts-oauth.YOURDOMAIN.workers.dev
+  auth_endpoint: auth
+
 
 media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
