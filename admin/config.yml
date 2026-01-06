@@ -5,8 +5,8 @@ backend:
   base_url: https://stemscouts-oauth.scouts-makerspace.workers.dev/
   auth_endpoint: auth
 
-
 site_url: https://scoutsmakerspace.github.io/STEM-Scouts
+display_url: https://scoutsmakerspace.github.io/STEM-Scouts
 
 media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
