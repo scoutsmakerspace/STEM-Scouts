@@ -1,20 +1,38 @@
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
   (function () {
-    // If a Netlify Identity token is present in the URL (invite/recovery),
-    // open the Identity widget and send the user to /admin afterwards.
-    var hash = window.location.hash || "";
-    if (hash.includes("invite_token") || hash.includes("recovery_token")) {
-      window.netlifyIdentity = window.netlifyIdentity || {};
-      // Wait a moment for the widget to load, then open it.
-      setTimeout(function () {
-        if (window.netlifyIdentity && window.netlifyIdentity.open) {
-          window.netlifyIdentity.open();
-          window.netlifyIdentity.on("login", function () {
-            window.location.href = "/admin/";
-          });
-        }
-      }, 300);
+    function hasToken() {
+      var h = window.location.hash || "";
+      return (
+        h.indexOf("invite_token=") !== -1 ||
+        h.indexOf("recovery_token=") !== -1 ||
+        h.indexOf("confirmation_token=") !== -1
+      );
     }
+
+    function boot() {
+      if (!window.netlifyIdentity) return;
+
+      // When we arrive via a recovery/invite link, force the widget open.
+      if (hasToken()) {
+        try { window.netlifyIdentity.open(); } catch (e) {}
+      }
+
+      // After successful login, send user to CMS.
+      window.netlifyIdentity.on("login", function () {
+        window.location.href = "/admin/";
+      });
+    }
+
+    // The widget loads async; wait until it exists.
+    var tries = 0;
+    var t = setInterval(function () {
+      tries++;
+      if (window.netlifyIdentity) {
+        clearInterval(t);
+        boot();
+      }
+      if (tries > 50) clearInterval(t); // ~5 seconds
+    }, 100);
   })();
 </script>
