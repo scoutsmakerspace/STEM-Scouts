@@ -1,26 +1,20 @@
-# Site settings
 title: "STEM Scouts"
 description: "A practical STEM activity library for Scout leaders."
-url: "https://YOUR-USERNAME.github.io"
+
+# GitHub Pages project site:
+url: "https://<username>.github.io"
 baseurl: "/stemscouts"
 
-# Theme
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 
-# Plugins
 plugins:
-  - jekyll-remote-theme
   - jekyll-include-cache
   - jekyll-sitemap
   - jekyll-feed
 
-# Content structure
 include:
-  - "_pages"
+  - _pages
 
-markdown: kramdown
-
-# Collections
 collections:
   activities:
     output: true
@@ -29,7 +23,6 @@ collections:
     output: true
     permalink: /risk/:name/
 
-# Defaults
 defaults:
   - scope:
       path: ""
@@ -37,14 +30,11 @@ defaults:
     values:
       layout: activity
       card_sections: true
-      toc: false
-      toc_sticky: false
-
   - scope:
       path: ""
       type: risk_assessments
     values:
-      layout: risk_assessment
+      layout: single
       classes: wide
       toc: false
       toc_sticky: false
