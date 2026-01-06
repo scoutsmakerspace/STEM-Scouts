@@ -2,7 +2,7 @@
 title: "STEM Scouts"
 description: "A practical STEM activity library for Scout leaders."
 url: "https://USERNAME.github.io"
-baseurl: "/REPO-NAME"   # e.g. "/STEM-Scouts"  (IMPORTANT)
+baseurl: "/stemscouts"   # e.g. "/STEM-Scouts"  (IMPORTANT)
 
 # Theme
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
