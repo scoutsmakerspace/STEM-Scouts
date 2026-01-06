@@ -10,12 +10,20 @@ publish_mode: editorial_workflow
 collections:
   - name: "activities"
     label: "Activities"
+    label_singular: "Activity"
     folder: "_activities"
     create: true
     slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    editor:
+      preview: false
     fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "activity" }
+      - { label: "Card sections", name: "card_sections", widget: "hidden", default: true }
+
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Summary", name: "summary", widget: "text", required: false }
 
       - label: "Sections"
         name: "sections"
@@ -33,6 +41,7 @@ collections:
       - label: "Kit list"
         name: "kit"
         widget: "list"
+        required: false
         field: { label: "Item", name: "item", widget: "string" }
 
       - { label: "Risk assessment ID", name: "risk_id", widget: "string", required: false, hint: "Must match ra_id of a Risk Assessment (e.g. ra_led_torch)." }
@@ -55,7 +64,7 @@ collections:
           - { label: "Requirement note", name: "requirement_note", widget: "string", required: false }
           - { label: "URL", name: "url", widget: "string", required: false }
 
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
 
   - name: "risk_assessments"
     label: "Risk Assessments"
