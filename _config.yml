@@ -1,17 +1,22 @@
+# Site settings
 title: "STEM Scouts"
 description: "A practical STEM activity library for Scout leaders."
-url: "https://stemscouts.netlify.app"
-baseurl: ""
+url: "https://USERNAME.github.io"
+baseurl: "/REPO-NAME"   # e.g. "/STEM-Scouts"  (IMPORTANT)
 
+# Theme
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 
+# Plugins (needed for Minimal Mistakes + your site features)
 plugins:
+  - jekyll-remote-theme
   - jekyll-include-cache
   - jekyll-sitemap
   - jekyll-feed
 
+# Build / content structure
 include:
-  - _pages
+  - "_pages"
 
 markdown: kramdown
 
@@ -24,6 +29,7 @@ collections:
     output: true
     permalink: /risk/:name/
 
+# Defaults (applied automatically)
 defaults:
   - scope:
       path: ""
@@ -31,12 +37,14 @@ defaults:
     values:
       layout: activity
       card_sections: true
+      toc: false
+      toc_sticky: false
 
   - scope:
       path: ""
       type: risk_assessments
     values:
-      layout: single
+      layout: risk_assessment   # <-- IMPORTANT (use your RA layout)
       classes: wide
       toc: false
       toc_sticky: false
