@@ -127,3 +127,34 @@ body { font-size: 0.95rem; line-height: 1.55; }
 .section-card__body li{
   margin: .2rem 0;
 }
+
+/* =========================
+   Activity template styling
+   ========================= */
+
+.activity-card{
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: #fff;
+  margin: 1rem 0;
+}
+
+.activity-card__title{
+  margin: 0 0 .6rem 0;
+  font-size: 1.15rem;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.activity-glance{
+  margin: .2rem 0 .8rem 1.1rem;
+}
+
+.activity-ra{
+  margin-top: .25rem;
+}
+
+.activity-muted{
+  opacity: .75;
+}
