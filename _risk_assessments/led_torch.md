@@ -1,26 +1,25 @@
 ---
-title: "Risk Assessment — LED Torch Build"
-ra_id: led_torch
-sections: [beavers, cubs]
-location: indoors
-supervision: medium
-prepared_by: "Your Name"
-created_date: 2026-01-05
-review_date: 2026-07-05
-version: "1.0"
+layout: risk_assessment
+title: "LED Torch Build"
+activity_name_location: "LED Torch Build (Scout hut)"
+date_of_ra: 2026-01-07
+next_review: 2026-07-07
+assessor: "Bogdan Alecsa"
+sections: ["Cubs", "Scouts"]
 
 hazards:
-  - hazard: "Coin cell batteries"
+  - hazard: "Sharp wire ends"
+    risk: "Cuts / punctures"
+    who: "Young people, leaders"
+    controls: "- Demonstrate safe wire stripping\n- Provide side cutters\n- Keep offcuts in a tub\n- First aid kit available"
+    review: "If younger group, pre-strip wires"
+  - hazard: "Coin cell battery"
+    risk: "Swallowing hazard"
     who: "Young people"
-    risk_level: "Medium"
-    controls: "No loose cells; leader holds spares; brief swallow risk; count batteries in/out; tape terminals when not in use; dispose safely."
-    residual: "Low"
+    controls: "- Count batteries in/out\n- No loose batteries left on tables\n- Adults handle spares\n- Clear briefing at start"
+    review: "For Beavers, use sealed battery holders only"
+---
 
-  - hazard: "Sharp tools (scissors)"
-    who: "Young people"
-    risk_level: "Low"
-    controls: "Use safety scissors for Beavers; demonstrate safe carry; cut at tables only; leaders supervise."
-    residual: "Low"
 
 emergency:
   first_aid: "Leader first aid kit accessible; treat minor cuts immediately; record incidents as required."
