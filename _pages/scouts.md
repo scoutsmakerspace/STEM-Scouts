@@ -5,5 +5,5 @@ permalink: /scouts/
 toc: true
 ---
 
-{% assign items = site.activities | where_exp: "a", "a.sections contains \"Scouts\"" | sort: "title" %}
+{% assign items = site.activities | where_exp: "a", "a.sections contains 'Scouts'" | sort: "title" %}
 {% include activity_list.html items=items %}
