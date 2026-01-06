@@ -5,5 +5,16 @@ permalink: /beavers/
 toc: true
 ---
 
-{% assign items = site.activities | where_exp: "a", "a.sections and (a.sections | join: ',' | downcase) contains 'beavers'" | sort: "title" %}
+{% comment %}
+NOTE: Liquid's `where_exp` does NOT allow filters inside the expression
+(so you can't do `a.sections | join` / `| downcase` there).
+
+Because `sections` is stored as an ARRAY in each activity's front matter,
+we can match directly using `contains`.
+{% endcomment %}
+
+{% assign items = site.activities
+  | where_exp: "a", "a.sections contains 'Beavers'"
+  | sort: "title" %}
 {% include activity_list.html items=items %}
+

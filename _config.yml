@@ -1,9 +1,19 @@
 title: "STEM Scouts"
 description: "A practical STEM activity library for Scout leaders."
-url: "https://stemscouts.netlify.app"
+
+# GitHub Pages project site:
+# NOTE: the build workflow sets the correct baseurl automatically as /<repo-name>.
+# Keep baseurl empty here to avoid mismatches.
+url: "https://scoutsmakerspace.github.io"
 baseurl: ""
 
-theme: "minimal-mistakes-jekyll"
+# Minimal Mistakes skin (optional):
+minimal_mistakes_skin: "contrast"
+
+# Header branding
+masthead_title: "STEM Scouts"
+
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 
 plugins:
   - jekyll-include-cache
@@ -13,9 +23,6 @@ plugins:
 include:
   - _pages
 
-markdown: kramdown
-
-# Collections
 collections:
   activities:
     output: true
@@ -31,7 +38,6 @@ defaults:
     values:
       layout: activity
       card_sections: true
-
   - scope:
       path: ""
       type: risk_assessments
