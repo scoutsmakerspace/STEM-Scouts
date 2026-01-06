@@ -68,3 +68,29 @@
   .masthead, .page__footer, .page__meta, .toc { display: none !important; }
   .ra-card{ break-inside: avoid; }
 }
+
+/* =========================
+   Site typography tweaks
+   (make it feel like a handbook, not a blog)
+   ========================= */
+
+/* Reduce base size slightly */
+html { font-size: 16px; } /* keep standard browser default */
+body { font-size: 0.95rem; line-height: 1.55; }
+
+/* Tone down headings */
+.page__content h1 { font-size: 1.9rem; margin-top: 0.8em; }
+.page__content h2 { font-size: 1.45rem; margin-top: 1.2em; }
+.page__content h3 { font-size: 1.15rem; margin-top: 1.0em; }
+
+/* Reduce the big divider look under headings */
+.page__content h2 {
+  padding-bottom: 0.25rem;
+  border-bottom-width: 1px;
+  margin-bottom: 0.6rem;
+}
+
+/* Lists a bit tighter (your kit list / steps) */
+.page__content ul,
+.page__content ol { margin: 0.4rem 0 0.9rem 1.2rem; }
+.page__content li { margin: 0.25rem 0; }
