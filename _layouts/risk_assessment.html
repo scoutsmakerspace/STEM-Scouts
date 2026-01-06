@@ -1,0 +1,85 @@
+---
+layout: single
+---
+
+{% assign ra = page %}
+
+<header class="ra-titleblock">
+  <h1 class="page__title">{{ ra.title }}</h1>
+  {% if ra.sections %}
+    <p class="ra-subtle"><strong>Sections:</strong> {{ ra.sections | join: ", " }}</p>
+  {% endif %}
+</header>
+
+<section class="ra-card">
+  <table class="ra-header-table" aria-label="Risk assessment details">
+    <tbody>
+      <tr>
+        <th>Name of activity, event, and location</th>
+        <td>{{ ra.activity_name_location | default: ra.title }}</td>
+
+        <th>Date of risk assessment</th>
+        <td>{{ ra.date_of_ra | default: "" }}</td>
+
+        <th>Name of person doing this risk assessment</th>
+        <td>{{ ra.assessor | default: "" }}</td>
+      </tr>
+      <tr>
+        <th>Date of next review</th>
+        <td colspan="5">{{ ra.next_review | default: "" }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="ra-card">
+  <table class="ra-main-table" aria-label="Risk assessment hazards">
+    <thead>
+      <tr>
+        <th>
+          What could go wrong?
+          <div class="ra-headnote">What hazard have you identified? What are the risks from it?</div>
+        </th>
+        <th>Who is at risk?</th>
+        <th>
+          What are you going to do about it?
+          <div class="ra-headnote">How are the risks already controlled? What extra controls are needed? How will they be communicated?</div>
+        </th>
+        <th>
+          Review &amp; revise
+          <div class="ra-headnote">What has changed that needs to be thought about and controlled?</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if ra.hazards and ra.hazards.size > 0 %}
+        {% for h in ra.hazards %}
+        <tr>
+          <td>
+            <strong>Hazard:</strong> {{ h.hazard | default: "" }}<br/>
+            <strong>Risk:</strong> {{ h.risk | default: "" }}
+          </td>
+          <td>{{ h.who | default: "" }}</td>
+          <td>{{ h.controls | default: "" | markdownify }}</td>
+          <td>{{ h.review | default: "" }}</td>
+        </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="4"><em>No hazard rows found. Add entries under <code>hazards:</code>.</em></td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</section>
+
+<section class="ra-card ra-resources">
+  <h2>Official Scouts resources</h2>
+  <p class="ra-subtle">Use these as your reference point for creating and reviewing risk assessments.</p>
+  <ul>
+    <li><a href="https://www.scouts.org.uk/volunteers/staying-safe-and-safeguarding/risk-assessments/">Risk assessments (guidance)</a></li>
+    <li><a href="https://www.scouts.org.uk/volunteers/staying-safe-and-safeguarding/risk-assessments/example-risk-assessments/">Example risk assessments</a></li>
+    <li><a href="https://www.scouts.org.uk/volunteers/staying-safe-and-safeguarding/safety/planning-and-assessing-risk/">Planning and assessing risk</a></li>
+  </ul>
+  <p class="ra-subtle">Independent resource. Not affiliated with The Scout Association.</p>
+</section>
