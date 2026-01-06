@@ -2,8 +2,8 @@ backend:
   name: github
   repo: scoutsmakerspace/STEM-Scouts
   branch: main
-  base_url: https://stemscouts-oauth.YOURDOMAIN.workers.dev
-  auth_endpoint: auth
+  base_url: https://scoutsmakerspace.github.io
+  auth_endpoint: STEM-Scouts/api/auth
 
 
 media_folder: "assets/images/uploads"
