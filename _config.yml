@@ -2,8 +2,16 @@ title: "STEM Scouts"
 description: "A practical STEM activity library for Scout leaders."
 
 # GitHub Pages project site:
-url: "https://STEM-Scouts.github.io"
-baseurl: "/stemscouts"
+# NOTE: the build workflow sets the correct baseurl automatically as /<repo-name>.
+# Keep baseurl empty here to avoid mismatches.
+url: "https://scoutsmakerspace.github.io"
+baseurl: ""
+
+# Minimal Mistakes skin (optional):
+minimal_mistakes_skin: "contrast"
+
+# Header branding
+masthead_title: "STEM Scouts"
 
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 
