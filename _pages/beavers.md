@@ -1,20 +1,18 @@
 ---
-layout: single
-title: "Beavers STEM Activities"
+layout: splash
+title: "Beavers Activities"
 permalink: /beavers/
-toc: true
+toc: false
 ---
 
-{% comment %}
-NOTE: Liquid's `where_exp` does NOT allow filters inside the expression
-(so you can't do `a.sections | join` / `| downcase` there).
-
-Because `sections` is stored as an ARRAY in each activity's front matter,
-we can match directly using `contains`.
-{% endcomment %}
+<div class="activities-intro">
+  <p>
+    Activities suitable for <strong>Beavers</strong>.
+    Always review the activity and create your own Risk Assessment for your setting.
+  </p>
+</div>
 
 {% assign items = site.activities
-  | where_exp: "a", "a.sections contains 'Beavers'"
+  | where_exp: "a", "a.sections contains 'beavers' or a.sections contains 'Beavers'"
   | sort: "title" %}
 {% include activity_list.html items=items %}
-
