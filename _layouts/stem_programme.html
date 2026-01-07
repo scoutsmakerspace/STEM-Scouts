@@ -1,0 +1,26 @@
+---
+layout: single
+---
+
+{% assign p = page %}
+
+<h1>{{ p.title }}</h1>
+
+<p class="activity-muted">
+  {% if p.programme_type %}
+    <strong>Type:</strong>
+    {% if p.programme_type == "scouts" %}Scouts partnership{% else %}Wider youth STEM programme{% endif %}
+    ·
+  {% endif %}
+  {% if p.sections %}<strong>Sections:</strong> {{ p.sections | join: ", " }}{% endif %}
+</p>
+
+{% if p.summary %}
+  <p>{{ p.summary }}</p>
+{% endif %}
+
+{% if p.url %}
+  <p><a href="{{ p.url }}" target="_blank" rel="noopener"><strong>Official link</strong></a></p>
+{% endif %}
+
+{{ content }}
