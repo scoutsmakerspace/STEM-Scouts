@@ -451,96 +451,109 @@ body { font-size: 0.95rem; line-height: 1.55; }
 }
 
 /* =========================
-   Activity filters (clean + compact)
+   Activities header + filters (polished)
    ========================= */
 
+.activities-header {
+  max-width: 70rem;
+  margin: 0 auto 1.25rem auto;
+}
+
+.activities-intro {
+  margin-bottom: .75rem;
+}
+
+/* Filters: make it lighter and tighter */
 .filters-bar {
-  margin: 1.25rem 0 1.25rem 0;
-  padding: .9rem 1rem;
-  border: 1px solid rgba(0,0,0,.10);
-  border-radius: 14px;
-  background: rgba(0,0,0,.015);
+  margin: 1rem 0 1rem 0;
+  padding: .85rem 0;
+  border-top: 1px solid rgba(0,0,0,.10);
+  border-bottom: 1px solid rgba(0,0,0,.10);
+  background: transparent;
 }
 
 .filters-bar__row {
-  display: grid;
-  grid-template-columns: 1fr auto auto auto;
+  display: flex;
+  flex-wrap: wrap;
   gap: .75rem;
-  align-items: end;
+  align-items: flex-end;
 }
 
-@media (max-width: 900px) {
-  .filters-bar__row {
-    grid-template-columns: 1fr;
-  }
+.filters-bar__label {
+  flex: 1 1 320px;
 }
 
 .filters-bar__label span {
   display: block;
   font-weight: 700;
   margin-bottom: .25rem;
+  font-size: .95rem;
 }
 
 .filters-bar__input {
   width: 100%;
   padding: .55rem .7rem;
-  border: 1px solid rgba(0,0,0,.15);
+  border: 1px solid rgba(0,0,0,.18);
   border-radius: 10px;
   background: #fff;
 }
 
 .filters-bar__btn {
   padding: .55rem .85rem;
-  border: 1px solid rgba(0,0,0,.15);
+  border: 1px solid rgba(0,0,0,.18);
   border-radius: 10px;
   background: #fff;
   white-space: nowrap;
 }
 
-.filters-bar__btn:hover {
-  background: rgba(0,0,0,.03);
-}
-
 .filters-bar__count {
-  justify-self: end;
+  margin-left: auto;
+  color: rgba(0,0,0,.55);
+  font-weight: 700;
   align-self: center;
-  color: rgba(0,0,0,.6);
-  font-weight: 600;
 }
 
+/* Advanced: only when open, it becomes a subtle panel */
 .filters-advanced {
-  margin-top: .9rem;
-  padding-top: .9rem;
-  border-top: 1px solid rgba(0,0,0,.08);
+  margin-top: .85rem;
+  padding: .85rem;
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 12px;
+  background: rgba(0,0,0,.02);
+
   display: grid;
-  grid-template-columns: repeat(5, minmax(160px, 1fr));
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
   gap: .75rem;
 }
 
 @media (max-width: 1100px) {
-  .filters-advanced {
-    grid-template-columns: repeat(2, minmax(160px, 1fr));
-  }
+  .filters-advanced { grid-template-columns: repeat(2, minmax(150px, 1fr)); }
 }
 @media (max-width: 600px) {
-  .filters-advanced {
-    grid-template-columns: 1fr;
-  }
+  .filters-advanced { grid-template-columns: 1fr; }
 }
 
 .filters-advanced label span {
   display: block;
   font-weight: 700;
   margin-bottom: .25rem;
+  font-size: .92rem;
+  color: rgba(0,0,0,.75);
 }
 
 .filters-advanced select {
   width: 100%;
   padding: .55rem .7rem;
-  border: 1px solid rgba(0,0,0,.15);
+  border: 1px solid rgba(0,0,0,.18);
   border-radius: 10px;
   background: #fff;
 }
+
+/* Ensure hidden really hides even if something overrides [hidden] */
+.filters-advanced[hidden] {
+  display: none !important;
+}
+
 
 .activities-header {
   max-width: 70rem;
