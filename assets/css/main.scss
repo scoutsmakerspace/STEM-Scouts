@@ -180,3 +180,20 @@ body { font-size: 0.95rem; line-height: 1.55; }
 .page__content ul,
 .page__content ol { margin: 0.35rem 0 0.85rem 1.15rem; }
 .page__content li { margin: 0.2rem 0; }
+
+.activity-warning {
+  display: inline-block;
+  padding: 0.4em 0.7em;
+  margin-left: 0.3em;
+  font-weight: 600;
+  color: #7a1f1f;
+  background-color: #fdeaea;
+  border: 1px solid #f5bcbc;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.activity-warning::before {
+  content: "⚠ ";
+}
+
