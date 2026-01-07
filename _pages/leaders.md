@@ -5,9 +5,9 @@ permalink: /leaders/
 toc: true
 ---
 
-## Refference Risk Assessments
+## Reference Risk Assessments
 
-This site provides example/refference Risk Assessments to support leaders in identifying common hazards and controls.
+This site provides example/reference Risk Assessments to support leaders in identifying common hazards and controls.
 
 They are **not templates to copy and reuse**. You must review and create your own Risk Assessment for your activity and setting.
 
