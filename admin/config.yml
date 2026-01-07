@@ -69,7 +69,7 @@ collections:
 
       # OLD (kept for backwards compatibility): typed RA ID
       # You can remove this later once all existing activities have been migrated to use 'risk_assessment'.
-      - { label: "Risk assessment ID (legacy)", name: "risk_id", widget: "string", required: false, hint: "Legacy field. Prefer 'Risk Assessment (link)' above. If used, must match a Risk Assessment slug/ID." }
+      #- { label: "Risk assessment ID (legacy)", name: "risk_id", widget: "string", required: false, hint: "Legacy field. Prefer 'Risk Assessment (link)' above. If used, must match a Risk Assessment slug/ID." }
 
       - label: "External docs"
         name: "external_docs"
