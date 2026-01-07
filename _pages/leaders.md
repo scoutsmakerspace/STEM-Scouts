@@ -5,9 +5,14 @@ permalink: /leaders/
 toc: true
 ---
 
-## Risk Assessments (examples and references)
-{% assign ras = site.risk_assessments | sort: "next_review" %}
-{% include ra_list.html items=ras %}
+## Refference Risk Assessments
+
+This site provides example/refference Risk Assessments to support leaders in identifying common hazards and controls.
+
+They are **not templates to copy and reuse**. You must review and create your own Risk Assessment for your activity and setting.
+
+👉 **[View the Risk Assessment index](/risk-assessments/)**
+
 
 ## Important: Risk Assessments on this site
 
