@@ -11,8 +11,7 @@ This site includes a collection of **example Risk Assessments** to support leade
 
 They are provided as guidance only and **must be reviewed and adapted** for your own activity and setting.
 
-👉 **[View the Risk Assessment index](/risk-assessments/)**
-
+👉 **[View the Risk Assessment index]({{ "/risk-assessments/" | relative_url }})**
 
 ## Important: Risk Assessments on this site
 
