@@ -2,26 +2,26 @@ title: "STEM Scouts"
 description: "A practical STEM activity library for Scout leaders."
 
 # GitHub Pages project site:
-# NOTE: the build workflow sets the correct baseurl automatically as /<repo-name>.
+# NOTE: the build workflow can set the correct baseurl automatically as /<repo-name>.
 # Keep baseurl empty here to avoid mismatches.
 url: "https://scoutsmakerspace.github.io"
 baseurl: ""
 
-# Minimal Mistakes skin (optional):
-minimal_mistakes_skin: "contrast"
-
-# Header branding
 masthead_title: "STEM Scouts"
 
+# Theme
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+minimal_mistakes_skin: "contrast"
 
+# Plugins (all allowed by GitHub Pages)
 plugins:
+  - jekyll-feed
   - jekyll-include-cache
   - jekyll-sitemap
-  - jekyll-feed
 
+# Include _pages directory in the build
 include:
-  - _pages
+  - "_pages"
 
 collections:
   activities:
@@ -29,7 +29,10 @@ collections:
     permalink: /activities/:name/
   risk_assessments:
     output: true
-    permalink: /risk/:name/
+    permalink: /risk-assessments/:name/
+  stem_programmes:
+    output: true
+    permalink: /stem-programmes/:name/
 
 defaults:
   - scope:
@@ -38,11 +41,20 @@ defaults:
     values:
       layout: activity
       card_sections: true
+
   - scope:
       path: ""
       type: risk_assessments
     values:
       layout: risk_assessment
       classes: wide
+      toc: false
+      toc_sticky: false
+
+  - scope:
+      path: ""
+      type: stem_programmes
+    values:
+      layout: stem_programme
       toc: false
       toc_sticky: false
