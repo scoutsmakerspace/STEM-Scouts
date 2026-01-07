@@ -1,24 +1,32 @@
 {% assign items = include.items %}
 
-<ul class="list-unstyled">
+<div class="activity-index" role="list">
   {% for a in items %}
-    <li style="margin-bottom: 1rem;">
-      <strong><a href="{{ a.url | relative_url }}">{{ a.title }}</a></strong><br>
+    <article class="activity-index__item" role="listitem">
+      <h3 class="activity-index__title">
+        <a href="{{ a.url | relative_url }}">{{ a.title }}</a>
+      </h3>
 
-      <small>
-        {% if a.sections %}
-          Sections:
-          {% for s in a.sections %}
-            {{ s | downcase | capitalize }}{% unless forloop.last %}, {% endunless %}
-          {% endfor %}
-          ·
+      <div class="activity-index__meta">
+        {% if a.sections and a.sections.size > 0 %}
+          <span class="meta-chip">
+            Sections:
+            {% for s in a.sections %}
+              {{ s | downcase | capitalize }}{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </span>
         {% endif %}
-        {% if a.difficulty %}Difficulty: {{ a.difficulty }} ·{% endif %}
-        {% if a.time_minutes %} Time: {{ a.time_minutes }} min ·{% endif %}
-        {% if a.type %} Type: {{ a.type }}{% endif %}
-      </small><br>
 
-      {% if a.summary %}{{ a.summary }}{% endif %}
-    </li>
+        {% if a.difficulty %}<span class="meta-chip">Difficulty: {{ a.difficulty }}</span>{% endif %}
+        {% if a.time_minutes %}<span class="meta-chip">Time: {{ a.time_minutes }} min</span>{% endif %}
+        {% if a.type %}<span class="meta-chip">Type: {{ a.type }}</span>{% endif %}
+        {% if a.location %}<span class="meta-chip">Location: {{ a.location }}</span>{% endif %}
+        {% if a.supervision %}<span class="meta-chip">Supervision: {{ a.supervision }}</span>{% endif %}
+      </div>
+
+      {% if a.summary %}
+        <p class="activity-index__summary">{{ a.summary }}</p>
+      {% endif %}
+    </article>
   {% endfor %}
-</ul>
+</div>
