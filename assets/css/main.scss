@@ -607,3 +607,8 @@ body { font-size: 0.95rem; line-height: 1.55; }
 .filters-bar__btn:hover{
   background: rgba(0,0,0,.03);
 }
+
+.filters-bar__btn{
+  color: $link-color;
+}
+
