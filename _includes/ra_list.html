@@ -1,8 +1,18 @@
 {% assign items = include.items %}
 
-<div class="ra-cards">
+<div class="ra-search">
+  <label class="ra-search__label" for="raSearch">Search risk assessments</label>
+  <input id="raSearch" class="ra-search__input" type="search" placeholder="Type to filter (e.g. soldering, Cubs, review)..." autocomplete="off">
+  <div id="raSearchCount" class="ra-search__count" aria-live="polite"></div>
+</div>
+
+<div class="ra-cards" id="raCards">
   {% for r in items %}
-    <article class="ra-card">
+    {% capture ra_text %}
+      {{ r.title }} {% if r.sections %} {{ r.sections | join: " " }}{% endif %}{% if r.next_review %} {{ r.next_review }}{% endif %}
+    {% endcapture %}
+
+    <article class="ra-card" data-ra-text="{{ ra_text | strip | downcase | escape }}">
       <h3 class="ra-card__title">
         <a href="{{ r.url | relative_url }}">{{ r.title }}</a>
       </h3>
@@ -26,3 +36,38 @@
     </article>
   {% endfor %}
 </div>
+
+<script>
+(function () {
+  var input = document.getElementById('raSearch');
+  var cardsWrap = document.getElementById('raCards');
+  var countEl = document.getElementById('raSearchCount');
+  if (!input || !cardsWrap) return;
+
+  var cards = Array.prototype.slice.call(cardsWrap.querySelectorAll('.ra-card'));
+
+  function updateCount(visible, total) {
+    if (!countEl) return;
+    countEl.textContent = visible === total
+      ? (total + " shown")
+      : (visible + " of " + total + " shown");
+  }
+
+  function filter() {
+    var q = (input.value || "").trim().toLowerCase();
+    var visible = 0;
+
+    cards.forEach(function(card){
+      var hay = card.getAttribute('data-ra-text') || "";
+      var show = !q || hay.indexOf(q) !== -1;
+      card.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+
+    updateCount(visible, cards.length);
+  }
+
+  input.addEventListener('input', filter);
+  updateCount(cards.length, cards.length);
+})();
+</script>
