@@ -449,3 +449,72 @@ body { font-size: 0.95rem; line-height: 1.55; }
   color: rgba(0,0,0,.75);
   max-width: 70rem;
 }
+
+/* =========================
+   Activity filters (compact + collapsible)
+   ========================= */
+
+.filters-bar {
+  margin: 1rem 0 1rem 0;
+  padding: .9rem 1rem;
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 12px;
+  background: rgba(0,0,0,.02);
+}
+
+.filters-bar__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  align-items: flex-end;
+}
+
+.filters-bar__label span {
+  display: block;
+  font-weight: 700;
+  margin-bottom: .25rem;
+}
+
+.filters-bar__input {
+  min-width: 16rem;
+  width: 22rem;
+  max-width: 100%;
+  padding: .55rem .7rem;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.filters-bar__btn {
+  padding: .55rem .8rem;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.filters-bar__count {
+  margin-left: auto;
+  color: rgba(0,0,0,.65);
+  font-weight: 600;
+}
+
+.filters-advanced {
+  margin-top: .9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+.filters-advanced label span {
+  display: block;
+  font-weight: 700;
+  margin-bottom: .25rem;
+}
+
+.filters-advanced select {
+  min-width: 12rem;
+  padding: .55rem .7rem;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 10px;
+  background: #fff;
+}
