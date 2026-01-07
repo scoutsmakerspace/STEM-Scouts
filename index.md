@@ -11,7 +11,7 @@ excerpt: "A practical STEM activity library for Beavers, Cubs, Scouts & Explorer
 {% assign intro = site.data.feature_home.intro %}
 {% include feature_row id="intro" %}
 
-## Welcome to Scouts Makerspace
+## Welcome to STEM Scouts
 
 This site brings together **practical STEM activities, safety guidance, and leader notes** used across Scouts sections.
 
