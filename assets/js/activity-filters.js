@@ -69,18 +69,18 @@
       if (supEl) supEl.value = "";
       apply();
     }
-
-  if (toggleEl && advEl){
-    // start collapsed no matter what
+  
+  if (toggleEl && advEl) {
+    // Force initial state every time (prevents "stuck open" due to cached HTML/CSS)
     advEl.hidden = true;
     toggleEl.setAttribute('aria-expanded', 'false');
   
-    toggleEl.addEventListener('click', function(){
-      var isOpen = !advEl.hidden;
-      advEl.hidden = isOpen;                 // close if open, open if closed
-      toggleEl.setAttribute('aria-expanded', String(!isOpen));
+    toggleEl.addEventListener('click', function () {
+      advEl.hidden = !advEl.hidden;
+      toggleEl.setAttribute('aria-expanded', String(!advEl.hidden));
     });
   }
+
 
 
     searchEl.addEventListener('input', apply);
