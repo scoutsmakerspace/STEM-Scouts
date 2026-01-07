@@ -316,3 +316,41 @@ body { font-size: 0.95rem; line-height: 1.55; }
     padding-right: 4rem;
   }
 }
+
+/* =========================
+   Force full-width RA index page (Minimal Mistakes)
+   Works whether 'ra-index' is on the same element or a parent.
+   ========================= */
+
+.page__content.ra-index,
+.ra-index .page__content {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.page__inner-wrap.ra-index,
+.ra-index .page__inner-wrap {
+  max-width: none !important;
+}
+
+.page__main.ra-index,
+.ra-index .page__main {
+  max-width: none !important;
+}
+
+/* Give it proper breathing room edge-to-edge */
+.page__content.ra-index,
+.ra-index .page__content {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+/* Extra space on huge screens */
+@media (min-width: 1600px) {
+  .page__content.ra-index,
+  .ra-index .page__content {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+}
+
