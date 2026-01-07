@@ -45,8 +45,8 @@ Activity template:
   {% if match %}
     <a href="{{ match.url | relative_url }}">{{ match.title }}</a>
   {% else %}
-    <span class="activity-muted">
-      Not linked yet — create and link a Risk Assessment in the CMS before using this activity.
+    <span class="activity-warning">
+      ⚠ No Risk Assessment linked yet — create and link a Risk Assessment in the CMS before using this activity.
     </span>
   {% endif %}
 </div>
