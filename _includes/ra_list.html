@@ -53,16 +53,27 @@
       : (visible + " of " + total + " shown");
   }
 
-  function filter() {
-    var q = (input.value || "").trim().toLowerCase();
-    var visible = 0;
+function filter() {
+  var q = (input.value || "").trim().toLowerCase();
 
-    cards.forEach(function(card){
-      var hay = card.getAttribute('data-ra-text') || "";
-      var show = !q || hay.indexOf(q) !== -1;
-      card.style.display = show ? "" : "none";
-      if (show) visible++;
-    });
+  // Split into tokens (words), ignore empty tokens
+  var tokens = q ? q.split(/\s+/).filter(Boolean) : [];
+
+  var visible = 0;
+
+  cards.forEach(function(card){
+    var hay = card.getAttribute('data-ra-text') || "";
+
+    // Show if no query, else ALL tokens must be present
+    var show = tokens.length === 0 || tokens.every(function(t){ return hay.indexOf(t) !== -1; });
+
+    card.style.display = show ? "" : "none";
+    if (show) visible++;
+  });
+
+  updateCount(visible, cards.length);
+}
+
 
     updateCount(visible, cards.length);
   }
