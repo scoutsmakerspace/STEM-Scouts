@@ -43,8 +43,8 @@ STEM activities often involve tools, equipment, and experimentation.
 
 For each activity, you should:
 1. Check the **At a glance** summary.
-2. Read the linked **Risk Assessment**.
-3. Apply the listed controls and supervision levels.
+2. Read the linked **example Risk Assessment**. You must review it and create your own Risk Assessment appropriate to your section, location, equipment, and supervision.
+3. Apply your agreed controls and supervision levels.
 4. Adapt for your section, setting, and experience.
 
 If an activity does not yet link to a risk assessment, it should **not be used** until one is created and reviewed.
