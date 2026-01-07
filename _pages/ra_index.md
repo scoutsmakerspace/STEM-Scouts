@@ -6,17 +6,13 @@ toc: false
 classes: wide
 ---
 
-## About these Risk Assessments
-
-The Risk Assessments listed on this page are **examples and reference material only**.
-
-They are provided to help leaders identify common hazards and possible control measures.
-They **must not be copied or reused without review**.
-
-Leaders are responsible for creating and approving a Risk Assessment appropriate to their
-own activity, section, location, equipment, and supervision.
-
----
+<div class="ra-index-intro">
+  <p class="ra-index-warning">
+    <strong>Important:</strong> These Risk Assessments are <strong>examples and reference material only</strong>.
+    Leaders must review and create their own Risk Assessment suitable for their activity, section, location, equipment, and supervision.
+    They <strong>must not be copied or reused without review</strong>.
+  </p>
+</div>
 
 {% assign ras = site.risk_assessments | sort: "next_review" %}
 {% include ra_list.html items=ras %}
