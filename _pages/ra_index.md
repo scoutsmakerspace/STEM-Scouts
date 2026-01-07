@@ -3,6 +3,7 @@ layout: single
 title: "Example Risk Assessments"
 permalink: /risk-assessments/
 toc: false
+classes: wide
 ---
 
 ## About these Risk Assessments
