@@ -1,7 +1,7 @@
 ---
 layout: splash
 title: "Scouts Activities"
-permalink: /beavers/
+permalink: /scouts/
 toc: false
 ---
 
