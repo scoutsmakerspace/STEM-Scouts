@@ -1,15 +1,28 @@
 {% assign items = include.items %}
 
-<ul class="ra-list">
+<div class="ra-cards">
   {% for r in items %}
-    <li class="ra-list__item" style="margin-bottom: 1rem;">
-      <strong>
+    <article class="ra-card">
+      <h3 class="ra-card__title">
         <a href="{{ r.url | relative_url }}">{{ r.title }}</a>
-      </strong><br>
-      <small>
-        {% if r.sections %}Applies to: {{ r.sections | join: ", " }}{% endif %}
-        {% if r.next_review %} · Next review: {{ r.next_review }}{% endif %}
-      </small>
-    </li>
+      </h3>
+
+      <div class="ra-card__meta">
+        {% if r.sections and r.sections.size > 0 %}
+          <span class="ra-chip">
+            Applies to:
+            {% for s in r.sections %}
+              {{ s | downcase | capitalize }}{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </span>
+        {% endif %}
+
+        {% if r.next_review %}
+          <span class="ra-chip">
+            Next review: {{ r.next_review }}
+          </span>
+        {% endif %}
+      </div>
+    </article>
   {% endfor %}
-</ul>
+</div>
