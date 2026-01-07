@@ -16,6 +16,9 @@ publish_mode: editorial_workflow
 collections:
   - name: "activities"
     label: "Activities"
+    description: >
+      Workflow: Create the Risk Assessment first (in “Risk Assessments”), then create/edit the Activity and select it in the “Risk Assessment” dropdown.
+      You CAN save an Activity without linking an RA (drafting), but you should link one before using/publishing the activity.
     label_singular: "Activity"
     folder: "_activities"
     create: true
@@ -59,6 +62,9 @@ collections:
       # NOTE: This is intentionally NOT required so people can draft an Activity before the RA exists.
       - label: "Risk Assessment (link)"
         name: "risk_assessment"
+        description: >
+          IMPORTANT: The Risk Assessment “ID” is the filename/slug automatically created from the Title (e.g. ra_soldering-basics).
+          After publishing, DO NOT rename the RA slug/filename, or Activities linked to it may break.
         widget: "relation"
         collection: "risk_assessments"
         search_fields: ["title", "activity_name_location"]
