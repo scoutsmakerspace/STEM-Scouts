@@ -28,5 +28,6 @@ classes: activities-index
 </div>
 
 {% assign items = site.activities | sort: "title" %}
+{% include activity_filters.html %}
 {% include activity_list.html items=items %}
 <script src="{{ '/assets/js/activity-filters.js' | relative_url }}"></script>
