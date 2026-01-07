@@ -197,3 +197,52 @@ body { font-size: 0.95rem; line-height: 1.55; }
   content: "⚠ ";
 }
 
+/* =========================
+   Risk Assessment index cards
+   ========================= */
+
+.ra-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.ra-card {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.ra-card__title {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.1rem;
+}
+
+.ra-card__title a {
+  text-decoration: none;
+}
+
+.ra-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ra-chip {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid #e6e6e6;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: #555;
+  background: #fafafa;
+}
+
+/* Two columns on larger screens */
+@media (min-width: 900px) {
+  .ra-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
