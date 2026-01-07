@@ -1,8 +1,6 @@
 main:
   - title: "All Activities"
     url: /activities/
-  - title: "Risk Assessments"
-    url: /risk-assessments/
   - title: "Leaders & Safety"
     url: /leaders/
   - title: "STEM Programmes"
