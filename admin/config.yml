@@ -55,7 +55,21 @@ collections:
         required: false
         field: { label: "Item", name: "item", widget: "string" }
 
-      - { label: "Risk assessment ID", name: "risk_id", widget: "string", required: false, hint: "Must match ra_id of a Risk Assessment (e.g. ra_led_torch)." }
+      # NEW (recommended): link Risk Assessment via dropdown (auto ID = RA slug/filename)
+      # NOTE: This is intentionally NOT required so people can draft an Activity before the RA exists.
+      - label: "Risk Assessment (link)"
+        name: "risk_assessment"
+        widget: "relation"
+        collection: "risk_assessments"
+        search_fields: ["title", "activity_name_location"]
+        value_field: "{{slug}}"
+        display_fields: ["{{slug}}", "title"]
+        required: false
+        hint: "Recommended: create the Risk Assessment first (in 'Risk Assessments') then select it here. You can save this Activity without one and link it later before publishing/using."
+
+      # OLD (kept for backwards compatibility): typed RA ID
+      # You can remove this later once all existing activities have been migrated to use 'risk_assessment'.
+      - { label: "Risk assessment ID (legacy)", name: "risk_id", widget: "string", required: false, hint: "Legacy field. Prefer 'Risk Assessment (link)' above. If used, must match a Risk Assessment slug/ID." }
 
       - label: "External docs"
         name: "external_docs"
@@ -90,7 +104,10 @@ collections:
     label_singular: "Risk Assessment"
     folder: "_risk_assessments"
     create: true
-    slug: "{{slug}}"
+    # AUTO-ID STRATEGY:
+    # The RA "ID" is the entry slug/filename, generated from the Title, prefixed with 'ra_' for clarity.
+    # Example file: _risk_assessments/ra_soldering-basics.md
+    slug: "ra_{{slug}}"
     extension: "md"
     format: "frontmatter"
     editor:
@@ -120,7 +137,9 @@ collections:
           - { label: "Scouts", value: "scouts" }
           - { label: "Explorers", value: "explorers" }
 
-      - { label: "RA ID (internal)", name: "ra_id", widget: "string", required: false }
+      # OPTIONAL legacy/manual RA ID (not needed if you use the slug-based approach)
+      # Keeping it so you don't break any existing site logic that references ra_id.
+      - { label: "RA ID (legacy/manual)", name: "ra_id", widget: "string", required: false, hint: "Optional legacy field. Recommended approach is to use the auto ID from the filename/slug (e.g. ra_soldering-basics)." }
 
       - label: "Hazards (table)"
         name: "hazards"
