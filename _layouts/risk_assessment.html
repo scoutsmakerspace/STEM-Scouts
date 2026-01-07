@@ -4,15 +4,15 @@ layout: single
 
 {% assign ra = page %}
 
-<p class="activity-warning">
-  ⚠ This is an example Risk Assessment. Leaders must review and create their own version for their activity.
-</p>
-
 <header class="ra-titleblock">
   {% if ra.sections %}
     <p class="ra-subtle"><strong>Sections:</strong> {{ ra.sections | join: ", " }}</p>
   {% endif %}
 </header>
+
+<p class="activity-warning">
+  ⚠ This is an example Risk Assessment. Leaders must review and create their own version for their activity.
+</p>
 
 <section class="ra-card">
   <table class="ra-header-table" aria-label="Risk assessment details">
