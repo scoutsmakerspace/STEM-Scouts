@@ -569,3 +569,41 @@ body { font-size: 0.95rem; line-height: 1.55; }
   margin: 0 auto;
 }
 
+/* Layout: stack controls nicely */
+.filters-bar__row{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .6rem;
+  align-items: start;
+}
+
+.filters-bar__label{
+  width: 100%;
+}
+
+/* Button row under search */
+.filters-bar__actions{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+}
+
+/* Inputs + buttons: same height and width */
+.filters-bar__input,
+.filters-bar__btn{
+  height: 44px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Buttons: match theme (use link color, not black) */
+.filters-bar__btn{
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.18);
+  color: inherit;          /* <- key: matches your site font colour */
+  font-weight: 600;
+}
+
+.filters-bar__btn:hover{
+  background: rgba(0,0,0,.03);
+}
