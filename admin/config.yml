@@ -60,18 +60,15 @@ collections:
 
       # NEW (recommended): link Risk Assessment via dropdown (auto ID = RA slug/filename)
       # NOTE: This is intentionally NOT required so people can draft an Activity before the RA exists.
-      - name: "risk_assessment"
-        label: "Risk Assessment (link)"
-        description: >
-          IMPORTANT: The Risk Assessment “ID” is the filename/slug automatically created from the Title (e.g. ra_soldering-basics).
-          After publishing, DO NOT rename the RA slug/filename, or Activities linked to it may break.
-        widget: "relation"
-        collection: "risk_assessments"
-        search_fields: ["title", "activity_name_location"]
-        value_field: "{{slug}}"
-        display_fields: ["{{slug}}", "title"]
-        required: false
-        hint: "Create the Risk Assessment first to select it here. You can save this Activity without one (draft), but link it before using/publishing."
+- name: "risk_assessment"
+  label: "Risk Assessment (link)"
+  widget: "relation"
+  collection: "risk_assessments"
+  search_fields: ["title", "activity_name_location"]
+  value_field: "{{slug}}"
+  display_fields: ["{{slug}}", "title"]
+  required: false
+  hint: "Create the Risk Assessment first to select it here. You can save this Activity without one (draft), but link it before using/publishing."
 
       # OLD (kept for backwards compatibility): typed RA ID
       # You can remove this later once all existing activities have been migrated to use 'risk_assessment'.
@@ -107,18 +104,20 @@ collections:
 
   - name: "risk_assessments"
     label: "Risk Assessments"
+    description: >
+      IMPORTANT: The Risk Assessment ID is the filename/slug automatically created from the Title (e.g. ra_soldering-basics).
+      After publishing, DO NOT rename the RA slug/filename, or Activities linked to it may break.
     label_singular: "Risk Assessment"
     folder: "_risk_assessments"
     create: true
-    # AUTO-ID STRATEGY:
-    # The RA "ID" is the entry slug/filename, generated from the Title, prefixed with 'ra_' for clarity.
-    # Example file: _risk_assessments/ra_soldering-basics.md
     slug: "ra_{{slug}}"
     extension: "md"
     format: "frontmatter"
     editor:
       preview: false
     fields:
+      ...
+
       - { label: "Layout", name: "layout", widget: "hidden", default: "risk_assessment" }
 
       - { label: "Title", name: "title", widget: "string" }
