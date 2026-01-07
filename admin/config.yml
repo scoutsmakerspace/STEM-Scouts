@@ -60,8 +60,8 @@ collections:
 
       # NEW (recommended): link Risk Assessment via dropdown (auto ID = RA slug/filename)
       # NOTE: This is intentionally NOT required so people can draft an Activity before the RA exists.
-      - label: "Risk Assessment (link)"
-        name: "risk_assessment"
+      - name: "risk_assessment"
+        label: "Risk Assessment (link)"
         description: >
           IMPORTANT: The Risk Assessment “ID” is the filename/slug automatically created from the Title (e.g. ra_soldering-basics).
           After publishing, DO NOT rename the RA slug/filename, or Activities linked to it may break.
