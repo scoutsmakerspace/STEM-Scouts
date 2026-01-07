@@ -70,14 +70,18 @@
       apply();
     }
 
-    if (toggleEl && advEl){
-      toggleEl.addEventListener('click', function(){
-        var isOpen = !advEl.hasAttribute('hidden');
-        if (isOpen) advEl.setAttribute('hidden', '');
-        else advEl.removeAttribute('hidden');
-        toggleEl.setAttribute('aria-expanded', String(!isOpen));
-      });
-    }
+  if (toggleEl && advEl){
+    // start collapsed no matter what
+    advEl.hidden = true;
+    toggleEl.setAttribute('aria-expanded', 'false');
+  
+    toggleEl.addEventListener('click', function(){
+      var isOpen = !advEl.hidden;
+      advEl.hidden = isOpen;                 // close if open, open if closed
+      toggleEl.setAttribute('aria-expanded', String(!isOpen));
+    });
+  }
+
 
     searchEl.addEventListener('input', apply);
     [timeEl, diffEl, locEl, typeEl, supEl].forEach(function(el){
