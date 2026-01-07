@@ -8,13 +8,12 @@ toc: false
 <div class="activities-header">
 
   <div class="activities-intro">
-    <p>
-      This page lists all STEM activities shared on this site. Each activity includes a quick overview, kit list,
-      and links to supporting resources where available. Leaders must review the activity and create their own
-      Risk Assessment suitable for their section, location, and supervision.
+    <p class="activities-intro__lead">
+      A directory of STEM activities for UK Scouts. Each activity includes kit, notes, and links to example Risk Assessments.
+      Leaders must review and create their own Risk Assessment for their setting.
     </p>
     <div class="section-quicklinks">
-      <span class="section-quicklinks__label">Browse by section:</span>
+      <span class="section-quicklinks__label">Browse by section</span>
       <a class="section-chip section-chip--active" href="{{ '/activities/' | relative_url }}">All</a>
       <a class="section-chip" href="{{ '/beavers/' | relative_url }}">Beavers</a>
       <a class="section-chip" href="{{ '/cubs/' | relative_url }}">Cubs</a>
