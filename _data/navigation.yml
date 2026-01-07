@@ -1,15 +1,11 @@
 main:
-  - title: "Beavers"
-    url: /beavers/
-  - title: "Cubs"
-    url: /cubs/
-  - title: "Scouts"
-    url: /scouts/
-  - title: "Explorers"
-    url: /explorers/
   - title: "All Activities"
     url: /activities/
+  - title: "Risk Assessments"
+    url: /risk-assessments/
   - title: "Leaders & Safety"
     url: /leaders/
+  - title: "STEM Programmes"
+    url: /stem-programmes/
   - title: "Badges"
     url: /badges/
