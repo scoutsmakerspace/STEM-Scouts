@@ -44,9 +44,12 @@ Activity template:
 
   {% if match %}
     <a href="{{ match.url | relative_url }}">{{ match.title }}</a>
+    <p class="activity-muted">
+      This is an example Risk Assessment. Leaders must review and create their own for their activity.
+    </p>
   {% else %}
     <span class="activity-warning">
-      ⚠ No Risk Assessment linked yet — create and link a Risk Assessment in the CMS before using this activity.
+      ⚠ No Risk Assessment linked yet - Create and link a RA before running this activity!
     </span>
   {% endif %}
 </div>
