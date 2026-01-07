@@ -33,7 +33,19 @@ Activity template:
     <strong>Risk assessment:</strong>
     {% assign match = nil %}
 
-    {% if a.risk_id %}
+    {%- comment -%}
+    Preferred (new): Activity stores RA slug in a.risk_assessment, e.g. "ra_soldering-basics"
+    Fallback (legacy): Activity stores typed ID in a.risk_id and RA has ra.ra_id
+    {%- endcomment -%}
+
+    {% if a.risk_assessment %}
+      {% for ra in site.risk_assessments %}
+        {% if ra.slug == a.risk_assessment %}
+          {% assign match = ra %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% elsif a.risk_id %}
       {% for ra in site.risk_assessments %}
         {% if ra.ra_id == a.risk_id %}
           {% assign match = ra %}
@@ -45,9 +57,12 @@ Activity template:
     {% if match %}
       <a href="{{ match.url | relative_url }}">{{ match.title }}</a>
     {% else %}
-      <span class="activity-muted">Not linked yet</span>
+      <span class="activity-muted">
+        Not linked yet — create/select a Risk Assessment in the CMS before using this activity.
+      </span>
     {% endif %}
   </div>
+
 </section>
 
 <section class="activity-content js-card-sections">
