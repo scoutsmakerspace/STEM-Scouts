@@ -2,7 +2,15 @@
 
 <div class="activity-index" role="list">
   {% for a in items %}
-    <article class="activity-index__item" role="listitem">
+    <article class="activity-index__item" role="listitem"
+      data-title="{{ a.title | downcase | escape }}"
+      data-summary="{{ a.summary | default: '' | downcase | escape }}"
+      data-time="{{ a.time_minutes | default: '' }}"
+      data-difficulty="{{ a.difficulty | default: '' }}"
+      data-location="{{ a.location | default: '' | downcase }}"
+      data-type="{{ a.type | default: '' | downcase }}"
+      data-supervision="{{ a.supervision | default: '' | downcase }}"
+    >
       <h3 class="activity-index__title">
         <a href="{{ a.url | relative_url }}">{{ a.title }}</a>
       </h3>
