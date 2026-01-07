@@ -1,7 +1,7 @@
 ---
 layout: splash
 title: "Explorers Activities"
-permalink: /beavers/
+permalink: /explorers/
 toc: false
 ---
 
