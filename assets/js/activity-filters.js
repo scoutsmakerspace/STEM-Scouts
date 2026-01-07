@@ -19,7 +19,7 @@
     var toggleEl = $('actToggle');
     var advEl = $('actAdvanced');
     var resetEl = $('actReset');
-    var countEl = $('actCount');
+   
 
     var items = Array.prototype.slice.call(document.querySelectorAll('.activity-index__item'));
     if (!items.length || !searchEl) return;
