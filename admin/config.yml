@@ -17,8 +17,9 @@ collections:
   - name: "activities"
     label: "Activities"
     description: >
-      Workflow: Create the Risk Assessment first (in “Risk Assessments”), then create/edit the Activity and select it in the “Risk Assessment” dropdown.
-      You CAN save an Activity without linking an RA (drafting), but you should link one before using/publishing the activity.
+      Workflow: Create the Risk Assessment first (in "Risk Assessments"), then create/edit the Activity and select it in the
+      "Risk Assessment" dropdown. You CAN save an Activity without linking an RA (drafting), but you should link one before
+      using/publishing the activity.
     label_singular: "Activity"
     folder: "_activities"
     create: true
@@ -58,21 +59,15 @@ collections:
         required: false
         field: { label: "Item", name: "item", widget: "string" }
 
-      # NEW (recommended): link Risk Assessment via dropdown (auto ID = RA slug/filename)
-      # NOTE: This is intentionally NOT required so people can draft an Activity before the RA exists.
-- name: "risk_assessment"
-  label: "Risk Assessment (link)"
-  widget: "relation"
-  collection: "risk_assessments"
-  search_fields: ["title", "activity_name_location"]
-  value_field: "{{slug}}"
-  display_fields: ["{{slug}}", "title"]
-  required: false
-  hint: "Create the Risk Assessment first to select it here. You can save this Activity without one (draft), but link it before using/publishing."
-
-      # OLD (kept for backwards compatibility): typed RA ID
-      # You can remove this later once all existing activities have been migrated to use 'risk_assessment'.
-      #- { label: "Risk assessment ID (legacy)", name: "risk_id", widget: "string", required: false, hint: "Legacy field. Prefer 'Risk Assessment (link)' above. If used, must match a Risk Assessment slug/ID." }
+      - name: "risk_assessment"
+        label: "Risk Assessment (link)"
+        widget: "relation"
+        collection: "risk_assessments"
+        search_fields: ["title", "activity_name_location"]
+        value_field: "{{slug}}"
+        display_fields: ["{{slug}}", "title"]
+        required: false
+        hint: "Create the Risk Assessment first to select it here. You can save this Activity without one (draft), but link it before using/publishing."
 
       - label: "External docs"
         name: "external_docs"
@@ -116,9 +111,6 @@ collections:
     editor:
       preview: false
     fields:
-    
-      ...
-
       - { label: "Layout", name: "layout", widget: "hidden", default: "risk_assessment" }
 
       - { label: "Title", name: "title", widget: "string" }
@@ -142,10 +134,6 @@ collections:
           - { label: "Cubs", value: "cubs" }
           - { label: "Scouts", value: "scouts" }
           - { label: "Explorers", value: "explorers" }
-
-      # OPTIONAL legacy/manual RA ID (not needed if you use the slug-based approach)
-      # Keeping it so you don't break any existing site logic that references ra_id.
-      #- { label: "RA ID (legacy/manual)", name: "ra_id", widget: "string", required: false, hint: "Optional legacy field. Recommended approach is to use the auto ID from the filename/slug (e.g. ra_soldering-basics)." }
 
       - label: "Hazards (table)"
         name: "hazards"
