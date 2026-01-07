@@ -40,7 +40,7 @@ collections:
         widget: "select"
         multiple: true
         options:
-          - { label: "Squirrels", value: "squirrels" }
+         # - { label: "Squirrels", value: "squirrels" }
           - { label: "Beavers", value: "beavers" }
           - { label: "Cubs", value: "cubs" }
           - { label: "Scouts", value: "scouts" }
@@ -108,7 +108,7 @@ collections:
             name: "section"
             widget: "select"
             options:
-              - { label: "Squirrels", value: "squirrels" }
+             # - { label: "Squirrels", value: "squirrels" }
               - { label: "Beavers", value: "beavers" }
               - { label: "Cubs", value: "cubs" }
               - { label: "Scouts", value: "scouts" }
@@ -151,7 +151,7 @@ collections:
         widget: "select"
         multiple: true
         options:
-          - { label: "Squirrels", value: "squirrels" }
+        #  - { label: "Squirrels", value: "squirrels" }
           - { label: "Beavers", value: "beavers" }
           - { label: "Cubs", value: "cubs" }
           - { label: "Scouts", value: "scouts" }
