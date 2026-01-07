@@ -3,6 +3,7 @@ layout: splash
 title: "All Activities"
 permalink: /activities/
 toc: false
+classes: activities-index
 ---
 
 <div class="activities-header">
