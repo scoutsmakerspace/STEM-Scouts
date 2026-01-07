@@ -373,3 +373,10 @@ body { font-size: 0.95rem; line-height: 1.55; }
   margin-top: 2.5rem;
 }
 
+/* =========================
+   Full-width intro text (Activities index)
+   ========================= */
+
+.activities-index .activities-intro p {
+  max-width: none;
+}
