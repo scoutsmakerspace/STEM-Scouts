@@ -380,3 +380,72 @@ body { font-size: 0.95rem; line-height: 1.55; }
 .activities-index .activities-intro p {
   max-width: none;
 }
+
+/* =========================
+   Activities index (directory style)
+   ========================= */
+
+.section-quicklinks{
+  margin-top: .75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+}
+
+.section-quicklinks__label{
+  font-weight: 700;
+  margin-right: .25rem;
+}
+
+.section-chip{
+  display: inline-block;
+  padding: .35rem .65rem;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 999px;
+  background: #fff;
+  text-decoration: none;
+  font-size: .92rem;
+}
+
+.section-chip:hover{
+  text-decoration: none;
+  background: rgba(0,0,0,.03);
+}
+
+.activity-index{
+  margin-top: 1rem;
+}
+
+.activity-index__item{
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.activity-index__title{
+  margin: 0 0 .35rem 0;
+  font-size: 1.15rem;
+}
+
+.activity-index__meta{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin-bottom: .35rem;
+}
+
+.meta-chip{
+  display: inline-block;
+  padding: .22rem .55rem;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 999px;
+  background: rgba(0,0,0,.02);
+  font-size: .85rem;
+  color: rgba(0,0,0,.72);
+}
+
+.activity-index__summary{
+  margin: 0;
+  color: rgba(0,0,0,.75);
+  max-width: 70rem;
+}
