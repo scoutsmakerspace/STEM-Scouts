@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: splash
 title: "All Activities"
 permalink: /activities/
 ---
