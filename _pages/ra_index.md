@@ -3,7 +3,6 @@ layout: splash
 title: "Example Risk Assessments"
 permalink: /risk-assessments/
 toc: false
-classes: wide ra-index
 ---
 
 <div class="ra-index-intro">
