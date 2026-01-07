@@ -71,7 +71,7 @@ collections:
         value_field: "{{slug}}"
         display_fields: ["{{slug}}", "title"]
         required: false
-        hint: "Recommended: create the Risk Assessment first (in 'Risk Assessments') then select it here. You can save this Activity without one and link it later before publishing/using."
+        hint: "Create the Risk Assessment first to select it here. You can save this Activity without one (draft), but link it before using/publishing."
 
       # OLD (kept for backwards compatibility): typed RA ID
       # You can remove this later once all existing activities have been migrated to use 'risk_assessment'.
