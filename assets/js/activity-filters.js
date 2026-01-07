@@ -24,10 +24,6 @@
     var items = Array.prototype.slice.call(document.querySelectorAll('.activity-index__item'));
     if (!items.length || !searchEl) return;
 
-    function updateCount(visible, total){
-      if (!countEl) return;
-      countEl.textContent = visible === total ? (total + " shown") : (visible + " of " + total + " shown");
-    }
 
     function apply(){
       var q = searchEl.value || "";
@@ -57,7 +53,7 @@
         if (show) visible++;
       });
 
-      updateCount(visible, items.length);
+      
     }
 
     function reset(){
