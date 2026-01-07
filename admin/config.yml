@@ -82,7 +82,13 @@ collections:
             media_folder: "assets/docs/activities"
             public_folder: "/assets/docs/activities"
             required: true
-            hint: "Upload small documents only (PDF/Word/RTF). Keep filenames short and clear."
+            accept:
+              - ".pdf"
+              - ".doc"
+              - ".docx"
+              - ".rtf"
+            hint: "Allowed formats: PDF, Word (.doc/.docx), RTF. Keep files small."
+
 
 
       - label: "External links"
