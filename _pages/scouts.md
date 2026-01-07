@@ -1,16 +1,18 @@
 ---
-layout: single
-title: "Scouts STEM Activities"
-permalink: /scouts/
-toc: true
+layout: splash
+title: "Scouts Activities"
+permalink: /beavers/
+toc: false
 ---
 
-{% comment %}
-Liquid's `where_exp` does NOT allow filters inside the expression.
-`sections` is an array, so match directly.
-{% endcomment %}
+<div class="activities-intro">
+  <p>
+    Activities suitable for <strong>Scouts</strong>.
+    Always review the activity and create your own Risk Assessment for your setting.
+  </p>
+</div>
 
 {% assign items = site.activities
-  | where_exp: "a", "a.sections contains 'Scouts'"
+  | where_exp: "a", "a.sections contains 'scouts' or a.sections contains 'Scouts'"
   | sort: "title" %}
 {% include activity_list.html items=items %}
