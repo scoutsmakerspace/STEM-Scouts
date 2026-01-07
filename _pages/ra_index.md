@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: splash
 title: "Example Risk Assessments"
 permalink: /risk-assessments/
 toc: false
