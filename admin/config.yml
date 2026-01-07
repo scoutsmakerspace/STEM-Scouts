@@ -139,7 +139,7 @@ collections:
 
       # OPTIONAL legacy/manual RA ID (not needed if you use the slug-based approach)
       # Keeping it so you don't break any existing site logic that references ra_id.
-      - { label: "RA ID (legacy/manual)", name: "ra_id", widget: "string", required: false, hint: "Optional legacy field. Recommended approach is to use the auto ID from the filename/slug (e.g. ra_soldering-basics)." }
+      #- { label: "RA ID (legacy/manual)", name: "ra_id", widget: "string", required: false, hint: "Optional legacy field. Recommended approach is to use the auto ID from the filename/slug (e.g. ra_soldering-basics)." }
 
       - label: "Hazards (table)"
         name: "hazards"
