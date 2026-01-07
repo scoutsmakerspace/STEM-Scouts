@@ -2,6 +2,7 @@
 layout: splash
 title: "All Activities"
 permalink: /activities/
+classes: activities-index
 ---
 <p class="activities-intro">
   This page lists all available STEM activities shared on this site.
