@@ -5,7 +5,7 @@ permalink: /leaders/
 toc: true
 ---
 
-## Risk Assessments (Index)
+## Risk Assessments (examples and references)
 {% assign ras = site.risk_assessments | sort: "next_review" %}
 {% include ra_list.html items=ras %}
 
