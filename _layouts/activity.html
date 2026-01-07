@@ -67,6 +67,20 @@ Activity template:
   {{ content }}
 </section>
 
+{% if a.documents and a.documents.size > 0 %}
+<section class="activity-card">
+  <h3 class="activity-card__title">Downloads</h3>
+  <ul>
+    {% for doc in a.documents %}
+      <li>
+        <a href="{{ doc.file | relative_url }}">{{ doc.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <p class="activity-muted">Tip: keep uploaded files small (PDF/Word/RTF).</p>
+</section>
+{% endif %}
+
 {% if a.external_docs and a.external_docs.size > 0 %}
 <section class="activity-card">
   <h3 class="activity-card__title">External tutorials</h3>
