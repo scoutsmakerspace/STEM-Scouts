@@ -14,5 +14,5 @@ classes: wide
   </p>
 </div>
 
-{% assign ras = site.risk_assessments | sort: "next_review" %}
+{% assign ras = site.risk_assessments | sort: "title" %}
 {% include ra_list.html items=ras %}
