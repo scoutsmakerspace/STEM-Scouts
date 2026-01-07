@@ -290,3 +290,29 @@ body { font-size: 0.95rem; line-height: 1.55; }
   border-radius: 10px;
   margin: 0;
 }
+
+/* =========================
+   Full-width RA index page
+   ========================= */
+
+/* Remove the article-style width constraint */
+.ra-index .page__content,
+.ra-index .page__inner-wrap,
+.ra-index .page__main {
+  max-width: none;
+}
+
+/* Let content span almost full viewport */
+.ra-index .page__content {
+  width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* On very large screens, add a gentle cap so it doesn't feel ridiculous */
+@media (min-width: 1600px) {
+  .ra-index .page__content {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
