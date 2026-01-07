@@ -662,3 +662,7 @@ body { font-size: 0.95rem; line-height: 1.55; }
 .activities-intro{
   padding-bottom: .75rem;
 }
+
+.activities-header {
+  margin-top: 2.5rem;   /* ← this is the key line */
+}
