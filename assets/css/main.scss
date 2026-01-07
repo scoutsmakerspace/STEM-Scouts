@@ -612,3 +612,49 @@ body { font-size: 0.95rem; line-height: 1.55; }
   color: $link-color;
 }
 
+/* =========================
+   Activities page header polish
+   ========================= */
+
+.activities-intro__lead{
+  margin: 0 0 .75rem 0;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: rgba(0,0,0,.72);
+  max-width: 62rem; /* stops it feeling like a huge paragraph */
+}
+
+.section-quicklinks{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+}
+
+.section-quicklinks__label{
+  font-weight: 800;
+  margin-right: .25rem;
+  color: rgba(0,0,0,.78);
+}
+
+.section-chip{
+  display: inline-block;
+  padding: .35rem .65rem;
+  border: 1px solid rgba(0,0,0,.14);
+  border-radius: 999px;
+  background: #fff;
+  text-decoration: none;
+  font-size: .92rem;
+}
+
+.section-chip:hover{
+  background: rgba(0,0,0,.03);
+  text-decoration: none;
+}
+
+.section-chip--active{
+  background: rgba(0,0,0,.07);
+  border-color: rgba(0,0,0,.25);
+  font-weight: 700;
+  cursor: default;
+}
