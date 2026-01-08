@@ -70,6 +70,7 @@ resources:
   risk_assessment: led_torch
   documents:
     - file: /assets/docs/activities/rocket-badge-instructions-v2.pdf
+      title: doc
   external_docs:
     - title: Lore Ipsum
       url: https://loremgenerator.io/
@@ -78,17 +79,10 @@ badges:
     badge: fafdaf
     requirement_ref: asfafaf
 ---
-
-
-
 Finibus condimentum a nullam phasellus maecenas nisi nisi eget at molestie. Morbi nostra faucibus eleifend quis auctor cubilia lorem purus inceptos finibus faucibus nibh enim. Et nulla molestie augue senectus eu nisl in nulla quisque magna.
 
 Venenatis nisi arcu primis purus nullam vivamus hendrerit. Nam erat habitant tellus suscipit consequat proin vel gravida ligula vitae posuere aliquam tempus urna rhoncus.
 
-Sag
-
-![](/assets/images/uploads/dall·e-2023-12-05-20.17.51-create-a-purely-black-and-white-no-grayscale-stylized-and-minimalist-round-image-featuring-a-boy-scout-and-a-girl-scout-involved-in-a-christmas-acti.png)
-
-ittis ac aenean nam tristique rhoncus cras augue dignissim posuere arcu netus iaculis. Ligula sem integer aliquam arcu tincidunt libero vestibulum ad phasellus imperdiet metus dictum torquent dictum. Odio est arcu cras praesent commodo cras mauris litora. Rhoncus tristique lobortis varius tincidunt felis.
+Sagittis ac aenean nam tristique rhoncus cras augue dignissim posuere arcu netus iaculis. Ligula sem integer aliquam arcu tincidunt libero vestibulum ad phasellus imperdiet metus dictum torquent dictum. Odio est arcu cras praesent commodo cras mauris litora. Rhoncus tristique lobortis varius tincidunt felis.
 
 Pulvinar suscipit cubilia sit massa condimentum sodales neque id nisi integer. Eu ipsum habitasse primis pulvinar primis id. Nulla sed imperdiet duis volutpat ornare amet suspendisse phasellus aptent nisl rutrum. Felis sed torquent proin magna odio consectetur per litora viverra mauris.
