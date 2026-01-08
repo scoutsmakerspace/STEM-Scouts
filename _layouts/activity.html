@@ -97,20 +97,13 @@ layout: single
   </div>
 </section>
 
-{% if a.kit_items %}
+{% if a.kit_list %}
 <section class="activity-card" id="kit">
   <h3 class="activity-card__title">You will need</h3>
-  {% assign lines = a.kit_items | strip | split: "\n" %}
-  <ul>
-    {% for line in lines %}
-      {% assign item = line | strip %}
-      {% if item != "" %}
-        <li>{{ item }}</li>
-      {% endif %}
-    {% endfor %}
-  </ul>
+  {{ a.kit_list | markdownify }}
 </section>
 {% endif %}
+
 
 {% if a.learning_goals and a.learning_goals.size > 0 %}
 <section class="activity-card" id="goals">
