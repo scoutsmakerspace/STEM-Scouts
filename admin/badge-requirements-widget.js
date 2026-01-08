@@ -35,19 +35,11 @@
     return _loading;
   }
 
-  // -------------------------
-  // Parse Decap path into an array
-  // Supports:
-  //  - badge_links.0.requirements_met
-  //  - data.badge_links.0.requirements_met
-  //  - badge_links[0].requirements_met
-  //  - data.badge_links[0].requirements_met
-  // -------------------------
+  // Convert "badge_links.0.requirements_met" or "data.badge_links[0].requirements_met"
+  // into ["badge_links", 0, "requirements_met"] etc.
   function pathToArray(pathStr) {
     const s = String(pathStr || "");
-    // Convert [0] to .0
     const normalized = s.replace(/\[(\d+)\]/g, ".$1");
-    // Split on dots, keep numbers as ints
     return normalized
       .split(".")
       .filter(Boolean)
@@ -62,23 +54,22 @@
     }
   }
 
-  // -------------------------
-  // Read sibling badge id dynamically:
-  // - Take current field path array
-  // - Replace last segment with badge field name (default "badge")
-  // - Try fieldsMetaData (live) then entry (saved)
-  // -------------------------
   function readBadgeId(props) {
     const badgeField = (props.field && props.field.get && props.field.get("badge_field")) || "badge";
 
-    const pathArr = pathToArray(props.path);
+    // Decap 3.10: props.path is undefined in your environment.
+    // forID/id reliably exists and contains the field "path".
+    const pathStr = props.path || props.forID || props.id || "";
+    const pathArr = pathToArray(pathStr);
+
     if (!pathArr.length) return null;
 
-    // sibling path: same parent, last key -> badgeField
+    // sibling path: same parent, last segment -> badgeField
     const sibling = pathArr.slice(0, -1).concat([badgeField]);
 
-    // Try live editor state in both shapes (with and without leading "data")
+    // Try live editor state (with and without "data" root)
     const fm = props.fieldsMetaData;
+
     const live1 = getInSafe(fm, sibling);
     if (live1) return String(live1);
 
@@ -86,7 +77,7 @@
     const live2 = getInSafe(fm, siblingWithData);
     if (live2) return String(live2);
 
-    // Fallback: saved entry always starts under ["data", ...]
+    // Saved entry fallback (always under entry.data)
     const entryPath = sibling[0] === "data" ? sibling : ["data"].concat(sibling);
     const saved = getInSafe(props.entry, entryPath);
     if (saved) return String(saved);
@@ -101,7 +92,7 @@
 
     const Control = createClass({
       getInitialState() {
-        return { loading: true, badgeId: null, reqs: [] };
+        return { loading: true, badgeId: null, reqs: [], debugOnce: false };
       },
 
       async componentDidMount() {
@@ -121,12 +112,18 @@
         const idx = await loadBadgesIndex();
         const badge = badgeId ? idx[badgeId] : null;
 
-        console.log("[badge_requirements] props.path:", this.props.path);
+        if (!this.state.debugOnce) {
+          console.log("[badge_requirements] debug forID:", this.props.forID);
+          console.log("[badge_requirements] debug id:", this.props.id);
+          console.log("[badge_requirements] debug path:", this.props.path);
+          this.setState({ debugOnce: true });
+        }
+
         console.log("[badge_requirements] badgeId:", badgeId, "found:", !!badge);
 
         const reqs = badge && Array.isArray(badge.requirements) ? badge.requirements : [];
 
-        // store selected requirement IDs as strings ("1", "2", "1.3" etc)
+        // Store selected requirement IDs as strings
         const current = Array.isArray(this.props.value) ? this.props.value.map(String) : [];
         const allowed = new Set(reqs.map((r) => String(r.id)));
 
