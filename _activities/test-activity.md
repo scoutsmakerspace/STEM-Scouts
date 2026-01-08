@@ -19,12 +19,12 @@ location: indoors
 supervision: high
 group_size: "6"
 setup_notes: a lot of mess to clean after the activity
-kit_items: |-
-  item 1
-  item 2
-  item 3
-  item 4
-  item 5
+kit_list: |-
+  * Item 1
+  * Item 2
+  * Item 3
+  * Item 4
+  * Item 5
 learning_goals:
   - Learn to be nice
   - Learn to fail
@@ -94,6 +94,12 @@ badges:
     badge: wdsd
     requirement_ref: dsds
     url: https://loremgenerator.io/
+kit_items: |-
+  item 1
+  item 2
+  item 3
+  item 4
+  item 5
 ---
 **Sagittis ac aenean** nam tristique rhoncus cras augue dignissim posuere arcu netus iaculis. Ligula sem integer aliquam arcu tincidunt libero vestibulum ad phasellus imperdiet metus dictum torquent dictum. Odio est arcu cras praesent commodo cras mauris litora. Rhoncus tristique lobortis varius tincidunt felis.
 
