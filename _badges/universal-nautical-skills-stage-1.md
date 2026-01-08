@@ -1,18 +1,21 @@
 ---
-title: "Nautical Skills - Stage 1"
-id: "universal-nautical-skills-stage-1"
-section: "universal"
-category: "Staged Activity Badges"
-badge_type: "Staged Activity"
-completion_rules: "Complete ALL 3 requirements"
+title: Nautical Skills - Stage 1
+id: universal-nautical-skills-stage-1
+section: universal
+category: Staged Activity Badges
+badge_type: Staged Activity
+completion_rules: Complete ALL 3 requirements
 requirements_count: 3
 requirements:
-  - no: 1
-    text: "Take part in a water activity taster session."
-  - no: 2
-    text: "Correctly identify the different equipment used for the activity you chose."
-  - no: 3
-    text: "Gain an understanding of the safety equipment used."
+- id: '1'
+  'no': 1
+  text: Take part in a water activity taster session.
+- id: '2'
+  'no': 2
+  text: Correctly identify the different equipment used for the activity you chose.
+- id: '3'
+  'no': 3
+  text: Gain an understanding of the safety equipment used.
 ---
 
 ## Requirements

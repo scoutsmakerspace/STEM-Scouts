@@ -1,18 +1,21 @@
 ---
-title: "Activity Plus Badge"
-id: "universal-activity-plus-badge"
-section: "universal"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Complete ALL 3 requirements"
+title: Activity Plus Badge
+id: universal-activity-plus-badge
+section: universal
+category: Activity Badges
+badge_type: Activity
+completion_rules: Complete ALL 3 requirements
 requirements_count: 3
 requirements:
-  - no: 1
-    text: "Hold your chosen activity badge"
-  - no: 2
-    text: "gree a target with your leader before going for the Activity Plus badge"
-  - no: 3
-    text: "Show your leader that you have met your target"
+- id: '1'
+  'no': 1
+  text: Hold your chosen activity badge
+- id: '2'
+  'no': 2
+  text: gree a target with your leader before going for the Activity Plus badge
+- id: '3'
+  'no': 3
+  text: Show your leader that you have met your target
 ---
 
 ## Requirements

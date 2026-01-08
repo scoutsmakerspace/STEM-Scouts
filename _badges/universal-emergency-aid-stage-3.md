@@ -1,30 +1,39 @@
 ---
-title: "Emergency Aid - Stage 3"
-id: "universal-emergency-aid-stage-3"
-section: "universal"
-category: "Staged Activity Badges"
-badge_type: "Staged Activity"
-completion_rules: "Complete ALL 9 requirements"
+title: Emergency Aid - Stage 3
+id: universal-emergency-aid-stage-3
+section: universal
+category: Staged Activity Badges
+badge_type: Staged Activity
+completion_rules: Complete ALL 9 requirements
 requirements_count: 9
 requirements:
-  - no: 1
-    text: "Explain to your leader or another adult about how to call 999."
-  - no: 2
-    text: "Explain is unconscious"
-  - no: 3
-    text: "Explain is unconscious and not breathing"
-  - no: 4
-    text: "Explain is bleeding"
-  - no: 5
-    text: "Explain has heat exhaustion"
-  - no: 6
-    text: "Explain has hypothermia"
-  - no: 7
-    text: "Explain is choking"
-  - no: 8
-    text: "Explain has a burn"
-  - no: 9
-    text: "Explain is having an asthma attack"
+- id: '1'
+  'no': 1
+  text: Explain to your leader or another adult about how to call 999.
+- id: '2'
+  'no': 2
+  text: Explain is unconscious
+- id: '3'
+  'no': 3
+  text: Explain is unconscious and not breathing
+- id: '4'
+  'no': 4
+  text: Explain is bleeding
+- id: '5'
+  'no': 5
+  text: Explain has heat exhaustion
+- id: '6'
+  'no': 6
+  text: Explain has hypothermia
+- id: '7'
+  'no': 7
+  text: Explain is choking
+- id: '8'
+  'no': 8
+  text: Explain has a burn
+- id: '9'
+  'no': 9
+  text: Explain is having an asthma attack
 ---
 
 ## Requirements
