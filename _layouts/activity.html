@@ -4,40 +4,50 @@ layout: single
 
 {% assign a = page %}
 
-{% capture toc_items %}
-  {% if a.kit_items %}1{% endif %}
-  {% if a.learning_goals and a.learning_goals.size > 0 %}1{% endif %}
-  {% if a.leader and a.leader.prep %}1{% endif %}
-  {% if a.leader and a.leader.briefing %}1{% endif %}
-  {% if a.leader and a.leader.safety_brief %}1{% endif %}
-  {% if a.running and a.running.steps %}1{% endif %}
-  {% if a.running and a.running.differentiation %}1{% endif %}
-  {% if a.running and a.running.time_plan and a.running.time_plan.size > 0 %}1{% endif %}
-  {% if a.running and a.running.reflection %}1{% endif %}
-  {% if a.resources and a.resources.documents and a.resources.documents.size > 0 %}1{% endif %}
-  {% if a.resources and a.resources.external_docs and a.resources.external_docs.size > 0 %}1{% endif %}
-  {% if a.badges and a.badges.size > 0 %}1{% endif %}
-  {% if content and content != "" %}1{% endif %}
+{%- comment -%}
+  Build a "fake" HTML document containing only headings that match our section anchors.
+  Then feed that into Minimal Mistakes' toc.html include so it looks like the theme TOC,
+  even though the real headings live in the layout (not in {{ content }}).
+{%- endcomment -%}
+
+{% capture toc_source %}
+<div class="activity-toc-source">
+  {% if a.kit_list %}<h2><a href="#kit">You will need</a></h2>{% endif %}
+  {% if a.learning_goals and a.learning_goals.size > 0 %}<h2><a href="#goals">Learning goals</a></h2>{% endif %}
+  {% if a.leader and a.leader.prep %}<h2><a href="#prep">Leader prep</a></h2>{% endif %}
+  {% if a.leader and a.leader.briefing %}<h2><a href="#briefing">Leader briefing</a></h2>{% endif %}
+  {% if a.leader and a.leader.safety_brief %}<h2><a href="#safety">Safety briefing</a></h2>{% endif %}
+  {% if a.running and a.running.steps %}<h2><a href="#steps">How to run</a></h2>{% endif %}
+  {% if a.running and a.running.differentiation %}<h2><a href="#diff">Make it easier / harder</a></h2>{% endif %}
+  {% if a.running and a.running.time_plan and a.running.time_plan.size > 0 %}<h2><a href="#time">Time plan</a></h2>{% endif %}
+  {% if a.running and a.running.reflection %}<h2><a href="#reflection">Reflection</a></h2>{% endif %}
+  {% if a.resources and a.resources.documents and a.resources.documents.size > 0 %}<h2><a href="#downloads">Downloads</a></h2>{% endif %}
+  {% if a.resources and a.resources.external_docs and a.resources.external_docs.size > 0 %}<h2><a href="#links">External tutorials</a></h2>{% endif %}
+  {% if a.badges and a.badges.size > 0 %}<h2><a href="#badges">Badge links</a></h2>{% endif %}
+  {% if content and content != "" %}<h2><a href="#extra">Extra notes</a></h2>{% endif %}
+</div>
 {% endcapture %}
 
-{% if page.toc != false and toc_items contains "1" %}
+{% assign has_any_toc =
+  a.kit_list
+  or (a.learning_goals and a.learning_goals.size > 0)
+  or (a.leader and a.leader.prep)
+  or (a.leader and a.leader.briefing)
+  or (a.leader and a.leader.safety_brief)
+  or (a.running and a.running.steps)
+  or (a.running and a.running.differentiation)
+  or (a.running and a.running.time_plan and a.running.time_plan.size > 0)
+  or (a.running and a.running.reflection)
+  or (a.resources and a.resources.documents and a.resources.documents.size > 0)
+  or (a.resources and a.resources.external_docs and a.resources.external_docs.size > 0)
+  or (a.badges and a.badges.size > 0)
+  or (content and content != "")
+%}
+
+{% if has_any_toc %}
 <section class="activity-card" id="toc">
   <h3 class="activity-card__title">On this page</h3>
-  <ul>
-    {% if a.kit_items %}<li><a href="#kit">You will need</a></li>{% endif %}
-    {% if a.learning_goals and a.learning_goals.size > 0 %}<li><a href="#goals">Learning goals</a></li>{% endif %}
-    {% if a.leader and a.leader.prep %}<li><a href="#prep">Leader prep</a></li>{% endif %}
-    {% if a.leader and a.leader.briefing %}<li><a href="#briefing">Leader briefing</a></li>{% endif %}
-    {% if a.leader and a.leader.safety_brief %}<li><a href="#safety">Safety briefing</a></li>{% endif %}
-    {% if a.running and a.running.steps %}<li><a href="#steps">How to run</a></li>{% endif %}
-    {% if a.running and a.running.differentiation %}<li><a href="#diff">Make it easier / harder</a></li>{% endif %}
-    {% if a.running and a.running.time_plan and a.running.time_plan.size > 0 %}<li><a href="#time">Time plan</a></li>{% endif %}
-    {% if a.running and a.running.reflection %}<li><a href="#reflection">Reflection</a></li>{% endif %}
-    {% if a.resources and a.resources.documents and a.resources.documents.size > 0 %}<li><a href="#downloads">Downloads</a></li>{% endif %}
-    {% if a.resources and a.resources.external_docs and a.resources.external_docs.size > 0 %}<li><a href="#links">External tutorials</a></li>{% endif %}
-    {% if a.badges and a.badges.size > 0 %}<li><a href="#badges">Badge links</a></li>{% endif %}
-    {% if content and content != "" %}<li><a href="#extra">Extra notes</a></li>{% endif %}
-  </ul>
+  {% include toc.html html=toc_source sanitize=true %}
 </section>
 {% endif %}
 
@@ -103,7 +113,6 @@ layout: single
   {{ a.kit_list | markdownify }}
 </section>
 {% endif %}
-
 
 {% if a.learning_goals and a.learning_goals.size > 0 %}
 <section class="activity-card" id="goals">
@@ -179,7 +188,15 @@ layout: single
   <h3 class="activity-card__title">Downloads</h3>
   <ul>
     {% for doc in a.resources.documents %}
-      <li><a href="{{ doc.file | relative_url }}">{{ doc.title }}</a></li>
+      {% if doc.file %}
+        <li>
+          <a href="{{ doc.file | relative_url }}"
+             target="_blank" rel="noopener noreferrer"
+             data-external="true">
+            {{ doc.title }}
+          </a>
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
 </section>
@@ -190,7 +207,15 @@ layout: single
   <h3 class="activity-card__title">External tutorials</h3>
   <ul>
     {% for d in a.resources.external_docs %}
-      <li><a href="{{ d.url }}">{{ d.title }}</a></li>
+      {% if d.url %}
+        <li>
+          <a href="{{ d.url }}"
+             target="_blank" rel="noopener noreferrer"
+             data-external="true">
+            {{ d.title }}
+          </a>
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
 </section>
@@ -204,7 +229,9 @@ layout: single
       <li>
         <strong>{{ b.section | downcase | capitalize }}:</strong> {{ b.badge }}
         {% if b.requirement_ref %} — {{ b.requirement_ref }}{% endif %}
-        {% if b.url %} (<a href="{{ b.url }}">official link</a>){% endif %}
+        {% if b.url %}
+          (<a href="{{ b.url }}" target="_blank" rel="noopener noreferrer" data-external="true">official link</a>)
+        {% endif %}
       </li>
     {% endfor %}
   </ul>
@@ -220,9 +247,19 @@ layout: single
 
 <script>
   (function(){
-    document.querySelectorAll('.page__content a').forEach(function(a){
-      a.setAttribute('target','_blank');
-      a.setAttribute('rel','noopener noreferrer');
+    // Only force new-tab for external links.
+    // Skip internal anchors (#...), and skip site-relative links (/...).
+    document.querySelectorAll('.page__content a[href]').forEach(function(a){
+      var href = a.getAttribute('href') || '';
+      if (!href) return;
+      if (href.startsWith('#')) return;
+      if (href.startsWith('/')) return;
+      // already marked as external or absolute URL
+      if (a.dataset && a.dataset.external === 'true') return;
+      if (href.startsWith('http://') || href.startsWith('https://')) {
+        a.setAttribute('target','_blank');
+        a.setAttribute('rel','noopener noreferrer');
+      }
     });
   })();
 </script>
