@@ -1,4 +1,13 @@
 (function () {
+  // Guard: wait until Decap exposes helpers
+  function getHelpers() {
+    return {
+      CMS: window.CMS,
+      createClass: window.createClass,
+      h: window.h,
+    };
+  }
+
   // Cache badge data (loaded once)
   let _badgeIndex = null;
   let _loading = null;
@@ -7,21 +16,22 @@
     if (_badgeIndex) return _badgeIndex;
     if (_loading) return _loading;
 
-    _loading = fetch("/admin/badges_master.json", { cache: "no-store" })
+    // IMPORTANT: relative path so it works under /STEM-Scouts/admin/
+    _loading = fetch("./badges_master.json", { cache: "no-store" })
       .then((r) => {
-        if (!r.ok) throw new Error("Failed to load badges_master.json");
+        if (!r.ok) throw new Error(`Failed to load badges_master.json (${r.status})`);
         return r.json();
       })
       .then((arr) => {
         const idx = {};
         (arr || []).forEach((b) => {
-          idx[b.id] = b;
+          if (b && b.id) idx[b.id] = b;
         });
         _badgeIndex = idx;
         return _badgeIndex;
       })
       .catch((err) => {
-        console.error(err);
+        console.error("[badge_requirements] loadBadges error:", err);
         _badgeIndex = {};
         return _badgeIndex;
       });
@@ -36,140 +46,140 @@
     return m ? parseInt(m[1], 10) : null;
   }
 
-  const BadgeRequirementsControl = createClass({
-    getInitialState() {
-      return { loading: true, badgeId: null, requirements: [], error: null };
-    },
+  function registerWidget() {
+    const { CMS, createClass, h } = getHelpers();
+    if (!CMS || !createClass || !h) return false;
 
-    async componentDidMount() {
-      await this.refreshFromEntry();
-    },
+    const BadgeRequirementsControl = createClass({
+      getInitialState() {
+        return { loading: true, badgeId: null, requirements: [] };
+      },
 
-    async componentDidUpdate(prevProps) {
-      // If the selected badge changes (or entry changes), refresh
-      const prevBadge = this.getSelectedBadgeId(prevProps);
-      const currBadge = this.getSelectedBadgeId(this.props);
-      if (prevBadge !== currBadge) {
+      async componentDidMount() {
         await this.refreshFromEntry();
-      }
-    },
+      },
 
-    getSelectedBadgeId(props) {
-      try {
-        const idx = getListIndexFromPath(props.path);
-        if (idx === null) return null;
-        // entry is an Immutable.Map
-        return props.entry.getIn(["data", "badge_links", idx, "badge"]) || null;
-      } catch (e) {
-        return null;
-      }
-    },
+      async componentDidUpdate(prevProps) {
+        const prevBadge = this.getSelectedBadgeId(prevProps);
+        const currBadge = this.getSelectedBadgeId(this.props);
+        if (prevBadge !== currBadge) {
+          await this.refreshFromEntry();
+        }
+      },
 
-    async refreshFromEntry() {
-      this.setState({ loading: true, error: null });
+      getSelectedBadgeId(props) {
+        try {
+          const idx = getListIndexFromPath(props.path);
+          if (idx === null) return null;
+          return props.entry.getIn(["data", "badge_links", idx, "badge"]) || null;
+        } catch {
+          return null;
+        }
+      },
 
-      const badgeId = this.getSelectedBadgeId(this.props);
-      const idx = await loadBadges();
-      const badge = badgeId ? idx[badgeId] : null;
+      async refreshFromEntry() {
+        this.setState({ loading: true });
 
-      const reqs = badge && Array.isArray(badge.requirements) ? badge.requirements : [];
-      // reqs expected [{no:int,text:string}, ...] already filtered to numbered requirements only
+        const badgeId = this.getSelectedBadgeId(this.props);
+        const idx = await loadBadges();
+        const badge = badgeId ? idx[badgeId] : null;
 
-      // sanitize current value
-      const current = Array.isArray(this.props.value) ? this.props.value : [];
-      const allowed = new Set(reqs.map((r) => r.no));
-      const cleaned = current.filter((n) => allowed.has(n));
+        const reqs = badge && Array.isArray(badge.requirements) ? badge.requirements : [];
 
-      if (JSON.stringify(current) !== JSON.stringify(cleaned)) {
-        this.props.onChange(cleaned);
-      }
+        // current value is an array of ints (selected requirement numbers)
+        const current = Array.isArray(this.props.value) ? this.props.value : [];
+        const allowed = new Set(reqs.map((r) => r.no).filter((n) => Number.isInteger(n)));
 
-      this.setState({
-        loading: false,
-        badgeId: badgeId,
-        requirements: reqs,
-      });
-    },
+        // Clean any invalid stored numbers
+        const cleaned = current.filter((n) => allowed.has(n));
+        if (JSON.stringify(current) !== JSON.stringify(cleaned)) {
+          this.props.onChange(cleaned);
+        }
 
-    onToggle(no) {
-      const v = Array.isArray(this.props.value) ? this.props.value.slice() : [];
-      const i = v.indexOf(no);
-      if (i >= 0) v.splice(i, 1);
-      else v.push(no);
-      v.sort((a, b) => a - b);
-      this.props.onChange(v);
-    },
+        this.setState({ loading: false, badgeId, requirements: reqs });
+      },
 
-    render() {
-      const value = Array.isArray(this.props.value) ? this.props.value : [];
+      onToggle(no) {
+        const v = Array.isArray(this.props.value) ? this.props.value.slice() : [];
+        const i = v.indexOf(no);
+        if (i >= 0) v.splice(i, 1);
+        else v.push(no);
+        v.sort((a, b) => a - b);
+        this.props.onChange(v);
+      },
 
-      if (this.state.loading) {
-        return h("div", { className: this.props.classNameWrapper }, "Loading requirements…");
-      }
+      render() {
+        const value = Array.isArray(this.props.value) ? this.props.value : [];
 
-      const badgeId = this.state.badgeId;
+        if (this.state.loading) {
+          return h("div", { className: this.props.classNameWrapper }, "Loading requirements…");
+        }
 
-      if (!badgeId) {
+        if (!this.state.badgeId) {
+          return h(
+            "div",
+            { className: this.props.classNameWrapper, style: { opacity: 0.85 } },
+            "Pick a badge first to see its requirements."
+          );
+        }
+
+        const reqs = this.state.requirements || [];
+        if (!reqs.length) {
+          return h(
+            "div",
+            { className: this.props.classNameWrapper, style: { opacity: 0.85 } },
+            "No numbered requirements found for this badge."
+          );
+        }
+
         return h(
           "div",
-          { className: this.props.classNameWrapper, style: { opacity: 0.85 } },
-          "Pick a badge first to see its requirements."
-        );
-      }
-
-      const reqs = this.state.requirements || [];
-      if (!reqs.length) {
-        return h(
-          "div",
-          { className: this.props.classNameWrapper, style: { opacity: 0.85 } },
-          "No numbered requirements found for this badge."
-        );
-      }
-
-      return h(
-        "div",
-        { className: this.props.classNameWrapper },
-        h(
-          "div",
-          { style: { marginBottom: "0.5rem", opacity: 0.85 } },
-          "Tick the requirements this activity supports:"
-        ),
-        h(
-          "div",
-          { style: { border: "1px solid rgba(0,0,0,0.12)", borderRadius: 6, padding: "0.5rem 0.75rem", maxHeight: 320, overflow: "auto" } },
-          reqs.map((r) =>
-            h(
-              "label",
-              { key: String(r.no), style: { display: "flex", gap: "0.5rem", alignItems: "flex-start", padding: "0.35rem 0" } },
-              h("input", {
-                type: "checkbox",
-                checked: value.includes(r.no),
-                onChange: () => this.onToggle(r.no),
-                style: { marginTop: 3 },
-              }),
-              h("div", null,
-                h("div", { style: { fontWeight: 600 } }, `${r.no}.`),
-                h("div", null, r.text)
+          { className: this.props.classNameWrapper },
+          h("div", { style: { marginBottom: "0.5rem", opacity: 0.85 } }, "Tick the requirements this activity supports:"),
+          h(
+            "div",
+            {
+              style: {
+                border: "1px solid rgba(0,0,0,0.12)",
+                borderRadius: 6,
+                padding: "0.5rem 0.75rem",
+                maxHeight: 320,
+                overflow: "auto",
+              },
+            },
+            reqs.map((r) =>
+              h(
+                "label",
+                {
+                  key: String(r.no),
+                  style: { display: "flex", gap: "0.5rem", alignItems: "flex-start", padding: "0.35rem 0" },
+                },
+                h("input", {
+                  type: "checkbox",
+                  checked: value.includes(r.no),
+                  onChange: () => this.onToggle(r.no),
+                  style: { marginTop: 3 },
+                }),
+                h("div", null,
+                  h("div", { style: { fontWeight: 600 } }, `${r.no}.`),
+                  h("div", null, r.text)
+                )
               )
             )
           )
-        )
-      );
-    },
-  });
+        );
+      },
+    });
 
-  const BadgeRequirementsPreview = createClass({
-    render() {
-      // show numbers only in preview
-      const v = Array.isArray(this.props.value) ? this.props.value : [];
-      return h("div", null, v.length ? `Requirements: ${v.join(", ")}` : "No requirements selected");
-    },
-  });
+    const BadgeRequirementsPreview = createClass({
+      render() {
+        const v = Array.isArray(this.props.value) ? this.props.value : [];
+        return h("div", null, v.length ? `Requirements: ${v.join(", ")}` : "No requirements selected");
+      },
+    });
 
-  // Register once Decap is loaded
-  function register() {
-    if (!window.CMS || !window.CMS.registerWidget) return false;
-    window.CMS.registerWidget("badge_requirements", BadgeRequirementsControl, BadgeRequirementsPreview);
+    CMS.registerWidget("badge_requirements", BadgeRequirementsControl, BadgeRequirementsPreview);
+    console.log("[badge_requirements] widget registered");
     return true;
   }
 
@@ -177,6 +187,6 @@
   let tries = 0;
   const t = setInterval(() => {
     tries += 1;
-    if (register() || tries > 50) clearInterval(t);
+    if (registerWidget() || tries > 60) clearInterval(t);
   }, 100);
 })();
