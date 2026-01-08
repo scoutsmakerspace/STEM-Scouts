@@ -3,11 +3,11 @@ title: "Lodge Leader"
 id: "beavers-lodge-leader"
 section: "beavers"
 category: "Core Badges"
+badge_type: "Leadership"
+completion_rules: "Manually awarded"
 requirements_count: 0
 requirements:
-  - "No formal requirements - awarded by leader discretion"
 ---
 
 ## Requirements
 
-- No formal requirements - awarded by leader discretion

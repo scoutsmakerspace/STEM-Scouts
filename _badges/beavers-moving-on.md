@@ -3,11 +3,11 @@ title: "Moving On"
 id: "beavers-moving-on"
 section: "beavers"
 category: "Core Badges"
+badge_type: "Moving On"
+completion_rules: "Manually awarded"
 requirements_count: 0
 requirements:
-  - "No formal requirements - awarded by leader discretion"
 ---
 
 ## Requirements
 
-- No formal requirements - awarded by leader discretion

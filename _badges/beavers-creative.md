@@ -3,19 +3,23 @@ title: "Creative"
 id: "beavers-creative"
 section: "beavers"
 category: "Activity Badges"
+badge_type: "Activity"
+completion_rules: "Complete ALL 4 requirements"
 requirements_count: 4
 requirements:
-  - "Complete ALL of the following:"
-  - "1. 1. Do a performance."
-  - "2. 2. Try a craft."
-  - "3. 3. Construct something."
-  - "4. 4. Use your imagination."
+  - no: 1
+    text: "1. Do a performance."
+  - no: 2
+    text: "2. Try a craft."
+  - no: 3
+    text: "3. Construct something."
+  - no: 4
+    text: "4. Use your imagination."
 ---
 
 ## Requirements
 
-- Complete ALL of the following:
-- 1. 1. Do a performance.
-- 2. 2. Try a craft.
-- 3. 3. Construct something.
-- 4. 4. Use your imagination.
+- **1.** 1. Do a performance.
+- **2.** 2. Try a craft.
+- **3.** 3. Construct something.
+- **4.** 4. Use your imagination.
