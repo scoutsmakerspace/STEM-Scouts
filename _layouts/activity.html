@@ -4,6 +4,43 @@ layout: single
 
 {% assign a = page %}
 
+{% capture toc_items %}
+  {% if a.kit_items %}1{% endif %}
+  {% if a.learning_goals and a.learning_goals.size > 0 %}1{% endif %}
+  {% if a.leader and a.leader.prep %}1{% endif %}
+  {% if a.leader and a.leader.briefing %}1{% endif %}
+  {% if a.leader and a.leader.safety_brief %}1{% endif %}
+  {% if a.running and a.running.steps %}1{% endif %}
+  {% if a.running and a.running.differentiation %}1{% endif %}
+  {% if a.running and a.running.time_plan and a.running.time_plan.size > 0 %}1{% endif %}
+  {% if a.running and a.running.reflection %}1{% endif %}
+  {% if a.resources and a.resources.documents and a.resources.documents.size > 0 %}1{% endif %}
+  {% if a.resources and a.resources.external_docs and a.resources.external_docs.size > 0 %}1{% endif %}
+  {% if a.badges and a.badges.size > 0 %}1{% endif %}
+  {% if content and content != "" %}1{% endif %}
+{% endcapture %}
+
+{% if page.toc != false and toc_items contains "1" %}
+<section class="activity-card" id="toc">
+  <h3 class="activity-card__title">On this page</h3>
+  <ul>
+    {% if a.kit_items %}<li><a href="#kit">You will need</a></li>{% endif %}
+    {% if a.learning_goals and a.learning_goals.size > 0 %}<li><a href="#goals">Learning goals</a></li>{% endif %}
+    {% if a.leader and a.leader.prep %}<li><a href="#prep">Leader prep</a></li>{% endif %}
+    {% if a.leader and a.leader.briefing %}<li><a href="#briefing">Leader briefing</a></li>{% endif %}
+    {% if a.leader and a.leader.safety_brief %}<li><a href="#safety">Safety briefing</a></li>{% endif %}
+    {% if a.running and a.running.steps %}<li><a href="#steps">How to run</a></li>{% endif %}
+    {% if a.running and a.running.differentiation %}<li><a href="#diff">Make it easier / harder</a></li>{% endif %}
+    {% if a.running and a.running.time_plan and a.running.time_plan.size > 0 %}<li><a href="#time">Time plan</a></li>{% endif %}
+    {% if a.running and a.running.reflection %}<li><a href="#reflection">Reflection</a></li>{% endif %}
+    {% if a.resources and a.resources.documents and a.resources.documents.size > 0 %}<li><a href="#downloads">Downloads</a></li>{% endif %}
+    {% if a.resources and a.resources.external_docs and a.resources.external_docs.size > 0 %}<li><a href="#links">External tutorials</a></li>{% endif %}
+    {% if a.badges and a.badges.size > 0 %}<li><a href="#badges">Badge links</a></li>{% endif %}
+    {% if content and content != "" %}<li><a href="#extra">Extra notes</a></li>{% endif %}
+  </ul>
+</section>
+{% endif %}
+
 {% if a.hero_image %}
   <figure class="activity-hero" style="margin: 0 0 1rem 0;">
     <img src="{{ a.hero_image | relative_url }}" alt="{{ a.title | escape }}" style="width:100%; border-radius:12px;">
@@ -61,7 +98,7 @@ layout: single
 </section>
 
 {% if a.kit_items %}
-<section class="activity-card">
+<section class="activity-card" id="kit">
   <h3 class="activity-card__title">You will need</h3>
   {% assign lines = a.kit_items | strip | split: "\n" %}
   <ul>
@@ -76,7 +113,7 @@ layout: single
 {% endif %}
 
 {% if a.learning_goals and a.learning_goals.size > 0 %}
-<section class="activity-card">
+<section class="activity-card" id="goals">
   <h3 class="activity-card__title">Learning goals</h3>
   <ul>
     {% for g in a.learning_goals %}
@@ -87,28 +124,28 @@ layout: single
 {% endif %}
 
 {% if a.leader and a.leader.prep %}
-<section class="activity-card">
+<section class="activity-card" id="prep">
   <h3 class="activity-card__title">Leader prep (before the meeting)</h3>
   {{ a.leader.prep | markdownify }}
 </section>
 {% endif %}
 
 {% if a.leader and a.leader.briefing %}
-<section class="activity-card">
+<section class="activity-card" id="briefing">
   <h3 class="activity-card__title">Leader briefing (what to explain first)</h3>
   {{ a.leader.briefing | markdownify }}
 </section>
 {% endif %}
 
 {% if a.leader and a.leader.safety_brief %}
-<section class="activity-card">
+<section class="activity-card" id="safety">
   <h3 class="activity-card__title">Safety briefing (key points)</h3>
   {{ a.leader.safety_brief | markdownify }}
 </section>
 {% endif %}
 
 {% if a.running and a.running.steps %}
-<section class="activity-card">
+<section class="activity-card" id="steps">
   <h3 class="activity-card__title">How to run the activity</h3>
   <div class="activity-steps">
     {{ a.running.steps | markdownify }}
@@ -117,14 +154,14 @@ layout: single
 {% endif %}
 
 {% if a.running and a.running.differentiation %}
-<section class="activity-card">
+<section class="activity-card" id="diff">
   <h3 class="activity-card__title">Make it easier / harder</h3>
   {{ a.running.differentiation | markdownify }}
 </section>
 {% endif %}
 
 {% if a.running and a.running.time_plan and a.running.time_plan.size > 0 %}
-<section class="activity-card">
+<section class="activity-card" id="time">
   <h3 class="activity-card__title">Time plan</h3>
   <ul>
     {% for t in a.running.time_plan %}
@@ -138,26 +175,25 @@ layout: single
 {% endif %}
 
 {% if a.running and a.running.reflection %}
-<section class="activity-card">
+<section class="activity-card" id="reflection">
   <h3 class="activity-card__title">Reflection / questions</h3>
   {{ a.running.reflection | markdownify }}
 </section>
 {% endif %}
 
 {% if a.resources and a.resources.documents and a.resources.documents.size > 0 %}
-<section class="activity-card">
+<section class="activity-card" id="downloads">
   <h3 class="activity-card__title">Downloads</h3>
   <ul>
     {% for doc in a.resources.documents %}
       <li><a href="{{ doc.file | relative_url }}">{{ doc.title }}</a></li>
     {% endfor %}
   </ul>
-  <p class="activity-muted">Tip: keep uploaded files small (PDF/Word/RTF).</p>
 </section>
 {% endif %}
 
 {% if a.resources and a.resources.external_docs and a.resources.external_docs.size > 0 %}
-<section class="activity-card">
+<section class="activity-card" id="links">
   <h3 class="activity-card__title">External tutorials</h3>
   <ul>
     {% for d in a.resources.external_docs %}
@@ -168,7 +204,7 @@ layout: single
 {% endif %}
 
 {% if a.badges and a.badges.size > 0 %}
-<section class="activity-card">
+<section class="activity-card" id="badges">
   <h3 class="activity-card__title">Badge links (reference)</h3>
   <ul>
     {% for b in a.badges %}
@@ -179,12 +215,11 @@ layout: single
       </li>
     {% endfor %}
   </ul>
-  <p class="activity-muted">Badge requirements change. Always check the official source.</p>
 </section>
 {% endif %}
 
 {% if content and content != "" %}
-<section class="activity-card">
+<section class="activity-card" id="extra">
   <h3 class="activity-card__title">Extra notes</h3>
   {{ content }}
 </section>
