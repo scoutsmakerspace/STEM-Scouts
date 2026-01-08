@@ -7,10 +7,11 @@ layout: single
 {% comment %}
 Activity template (standardised):
 - At a glance + summary + optional hero image
-- Risk Assessment link + clear "example only" warning
+- Kit list early (after setup notes)
+- Risk Assessment link + clear warning
 - Standard leader-facing sections:
   Leader prep, Briefing, Safety briefing, Run steps, Differentiation, Time plan, Reflection
-- Kit, Downloads, External links, Badge links
+- Downloads, External links, Badge links
 {% endcomment %}
 
 {% if a.hero_image %}
@@ -69,23 +70,23 @@ Activity template (standardised):
   </div>
 </section>
 
-{% if a.learning_goals and a.learning_goals.size > 0 %}
-<section class="activity-card">
-  <h3 class="activity-card__title">Learning goals</h3>
-  <ul>
-    {% for g in a.learning_goals %}
-      <li>{% if g.goal %}{{ g.goal }}{% else %}{{ g }}{% endif %}</li>
-    {% endfor %}
-  </ul>
-</section>
-{% endif %}
-
 {% if a.kit and a.kit.size > 0 %}
 <section class="activity-card">
   <h3 class="activity-card__title">You will need</h3>
   <ul>
     {% for item in a.kit %}
       <li>{% if item.item %}{{ item.item }}{% else %}{{ item }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if a.learning_goals and a.learning_goals.size > 0 %}
+<section class="activity-card">
+  <h3 class="activity-card__title">Learning goals</h3>
+  <ul>
+    {% for g in a.learning_goals %}
+      <li>{% if g.goal %}{{ g.goal }}{% else %}{{ g }}{% endif %}</li>
     {% endfor %}
   </ul>
 </section>
@@ -115,7 +116,9 @@ Activity template (standardised):
 {% if a.run_steps %}
 <section class="activity-card">
   <h3 class="activity-card__title">How to run the activity</h3>
-  {{ a.run_steps | markdownify }}
+  <div class="activity-steps">
+    {{ a.run_steps | markdownify }}
+  </div>
 </section>
 {% endif %}
 
