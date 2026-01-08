@@ -1,0 +1,29 @@
+---
+title: "Geocaching"
+id: "scouts-geocaching"
+section: "scouts"
+category: "Activity Badges"
+requirements_count: 8
+requirements:
+  - "Complete ALL of the following:"
+  - "1. 1. Show that you know about the Global Positioning System (GPS)."
+  - "2. 2. Programme a handheld GPS."
+  - "3. 3. Show that you know the difference between Ordnance Survey, and latitude and longitude coordinates."
+  - "4. 4. Using an Ordnance Survey map (1:25000 or 1:50000 scale) to plan a route of at least 4km that contains a minimum of 10 waypoints."
+  - "5. 5. Sign up to a geocaching website."
+  - "6. 6. Show that you understand the safety and environmental aspects of geocaching, such as the Highway Code, Countryside Code and the Geocaching Association of Great Britain (GAGB) guidelines."
+  - "7. 7. Find five geocaches using a GPS. At least three geocaches must be ‘multi-caches’, with at least two waypoints."
+  - "8. 8. With the help of an adult create two caches."
+---
+
+## Requirements
+
+- Complete ALL of the following:
+- 1. 1. Show that you know about the Global Positioning System (GPS).
+- 2. 2. Programme a handheld GPS.
+- 3. 3. Show that you know the difference between Ordnance Survey, and latitude and longitude coordinates.
+- 4. 4. Using an Ordnance Survey map (1:25000 or 1:50000 scale) to plan a route of at least 4km that contains a minimum of 10 waypoints.
+- 5. 5. Sign up to a geocaching website.
+- 6. 6. Show that you understand the safety and environmental aspects of geocaching, such as the Highway Code, Countryside Code and the Geocaching Association of Great Britain (GAGB) guidelines.
+- 7. 7. Find five geocaches using a GPS. At least three geocaches must be ‘multi-caches’, with at least two waypoints.
+- 8. 8. With the help of an adult create two caches.

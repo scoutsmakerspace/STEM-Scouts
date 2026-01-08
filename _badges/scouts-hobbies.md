@@ -1,0 +1,17 @@
+---
+title: "Hobbies"
+id: "scouts-hobbies"
+section: "scouts"
+category: "Activity Badges"
+requirements_count: 2
+requirements:
+  - "Complete 1 of the following:"
+  - "1. Take up a hobby or interest that you do not already have an activity badge for.Keep a record of your hobby for at least four months."
+  - "2. Make a collection or study of objects for at least four months.You could collect books or magazines, films, cards, key rings, figurines or similar.Talk to your Patrol Leader or your Troop about the collection or study you chose.Explain why you chose your objects and what you like about them."
+---
+
+## Requirements
+
+- Complete 1 of the following:
+- 1. Take up a hobby or interest that you do not already have an activity badge for.Keep a record of your hobby for at least four months.
+- 2. Make a collection or study of objects for at least four months.You could collect books or magazines, films, cards, key rings, figurines or similar.Talk to your Patrol Leader or your Troop about the collection or study you chose.Explain why you chose your objects and what you like about them.
