@@ -1,0 +1,23 @@
+---
+title: "Community Impact - Stage 3"
+id: "universal-community-impact-stage-3"
+section: "universal"
+category: "Staged Activity Badges"
+requirements_count: 5
+requirements:
+  - "Complete ALL of the following:"
+  - "1. Identify need. Investigate what issues and challenges exist in your chosen community – it could be local, national or international."
+  - "2. Plan action. Decide what issue your section would like to take action on and what you would like to change. Work with a group of people not involved in Scouting, who are passionate about your cause, to plan action that will make a positive difference."
+  - "3. Take action over nine months. Spend at least 24 hours in total personally taking action on your chosen issue. You can achieve more impact by spreading your time out, over six months, instead of doing it all in one go. Involve others from your section and a group of non-Scouts, preferably from the community you are trying to help."
+  - "4. Learn and make more change. Discuss with your section what you’ve learned, how you have made people’s lives better, how taking action has developed you, and what you could do to help even more people in your chosen community."
+  - "5. Tell the world. Help other people to understand why your chosen issue is important. Explain what you did and how they can also help."
+---
+
+## Requirements
+
+- Complete ALL of the following:
+- 1. Identify need. Investigate what issues and challenges exist in your chosen community – it could be local, national or international.
+- 2. Plan action. Decide what issue your section would like to take action on and what you would like to change. Work with a group of people not involved in Scouting, who are passionate about your cause, to plan action that will make a positive difference.
+- 3. Take action over nine months. Spend at least 24 hours in total personally taking action on your chosen issue. You can achieve more impact by spreading your time out, over six months, instead of doing it all in one go. Involve others from your section and a group of non-Scouts, preferably from the community you are trying to help.
+- 4. Learn and make more change. Discuss with your section what you’ve learned, how you have made people’s lives better, how taking action has developed you, and what you could do to help even more people in your chosen community.
+- 5. Tell the world. Help other people to understand why your chosen issue is important. Explain what you did and how they can also help.
