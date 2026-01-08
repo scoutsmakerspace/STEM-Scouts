@@ -217,3 +217,12 @@ layout: single
   {{ content }}
 </section>
 {% endif %}
+
+<script>
+  (function(){
+    document.querySelectorAll('.page__content a').forEach(function(a){
+      a.setAttribute('target','_blank');
+      a.setAttribute('rel','noopener noreferrer');
+    });
+  })();
+</script>
