@@ -3,6 +3,9 @@
     return window.CMS && window.createClass && window.h;
   }
 
+  // -------------------------
+  // Load badge master JSON (cached)
+  // -------------------------
   let _idx = null;
   let _loading = null;
 
@@ -34,10 +37,46 @@
     return _loading;
   }
 
+  // -------------------------
+  // Path helper
+  // Decap paths can look like:
+  //   "badge_links.0.requirements_met"
+  // or "badge_links[0].requirements_met"
+  // -------------------------
   function listIndexFromPath(path) {
-    // Example: "badge_links.0.requirements_met"
-    const m = String(path || "").match(/badge_links\.(\d+)\./);
-    return m ? parseInt(m[1], 10) : null;
+    const s = String(path || "");
+    let m = s.match(/badge_links\.(\d+)\./);
+    if (m) return parseInt(m[1], 10);
+    m = s.match(/badge_links\[(\d+)\]\./);
+    if (m) return parseInt(m[1], 10);
+    return null;
+  }
+
+  // -------------------------
+  // Read sibling "badge" value robustly
+  // Prefer fieldsMetaData (live form state), then fallback to entry (saved state)
+  // -------------------------
+  function readBadgeId(props) {
+    const idx = listIndexFromPath(props.path);
+    if (idx === null) return null;
+
+    try {
+      // Most reliable: live editor state
+      if (props.fieldsMetaData && props.fieldsMetaData.getIn) {
+        const live = props.fieldsMetaData.getIn(["badge_links", idx, "badge"]);
+        if (live) return String(live);
+      }
+    } catch {}
+
+    try {
+      // Fallback: saved draft entry
+      if (props.entry && props.entry.getIn) {
+        const saved = props.entry.getIn(["data", "badge_links", idx, "badge"]);
+        if (saved) return String(saved);
+      }
+    } catch {}
+
+    return null;
   }
 
   function register() {
@@ -47,7 +86,7 @@
 
     const Control = createClass({
       getInitialState() {
-        return { loading: true, badgeId: null, reqs: [], error: null };
+        return { loading: true, badgeId: null, reqs: [] };
       },
 
       async componentDidMount() {
@@ -55,42 +94,30 @@
       },
 
       async componentDidUpdate(prevProps) {
-        const prev = this.getBadgeId(prevProps);
-        const curr = this.getBadgeId(this.props);
+        const prev = readBadgeId(prevProps);
+        const curr = readBadgeId(this.props);
         if (prev !== curr) await this.refresh();
       },
 
-      getBadgeId(props) {
-        try {
-          const i = listIndexFromPath(props.path);
-          if (i === null) return null;
-          // field inside badge_links item is named "badge"
-          return props.entry.getIn(["data", "badge_links", i, "badge"]) || null;
-        } catch {
-          return null;
-        }
-      },
-
       async refresh() {
-        this.setState({ loading: true, error: null });
+        this.setState({ loading: true });
 
-        const badgeId = this.getBadgeId(this.props);
+        const badgeId = readBadgeId(this.props);
         const idx = await loadBadgesIndex();
-
         const badge = badgeId ? idx[badgeId] : null;
 
-        console.log("[badge_requirements] selected badge:", badgeId, "found:", !!badge);
+        console.log("[badge_requirements] badgeId:", badgeId, "found:", !!badge);
 
-        // Requirements should be an array like: [{ id:"1", text:"..."}, ...]
+        // expected shape: [{id:"1", text:"..."}, ...]
         const reqs = badge && Array.isArray(badge.requirements) ? badge.requirements : [];
 
-        // current value: list of selected requirement ids (strings)
-        const current = Array.isArray(this.props.value) ? this.props.value : [];
+        // current value stores selected requirement ids (strings)
+        const current = Array.isArray(this.props.value) ? this.props.value.map(String) : [];
 
-        // allow only requirement ids that exist on this badge
-        const allowed = new Set(reqs.map(r => String(r.id)));
+        // filter out anything not in current badge requirements
+        const allowed = new Set(reqs.map((r) => String(r.id)));
+        const cleaned = current.filter((v) => allowed.has(String(v)));
 
-        const cleaned = current.filter(v => allowed.has(String(v)));
         if (JSON.stringify(cleaned) !== JSON.stringify(current)) {
           this.props.onChange(cleaned);
         }
@@ -104,12 +131,14 @@
         const i = v.indexOf(id);
         if (i >= 0) v.splice(i, 1);
         else v.push(id);
-        // stable sort: numeric-ish then lexicographic
+
+        // stable sort: numeric-ish first
         v.sort((a, b) => {
           const na = parseFloat(a), nb = parseFloat(b);
           if (!Number.isNaN(na) && !Number.isNaN(nb) && na !== nb) return na - nb;
           return a.localeCompare(b);
         });
+
         this.props.onChange(v);
       },
 
@@ -121,41 +150,56 @@
         }
 
         if (!this.state.badgeId) {
-          return h("div", { className: this.props.classNameWrapper, style: { opacity: 0.85 } },
-            "Pick a badge first to see its requirements.");
+          return h(
+            "div",
+            { className: this.props.classNameWrapper, style: { opacity: 0.85 } },
+            "Pick a badge first to see its requirements."
+          );
         }
 
         if (!this.state.reqs.length) {
-          return h("div", { className: this.props.classNameWrapper, style: { opacity: 0.85 } },
-            "No numbered requirements found for this badge (check badges_master.json extraction).");
+          return h(
+            "div",
+            { className: this.props.classNameWrapper, style: { opacity: 0.85 } },
+            "No numbered requirements found for this badge."
+          );
         }
 
         return h(
           "div",
           { className: this.props.classNameWrapper },
-          h("div", { style: { marginBottom: "0.5rem", opacity: 0.85 } },
-            "Tick the requirements this activity supports:"),
-          h("div", {
-            style: {
-              border: "1px solid rgba(0,0,0,0.12)",
-              borderRadius: 6,
-              padding: "0.5rem 0.75rem",
-              maxHeight: 320,
-              overflow: "auto",
-            }
-          },
-            this.state.reqs.map((r) =>
-              h("label", {
-                key: String(r.id),
-                style: { display: "flex", gap: "0.5rem", alignItems: "flex-start", padding: "0.35rem 0" }
+          h(
+            "div",
+            { style: { marginBottom: "0.5rem", opacity: 0.85 } },
+            "Tick the requirements this activity supports:"
+          ),
+          h(
+            "div",
+            {
+              style: {
+                border: "1px solid rgba(0,0,0,0.12)",
+                borderRadius: 6,
+                padding: "0.5rem 0.75rem",
+                maxHeight: 320,
+                overflow: "auto",
               },
+            },
+            this.state.reqs.map((r) =>
+              h(
+                "label",
+                {
+                  key: String(r.id),
+                  style: { display: "flex", gap: "0.5rem", alignItems: "flex-start", padding: "0.35rem 0" },
+                },
                 h("input", {
                   type: "checkbox",
                   checked: value.includes(String(r.id)),
                   onChange: () => this.toggle(r.id),
-                  style: { marginTop: 3 }
+                  style: { marginTop: 3 },
                 }),
-                h("div", null,
+                h(
+                  "div",
+                  null,
                   h("div", { style: { fontWeight: 600 } }, `${r.id}.`),
                   h("div", null, r.text)
                 )
@@ -163,14 +207,14 @@
             )
           )
         );
-      }
+      },
     });
 
     const Preview = createClass({
       render() {
         const v = Array.isArray(this.props.value) ? this.props.value : [];
         return h("div", null, v.length ? `Selected: ${v.join(", ")}` : "No requirements selected");
-      }
+      },
     });
 
     CMS.registerWidget("badge_requirements", Control, Preview);
@@ -181,6 +225,6 @@
   let tries = 0;
   const t = setInterval(() => {
     tries += 1;
-    if (register() || tries > 80) clearInterval(t);
+    if (register() || tries > 100) clearInterval(t);
   }, 100);
 })();
