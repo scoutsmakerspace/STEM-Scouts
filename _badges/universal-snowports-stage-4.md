@@ -1,24 +1,30 @@
 ---
-title: "Snowports - Stage 4"
-id: "universal-snowports-stage-4"
-section: "universal"
-category: "Staged Activity Badges"
-badge_type: "Staged Activity"
-completion_rules: "Complete ALL 6 requirements"
+title: Snowports - Stage 4
+id: universal-snowports-stage-4
+section: universal
+category: Staged Activity Badges
+badge_type: Staged Activity
+completion_rules: Complete ALL 6 requirements
 requirements_count: 6
 requirements:
-  - no: 1
-    text: "Show you understand what equipment to carry for the different two types of activity"
-  - no: 2
-    text: "Show how to look after yourself and others in the event of not being able to return down the mountain, or being stranded on a route."
-  - no: 3
-    text: "Show your ability to use a ski map or resort map and identify where you are on the map."
-  - no: 4
-    text: "Plan a half-day's activity"
-  - no: 5
-    text: "Participate in a snowsport activity different from that which the other requirements have been completed in."
-  - no: 6
-    text: "Choose and complete two of the following: Demonstrate your ability to safely descend a black run, Perform a sequence of turns in fresh snow, leaving even tracks behind, Complete a day’s cross country ski trip, planning your route before you go, Complete a cross-country timed route and then improve your time over a two further attempts"
+- id: '1'
+  'no': 1
+  text: Show you understand what equipment to carry for the different two types of activity
+- id: '2'
+  'no': 2
+  text: Show how to look after yourself and others in the event of not being able to return down the mountain, or being stranded on a route.
+- id: '3'
+  'no': 3
+  text: Show your ability to use a ski map or resort map and identify where you are on the map.
+- id: '4'
+  'no': 4
+  text: Plan a half-day's activity
+- id: '5'
+  'no': 5
+  text: Participate in a snowsport activity different from that which the other requirements have been completed in.
+- id: '6'
+  'no': 6
+  text: 'Choose and complete two of the following: Demonstrate your ability to safely descend a black run, Perform a sequence of turns in fresh snow, leaving even tracks behind, Complete a day’s cross country ski trip, planning your route before you go, Complete a cross-country timed route and then improve your time over a two further attempts'
 ---
 
 ## Requirements

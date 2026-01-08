@@ -1,36 +1,48 @@
 ---
-title: "Swimmer - Stage 5"
-id: "universal-swimmer-stage-5"
-section: "universal"
-category: "Staged Activity Badges"
-badge_type: "Staged Activity"
-completion_rules: "Complete ALL 12 requirements"
+title: Swimmer - Stage 5
+id: universal-swimmer-stage-5
+section: universal
+category: Staged Activity Badges
+badge_type: Staged Activity
+completion_rules: Complete ALL 12 requirements
 requirements_count: 12
 requirements:
-  - no: 1
-    text: "Learn about where to swim safely in different locations and find out about rescue equipment."
-  - no: 2
-    text: "Take part in a warm up before getting in the pool."
-  - no: 3
-    text: "Demonstrate how to get in and out of the water safely using a variety of different methods of entry."
-  - no: 4
-    text: "Swim confidently on your front for 50 metres without stopping."
-  - no: 5
-    text: "Swim confidently on your back for 50 metres without stopping."
-  - no: 6
-    text: "Swim breaststroke or butterfly for 50 metres."
-  - no: 7
-    text: "Swim 200 metres in a stroke of your choice."
-  - no: 8
-    text: "Swim in clothes for 25 metres."
-  - no: 9
-    text: "Perform 3 different sculling techniques during a swim."
-  - no: 10
-    text: "Tread water with one hand above the water to attract attention."
-  - no: 11
-    text: "Demonstrate one diving technique into the pool followed by a 25 metre swim."
-  - no: 12
-    text: "Learn about different rescues and perform one of them."
+- id: '1'
+  'no': 1
+  text: Learn about where to swim safely in different locations and find out about rescue equipment.
+- id: '2'
+  'no': 2
+  text: Take part in a warm up before getting in the pool.
+- id: '3'
+  'no': 3
+  text: Demonstrate how to get in and out of the water safely using a variety of different methods of entry.
+- id: '4'
+  'no': 4
+  text: Swim confidently on your front for 50 metres without stopping.
+- id: '5'
+  'no': 5
+  text: Swim confidently on your back for 50 metres without stopping.
+- id: '6'
+  'no': 6
+  text: Swim breaststroke or butterfly for 50 metres.
+- id: '7'
+  'no': 7
+  text: Swim 200 metres in a stroke of your choice.
+- id: '8'
+  'no': 8
+  text: Swim in clothes for 25 metres.
+- id: '9'
+  'no': 9
+  text: Perform 3 different sculling techniques during a swim.
+- id: '10'
+  'no': 10
+  text: Tread water with one hand above the water to attract attention.
+- id: '11'
+  'no': 11
+  text: Demonstrate one diving technique into the pool followed by a 25 metre swim.
+- id: '12'
+  'no': 12
+  text: Learn about different rescues and perform one of them.
 ---
 
 ## Requirements

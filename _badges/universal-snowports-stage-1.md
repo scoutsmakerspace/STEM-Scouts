@@ -1,22 +1,27 @@
 ---
-title: "Snowports - Stage 1"
-id: "universal-snowports-stage-1"
-section: "universal"
-category: "Staged Activity Badges"
-badge_type: "Staged Activity"
-completion_rules: "Complete ALL 5 requirements"
+title: Snowports - Stage 1
+id: universal-snowports-stage-1
+section: universal
+category: Staged Activity Badges
+badge_type: Staged Activity
+completion_rules: Complete ALL 5 requirements
 requirements_count: 5
 requirements:
-  - no: 1
-    text: "Identify different types of snowsports."
-  - no: 2
-    text: "Name three places you could safely take part in snowsport activities."
-  - no: 3
-    text: "Take part in a warm-up activity to prepare you for a snowsport activity such as skiing or snowboarding."
-  - no: 4
-    text: "Dress properly for your chosen activity."
-  - no: 5
-    text: "Take part in a taster session that covers: Naming equipment used, How to get in and out of your skis or snowboard, Balancing on your skis or snowboard, Moving around on your skis or snowboard"
+- id: '1'
+  'no': 1
+  text: Identify different types of snowsports.
+- id: '2'
+  'no': 2
+  text: Name three places you could safely take part in snowsport activities.
+- id: '3'
+  'no': 3
+  text: Take part in a warm-up activity to prepare you for a snowsport activity such as skiing or snowboarding.
+- id: '4'
+  'no': 4
+  text: Dress properly for your chosen activity.
+- id: '5'
+  'no': 5
+  text: 'Take part in a taster session that covers: Naming equipment used, How to get in and out of your skis or snowboard, Balancing on your skis or snowboard, Moving around on your skis or snowboard'
 ---
 
 ## Requirements
