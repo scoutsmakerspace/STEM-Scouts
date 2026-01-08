@@ -146,8 +146,8 @@
         // Simple search (client side)
         const q = (this.state.query || "").trim().toLowerCase();
         const filtered = q
-          ? badges.filter((b) => (b._display || "").toLowerCase().includes(q)).slice(0, 50)
-          : badges.slice(0, 50);
+          ? badges.filter((b) => (b._display || "").toLowerCase().includes(q))
+          : badges;
 
         return h(
           "div",
@@ -170,7 +170,26 @@
               style: { width: "100%", padding: "8px 10px", borderRadius: 6, border: "1px solid rgba(0,0,0,0.2)" }
             },
               h("option", { value: "" }, "Select a badge…"),
-              filtered.map((b) => h("option", { key: b.id, value: b.id }, b._display))
+              (() => {
+              const groups = {};
+              for (const b of filtered) {
+                const k = (b.section || "other").toLowerCase();
+                if (!groups[k]) groups[k] = [];
+                groups[k].push(b);
+              }
+            
+              const order = ["universal", "squirrels", "beavers", "cubs", "scouts", "explorers", "other"];
+              const keys = order.filter(k => groups[k] && groups[k].length).concat(
+                Object.keys(groups).filter(k => !order.includes(k))
+              );
+            
+              return keys.map((k) =>
+                h("optgroup", { key: k, label: k.charAt(0).toUpperCase() + k.slice(1) },
+                  groups[k].map((b) => h("option", { key: b.id, value: b.id }, b._display))
+                )
+              );
+            })()
+
             )
           ),
 
