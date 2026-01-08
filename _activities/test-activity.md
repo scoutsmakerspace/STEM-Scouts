@@ -84,10 +84,10 @@ running:
 resources:
   risk_assessment: led_torch
   documents:
-    - title: Doc 1
-      file: /assets/docs/activities/i-can-solder-lvl.-1-badge-instructions-v2.pdf
+    - title: doc 1
+      file: /assets/docs/activities/camp-fire-badge-instructions-v2.pdf
   external_docs:
-    - title: Lore Ipsum Generator
+    - title: link
       url: https://loremgenerator.io/
 badges:
   - section: scouts
