@@ -3,11 +3,11 @@ title: "Nights Away - 50"
 id: "universal-nights-away-50"
 section: "universal"
 category: "Staged Activity Badges"
+badge_type: "Staged Activity"
+completion_rules: "Complete 50 nights away"
 requirements_count: 0
 requirements:
-  - "Complete 50 nights away to earn this badge."
 ---
 
 ## Requirements
 
-- Complete 50 nights away to earn this badge.

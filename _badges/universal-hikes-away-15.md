@@ -3,11 +3,11 @@ title: "Hikes Away - 15"
 id: "universal-hikes-away-15"
 section: "universal"
 category: "Staged Activity Badges"
+badge_type: "Staged Activity"
+completion_rules: "Complete 15 hikes"
 requirements_count: 0
 requirements:
-  - "Complete 15 hikes to earn this badge."
 ---
 
 ## Requirements
 
-- Complete 15 hikes to earn this badge.
