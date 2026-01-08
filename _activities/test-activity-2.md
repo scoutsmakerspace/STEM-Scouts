@@ -38,6 +38,18 @@ leader:
   safety_brief: >-
     
     Fames metus conubia hendrerit massa tempor neque habitant conubia habitant blandit suspendisse quisque. Viverra velit egestas mauris odio proin lacinia quam feugiat est tempor dignissim lacinia vestibulum libero. Litora adipiscing class nunc placerat adipiscing. Porta placerat tristique volutpat ultrices duis neque hac conubia felis ultrices sed.
+resources:
+  risk_assessment: led_torch
+  documents:
+    - file: /assets/docs/activities/rocket-badge-instructions-v2.pdf
+      title: doc
+  external_docs:
+    - title: Lore Ipsum
+      url: https://loremgenerator.io/
+badges:
+  - section: scouts
+    badge: fafdaf
+    requirement_ref: asfafaf
 running:
   steps: >-
     
@@ -66,21 +78,19 @@ running:
 
 
     Sollicitudin felis gravida sed aptent magna suscipit himenaeos commodo inceptos malesuada odio erat inceptos venenatis. Egestas pharetra tristique tempor sodales molestie sapien orci lobortis lectus lacinia venenatis condimentum. Mattis feugiat massa risus ornare ante neque consectetur ornare adipiscing. Nullam ac luctus potenti nisi consequat.
-resources:
-  risk_assessment: led_torch
-  documents:
-    - file: /assets/docs/activities/rocket-badge-instructions-v2.pdf
-      title: doc
-  external_docs:
-    - title: Lore Ipsum
-      url: https://loremgenerator.io/
-badges:
-  - section: scouts
-    badge: fafdaf
-    requirement_ref: asfafaf
 badge_links:
-  - badge: beavers-cook
-  - badge: beavers-camp-craft
+  - badge_id: cubs-chief-scout-s-silver-award
+    badge_title: cubs — Chief Scout's Silver Award — Challenge Awards
+    requirements_met:
+      - "2"
+      - "4"
+    notes: fafaafaf
+  - badge_id: universal-air-activities-stage-3
+    badge_title: universal — Air Activities - Stage 3 — Staged Activity Badges
+    requirements_met:
+      - "1"
+      - "2"
+    notes: fafadfdafad
 ---
 Finibus condimentum a nullam phasellus maecenas nisi nisi eget at molestie. Morbi nostra faucibus eleifend quis auctor cubilia lorem purus inceptos finibus faucibus nibh enim. Et nulla molestie augue senectus eu nisl in nulla quisque magna.
 
