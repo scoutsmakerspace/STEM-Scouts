@@ -212,6 +212,8 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
 
+
+
       # =========================
       # Badges (structured)
       # =========================
@@ -221,7 +223,7 @@ collections:
         required: false
         collapsed: true
         summary: "{{fields.badge}}"
-        hint: "Pick one or more badges. Optionally list which requirement numbers this activity helps complete."
+        hint: "Pick one or more badges. Then choose which requirements this activity supports."
         fields:
           - label: "Badge"
             name: "badge"
@@ -230,14 +232,13 @@ collections:
             search_fields: ["title", "section", "category", "id"]
             value_field: "id"
             display_fields: ["section", "title", "category"]
+            options_length: 2000
             required: true
-          - label: "Requirements covered (numbers, optional)"
+          - label: "Requirements covered"
             name: "requirements_met"
-            widget: "list"
+            widget: "badge_requirements"
+            badge_field: "badge"
             required: false
-            field:
-              { label: "Requirement number", name: "req", widget: "number", value_type: "int", min: 1 }
-            hint: "Example: add 1, 3, 5 if this activity supports badge requirements 1, 3 and 5."
           - { label: "Notes (optional)", name: "notes", widget: "string", required: false }
 
       # =========================
@@ -394,4 +395,10 @@ collections:
       - { label: "ID", name: "id", widget: "string" }
       - { label: "Section", name: "section", widget: "string" }
       - { label: "Category", name: "category", widget: "string", required: false }
-      - { label: "Requirements", name: "requirements", widget: "list", required: false }
+      - label: "Requirements"
+        name: "requirements"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "No", name: "no", widget: "number", value_type: "int", required: false }
+          - { label: "Text", name: "text", widget: "text" }

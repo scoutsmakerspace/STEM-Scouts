@@ -33,6 +33,7 @@ collections:
   stem_programmes:
     output: true
     permalink: /stem-programmes/:name/
+
   badges:
     output: false
 
