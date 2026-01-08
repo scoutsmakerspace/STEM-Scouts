@@ -222,25 +222,6 @@ collections:
       # -------------------------
       # Badges
       # -------------------------
-      - label: "Badge links (reference)"
-        name: badges
-        widget: list
-        required: false
-        collapsed: true
-        summary: "{{fields.section}} — {{fields.badge}}"
-        fields:
-          - label: Section
-            name: section
-            widget: select
-            options:
-              - { label: Beavers, value: beavers }
-              - { label: Cubs, value: cubs }
-              - { label: Scouts, value: scouts }
-              - { label: Explorers, value: explorers }
-          - { label: Badge, name: badge, widget: string }
-          - { label: "Requirement reference (optional)", name: requirement_ref, widget: string, required: false }
-          - { label: "URL (official source, optional)", name: url, widget: string, required: false }
-
       - label: "Badge links (structured)"
         name: badge_links
         widget: list
