@@ -213,6 +213,34 @@ collections:
               - { label: "URL", name: "url", widget: "string" }
 
       # =========================
+      # Badges (structured)
+      # =========================
+      - label: "Badge links (structured)"
+        name: "badge_links"
+        widget: "list"
+        required: false
+        collapsed: true
+        summary: "{{fields.badge}}"
+        hint: "Pick one or more badges. Optionally list which requirement numbers this activity helps complete."
+        fields:
+          - label: "Badge"
+            name: "badge"
+            widget: "relation"
+            collection: "badges"
+            search_fields: ["title", "section", "category", "id"]
+            value_field: "id"
+            display_fields: ["section", "title", "category"]
+            required: true
+          - label: "Requirements covered (numbers, optional)"
+            name: "requirements_met"
+            widget: "list"
+            required: false
+            field:
+              { label: "Requirement number", name: "req", widget: "number", value_type: "int", min: 1 }
+            hint: "Example: add 1, 3, 5 if this activity supports badge requirements 1, 3 and 5."
+          - { label: "Notes (optional)", name: "notes", widget: "string", required: false }
+
+      # =========================
       # Badges (later used for filtering)
       # =========================
       - label: "Badge links (reference)"
@@ -348,3 +376,22 @@ collections:
 
       - { label: "Last checked (optional)", name: "last_checked", widget: "datetime", time_format: false, format: "YYYY-MM-DD", required: false }
       - { label: "Notes (optional)", name: "body", widget: "markdown", required: false }
+
+
+  - name: "badges"
+    label: "Badges"
+    label_singular: "Badge"
+    folder: "_badges"
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "ID", name: "id", widget: "string" }
+      - { label: "Section", name: "section", widget: "string" }
+      - { label: "Category", name: "category", widget: "string", required: false }
+      - { label: "Requirements", name: "requirements", widget: "list", required: false }
