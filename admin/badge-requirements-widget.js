@@ -18,10 +18,10 @@
         if (!r.ok) throw new Error(`badges_master.json fetch failed: ${r.status}`);
         return r.json();
       })
-      .then((arr) => {
-        const data = Array.isArray(arr) ? arr : (Array.isArray(arr.badges) ? arr.badges : []);
+      .then((json) => {
+        const arr = Array.isArray(json) ? json : (Array.isArray(json.badges) ? json.badges : []);
         const idx = {};
-        for (const b of data) if (b && b.id) idx[b.id] = b;
+        for (const b of arr) if (b && b.id) idx[b.id] = b;
         _idx = idx;
         console.log("[badge_requirements] loaded badges:", Object.keys(_idx).length);
         return _idx;
@@ -36,44 +36,59 @@
   }
 
   // -------------------------
-  // Path helper: supports
+  // Parse Decap path into an array
+  // Supports:
   //  - badge_links.0.requirements_met
   //  - data.badge_links.0.requirements_met
   //  - badge_links[0].requirements_met
   //  - data.badge_links[0].requirements_met
   // -------------------------
-  function listIndexFromPath(path) {
-    const s = String(path || "");
-    let m =
-      s.match(/(?:^|\.)(?:data\.)?badge_links\.(\d+)\./) ||
-      s.match(/(?:^|\.)(?:data\.)?badge_links\[(\d+)\]\./);
-    return m ? parseInt(m[1], 10) : null;
+  function pathToArray(pathStr) {
+    const s = String(pathStr || "");
+    // Convert [0] to .0
+    const normalized = s.replace(/\[(\d+)\]/g, ".$1");
+    // Split on dots, keep numbers as ints
+    return normalized
+      .split(".")
+      .filter(Boolean)
+      .map((p) => (/^\d+$/.test(p) ? parseInt(p, 10) : p));
   }
 
-  function getInSafe(obj, pathArr) {
+  function getInSafe(obj, arr) {
     try {
-      return obj && obj.getIn ? obj.getIn(pathArr) : null;
+      return obj && obj.getIn ? obj.getIn(arr) : null;
     } catch {
       return null;
     }
   }
 
+  // -------------------------
+  // Read sibling badge id dynamically:
+  // - Take current field path array
+  // - Replace last segment with badge field name (default "badge")
+  // - Try fieldsMetaData (live) then entry (saved)
+  // -------------------------
   function readBadgeId(props) {
-    const idx = listIndexFromPath(props.path);
-    if (idx === null) return null;
+    const badgeField = (props.field && props.field.get && props.field.get("badge_field")) || "badge";
 
-    // Most reliable: live editor state
+    const pathArr = pathToArray(props.path);
+    if (!pathArr.length) return null;
+
+    // sibling path: same parent, last key -> badgeField
+    const sibling = pathArr.slice(0, -1).concat([badgeField]);
+
+    // Try live editor state in both shapes (with and without leading "data")
     const fm = props.fieldsMetaData;
-
-    // Try both with and without "data" root
-    const live1 = getInSafe(fm, ["badge_links", idx, "badge"]);
+    const live1 = getInSafe(fm, sibling);
     if (live1) return String(live1);
 
-    const live2 = getInSafe(fm, ["data", "badge_links", idx, "badge"]);
+    const siblingWithData = sibling[0] === "data" ? sibling : ["data"].concat(sibling);
+    const live2 = getInSafe(fm, siblingWithData);
     if (live2) return String(live2);
 
-    // Fallback: saved entry
-    const saved = getInSafe(props.entry, ["data", "badge_links", idx, "badge"]);
+    // Fallback: saved entry always starts under ["data", ...]
+    const entryPath = sibling[0] === "data" ? sibling : ["data"].concat(sibling);
+    const saved = getInSafe(props.entry, entryPath);
     if (saved) return String(saved);
 
     return null;
@@ -86,7 +101,7 @@
 
     const Control = createClass({
       getInitialState() {
-        return { loading: true, badgeId: null, reqs: [], debugDone: false };
+        return { loading: true, badgeId: null, reqs: [] };
       },
 
       async componentDidMount() {
@@ -106,20 +121,12 @@
         const idx = await loadBadgesIndex();
         const badge = badgeId ? idx[badgeId] : null;
 
-        // One-time debug info to confirm structure
-        if (!this.state.debugDone) {
-          console.log("[badge_requirements] props.path =", this.props.path);
-          try {
-            console.log("[badge_requirements] fieldsMetaData keys =", this.props.fieldsMetaData && this.props.fieldsMetaData.keySeq ? this.props.fieldsMetaData.keySeq().toArray() : null);
-          } catch {}
-          this.setState({ debugDone: true });
-        }
-
+        console.log("[badge_requirements] props.path:", this.props.path);
         console.log("[badge_requirements] badgeId:", badgeId, "found:", !!badge);
 
         const reqs = badge && Array.isArray(badge.requirements) ? badge.requirements : [];
 
-        // Store selected requirement ids as strings (e.g. "1", "2", "1.3")
+        // store selected requirement IDs as strings ("1", "2", "1.3" etc)
         const current = Array.isArray(this.props.value) ? this.props.value.map(String) : [];
         const allowed = new Set(reqs.map((r) => String(r.id)));
 
@@ -224,6 +231,6 @@
   let tries = 0;
   const t = setInterval(() => {
     tries += 1;
-    if (register() || tries > 100) clearInterval(t);
+    if (register() || tries > 120) clearInterval(t);
   }, 100);
 })();
