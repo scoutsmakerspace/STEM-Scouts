@@ -8,33 +8,11 @@ toc_sticky: true
 {% assign a = page %}
 
 {%- comment -%}
-We build a hidden TOC source with real headings (h2) + stable IDs.
-Minimal Mistakes will turn these into proper anchor links.
+IMPORTANT:
+We rely on Minimal Mistakes' *built-in* TOC (sidebar) rather than injecting a custom TOC list.
+For the built-in TOC to work reliably, headings must exist in the page content AND have IDs.
+So we place the section IDs on the <h3> headings below (not on the <section> wrapper).
 {%- endcomment -%}
-
-{% capture toc_source %}
-<div class="activity-toc-source">
-  {% if a.kit_list %}<h2 id="kit">You will need</h2>{% endif %}
-  {% if a.learning_goals and a.learning_goals.size > 0 %}<h2 id="goals">Learning goals</h2>{% endif %}
-  {% if a.leader and a.leader.prep %}<h2 id="prep">Leader prep</h2>{% endif %}
-  {% if a.leader and a.leader.briefing %}<h2 id="briefing">Leader briefing</h2>{% endif %}
-  {% if a.leader and a.leader.safety_brief %}<h2 id="safety">Safety briefing</h2>{% endif %}
-  {% if a.running and a.running.steps %}<h2 id="steps">How to run the activity</h2>{% endif %}
-  {% if a.running and a.running.differentiation %}<h2 id="diff">Make it easier / harder</h2>{% endif %}
-  {% if a.running and a.running.time_plan and a.running.time_plan.size > 0 %}<h2 id="time">Time plan</h2>{% endif %}
-  {% if a.running and a.running.reflection %}<h2 id="reflection">Reflection / questions</h2>{% endif %}
-  {% if a.resources and a.resources.documents and a.resources.documents.size > 0 %}<h2 id="downloads">Downloads</h2>{% endif %}
-  {% if a.resources and a.resources.external_docs and a.resources.external_docs.size > 0 %}<h2 id="links">External tutorials</h2>{% endif %}
-  {% if a.badges and a.badges.size > 0 %}<h2 id="badges">Badge links</h2>{% endif %}
-  {% if content and content != "" %}<h2 id="extra">Extra notes</h2>{% endif %}
-</div>
-{% endcapture %}
-
-{%- comment -%}
-Inject the theme TOC into the standard page flow.
-sanitize=false so it keeps our IDs intact.
-{%- endcomment -%}
-{% include toc.html html=toc_source sanitize=false %}
 
 {% if a.hero_image %}
   <figure class="activity-hero" style="margin: 0 0 1rem 0;">
@@ -93,15 +71,15 @@ sanitize=false so it keeps our IDs intact.
 </section>
 
 {% if a.kit_list %}
-<section class="activity-card" id="kit">
-  <h3 class="activity-card__title">You will need</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="kit">You will need</h3>
   {{ a.kit_list | markdownify }}
 </section>
 {% endif %}
 
 {% if a.learning_goals and a.learning_goals.size > 0 %}
-<section class="activity-card" id="goals">
-  <h3 class="activity-card__title">Learning goals</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="goals">Learning goals</h3>
   <ul>
     {% for g in a.learning_goals %}
       <li>{% if g.goal %}{{ g.goal }}{% else %}{{ g }}{% endif %}</li>
@@ -111,29 +89,29 @@ sanitize=false so it keeps our IDs intact.
 {% endif %}
 
 {% if a.leader and a.leader.prep %}
-<section class="activity-card" id="prep">
-  <h3 class="activity-card__title">Leader prep (before the meeting)</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="prep">Leader prep (before the meeting)</h3>
   {{ a.leader.prep | markdownify }}
 </section>
 {% endif %}
 
 {% if a.leader and a.leader.briefing %}
-<section class="activity-card" id="briefing">
-  <h3 class="activity-card__title">Leader briefing (what to explain first)</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="briefing">Leader briefing (what to explain first)</h3>
   {{ a.leader.briefing | markdownify }}
 </section>
 {% endif %}
 
 {% if a.leader and a.leader.safety_brief %}
-<section class="activity-card" id="safety">
-  <h3 class="activity-card__title">Safety briefing (key points)</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="safety">Safety briefing (key points)</h3>
   {{ a.leader.safety_brief | markdownify }}
 </section>
 {% endif %}
 
 {% if a.running and a.running.steps %}
-<section class="activity-card" id="steps">
-  <h3 class="activity-card__title">How to run the activity</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="steps">How to run the activity</h3>
   <div class="activity-steps">
     {{ a.running.steps | markdownify }}
   </div>
@@ -141,15 +119,15 @@ sanitize=false so it keeps our IDs intact.
 {% endif %}
 
 {% if a.running and a.running.differentiation %}
-<section class="activity-card" id="diff">
-  <h3 class="activity-card__title">Make it easier / harder</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="diff">Make it easier / harder</h3>
   {{ a.running.differentiation | markdownify }}
 </section>
 {% endif %}
 
 {% if a.running and a.running.time_plan and a.running.time_plan.size > 0 %}
-<section class="activity-card" id="time">
-  <h3 class="activity-card__title">Time plan</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="time">Time plan</h3>
   <ul>
     {% for t in a.running.time_plan %}
       <li>
@@ -162,15 +140,15 @@ sanitize=false so it keeps our IDs intact.
 {% endif %}
 
 {% if a.running and a.running.reflection %}
-<section class="activity-card" id="reflection">
-  <h3 class="activity-card__title">Reflection / questions</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="reflection">Reflection / questions</h3>
   {{ a.running.reflection | markdownify }}
 </section>
 {% endif %}
 
 {% if a.resources and a.resources.documents and a.resources.documents.size > 0 %}
-<section class="activity-card" id="downloads">
-  <h3 class="activity-card__title">Downloads</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="downloads">Downloads</h3>
   <ul>
     {% for doc in a.resources.documents %}
       <li>
@@ -182,8 +160,8 @@ sanitize=false so it keeps our IDs intact.
 {% endif %}
 
 {% if a.resources and a.resources.external_docs and a.resources.external_docs.size > 0 %}
-<section class="activity-card" id="links">
-  <h3 class="activity-card__title">External tutorials</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="links">External tutorials</h3>
   <ul>
     {% for d in a.resources.external_docs %}
       <li><a href="{{ d.url }}" target="_blank" rel="noopener noreferrer">{{ d.title }}</a></li>
@@ -193,8 +171,8 @@ sanitize=false so it keeps our IDs intact.
 {% endif %}
 
 {% if a.badges and a.badges.size > 0 %}
-<section class="activity-card" id="badges">
-  <h3 class="activity-card__title">Badge links (reference)</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="badges">Badge links (reference)</h3>
   <ul>
     {% for b in a.badges %}
       <li>
@@ -208,8 +186,8 @@ sanitize=false so it keeps our IDs intact.
 {% endif %}
 
 {% if content and content != "" %}
-<section class="activity-card" id="extra">
-  <h3 class="activity-card__title">Extra notes</h3>
+<section class="activity-card">
+  <h3 class="activity-card__title" id="extra">Extra notes</h3>
   {{ content }}
 </section>
 {% endif %}
