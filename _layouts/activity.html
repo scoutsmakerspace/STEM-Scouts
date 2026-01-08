@@ -48,9 +48,9 @@ Activity template (standardised):
     <strong>Risk assessment:</strong>
     {% assign match = nil %}
 
-    {% if a.risk_assessment %}
+    {% if a.resources and a.resources.risk_assessment %}
       {% for ra in site.risk_assessments %}
-        {% if ra.slug == a.risk_assessment %}
+        {% if ra.slug == a.resources.risk_assessment %}
           {% assign match = ra %}
           {% break %}
         {% endif %}
@@ -70,9 +70,16 @@ Activity template (standardised):
   </div>
 </section>
 
-{% if a.kit and a.kit.size > 0 %}
+{% if a.kit_quick %}
 <section class="activity-card">
   <h3 class="activity-card__title">You will need</h3>
+  {{ a.kit_quick | markdownify }}
+</section>
+{% endif %}
+
+{% if a.kit and a.kit.size > 0 %}
+<section class="activity-card">
+  <h3 class="activity-card__title">You will need (structured)</h3>
   <ul>
     {% for item in a.kit %}
       <li>{% if item.item %}{{ item.item }}{% else %}{{ item }}{% endif %}</li>
@@ -92,48 +99,48 @@ Activity template (standardised):
 </section>
 {% endif %}
 
-{% if a.leader_prep %}
+{% if a.leader and a.leader.prep %}
 <section class="activity-card">
   <h3 class="activity-card__title">Leader prep (before the meeting)</h3>
-  {{ a.leader_prep | markdownify }}
+  {{ a.leader.prep | markdownify }}
 </section>
 {% endif %}
 
-{% if a.leader_briefing %}
+{% if a.leader and a.leader.briefing %}
 <section class="activity-card">
   <h3 class="activity-card__title">Leader briefing (what to explain first)</h3>
-  {{ a.leader_briefing | markdownify }}
+  {{ a.leader.briefing | markdownify }}
 </section>
 {% endif %}
 
-{% if a.safety_brief %}
+{% if a.leader and a.leader.safety_brief %}
 <section class="activity-card">
   <h3 class="activity-card__title">Safety briefing (key points)</h3>
-  {{ a.safety_brief | markdownify }}
+  {{ a.leader.safety_brief | markdownify }}
 </section>
 {% endif %}
 
-{% if a.run_steps %}
+{% if a.running and a.running.steps %}
 <section class="activity-card">
   <h3 class="activity-card__title">How to run the activity</h3>
   <div class="activity-steps">
-    {{ a.run_steps | markdownify }}
+    {{ a.running.steps | markdownify }}
   </div>
 </section>
 {% endif %}
 
-{% if a.differentiation %}
+{% if a.running and a.running.differentiation %}
 <section class="activity-card">
   <h3 class="activity-card__title">Make it easier / harder</h3>
-  {{ a.differentiation | markdownify }}
+  {{ a.running.differentiation | markdownify }}
 </section>
 {% endif %}
 
-{% if a.time_plan and a.time_plan.size > 0 %}
+{% if a.running and a.running.time_plan and a.running.time_plan.size > 0 %}
 <section class="activity-card">
   <h3 class="activity-card__title">Time plan</h3>
   <ul>
-    {% for t in a.time_plan %}
+    {% for t in a.running.time_plan %}
       <li>
         <strong>{{ t.label }}:</strong> {{ t.minutes }} min
         {% if t.notes %} — {{ t.notes }}{% endif %}
@@ -143,18 +150,18 @@ Activity template (standardised):
 </section>
 {% endif %}
 
-{% if a.reflection %}
+{% if a.running and a.running.reflection %}
 <section class="activity-card">
   <h3 class="activity-card__title">Reflection / questions</h3>
-  {{ a.reflection | markdownify }}
+  {{ a.running.reflection | markdownify }}
 </section>
 {% endif %}
 
-{% if a.documents and a.documents.size > 0 %}
+{% if a.resources and a.resources.documents and a.resources.documents.size > 0 %}
 <section class="activity-card">
   <h3 class="activity-card__title">Downloads</h3>
   <ul>
-    {% for doc in a.documents %}
+    {% for doc in a.resources.documents %}
       <li><a href="{{ doc.file | relative_url }}">{{ doc.title }}</a></li>
     {% endfor %}
   </ul>
@@ -162,11 +169,11 @@ Activity template (standardised):
 </section>
 {% endif %}
 
-{% if a.external_docs and a.external_docs.size > 0 %}
+{% if a.resources and a.resources.external_docs and a.resources.external_docs.size > 0 %}
 <section class="activity-card">
   <h3 class="activity-card__title">External tutorials</h3>
   <ul>
-    {% for d in a.external_docs %}
+    {% for d in a.resources.external_docs %}
       <li><a href="{{ d.url }}">{{ d.title }}</a></li>
     {% endfor %}
   </ul>
