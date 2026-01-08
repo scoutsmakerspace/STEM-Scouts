@@ -1,18 +1,21 @@
 ---
-title: "Membership Badge - Scouts"
-id: "scouts-membership-badge-scouts"
-section: "scouts"
-category: "Core Badges"
-badge_type: "Activity"
-completion_rules: "Complete ALL 3 requirements"
+title: Membership Badge - Scouts
+id: scouts-membership-badge-scouts
+section: scouts
+category: Core Badges
+badge_type: Activity
+completion_rules: Complete ALL 3 requirements
 requirements_count: 3
 requirements:
-  - no: 1
-    text: "Know about the Scout Troop"
-  - no: 2
-    text: "Know about joining your Troop"
-  - no: 3
-    text: "Become a Scout by making the Promise"
+- id: '1'
+  'no': 1
+  text: Know about the Scout Troop
+- id: '2'
+  'no': 2
+  text: Know about joining your Troop
+- id: '3'
+  'no': 3
+  text: Become a Scout by making the Promise
 ---
 
 ## Requirements

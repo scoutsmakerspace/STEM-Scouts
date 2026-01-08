@@ -1,24 +1,30 @@
 ---
-title: "Creative"
-id: "scouts-creative"
-section: "scouts"
-category: "Challenge Awards"
-badge_type: "Challenge Award"
-completion_rules: "Complete ALL 6 requirements"
+title: Creative
+id: scouts-creative
+section: scouts
+category: Challenge Awards
+badge_type: Challenge Award
+completion_rules: Complete ALL 6 requirements
 requirements_count: 6
 requirements:
-  - no: 1
-    text: "Over a period of time, take part in at least four creative activities."
-  - no: 2
-    text: "Show that you have developed your skills in one of these activities."
-  - no: 3
-    text: "Use your creative ability to produce something that promotes a Scouting activity or an event."
-  - no: 4
-    text: "Construct a model using materials like a plastic kit or recycled items."
-  - no: 5
-    text: "Show how to use social media or the internet in a creative and safe way."
-  - no: 6
-    text: "Take part in a performance."
+- id: '1'
+  'no': 1
+  text: Over a period of time, take part in at least four creative activities.
+- id: '2'
+  'no': 2
+  text: Show that you have developed your skills in one of these activities.
+- id: '3'
+  'no': 3
+  text: Use your creative ability to produce something that promotes a Scouting activity or an event.
+- id: '4'
+  'no': 4
+  text: Construct a model using materials like a plastic kit or recycled items.
+- id: '5'
+  'no': 5
+  text: Show how to use social media or the internet in a creative and safe way.
+- id: '6'
+  'no': 6
+  text: Take part in a performance.
 ---
 
 ## Requirements
