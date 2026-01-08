@@ -4,16 +4,6 @@ layout: single
 
 {% assign a = page %}
 
-{% comment %}
-Activity template (standardised):
-- At a glance + summary + optional hero image
-- Kit list early (after setup notes)
-- Risk Assessment link + clear warning
-- Standard leader-facing sections:
-  Leader prep, Briefing, Safety briefing, Run steps, Differentiation, Time plan, Reflection
-- Downloads, External links, Badge links
-{% endcomment %}
-
 {% if a.hero_image %}
   <figure class="activity-hero" style="margin: 0 0 1rem 0;">
     <img src="{{ a.hero_image | relative_url }}" alt="{{ a.title | escape }}" style="width:100%; border-radius:12px;">
@@ -70,19 +60,16 @@ Activity template (standardised):
   </div>
 </section>
 
-{% if a.kit_quick %}
+{% if a.kit_items %}
 <section class="activity-card">
   <h3 class="activity-card__title">You will need</h3>
-  {{ a.kit_quick | markdownify }}
-</section>
-{% endif %}
-
-{% if a.kit and a.kit.size > 0 %}
-<section class="activity-card">
-  <h3 class="activity-card__title">You will need (structured)</h3>
+  {% assign lines = a.kit_items | strip | split: "\n" %}
   <ul>
-    {% for item in a.kit %}
-      <li>{% if item.item %}{{ item.item }}{% else %}{{ item }}{% endif %}</li>
+    {% for line in lines %}
+      {% assign item = line | strip %}
+      {% if item != "" %}
+        <li>{{ item }}</li>
+      {% endif %}
     {% endfor %}
   </ul>
 </section>
