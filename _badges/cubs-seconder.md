@@ -3,11 +3,11 @@ title: "Seconder"
 id: "cubs-seconder"
 section: "cubs"
 category: "Core Badges"
+badge_type: "Leadership"
+completion_rules: "Manually awarded"
 requirements_count: 0
 requirements:
-  - "No formal requirements - awarded by leader discretion"
 ---
 
 ## Requirements
 
-- No formal requirements - awarded by leader discretion
