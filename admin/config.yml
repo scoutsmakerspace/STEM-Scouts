@@ -60,6 +60,15 @@ collections:
       - { label: "Indoor/Outdoor notes (optional)", name: "setup_notes", widget: "text", required: false, hint: "Short practical notes (space, tables, power, noise, mess, etc.)." }
 
       # =========================
+      # Kit and resources (moved up)
+      # =========================
+      - label: "Kit list"
+        name: "kit"
+        widget: "list"
+        required: false
+        field: { label: "Item", name: "item", widget: "string" }
+
+      # =========================
       # Standardised leader sections
       # =========================
       - label: "Learning goals (optional)"
@@ -97,7 +106,7 @@ collections:
         required: false
         buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
         editor_components: []
-        hint: "Use numbered steps. Keep it leader-friendly."
+        hint: "Use numbered steps. You can add photos using the image button. Keep images small (ideally ~1–2 MB) and add a short caption."
 
       - label: "Make it easier / harder (differentiation)"
         name: "differentiation"
@@ -126,14 +135,8 @@ collections:
         hint: "A few good questions for end-of-session discussion."
 
       # =========================
-      # Kit and resources
+      # RA + documents + links + badges
       # =========================
-      - label: "Kit list"
-        name: "kit"
-        widget: "list"
-        required: false
-        field: { label: "Item", name: "item", widget: "string" }
-
       - name: "risk_assessment"
         label: "Risk Assessment (link)"
         widget: "relation"
@@ -189,7 +192,6 @@ collections:
           - { label: "Requirement reference (optional)", name: "requirement_ref", widget: "string", required: false, hint: "Example: Requirement 4, Step 2, Stage 3 (don’t paste full requirement text)." }
           - { label: "URL (official source, optional)", name: "url", widget: "string", required: false }
 
-      # CMS body = additional notes (optional)
       - { label: "Extra notes (optional)", name: "body", widget: "markdown", required: false }
 
   - name: "risk_assessments"
