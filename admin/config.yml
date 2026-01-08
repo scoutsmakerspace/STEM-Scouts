@@ -33,7 +33,7 @@ collections:
       - { label: "Card sections", name: "card_sections", widget: "hidden", default: true }
 
       # =========================
-      # Core info
+      # Core info (searchable + filterable)
       # =========================
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Summary (1–2 sentences)", name: "summary", widget: "text", required: false }
@@ -60,125 +60,166 @@ collections:
       - { label: "Indoor/Outdoor notes (optional)", name: "setup_notes", widget: "text", required: false, hint: "Short practical notes (space, tables, power, noise, mess, etc.)." }
 
       # =========================
-      # Kit and resources (moved up)
+      # Kit (quick + structured)  ✅ Option C
       # =========================
-      - label: "Kit list"
+      - label: "Kit list (quick entry)"
+        name: "kit_quick"
+        widget: "markdown"
+        required: false
+        buttons: ["bulleted-list", "numbered-list"]
+        editor_components: []
+        hint: "Fast option: paste the kit list here as bullets. If you also fill the structured kit list below, the quick list will be shown first."
+
+      - label: "Kit list (structured)"
         name: "kit"
         widget: "list"
         required: false
+        collapsed: true
+        summary: "{{fields.item}}"
         field: { label: "Item", name: "item", widget: "string" }
 
       # =========================
-      # Standardised leader sections
+      # Learning goals
       # =========================
       - label: "Learning goals (optional)"
         name: "learning_goals"
         widget: "list"
         required: false
+        collapsed: true
+        summary: "{{fields.goal}}"
         field: { label: "Goal", name: "goal", widget: "string" }
 
-      - label: "Leader prep (before the meeting)"
-        name: "leader_prep"
-        widget: "markdown"
+      # =========================
+      # Leader notes (grouped) ✅ Option B
+      # =========================
+      - label: "Leader notes"
+        name: "leader"
+        widget: "object"
         required: false
-        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
-        editor_components: []
-
-      - label: "Leader briefing (what to explain first)"
-        name: "leader_briefing"
-        widget: "markdown"
-        required: false
-        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
-        editor_components: []
-        hint: "Short intro for young people (what they are doing and why), plus rules and expectations."
-
-      - label: "Safety briefing (key points)"
-        name: "safety_brief"
-        widget: "markdown"
-        required: false
-        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
-        editor_components: []
-        hint: "Key safety points to say out loud. The linked Risk Assessment is still required."
-
-      - label: "How to run the activity (step-by-step)"
-        name: "run_steps"
-        widget: "markdown"
-        required: false
-        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
-        editor_components: []
-        hint: "Use numbered steps. You can add photos using the image button. Keep images small (ideally ~1–2 MB) and add a short caption."
-
-      - label: "Make it easier / harder (differentiation)"
-        name: "differentiation"
-        widget: "markdown"
-        required: false
-        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
-        editor_components: []
-        hint: "Include 'easier' and 'harder' ideas, plus section-specific notes."
-
-      - label: "Time plan (optional)"
-        name: "time_plan"
-        widget: "list"
-        required: false
-        summary: "{{fields.label}}"
         fields:
-          - { label: "Label", name: "label", widget: "string", hint: "Example: Intro, Build, Test, Wrap-up" }
-          - { label: "Minutes", name: "minutes", widget: "number", min: 1, max: 240, value_type: "int" }
-          - { label: "Notes (optional)", name: "notes", widget: "string", required: false }
+          - label: "Leader prep (before the meeting)"
+            name: "prep"
+            widget: "markdown"
+            required: false
+            buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+            editor_components: []
 
-      - label: "Reflection / questions (optional)"
-        name: "reflection"
-        widget: "markdown"
-        required: false
-        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
-        editor_components: []
-        hint: "A few good questions for end-of-session discussion."
+          - label: "Leader briefing (what to explain first)"
+            name: "briefing"
+            widget: "markdown"
+            required: false
+            buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+            editor_components: []
+            hint: "Short intro for young people (what they are doing and why), plus rules and expectations."
+
+          - label: "Safety briefing (key points)"
+            name: "safety_brief"
+            widget: "markdown"
+            required: false
+            buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+            editor_components: []
+            hint: "Key safety points to say out loud. The linked Risk Assessment is still required."
 
       # =========================
-      # RA + documents + links + badges
+      # Running the activity (grouped) ✅ Option B
       # =========================
-      - name: "risk_assessment"
-        label: "Risk Assessment (link)"
-        widget: "relation"
-        collection: "risk_assessments"
-        search_fields: ["title", "activity_name_location"]
-        value_field: "{{slug}}"
-        display_fields: ["{{slug}}", "title"]
-        required: false
-        hint: "Create the Risk Assessment first to select it here. You can save this Activity without one (draft), but link it before using/publishing."
-
-      - label: "Upload documents"
-        name: "documents"
-        widget: "list"
-        required: false
-        summary: "{{fields.title}}"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - label: "File"
-            name: "file"
-            widget: "file"
-            media_folder: "assets/docs/activities"
-            public_folder: "/assets/docs/activities"
-            required: true
-            accept:
-              - ".pdf"
-              - ".doc"
-              - ".docx"
-              - ".rtf"
-            hint: "Allowed formats: PDF, Word (.doc/.docx), RTF. Keep files small."
-
-      - label: "External links"
-        name: "external_docs"
-        widget: "list"
+      - label: "Running the activity"
+        name: "running"
+        widget: "object"
         required: false
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "URL", name: "url", widget: "string" }
+          - label: "How to run the activity (step-by-step)"
+            name: "steps"
+            widget: "markdown"
+            required: false
+            buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+            editor_components: []
+            hint: "Use numbered steps. You can add photos using the image button. Keep images small (ideally ~1–2 MB) and add a short caption."
 
+          - label: "Make it easier / harder (differentiation)"
+            name: "differentiation"
+            widget: "markdown"
+            required: false
+            buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+            editor_components: []
+            hint: "Include 'easier' and 'harder' ideas, plus section-specific notes."
+
+          - label: "Time plan (optional)"
+            name: "time_plan"
+            widget: "list"
+            required: false
+            collapsed: true
+            summary: "{{fields.label}} — {{fields.minutes}} min"
+            fields:
+              - { label: "Label", name: "label", widget: "string", hint: "Example: Intro, Build, Test, Wrap-up" }
+              - { label: "Minutes", name: "minutes", widget: "number", min: 1, max: 240, value_type: "int" }
+              - { label: "Notes (optional)", name: "notes", widget: "string", required: false }
+
+          - label: "Reflection / questions (optional)"
+            name: "reflection"
+            widget: "markdown"
+            required: false
+            buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+            editor_components: []
+
+      # =========================
+      # Resources (grouped) ✅ Option A + B
+      # =========================
+      - label: "Resources"
+        name: "resources"
+        widget: "object"
+        required: false
+        fields:
+          - name: "risk_assessment"
+            label: "Risk Assessment (link)"
+            widget: "relation"
+            collection: "risk_assessments"
+            search_fields: ["title", "activity_name_location"]
+            value_field: "{{slug}}"
+            display_fields: ["{{slug}}", "title"]
+            required: false
+            hint: "Create the Risk Assessment first to select it here. You can save this Activity without one (draft), but link it before using/publishing."
+
+          - label: "Upload documents"
+            name: "documents"
+            widget: "list"
+            required: false
+            collapsed: true
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "File"
+                name: "file"
+                widget: "file"
+                media_folder: "assets/docs/activities"
+                public_folder: "/assets/docs/activities"
+                required: true
+                accept:
+                  - ".pdf"
+                  - ".doc"
+                  - ".docx"
+                  - ".rtf"
+                hint: "Allowed formats: PDF, Word (.doc/.docx), RTF. Keep files small."
+
+          - label: "External links"
+            name: "external_docs"
+            widget: "list"
+            required: false
+            collapsed: true
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+      # =========================
+      # Badges (later used for filtering)
+      # =========================
       - label: "Badge links (reference)"
         name: "badges"
         widget: "list"
         required: false
+        collapsed: true
+        summary: "{{fields.section}} — {{fields.badge}}"
         fields:
           - label: "Section"
             name: "section"
