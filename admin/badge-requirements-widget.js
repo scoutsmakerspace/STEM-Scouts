@@ -18,12 +18,10 @@
         if (!r.ok) throw new Error(`badges_master.json fetch failed: ${r.status}`);
         return r.json();
       })
-      .then((json) => {
-        const arr = Array.isArray(json) ? json : (Array.isArray(json.badges) ? json.badges : []);
+      .then((arr) => {
+        const data = Array.isArray(arr) ? arr : (Array.isArray(arr.badges) ? arr.badges : []);
         const idx = {};
-        for (const b of arr) {
-          if (b && b.id) idx[b.id] = b;
-        }
+        for (const b of data) if (b && b.id) idx[b.id] = b;
         _idx = idx;
         console.log("[badge_requirements] loaded badges:", Object.keys(_idx).length);
         return _idx;
@@ -38,43 +36,45 @@
   }
 
   // -------------------------
-  // Path helper
-  // Decap paths can look like:
-  //   "badge_links.0.requirements_met"
-  // or "badge_links[0].requirements_met"
+  // Path helper: supports
+  //  - badge_links.0.requirements_met
+  //  - data.badge_links.0.requirements_met
+  //  - badge_links[0].requirements_met
+  //  - data.badge_links[0].requirements_met
   // -------------------------
   function listIndexFromPath(path) {
     const s = String(path || "");
-    let m = s.match(/badge_links\.(\d+)\./);
-    if (m) return parseInt(m[1], 10);
-    m = s.match(/badge_links\[(\d+)\]\./);
-    if (m) return parseInt(m[1], 10);
-    return null;
+    let m =
+      s.match(/(?:^|\.)(?:data\.)?badge_links\.(\d+)\./) ||
+      s.match(/(?:^|\.)(?:data\.)?badge_links\[(\d+)\]\./);
+    return m ? parseInt(m[1], 10) : null;
   }
 
-  // -------------------------
-  // Read sibling "badge" value robustly
-  // Prefer fieldsMetaData (live form state), then fallback to entry (saved state)
-  // -------------------------
+  function getInSafe(obj, pathArr) {
+    try {
+      return obj && obj.getIn ? obj.getIn(pathArr) : null;
+    } catch {
+      return null;
+    }
+  }
+
   function readBadgeId(props) {
     const idx = listIndexFromPath(props.path);
     if (idx === null) return null;
 
-    try {
-      // Most reliable: live editor state
-      if (props.fieldsMetaData && props.fieldsMetaData.getIn) {
-        const live = props.fieldsMetaData.getIn(["badge_links", idx, "badge"]);
-        if (live) return String(live);
-      }
-    } catch {}
+    // Most reliable: live editor state
+    const fm = props.fieldsMetaData;
 
-    try {
-      // Fallback: saved draft entry
-      if (props.entry && props.entry.getIn) {
-        const saved = props.entry.getIn(["data", "badge_links", idx, "badge"]);
-        if (saved) return String(saved);
-      }
-    } catch {}
+    // Try both with and without "data" root
+    const live1 = getInSafe(fm, ["badge_links", idx, "badge"]);
+    if (live1) return String(live1);
+
+    const live2 = getInSafe(fm, ["data", "badge_links", idx, "badge"]);
+    if (live2) return String(live2);
+
+    // Fallback: saved entry
+    const saved = getInSafe(props.entry, ["data", "badge_links", idx, "badge"]);
+    if (saved) return String(saved);
 
     return null;
   }
@@ -86,7 +86,7 @@
 
     const Control = createClass({
       getInitialState() {
-        return { loading: true, badgeId: null, reqs: [] };
+        return { loading: true, badgeId: null, reqs: [], debugDone: false };
       },
 
       async componentDidMount() {
@@ -106,18 +106,24 @@
         const idx = await loadBadgesIndex();
         const badge = badgeId ? idx[badgeId] : null;
 
+        // One-time debug info to confirm structure
+        if (!this.state.debugDone) {
+          console.log("[badge_requirements] props.path =", this.props.path);
+          try {
+            console.log("[badge_requirements] fieldsMetaData keys =", this.props.fieldsMetaData && this.props.fieldsMetaData.keySeq ? this.props.fieldsMetaData.keySeq().toArray() : null);
+          } catch {}
+          this.setState({ debugDone: true });
+        }
+
         console.log("[badge_requirements] badgeId:", badgeId, "found:", !!badge);
 
-        // expected shape: [{id:"1", text:"..."}, ...]
         const reqs = badge && Array.isArray(badge.requirements) ? badge.requirements : [];
 
-        // current value stores selected requirement ids (strings)
+        // Store selected requirement ids as strings (e.g. "1", "2", "1.3")
         const current = Array.isArray(this.props.value) ? this.props.value.map(String) : [];
-
-        // filter out anything not in current badge requirements
         const allowed = new Set(reqs.map((r) => String(r.id)));
-        const cleaned = current.filter((v) => allowed.has(String(v)));
 
+        const cleaned = current.filter((v) => allowed.has(String(v)));
         if (JSON.stringify(cleaned) !== JSON.stringify(current)) {
           this.props.onChange(cleaned);
         }
@@ -132,7 +138,6 @@
         if (i >= 0) v.splice(i, 1);
         else v.push(id);
 
-        // stable sort: numeric-ish first
         v.sort((a, b) => {
           const na = parseFloat(a), nb = parseFloat(b);
           if (!Number.isNaN(na) && !Number.isNaN(nb) && na !== nb) return na - nb;
@@ -168,11 +173,7 @@
         return h(
           "div",
           { className: this.props.classNameWrapper },
-          h(
-            "div",
-            { style: { marginBottom: "0.5rem", opacity: 0.85 } },
-            "Tick the requirements this activity supports:"
-          ),
+          h("div", { style: { marginBottom: "0.5rem", opacity: 0.85 } }, "Tick the requirements this activity supports:"),
           h(
             "div",
             {
@@ -197,9 +198,7 @@
                   onChange: () => this.toggle(r.id),
                   style: { marginTop: 3 },
                 }),
-                h(
-                  "div",
-                  null,
+                h("div", null,
                   h("div", { style: { fontWeight: 600 } }, `${r.id}.`),
                   h("div", null, r.text)
                 )
