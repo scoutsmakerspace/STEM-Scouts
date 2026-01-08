@@ -62,11 +62,14 @@ collections:
       # =========================
       # Kit (fast entry, no list pain)
       # =========================
-      - label: "Kit list (one item per line)"
-        name: "kit_items"
-        widget: "text"
+      - label: "Kit list"
+        name: "kit_list"
+        widget: "markdown"
         required: false
-        hint: "Write one kit item per line. Example: 'Soldering irons', 'Solder', 'Helping hands'."
+        buttons: ["bulleted-list", "numbered-list", "bold", "italic", "link"]
+        editor_components: []
+        hint: "Use a bullet list (one item per line)."
+
 
       # =========================
       # Learning goals
