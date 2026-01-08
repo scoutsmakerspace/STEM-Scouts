@@ -36,7 +36,6 @@ collections:
 
   badges:
     output: false
-
 defaults:
   - scope:
       path: ""
