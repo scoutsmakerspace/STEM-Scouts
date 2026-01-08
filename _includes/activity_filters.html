@@ -19,6 +19,24 @@
   </div>
 
 <div class="filters-advanced" id="actAdvanced" hidden data-advanced>
+
+    <label>
+      <span>Badge</span>
+      <select id="actBadge">
+        <option value="">Any</option>
+        {%- assign badges_sorted = site.data.badges_master | sort: "badge_name" -%}
+        {%- assign badge_groups = badges_sorted | group_by: "section" -%}
+        {%- for grp in badge_groups -%}
+          {%- assign section_label = grp.name | capitalize -%}
+          <optgroup label="{{ section_label }}">
+            {%- for b in grp.items -%}
+              {%- assign cat = b.category | default: "" -%}
+              <option value="{{ b.id }}">{{ b.badge_name }}{% if cat != "" %} — {{ cat }}{% endif %}</option>
+            {%- endfor -%}
+          </optgroup>
+        {%- endfor -%}
+      </select>
+    </label>
     <label>
       <span>Max time</span>
       <select id="actTime">

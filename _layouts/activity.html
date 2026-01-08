@@ -185,6 +185,63 @@ So we place the section IDs on the <h3> headings below (not on the <section> wra
 </section>
 {% endif %}
 
+{% if a.badge_links and a.badge_links.size > 0 %}
+<section class="activity-card">
+  <h3 class="activity-card__title" id="badge-requirements">Badges & requirements covered</h3>
+
+  <p class="activity-muted" style="margin-top:-.25rem;">
+    These are the badge requirements this activity can help young people complete.
+  </p>
+
+  <div class="activity-badges">
+    {% for bl in a.badge_links %}
+      {% assign bid = bl.badge_id | default: '' %}
+      {% if bid != '' %}
+        {% assign badge_obj = site.data.badges_master | where: "id", bid | first %}
+        {% assign badge_name = bid %}
+        {% assign badge_section = '' %}
+        {% assign badge_category = '' %}
+        {% if badge_obj %}
+          {% if badge_obj.badge_name %}{% assign badge_name = badge_obj.badge_name %}{% endif %}
+          {% if badge_obj.section %}{% assign badge_section = badge_obj.section %}{% endif %}
+          {% if badge_obj.category %}{% assign badge_category = badge_obj.category %}{% endif %}
+        {% elsif bl.badge_title %}
+          {% assign badge_name = bl.badge_title %}
+        {% endif %}
+
+        <div class="activity-badge" style="margin: 0 0 1rem 0;">
+          <div style="font-weight:700;">
+            {% if badge_section != '' %}{{ badge_section | capitalize }} — {% endif %}{{ badge_name }}
+            {% if badge_category != '' %}<span style="font-weight:400; opacity:.85;"> — {{ badge_category }}</span>{% endif %}
+          </div>
+
+          {% if badge_obj and bl.requirements_met and bl.requirements_met.size > 0 %}
+            <ul style="margin: .5rem 0 0 1.25rem;">
+              {% for rid in bl.requirements_met %}
+                {% assign req = badge_obj.requirements | where: "id", rid | first %}
+                {% if req and req.text %}
+                  <li><strong>{{ rid }}.</strong> {{ req.text }}</li>
+                {% else %}
+                  <li><strong>{{ rid }}.</strong></li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% elsif bl.requirements_met and bl.requirements_met.size > 0 %}
+            <p style="margin: .5rem 0 0 0; opacity:.85;">Requirements selected: {{ bl.requirements_met | join: ", " }}</p>
+          {% else %}
+            <p style="margin: .5rem 0 0 0; opacity:.85;">No specific requirements selected.</p>
+          {% endif %}
+
+          {% if bl.notes %}
+            <p style="margin: .5rem 0 0 0;"><em>{{ bl.notes }}</em></p>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
 {% if content and content != "" %}
 <section class="activity-card">
   <h3 class="activity-card__title" id="extra">Extra notes</h3>

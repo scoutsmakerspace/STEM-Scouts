@@ -16,6 +16,7 @@
     var locEl = $('actLoc');
     var typeEl = $('actType');
     var supEl = $('actSup');
+    var badgeEl = $('actBadge');
     var toggleEl = $('actToggle');
     var advEl = $('actAdvanced');
     var resetEl = $('actReset');
@@ -32,11 +33,14 @@
       var loc = norm(locEl && locEl.value);
       var type = norm(typeEl && typeEl.value);
       var sup = norm(supEl && supEl.value);
+      var badge = norm(badgeEl && badgeEl.value);
 
       var visible = 0;
 
       items.forEach(function(el){
-        var hay = (el.getAttribute('data-title') || '') + ' ' + (el.getAttribute('data-summary') || '');
+        var hay = (el.getAttribute('data-title') || '') + ' ' +
+                  (el.getAttribute('data-summary') || '') + ' ' +
+                  (el.getAttribute('data-badge-text') || '');
 
         var t = parseInt(el.getAttribute('data-time') || '', 10);
         var d = parseInt(el.getAttribute('data-difficulty') || '', 10);
@@ -48,7 +52,11 @@
         var okType = !type || norm(el.getAttribute('data-type')) === type;
         var okSup = !sup || norm(el.getAttribute('data-supervision')) === sup;
 
-        var show = okSearch && okTime && okDiff && okLoc && okType && okSup;
+        // Badge filter matches by badge id (no requirements involved)
+        var badges = norm(el.getAttribute('data-badges') || '');
+        var okBadge = !badge || (('|' + badges + '|').indexOf('|' + badge + '|') !== -1);
+
+        var show = okSearch && okTime && okDiff && okLoc && okType && okSup && okBadge;
         el.style.display = show ? "" : "none";
         if (show) visible++;
       });
@@ -63,6 +71,7 @@
       if (locEl) locEl.value = "";
       if (typeEl) typeEl.value = "";
       if (supEl) supEl.value = "";
+      if (badgeEl) badgeEl.value = "";
       apply();
     }
   
@@ -83,6 +92,8 @@
     [timeEl, diffEl, locEl, typeEl, supEl].forEach(function(el){
       if (el) el.addEventListener('change', apply);
     });
+
+    if (badgeEl) badgeEl.addEventListener('change', apply);
     if (resetEl) resetEl.addEventListener('click', reset);
 
     apply();

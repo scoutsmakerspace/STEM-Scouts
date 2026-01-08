@@ -1,10 +1,51 @@
 {% assign items = include.items %}
 
+{%- comment -%}
+Add badge metadata for filtering and search.
+- data-badges: pipe-separated badge IDs (for filtering)
+- data-badge-text: badge titles + selected requirement text (for search)
+{%- endcomment -%}
+
 <div class="activity-index" role="list">
   {% for a in items %}
+    {%- assign badge_ids = "" -%}
+    {%- assign badge_search = "" -%}
+    {%- if a.badge_links and a.badge_links.size > 0 -%}
+      {%- for bl in a.badge_links -%}
+        {%- assign bid = bl.badge_id | default: "" -%}
+        {%- if bid != "" -%}
+          {%- assign badge_ids = badge_ids | append: bid -%}
+          {%- unless forloop.last -%}{%- assign badge_ids = badge_ids | append: "|" -%}{%- endunless -%}
+
+          {%- assign badge_obj = site.data.badges_master | where: "id", bid | first -%}
+          {%- assign badge_name = "" -%}
+          {%- if badge_obj and badge_obj.badge_name -%}
+            {%- assign badge_name = badge_obj.badge_name -%}
+          {%- elsif bl.badge_title -%}
+            {%- assign badge_name = bl.badge_title -%}
+          {%- else -%}
+            {%- assign badge_name = bid -%}
+          {%- endif -%}
+
+          {%- assign badge_search = badge_search | append: " " | append: badge_name -%}
+
+          {%- if badge_obj and bl.requirements_met and bl.requirements_met.size > 0 -%}
+            {%- for rid in bl.requirements_met -%}
+              {%- assign req = badge_obj.requirements | where: "id", rid | first -%}
+              {%- if req and req.text -%}
+                {%- assign badge_search = badge_search | append: " " | append: req.text -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+
     <article class="activity-index__item" role="listitem"
       data-title="{{ a.title | downcase | escape }}"
       data-summary="{{ a.summary | default: '' | downcase | escape }}"
+      data-badges="{{ badge_ids | escape }}"
+      data-badge-text="{{ badge_search | downcase | escape }}"
       data-time="{{ a.time_minutes | default: '' }}"
       data-difficulty="{{ a.difficulty | default: '' }}"
       data-location="{{ a.location | default: '' | downcase }}"
