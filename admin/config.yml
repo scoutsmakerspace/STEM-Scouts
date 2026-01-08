@@ -240,25 +240,13 @@ collections:
         widget: "list"
         required: false
         collapsed: true
-        summary: "{{fields.badge}}"
-        fields:
-          - label: "Badge"
-            name: "badge"
-            widget: "relation"
-            collection: "badges"
-            search_fields: ["title", "section", "category", "id"]
-            value_field: "id"
-            display_fields: ["section", "title", "category"]
-            options_length: 2000
-            required: true
+        summary: "{{fields.badge_title}}"
+        field:
+          label: "Badge link"
+          name: "item"
+          widget: "badge_link"
+          required: false
 
-          - label: "Requirements covered"
-            name: "requirements_met"
-            widget: "badge_requirements"
-            badge_field: "badge"
-            required: false
-
-          - { label: "Notes (optional)", name: "notes", widget: "string", required: false }
 
       - { label: "Extra notes (optional)", name: "body", widget: "markdown", required: false }
 
