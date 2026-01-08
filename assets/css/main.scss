@@ -668,3 +668,24 @@ body { font-size: 0.95rem; line-height: 1.55; }
 }
 
 .activities-index .initial-content { padding-top: 2.75rem; }
+
+/* =========================
+   Activity step images (size-limited)
+   ========================= */
+
+.activity-steps img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+
+  /* Hard cap so huge photos don’t take over the page */
+  max-height: 420px;
+  object-fit: contain;
+
+  display: block;
+  margin: 0.75rem 0;
+
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
