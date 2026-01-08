@@ -5,14 +5,26 @@ layout: single
 {% assign a = page %}
 
 {% comment %}
-Activity template:
-- Uses Minimal Mistakes "single" layout shell
-- Adds a consistent "At a glance" box + RA link + external docs + badges
-- Wraps content in js-card-sections so ## headings become cards
+Activity template (standardised):
+- At a glance + summary + optional hero image
+- Risk Assessment link + clear "example only" warning
+- Standard leader-facing sections:
+  Leader prep, Briefing, Safety briefing, Run steps, Differentiation, Time plan, Reflection
+- Kit, Downloads, External links, Badge links
 {% endcomment %}
+
+{% if a.hero_image %}
+  <figure class="activity-hero" style="margin: 0 0 1rem 0;">
+    <img src="{{ a.hero_image | relative_url }}" alt="{{ a.title | escape }}" style="width:100%; border-radius:12px;">
+  </figure>
+{% endif %}
 
 <section class="activity-card">
   <h3 class="activity-card__title">At a glance</h3>
+
+  {% if a.summary %}
+    <p class="activity-muted" style="margin-top:-.25rem;">{{ a.summary }}</p>
+  {% endif %}
 
   <ul class="activity-glance">
     {% if a.sections %}
@@ -27,57 +39,120 @@ Activity template:
     {% if a.supervision %}<li><strong>Supervision:</strong> {{ a.supervision }}</li>{% endif %}
     {% if a.location %}<li><strong>Location:</strong> {{ a.location }}</li>{% endif %}
     {% if a.type %}<li><strong>Type:</strong> {{ a.type }}</li>{% endif %}
+    {% if a.group_size %}<li><strong>Group size:</strong> {{ a.group_size }}</li>{% endif %}
+    {% if a.setup_notes %}<li><strong>Setup notes:</strong> {{ a.setup_notes }}</li>{% endif %}
   </ul>
 
-<div class="activity-ra">
-  <strong>Risk assessment:</strong>
-  {% assign match = nil %}
+  <div class="activity-ra" style="margin-top:.5rem;">
+    <strong>Risk assessment:</strong>
+    {% assign match = nil %}
 
-  {% if a.risk_assessment %}
-    {% for ra in site.risk_assessments %}
-      {% if ra.slug == a.risk_assessment %}
-        {% assign match = ra %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-
-  {% if match %}
-    <a href="{{ match.url | relative_url }}">{{ match.title }}</a>
-    <p class="activity-muted">
-      This is an example Risk Assessment. Leaders must review and create their own for their activity.
-    </p>
-  {% else %}
-    <span class="activity-warning">
-      ⚠ No Risk Assessment linked yet - Create and link a RA before running this activity!
-    </span>
-  {% endif %}
-</div>
-
-
-</section>
-
-<section class="activity-content js-card-sections">
-  {% if a.kit and a.kit.size > 0 %}
-    <h2>You will need</h2>
-    <ul>
-      {% for item in a.kit %}
-        <li>{% if item.item %}{{ item.item }}{% else %}{{ item }}{% endif %}</li>
+    {% if a.risk_assessment %}
+      {% for ra in site.risk_assessments %}
+        {% if ra.slug == a.risk_assessment %}
+          {% assign match = ra %}
+          {% break %}
+        {% endif %}
       {% endfor %}
-    </ul>
-  {% endif %}
+    {% endif %}
 
-  {{ content }}
+    {% if match %}
+      <a href="{{ match.url | relative_url }}">{{ match.title }}</a>
+      <p class="activity-warning" style="margin-top:.5rem;">
+        This is an example Risk Assessment. Leaders must review and create their own version for their activity.
+      </p>
+    {% else %}
+      <span class="activity-warning" style="margin-top:.5rem; display:inline-block;">
+        No Risk Assessment linked yet — create and link one before running this activity.
+      </span>
+    {% endif %}
+  </div>
 </section>
+
+{% if a.learning_goals and a.learning_goals.size > 0 %}
+<section class="activity-card">
+  <h3 class="activity-card__title">Learning goals</h3>
+  <ul>
+    {% for g in a.learning_goals %}
+      <li>{% if g.goal %}{{ g.goal }}{% else %}{{ g }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if a.kit and a.kit.size > 0 %}
+<section class="activity-card">
+  <h3 class="activity-card__title">You will need</h3>
+  <ul>
+    {% for item in a.kit %}
+      <li>{% if item.item %}{{ item.item }}{% else %}{{ item }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if a.leader_prep %}
+<section class="activity-card">
+  <h3 class="activity-card__title">Leader prep (before the meeting)</h3>
+  {{ a.leader_prep | markdownify }}
+</section>
+{% endif %}
+
+{% if a.leader_briefing %}
+<section class="activity-card">
+  <h3 class="activity-card__title">Leader briefing (what to explain first)</h3>
+  {{ a.leader_briefing | markdownify }}
+</section>
+{% endif %}
+
+{% if a.safety_brief %}
+<section class="activity-card">
+  <h3 class="activity-card__title">Safety briefing (key points)</h3>
+  {{ a.safety_brief | markdownify }}
+</section>
+{% endif %}
+
+{% if a.run_steps %}
+<section class="activity-card">
+  <h3 class="activity-card__title">How to run the activity</h3>
+  {{ a.run_steps | markdownify }}
+</section>
+{% endif %}
+
+{% if a.differentiation %}
+<section class="activity-card">
+  <h3 class="activity-card__title">Make it easier / harder</h3>
+  {{ a.differentiation | markdownify }}
+</section>
+{% endif %}
+
+{% if a.time_plan and a.time_plan.size > 0 %}
+<section class="activity-card">
+  <h3 class="activity-card__title">Time plan</h3>
+  <ul>
+    {% for t in a.time_plan %}
+      <li>
+        <strong>{{ t.label }}:</strong> {{ t.minutes }} min
+        {% if t.notes %} — {{ t.notes }}{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if a.reflection %}
+<section class="activity-card">
+  <h3 class="activity-card__title">Reflection / questions</h3>
+  {{ a.reflection | markdownify }}
+</section>
+{% endif %}
 
 {% if a.documents and a.documents.size > 0 %}
 <section class="activity-card">
   <h3 class="activity-card__title">Downloads</h3>
   <ul>
     {% for doc in a.documents %}
-      <li>
-        <a href="{{ doc.file | relative_url }}">{{ doc.title }}</a>
-      </li>
+      <li><a href="{{ doc.file | relative_url }}">{{ doc.title }}</a></li>
     {% endfor %}
   </ul>
   <p class="activity-muted">Tip: keep uploaded files small (PDF/Word/RTF).</p>
@@ -102,11 +177,18 @@ Activity template:
     {% for b in a.badges %}
       <li>
         <strong>{{ b.section | downcase | capitalize }}:</strong> {{ b.badge }}
-        {% if b.requirement_note %} — {{ b.requirement_note }}{% endif %}
-        {% if b.url %} (<a href="{{ b.url }}">link</a>){% endif %}
+        {% if b.requirement_ref %} — {{ b.requirement_ref }}{% endif %}
+        {% if b.url %} (<a href="{{ b.url }}">official link</a>){% endif %}
       </li>
     {% endfor %}
   </ul>
   <p class="activity-muted">Badge requirements change. Always check the official source.</p>
+</section>
+{% endif %}
+
+{% if content and content != "" %}
+<section class="activity-card">
+  <h3 class="activity-card__title">Extra notes</h3>
+  {{ content }}
 </section>
 {% endif %}
