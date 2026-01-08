@@ -32,15 +32,18 @@ collections:
       - { label: "Layout", name: "layout", widget: "hidden", default: "activity" }
       - { label: "Card sections", name: "card_sections", widget: "hidden", default: true }
 
+      # =========================
+      # Core info
+      # =========================
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Summary", name: "summary", widget: "text", required: false }
+      - { label: "Summary (1–2 sentences)", name: "summary", widget: "text", required: false }
+      - { label: "Hero image (optional)", name: "hero_image", widget: "image", required: false }
 
       - label: "Sections"
         name: "sections"
         widget: "select"
         multiple: true
         options:
-         # - { label: "Squirrels", value: "squirrels" }
           - { label: "Beavers", value: "beavers" }
           - { label: "Cubs", value: "cubs" }
           - { label: "Scouts", value: "scouts" }
@@ -53,6 +56,78 @@ collections:
       - { label: "Location", name: "location", widget: "select", options: ["indoors", "outdoors", "both"] }
       - { label: "Supervision", name: "supervision", widget: "select", options: ["low", "medium", "high"] }
 
+      - { label: "Recommended group size (optional)", name: "group_size", widget: "string", required: false, hint: "Example: 6–12 young people (2 adults), or 'Patrols of 6'." }
+      - { label: "Indoor/Outdoor notes (optional)", name: "setup_notes", widget: "text", required: false, hint: "Short practical notes (space, tables, power, noise, mess, etc.)." }
+
+      # =========================
+      # Standardised leader sections
+      # =========================
+      - label: "Learning goals (optional)"
+        name: "learning_goals"
+        widget: "list"
+        required: false
+        field: { label: "Goal", name: "goal", widget: "string" }
+
+      - label: "Leader prep (before the meeting)"
+        name: "leader_prep"
+        widget: "markdown"
+        required: false
+        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+        editor_components: []
+
+      - label: "Leader briefing (what to explain first)"
+        name: "leader_briefing"
+        widget: "markdown"
+        required: false
+        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+        editor_components: []
+        hint: "Short intro for young people (what they are doing and why), plus rules and expectations."
+
+      - label: "Safety briefing (key points)"
+        name: "safety_brief"
+        widget: "markdown"
+        required: false
+        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+        editor_components: []
+        hint: "Key safety points to say out loud. The linked Risk Assessment is still required."
+
+      - label: "How to run the activity (step-by-step)"
+        name: "run_steps"
+        widget: "markdown"
+        required: false
+        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+        editor_components: []
+        hint: "Use numbered steps. Keep it leader-friendly."
+
+      - label: "Make it easier / harder (differentiation)"
+        name: "differentiation"
+        widget: "markdown"
+        required: false
+        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+        editor_components: []
+        hint: "Include 'easier' and 'harder' ideas, plus section-specific notes."
+
+      - label: "Time plan (optional)"
+        name: "time_plan"
+        widget: "list"
+        required: false
+        summary: "{{fields.label}}"
+        fields:
+          - { label: "Label", name: "label", widget: "string", hint: "Example: Intro, Build, Test, Wrap-up" }
+          - { label: "Minutes", name: "minutes", widget: "number", min: 1, max: 240, value_type: "int" }
+          - { label: "Notes (optional)", name: "notes", widget: "string", required: false }
+
+      - label: "Reflection / questions (optional)"
+        name: "reflection"
+        widget: "markdown"
+        required: false
+        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+        editor_components: []
+        hint: "A few good questions for end-of-session discussion."
+
+      # =========================
+      # Kit and resources
+      # =========================
       - label: "Kit list"
         name: "kit"
         widget: "list"
@@ -97,7 +172,7 @@ collections:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "URL", name: "url", widget: "string" }
 
-      - label: "Badge links"
+      - label: "Badge links (reference)"
         name: "badges"
         widget: "list"
         required: false
@@ -106,16 +181,16 @@ collections:
             name: "section"
             widget: "select"
             options:
-             # - { label: "Squirrels", value: "squirrels" }
               - { label: "Beavers", value: "beavers" }
               - { label: "Cubs", value: "cubs" }
               - { label: "Scouts", value: "scouts" }
               - { label: "Explorers", value: "explorers" }
           - { label: "Badge", name: "badge", widget: "string" }
-          - { label: "Requirement note", name: "requirement_note", widget: "string", required: false }
-          - { label: "URL", name: "url", widget: "string", required: false }
+          - { label: "Requirement reference (optional)", name: "requirement_ref", widget: "string", required: false, hint: "Example: Requirement 4, Step 2, Stage 3 (don’t paste full requirement text)." }
+          - { label: "URL (official source, optional)", name: "url", widget: "string", required: false }
 
-      - { label: "Body", name: "body", widget: "markdown", required: false }
+      # CMS body = additional notes (optional)
+      - { label: "Extra notes (optional)", name: "body", widget: "markdown", required: false }
 
   - name: "risk_assessments"
     label: "Risk Assessments"
@@ -149,7 +224,6 @@ collections:
         widget: "select"
         multiple: true
         options:
-        #  - { label: "Squirrels", value: "squirrels" }
           - { label: "Beavers", value: "beavers" }
           - { label: "Cubs", value: "cubs" }
           - { label: "Scouts", value: "scouts" }
@@ -178,9 +252,6 @@ collections:
         buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
         editor_components: []
 
-  # =========================
-  # STEM Programmes (NEW)
-  # =========================
   - name: "stem_programmes"
     label: "STEM Programmes"
     label_singular: "STEM Programme"
