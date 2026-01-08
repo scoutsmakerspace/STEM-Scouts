@@ -1,20 +1,24 @@
 ---
-title: "Faith"
-id: "beavers-faith"
-section: "beavers"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Complete ALL 4 requirements"
+title: Faith
+id: beavers-faith
+section: beavers
+category: Activity Badges
+badge_type: Activity
+completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-  - no: 1
-    text: "Write a prayer or reflection."
-  - no: 2
-    text: "Read or share a prayer or reflection."
-  - no: 3
-    text: "Find and tell a story about doing your best and helping other people."
-  - no: 4
-    text: "Visit a place of worship and tell other Beaver Scouts about your visit."
+- id: '1'
+  'no': 1
+  text: Write a prayer or reflection.
+- id: '2'
+  'no': 2
+  text: Read or share a prayer or reflection.
+- id: '3'
+  'no': 3
+  text: Find and tell a story about doing your best and helping other people.
+- id: '4'
+  'no': 4
+  text: Visit a place of worship and tell other Beaver Scouts about your visit.
 ---
 
 ## Requirements

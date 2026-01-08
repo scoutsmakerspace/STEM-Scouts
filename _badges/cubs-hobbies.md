@@ -1,20 +1,24 @@
 ---
-title: "Hobbies"
-id: "cubs-hobbies"
-section: "cubs"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Complete ALL 4 requirements"
+title: Hobbies
+id: cubs-hobbies
+section: cubs
+category: Activity Badges
+badge_type: Activity
+completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-  - no: 1
-    text: "Over three months, be actively involved in a hobby of your choice"
-  - no: 2
-    text: "Show and explain to your leader or Explorer Scout Young Leader what equipment, materials and background information you have used to take part in your hobby including any safety rules."
-  - no: 3
-    text: "Talk about your hobby including why you have chosen it and what you enjoy about it."
-  - no: 4
-    text: "Talk to your leader about how you plan to develop your hobby, interest or skill in the future."
+- id: '1'
+  'no': 1
+  text: Over three months, be actively involved in a hobby of your choice
+- id: '2'
+  'no': 2
+  text: Show and explain to your leader or Explorer Scout Young Leader what equipment, materials and background information you have used to take part in your hobby including any safety rules.
+- id: '3'
+  'no': 3
+  text: Talk about your hobby including why you have chosen it and what you enjoy about it.
+- id: '4'
+  'no': 4
+  text: Talk to your leader about how you plan to develop your hobby, interest or skill in the future.
 ---
 
 ## Requirements

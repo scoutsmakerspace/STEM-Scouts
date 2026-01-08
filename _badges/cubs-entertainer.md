@@ -1,30 +1,39 @@
 ---
-title: "Entertainer"
-id: "cubs-entertainer"
-section: "cubs"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Complete 2 of 9 requirements"
+title: Entertainer
+id: cubs-entertainer
+section: cubs
+category: Activity Badges
+badge_type: Activity
+completion_rules: Complete 2 of 9 requirements
 requirements_count: 9
 requirements:
-  - no: 1
-    text: "Help to plan and perform some recorded entertainment, like a video or audio story."
-  - no: 2
-    text: "Take part in a show, concert or band performance"
-  - no: 3
-    text: "Make up and perform a dance to a piece of music of your choice"
-  - no: 4
-    text: "Help plan and perform a series of magic tricks."
-  - no: 5
-    text: "Help to make up a mime or play, then perform it"
-  - no: 6
-    text: "Perform a puppet play or shadowgraph using puppets that you have made."
-  - no: 7
-    text: "Sing two songs"
-  - no: 8
-    text: "Perform some folk or traditional dance"
-  - no: 9
-    text: "Make a selection of simple rhythm instruments"
+- id: '1'
+  'no': 1
+  text: Help to plan and perform some recorded entertainment, like a video or audio story.
+- id: '2'
+  'no': 2
+  text: Take part in a show, concert or band performance
+- id: '3'
+  'no': 3
+  text: Make up and perform a dance to a piece of music of your choice
+- id: '4'
+  'no': 4
+  text: Help plan and perform a series of magic tricks.
+- id: '5'
+  'no': 5
+  text: Help to make up a mime or play, then perform it
+- id: '6'
+  'no': 6
+  text: Perform a puppet play or shadowgraph using puppets that you have made.
+- id: '7'
+  'no': 7
+  text: Sing two songs
+- id: '8'
+  'no': 8
+  text: Perform some folk or traditional dance
+- id: '9'
+  'no': 9
+  text: Make a selection of simple rhythm instruments
 ---
 
 ## Requirements

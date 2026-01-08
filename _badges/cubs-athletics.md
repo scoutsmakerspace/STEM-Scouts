@@ -1,24 +1,30 @@
 ---
-title: "Athletics"
-id: "cubs-athletics"
-section: "cubs"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Complete ALL 6 requirements"
+title: Athletics
+id: cubs-athletics
+section: cubs
+category: Activity Badges
+badge_type: Activity
+completion_rules: Complete ALL 6 requirements
 requirements_count: 6
 requirements:
-  - no: 1
-    text: "Take part in a proper warm-up and cool down routine, using all the main muscle groups."
-  - no: 2
-    text: "Explain the best clothes to wear for athletics and how to be safe."
-  - no: 3
-    text: "Take part in a throwing activity"
-  - no: 4
-    text: "Take part in two running activities"
-  - no: 5
-    text: "Take part in a team activity"
-  - no: 6
-    text: "Do a jumping activity and go as far or as high as you can go"
+- id: '1'
+  'no': 1
+  text: Take part in a proper warm-up and cool down routine, using all the main muscle groups.
+- id: '2'
+  'no': 2
+  text: Explain the best clothes to wear for athletics and how to be safe.
+- id: '3'
+  'no': 3
+  text: Take part in a throwing activity
+- id: '4'
+  'no': 4
+  text: Take part in two running activities
+- id: '5'
+  'no': 5
+  text: Take part in a team activity
+- id: '6'
+  'no': 6
+  text: Do a jumping activity and go as far or as high as you can go
 ---
 
 ## Requirements
