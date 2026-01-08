@@ -8,8 +8,8 @@ backend:
 site_url: https://scoutsmakerspace.github.io/STEM-Scouts
 display_url: https://scoutsmakerspace.github.io/STEM-Scouts
 
-media_folder: "assets/images/uploads"
-public_folder: "/assets/images/uploads"
+media_folder: "/assets/docs/activities"
+public_folder: "/assets/docs/activities"
 
 publish_mode: editorial_workflow
 
