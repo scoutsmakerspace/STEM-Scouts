@@ -80,6 +80,7 @@ badges:
     requirement_ref: asfafaf
 badge_links:
   - badge: beavers-cook
+  - badge: beavers-camp-craft
 ---
 Finibus condimentum a nullam phasellus maecenas nisi nisi eget at molestie. Morbi nostra faucibus eleifend quis auctor cubilia lorem purus inceptos finibus faucibus nibh enim. Et nulla molestie augue senectus eu nisl in nulla quisque magna.
 
