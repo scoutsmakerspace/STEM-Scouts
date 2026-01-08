@@ -255,7 +255,7 @@ collections:
           - label: "Requirements covered"
             name: "requirements_met"
             widget: "badge_requirements"
-            badge_field: "badge_id"
+            badge_field: "THE_ACTUAL_FIELD_NAME"
             required: false
 
           - { label: "Notes (optional)", name: "notes", widget: "string", required: false }
