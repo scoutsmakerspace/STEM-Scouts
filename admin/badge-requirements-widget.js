@@ -3,9 +3,7 @@
     return window.CMS && window.createClass && window.h;
   }
 
-  // -------------------------
-  // Load badge master JSON (cached)
-  // -------------------------
+  // ---------- Load badges master (cached) ----------
   let _idx = null;
   let _loading = null;
 
@@ -35,52 +33,62 @@
     return _loading;
   }
 
-  // Convert "badge_links.0.requirements_met" or "data.badge_links[0].requirements_met"
-  // into ["badge_links", 0, "requirements_met"] etc.
-  function pathToArray(pathStr) {
-    const s = String(pathStr || "");
-    const normalized = s.replace(/\[(\d+)\]/g, ".$1");
-    return normalized
-      .split(".")
-      .filter(Boolean)
-      .map((p) => (/^\d+$/.test(p) ? parseInt(p, 10) : p));
-  }
-
-  function getInSafe(obj, arr) {
-    try {
-      return obj && obj.getIn ? obj.getIn(arr) : null;
-    } catch {
-      return null;
+  // ---------- DOM helpers ----------
+  function closest(el, pred, maxUp = 20) {
+    let cur = el;
+    for (let i = 0; i < maxUp && cur; i++) {
+      if (pred(cur)) return cur;
+      cur = cur.parentElement;
     }
+    return null;
   }
 
-  function readBadgeId(props) {
-    const badgeField = (props.field && props.field.get && props.field.get("badge_field")) || "badge";
+  function findBadgeValueNearRequirements(forID, badgeFieldName = "badge") {
+    // Find the requirements control element by id
+    const reqEl = forID ? document.getElementById(forID) : null;
+    if (!reqEl) return null;
 
-    // Decap 3.10: props.path is undefined in your environment.
-    // forID/id reliably exists and contains the field "path".
-    const pathStr = props.path || props.forID || props.id || "";
-    const pathArr = pathToArray(pathStr);
+    // Find the enclosing list-item-ish container
+    // Decap list items usually have some wrapper; we use a generic heuristic:
+    const item = closest(
+      reqEl,
+      (node) => {
+        // A "list item" wrapper tends to contain multiple labeled fields.
+        // We'll accept a container that has at least 2 labels.
+        const labels = node.querySelectorAll ? node.querySelectorAll("label") : [];
+        return labels && labels.length >= 2;
+      },
+      30
+    ) || reqEl.parentElement;
 
-    if (!pathArr.length) return null;
+    if (!item || !item.querySelectorAll) return null;
 
-    // sibling path: same parent, last segment -> badgeField
-    const sibling = pathArr.slice(0, -1).concat([badgeField]);
+    // Look for a hidden/input field that corresponds to the badge relation field.
+    // In Decap, relation widgets usually keep an <input> with the value_field.
+    // We search inputs/selects where name/id contains the badge field name.
+    const candidates = Array.from(item.querySelectorAll("input, select, textarea"));
 
-    // Try live editor state (with and without "data" root)
-    const fm = props.fieldsMetaData;
+    // First pass: hidden inputs (most likely to hold the actual ID)
+    for (const el of candidates) {
+      const type = (el.getAttribute("type") || "").toLowerCase();
+      const name = (el.getAttribute("name") || "").toLowerCase();
+      const id = (el.getAttribute("id") || "").toLowerCase();
 
-    const live1 = getInSafe(fm, sibling);
-    if (live1) return String(live1);
+      if (type === "hidden" && (name.includes(badgeFieldName) || id.includes(badgeFieldName))) {
+        const v = (el.value || "").trim();
+        if (v) return v;
+      }
+    }
 
-    const siblingWithData = sibling[0] === "data" ? sibling : ["data"].concat(sibling);
-    const live2 = getInSafe(fm, siblingWithData);
-    if (live2) return String(live2);
-
-    // Saved entry fallback (always under entry.data)
-    const entryPath = sibling[0] === "data" ? sibling : ["data"].concat(sibling);
-    const saved = getInSafe(props.entry, entryPath);
-    if (saved) return String(saved);
+    // Second pass: any input/select with name/id containing badge
+    for (const el of candidates) {
+      const name = (el.getAttribute("name") || "").toLowerCase();
+      const id = (el.getAttribute("id") || "").toLowerCase();
+      if (name.includes(badgeFieldName) || id.includes(badgeFieldName)) {
+        const v = (el.value || "").trim();
+        if (v) return v;
+      }
+    }
 
     return null;
   }
@@ -92,47 +100,47 @@
 
     const Control = createClass({
       getInitialState() {
-        return { loading: true, badgeId: null, reqs: [], debugOnce: false };
+        return { loading: true, badgeId: null, reqs: [], _timer: null };
       },
 
       async componentDidMount() {
-        await this.refresh();
+        await this.refresh(true);
+
+        // Poll briefly because relation widget updates asynchronously
+        const t = setInterval(() => this.refresh(false), 400);
+        this.setState({ _timer: t });
       },
 
-      async componentDidUpdate(prevProps) {
-        const prev = readBadgeId(prevProps);
-        const curr = readBadgeId(this.props);
-        if (prev !== curr) await this.refresh();
+      componentWillUnmount() {
+        if (this.state._timer) clearInterval(this.state._timer);
       },
 
-      async refresh() {
-        this.setState({ loading: true });
+      async refresh(firstTime) {
+        const badgeField = (this.props.field && this.props.field.get && this.props.field.get("badge_field")) || "badge";
 
-        const badgeId = readBadgeId(this.props);
+        // IMPORTANT: in your setup props.path/id are undefined, but props.forID exists
+        const badgeId = findBadgeValueNearRequirements(this.props.forID, badgeField);
+
+        // Only do the heavy work if badge changed or first time
+        if (!firstTime && badgeId === this.state.badgeId) return;
+
         const idx = await loadBadgesIndex();
         const badge = badgeId ? idx[badgeId] : null;
 
-        if (!this.state.debugOnce) {
-          console.log("[badge_requirements] debug forID:", this.props.forID);
-          console.log("[badge_requirements] debug id:", this.props.id);
-          console.log("[badge_requirements] debug path:", this.props.path);
-          this.setState({ debugOnce: true });
-        }
-
-        console.log("[badge_requirements] badgeId:", badgeId, "found:", !!badge);
+        console.log("[badge_requirements] forID:", this.props.forID, "badgeId:", badgeId, "found:", !!badge);
 
         const reqs = badge && Array.isArray(badge.requirements) ? badge.requirements : [];
 
-        // Store selected requirement IDs as strings
+        // Store selected requirement ids as strings ("1", "2", "1.3"...)
         const current = Array.isArray(this.props.value) ? this.props.value.map(String) : [];
         const allowed = new Set(reqs.map((r) => String(r.id)));
-
         const cleaned = current.filter((v) => allowed.has(String(v)));
+
         if (JSON.stringify(cleaned) !== JSON.stringify(current)) {
           this.props.onChange(cleaned);
         }
 
-        this.setState({ loading: false, badgeId, reqs });
+        this.setState({ loading: false, badgeId: badgeId || null, reqs });
       },
 
       toggle(reqId) {
