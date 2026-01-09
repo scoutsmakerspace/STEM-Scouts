@@ -3,421 +3,553 @@
     return window.CMS && window.createClass && window.h;
   }
 
-  // ---------- Load master badge data (official) ----------
-  let _master = null;
-  let _loading = null;
+  // ----------------------------
+  // Data loaders
+  // ----------------------------
+  let _badges = null;
+  let _badgesLoading = null;
 
-  async function loadMaster() {
-    if (_master) return _master;
-    if (_loading) return _loading;
+  function slugify(s) {
+    return String(s || "")
+      .toLowerCase()
+      .trim()
+      .replace(/['’]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
 
-    _loading = fetch("./badges_master.json", { cache: "no-store" })
+  function cleanReqText(t) {
+    const s = String(t || "").trim();
+    // Strip leading "1." / "1)" / "1 -" etc if present
+    return s.replace(/^\s*\d+\s*[\.\)\-:]\s*/, "");
+  }
+
+  function titleCaseIfNeeded(s) {
+    const str = String(s || "").trim();
+    if (!str) return str;
+    // If it already contains uppercase letters, keep as-is.
+    if (/[A-Z]/.test(str)) return str;
+    return str
+      .split(/\s+/)
+      .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
+      .join(" ");
+  }
+
+  async function loadBadges() {
+    if (_badges) return _badges;
+    if (_badgesLoading) return _badgesLoading;
+
+    _badgesLoading = fetch("./badges_master.json", { cache: "no-store" })
       .then((r) => {
         if (!r.ok) throw new Error(`badges_master.json fetch failed: ${r.status}`);
         return r.json();
       })
-      .then((data) => {
-        // Support either {badges:[...]} or [...]
-        const badges = Array.isArray(data) ? data : (data && data.badges) ? data.badges : [];
-        _master = badges;
-        return _master;
+      .then((json) => {
+        const arr = Array.isArray(json)
+          ? json
+          : Array.isArray(json.badges)
+            ? json.badges
+            : [];
+
+        _badges = (arr || []).map((b) => {
+          const title = b.badge_name || b.badge || b.title || b.id;
+          const section = titleCaseIfNeeded(b.section_label || b.section || "");
+          const section_slug = b.section_slug || slugify(section);
+          const category = b.category || "";
+          const badge_type = b.badge_type || b.type || "";
+
+          const requirements = Array.isArray(b.requirements)
+            ? b.requirements
+                .filter(
+                  (r) =>
+                    r &&
+                    r.kind === "req" &&
+                    (r.id != null || r.no != null) &&
+                    String(r.text || "").trim() !== ""
+                )
+                .map((r) => {
+                  const no = String(r.no ?? r.id).trim();
+                  return {
+                    no,
+                    text: cleanReqText(r.text),
+                  };
+                })
+            : [];
+
+          const display = `${section} — ${title}`.trim();
+
+          return {
+            id: b.id,
+            title,
+            section,
+            section_slug,
+            category,
+            badge_type,
+            requirements,
+            _display: display.toLowerCase(),
+          };
+        });
+
+        console.log("[stem_badge_map_manager] loaded badges:", _badges.length);
+        return _badges;
       })
       .catch((e) => {
-        console.error("[stem_badge_map_manager] Failed loading badges_master.json:", e);
-        _master = [];
-        return _master;
-      })
-      .finally(() => {
-        _loading = null;
+        console.error("[stem_badge_map_manager] load failed:", e);
+        _badges = [];
+        return _badges;
       });
 
-    return _loading;
+    return _badgesLoading;
   }
 
-  // ---------- Helpers ----------
-  function slugify(s) {
-    return String(s || "")
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
-  }
-
-  function norm(s) {
-    return String(s || "").toLowerCase().trim();
-  }
-
-  function safeArray(x) {
-    return Array.isArray(x) ? x : [];
-  }
-
-  // Existing YAML schema:
-  // badges: [
-  //   { badge_id, title, section, section_slug, category, badge_type, stem_requirements: [
-  //       { rid, ref, text, strength, areas, why_stem, leader_prompts? }
-  //   ] }
-  // ]
-  function ensureBadgeEntryFromMaster(masterBadge) {
-    if (!masterBadge) return null;
-    const badge_id = masterBadge.badge_id || masterBadge.id || masterBadge.slug;
-    const title = masterBadge.title || masterBadge.name || badge_id;
-    const section = masterBadge.section || masterBadge.section_name || "";
-    const section_slug = masterBadge.section_slug || slugify(section);
-    const category = masterBadge.category || masterBadge.badge_category || "";
-    const badge_type = masterBadge.badge_type || masterBadge.type || "";
-
-    return {
-      badge_id,
-      title,
-      section,
-      section_slug,
-      category,
-      badge_type,
-      stem_requirements: [],
-    };
-  }
-
-  function extractRequirements(masterBadge) {
-    // Try several shapes
-    const reqs = masterBadge.requirements || masterBadge.reqs || masterBadge.badge_requirements || [];
-    if (Array.isArray(reqs)) {
-      return reqs
-        .map((r) => {
-          if (typeof r === "string") return { ref: r, text: r };
-          return r || null;
-        })
-        .filter(Boolean);
+  // ----------------------------
+  // Value helpers (Immutable-safe)
+  // ----------------------------
+  function toPlain(v) {
+    let out = v;
+    if (out && typeof out.get === "function") {
+      try {
+        out = out.toJS();
+      } catch (e) {
+        out = {};
+      }
     }
-    return [];
+    return out;
   }
 
-  function reqRef(r) {
-    // Prefer explicit number-like refs
-    const ref = r.ref ?? r.number ?? r.id ?? r.key ?? "";
-    return String(ref);
+  function ensureMapRoot(value) {
+    const v = toPlain(value);
+    if (v && typeof v === "object") return v;
+    return {};
   }
 
-  function reqText(r) {
-    return String(r.text ?? r.requirement ?? r.description ?? "");
+  function clone(obj) {
+    return JSON.parse(JSON.stringify(obj || {}));
   }
 
-  function makeRid(badge_id, ref) {
-    return `${badge_id}::${ref}`;
+  function indexExisting(badgesArr) {
+    const idx = new Map();
+    (badgesArr || []).forEach((b) => {
+      if (b && b.badge_id) idx.set(String(b.badge_id), b);
+    });
+    return idx;
   }
 
-  function isNumberedRef(ref) {
-    // Keep "1", "2", "3a" etc, but avoid headings like "Aims" or empty.
-    const s = String(ref || "").trim();
-    if (!s) return false;
-    return /^[0-9]+[a-zA-Z]?$/i.test(s);
+  function findReqEntry(badgeEntry, reqNo) {
+    const list = (badgeEntry && badgeEntry.stem_requirements) || [];
+    const no = String(reqNo);
+    return list.find((r) => String(r.ref || "") === no || String(r.rid || "").endsWith(`::${no}`)) || null;
   }
 
-  function findBadgeInValue(valueArr, badge_id) {
-    const arr = safeArray(valueArr);
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i] && arr[i].badge_id === badge_id) return { idx: i, badge: arr[i] };
-    }
-    return { idx: -1, badge: null };
-  }
-
-  function countMappedReqs(badgeEntry) {
-    return safeArray(badgeEntry && badgeEntry.stem_requirements).length;
-  }
-
-  function deepClone(x) {
-    return JSON.parse(JSON.stringify(x || null));
-  }
-
-  // ---------- UI ----------
-  function cssBox() {
+  function buildReqEntry(badgeId, reqNo, reqText) {
+    const no = String(reqNo);
+    const text = `${no}. ${cleanReqText(reqText)}`.trim();
     return {
-      boxSizing: "border-box",
-      fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+      rid: `${badgeId}::${no}`,
+      ref: no,
+      text,
+      strength: "strong",
+      areas: [],
+      why_stem: "",
+      leader_prompts: [],
     };
   }
 
-  function btnStyle(kind) {
-    const base = {
-      padding: "6px 10px",
-      borderRadius: "6px",
-      border: "1px solid #ccc",
-      background: "#fff",
-      cursor: "pointer",
-      fontSize: "12px",
-    };
-    if (kind === "add") return Object.assign({}, base, { borderColor: "#2b7", color: "#185" });
-    if (kind === "remove") return Object.assign({}, base, { borderColor: "#c55", color: "#933" });
-    if (kind === "small") return Object.assign({}, base, { padding: "4px 8px" });
-    return base;
+  function normaliseImportedJSON(json) {
+    // Accept array or {badges:[...]}
+    const arr = Array.isArray(json) ? json : Array.isArray(json.badges) ? json.badges : [];
+    const out = [];
+    (arr || []).forEach((b) => {
+      if (!b) return;
+      const badge_id = b.badge_id || b.id || b.badge || b.slug;
+      if (!badge_id) return;
+
+      const entry = {
+        badge_id: String(badge_id),
+        title: b.title || b.badge_title || b.badge_name || "",
+        section: b.section || "",
+        section_slug: b.section_slug || slugify(b.section || ""),
+        category: b.category || "",
+        badge_type: b.badge_type || "",
+        stem_requirements: [],
+      };
+
+      const reqs = Array.isArray(b.stem_requirements)
+        ? b.stem_requirements
+        : Array.isArray(b.requirements)
+          ? b.requirements
+          : [];
+
+      (reqs || []).forEach((r) => {
+        if (!r) return;
+        const ref = r.ref ?? r.no ?? r.id;
+        if (ref == null) return;
+        entry.stem_requirements.push({
+          rid: r.rid || `${entry.badge_id}::${String(ref)}`,
+          ref: String(ref),
+          text: r.text || r.requirement || "",
+          strength: r.strength || "strong",
+          areas: Array.isArray(r.areas) ? r.areas : [],
+          why_stem: r.why_stem || "",
+          leader_prompts: Array.isArray(r.leader_prompts) ? r.leader_prompts : [],
+        });
+      });
+
+      // Only keep if it has at least 1 requirement
+      if (entry.stem_requirements.length > 0) out.push(entry);
+    });
+    return out;
   }
 
-  function pillStyle(active) {
-    return {
-      display: "inline-block",
-      padding: "2px 8px",
-      borderRadius: "999px",
-      fontSize: "12px",
-      border: "1px solid #d0d0d0",
-      background: active ? "#e9f8ef" : "#f5f5f5",
-      color: active ? "#145" : "#666",
-      marginLeft: "8px",
-    };
-  }
-
+  // ----------------------------
+  // Widget
+  // ----------------------------
   function register() {
     if (!ready()) return false;
 
-    const h = window.h;
-    const createClass = window.createClass;
+    const { CMS, createClass, h } = window;
 
     const Control = createClass({
       getInitialState() {
         return {
-          master: [],
           loading: true,
-          q: "",
-          open: {}, // badge_id -> bool
-          // local cached value, always treat as array
-          value: safeArray(this.props.value),
-          error: null,
+          badges: [],
+          query: "",
+          expanded: {}, // badge_id -> bool
+          // value cache to avoid re-hydrating while typing
+          valueHash: "",
+          mapRoot: { badges: [] },
+          message: "",
         };
       },
 
-      componentDidMount() {
-        loadMaster().then((master) => {
-          this.setState({ master: master || [], loading: false });
-        });
+      async componentDidMount() {
+        const badges = await loadBadges();
+        this.setState({ badges, loading: false });
+        this.hydrateFromValue(this.props.value);
       },
 
       componentDidUpdate(prevProps) {
-        // Keep local in sync if Decap changes value externally
         if (prevProps.value !== this.props.value) {
-          this.setState({ value: safeArray(this.props.value) });
+          this.hydrateFromValue(this.props.value);
         }
       },
 
-      setValue(nextArr) {
-        const clean = safeArray(nextArr);
-        this.setState({ value: clean });
-        this.props.onChange(clean);
+      hydrateFromValue(value) {
+        const root = ensureMapRoot(value);
+        const badgesArr = Array.isArray(root.badges) ? root.badges : [];
+        const hash = JSON.stringify(badgesArr);
+
+        if (hash === this.state.valueHash) return;
+
+        this.setState({
+          mapRoot: { badges: clone(badgesArr) },
+          valueHash: hash,
+        });
       },
 
-      toggleOpen(badge_id) {
-        const open = Object.assign({}, this.state.open);
-        open[badge_id] = !open[badge_id];
-        this.setState({ open });
+      emit(nextRoot) {
+        // Keep YAML shape: {badges:[...]}
+        this.props.onChange(nextRoot);
       },
 
       setQuery(e) {
-        this.setState({ q: (e && e.target && e.target.value) ? e.target.value : "" });
+        this.setState({ query: (e.target && e.target.value) || "" });
       },
 
-      // Add requirement to mapping
-      addReq(badge_id, masterBadge, req) {
-        const value = deepClone(this.state.value) || [];
-        const found = findBadgeInValue(value, badge_id);
+      toggleExpanded(badgeId) {
+        const expanded = Object.assign({}, this.state.expanded);
+        expanded[badgeId] = !expanded[badgeId];
+        this.setState({ expanded });
+      },
 
-        let entry = found.badge;
+      mappedCountFor(badgeId) {
+        const idx = indexExisting(this.state.mapRoot.badges);
+        const entry = idx.get(badgeId);
+        return entry && Array.isArray(entry.stem_requirements) ? entry.stem_requirements.length : 0;
+      },
+
+      addReq(badge, req) {
+        const root = clone(this.state.mapRoot);
+        root.badges = Array.isArray(root.badges) ? root.badges : [];
+
+        const idx = indexExisting(root.badges);
+        let entry = idx.get(badge.id);
         if (!entry) {
-          entry = ensureBadgeEntryFromMaster(masterBadge);
-          value.push(entry);
-        } else {
-          // ensure keys exist
-          if (!entry.stem_requirements) entry.stem_requirements = [];
+          entry = {
+            badge_id: badge.id,
+            title: badge.title,
+            section: badge.section,
+            section_slug: badge.section_slug,
+            category: badge.category,
+            badge_type: badge.badge_type,
+            stem_requirements: [],
+          };
+          root.badges.push(entry);
         }
 
-        const ref = reqRef(req);
-        const text = reqText(req);
+        entry.title = entry.title || badge.title;
+        entry.section = entry.section || badge.section;
+        entry.section_slug = entry.section_slug || badge.section_slug;
+        entry.category = entry.category || badge.category;
+        entry.badge_type = entry.badge_type || badge.badge_type;
 
-        // Avoid duplicates
-        const already = safeArray(entry.stem_requirements).some((sr) => String(sr.ref) === String(ref) || String(sr.rid) === makeRid(badge_id, ref));
-        if (already) {
-          this.setValue(value);
-          return;
-        }
+        entry.stem_requirements = Array.isArray(entry.stem_requirements)
+          ? entry.stem_requirements
+          : [];
 
-        entry.stem_requirements.push({
-          rid: makeRid(badge_id, ref),
-          ref: String(ref),
-          text: text || `${ref}.`,
-          strength: "borderline",
-          areas: [],
-          why_stem: "",
-          leader_prompts: "",
+        const existing = findReqEntry(entry, req.no);
+        if (existing) return;
+
+        entry.stem_requirements.push(buildReqEntry(badge.id, req.no, req.text));
+
+        // Keep ordering stable by ref number
+        entry.stem_requirements.sort((a, b) => {
+          const na = parseFloat(String(a.ref || "0").replace(/[^0-9.]/g, "")) || 0;
+          const nb = parseFloat(String(b.ref || "0").replace(/[^0-9.]/g, "")) || 0;
+          return na - nb;
         });
 
-        // Keep stable ordering by badge title
-        value.sort((a, b) => norm(a.title).localeCompare(norm(b.title)));
-
-        this.setValue(value);
+        this.emit(root);
       },
 
-      removeReq(badge_id, ref) {
-        const value = deepClone(this.state.value) || [];
-        const found = findBadgeInValue(value, badge_id);
-        if (!found.badge) return;
+      removeReq(badgeId, reqNo) {
+        const root = clone(this.state.mapRoot);
+        root.badges = Array.isArray(root.badges) ? root.badges : [];
 
-        const entry = found.badge;
-        entry.stem_requirements = safeArray(entry.stem_requirements).filter((sr) => String(sr.ref) !== String(ref));
+        const i = root.badges.findIndex((b) => b && String(b.badge_id) === String(badgeId));
+        if (i < 0) return;
 
-        // If badge has no mapped reqs, remove badge entry entirely (keeps UI clean)
-        if (entry.stem_requirements.length === 0) {
-          value.splice(found.idx, 1);
+        const entry = root.badges[i];
+        const no = String(reqNo);
+        entry.stem_requirements = (entry.stem_requirements || []).filter(
+          (r) => String(r.ref || "") !== no && !String(r.rid || "").endsWith(`::${no}`)
+        );
+
+        // If no mapped reqs left, remove the badge entry entirely
+        if (!entry.stem_requirements || entry.stem_requirements.length === 0) {
+          root.badges.splice(i, 1);
         }
 
-        this.setValue(value);
+        this.emit(root);
       },
 
-      isMapped(badge_id, ref) {
-        const found = findBadgeInValue(this.state.value, badge_id);
-        if (!found.badge) return false;
-        return safeArray(found.badge.stem_requirements).some((sr) => String(sr.ref) === String(ref));
-      },
-
-      renderReqRow(badge_id, masterBadge, req) {
-        const ref = reqRef(req);
-        if (!isNumberedRef(ref)) return null;
-
-        const mapped = this.isMapped(badge_id, ref);
-        const rowStyle = {
-          padding: "8px 10px",
-          borderBottom: "1px solid #eee",
-          display: "flex",
-          gap: "10px",
-          alignItems: "flex-start",
-          justifyContent: "space-between",
-          background: mapped ? "#eef9f1" : "#fff",
-        };
-
-        return h(
-          "div",
-          { key: `${badge_id}::${ref}`, style: rowStyle },
-          h(
-            "div",
-            { style: { flex: "1 1 auto" } },
-            h("div", { style: { fontWeight: 600, marginBottom: "4px" } }, `Req ${ref}`),
-            h("div", { style: { fontSize: "12px", color: "#555" } }, reqText(req))
-          ),
-          mapped
-            ? h(
-                "button",
-                { type: "button", style: btnStyle("remove"), onClick: () => this.removeReq(badge_id, ref) },
-                "Remove"
-              )
-            : h(
-                "button",
-                { type: "button", style: btnStyle("add"), onClick: () => this.addReq(badge_id, masterBadge, req) },
-                "Add"
-              )
+      async importLegacy() {
+        const ok = window.confirm(
+          "Import existing mapping from assets/data/stem_badge_map.json into this editor?\n\nThis will REPLACE the current badges list in _data/stem_badge_map.yml." 
         );
-      },
+        if (!ok) return;
 
-      renderBadgeCard(masterBadge) {
-        const badge_id = masterBadge.badge_id || masterBadge.id || masterBadge.slug;
-        const title = masterBadge.title || masterBadge.name || badge_id || "Badge";
-        const section = masterBadge.section || masterBadge.section_name || "";
-        const category = masterBadge.category || masterBadge.badge_category || "";
-        const open = !!this.state.open[badge_id];
-
-        const found = findBadgeInValue(this.state.value, badge_id);
-        const mappedCount = found.badge ? countMappedReqs(found.badge) : 0;
-
-        const cardStyle = {
-          border: "1px solid #ddd",
-          borderRadius: "10px",
-          overflow: "hidden",
-          marginBottom: "10px",
-          background: mappedCount > 0 ? "#eef9f1" : "#fff",
-        };
-
-        const headerStyle = {
-          padding: "10px 12px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          cursor: "pointer",
-        };
-
-        const metaStyle = { fontSize: "12px", color: "#666", marginTop: "2px" };
-
-        return h(
-          "div",
-          { key: badge_id, style: cardStyle },
-          h(
-            "div",
-            { style: headerStyle, onClick: () => this.toggleOpen(badge_id) },
-            h(
-              "div",
-              null,
-              h("div", { style: { fontWeight: 700 } }, title),
-              h("div", { style: metaStyle }, `${section}${section && category ? " · " : ""}${category}`)
-            ),
-            h("span", { style: pillStyle(mappedCount > 0) }, mappedCount > 0 ? `${mappedCount} mapped` : "—")
-          ),
-          open
-            ? h(
-                "div",
-                { style: { borderTop: "1px solid #e5e5e5" } },
-                safeArray(extractRequirements(masterBadge))
-                  .map((req) => this.renderReqRow(badge_id, masterBadge, req))
-                  .filter(Boolean),
-                h(
-                  "div",
-                  { style: { padding: "10px 12px", background: "#fafafa", fontSize: "12px", color: "#666" } },
-                  "Mapped requirements are saved to _data/stem_badge_map.yml (badges → stem_requirements)."
-                )
-              )
-            : null
-        );
+        try {
+          // In CMS, we're under /admin/ so go up one level
+          const r = await fetch("../assets/data/stem_badge_map.json", { cache: "no-store" });
+          if (!r.ok) throw new Error(`legacy JSON fetch failed: ${r.status}`);
+          const json = await r.json();
+          const importedBadges = normaliseImportedJSON(json);
+          const root = { badges: importedBadges };
+          this.setState({ message: `Imported ${importedBadges.length} badges from legacy JSON. Click Save.` });
+          this.emit(root);
+        } catch (e) {
+          console.error("[stem_badge_map_manager] import failed:", e);
+          this.setState({ message: `Import failed: ${String(e.message || e)}` });
+        }
       },
 
       render() {
-        const q = norm(this.state.q);
-        const master = safeArray(this.state.master);
+        const styles = {
+          header: { fontWeight: 700, fontSize: 18, marginBottom: 6 },
+          sub: { color: "#555", fontSize: 13, marginBottom: 12, lineHeight: 1.35 },
+          toolbar: { display: "flex", gap: 8, alignItems: "center", marginBottom: 12, flexWrap: "wrap" },
+          search: {
+            flex: "1 1 260px",
+            padding: "10px 12px",
+            borderRadius: 8,
+            border: "1px solid #cfcfcf",
+            fontSize: 14,
+          },
+          btn: {
+            padding: "10px 12px",
+            borderRadius: 8,
+            border: "1px solid #cfcfcf",
+            background: "#fff",
+            cursor: "pointer",
+            fontWeight: 600,
+          },
+          msg: { marginTop: 8, color: "#1f6feb", fontSize: 13 },
+          card: (mapped) => ({
+            border: "1px solid #e3e3e3",
+            borderRadius: 10,
+            padding: 12,
+            background: mapped ? "#ecf7ee" : "#fff",
+            marginBottom: 10,
+          }),
+          row: { display: "flex", justifyContent: "space-between", gap: 10, alignItems: "center" },
+          title: { fontWeight: 700, fontSize: 15 },
+          meta: { color: "#666", fontSize: 12, marginTop: 2 },
+          pill: (mapped) => ({
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            padding: "4px 8px",
+            borderRadius: 999,
+            border: "1px solid #d0d7de",
+            background: mapped ? "#d1f5d8" : "#f6f8fa",
+            fontSize: 12,
+            fontWeight: 600,
+            whiteSpace: "nowrap",
+          }),
+          toggle: {
+            border: "1px solid #d0d7de",
+            background: "#fff",
+            borderRadius: 999,
+            width: 34,
+            height: 28,
+            cursor: "pointer",
+          },
+          reqRow: {
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 12,
+            padding: "10px 0",
+            borderTop: "1px solid #efefef",
+          },
+          reqLeft: { flex: "1 1 auto" },
+          reqRef: { fontWeight: 700, fontSize: 13 },
+          reqText: { color: "#444", fontSize: 13, marginTop: 2 },
+          reqBtn: (primary) => ({
+            minWidth: 72,
+            padding: "8px 10px",
+            borderRadius: 8,
+            border: primary ? "1px solid #1f883d" : "1px solid #d0d7de",
+            background: primary ? "#1f883d" : "#fff",
+            color: primary ? "#fff" : "#111",
+            cursor: "pointer",
+            fontWeight: 700,
+          }),
+        };
 
-        // Filter badges by badge title OR requirement text
-        const filtered = q
-          ? master.filter((b) => {
-              const title = norm(b.title || b.name || b.badge_id || b.id || "");
-              if (title.includes(q)) return true;
-              const reqs = safeArray(extractRequirements(b));
-              return reqs.some((r) => norm(reqText(r)).includes(q) || norm(reqRef(r)).includes(q));
-            })
-          : master;
+        const idx = indexExisting(this.state.mapRoot.badges);
+        const q = String(this.state.query || "").trim().toLowerCase();
+
+        const filtered = (this.state.badges || []).filter((b) => {
+          if (!q) return true;
+
+          // Badge title / id match
+          const titleHit = (b._display || "").includes(q) || String(b.id || "").includes(q);
+          if (titleHit) return true;
+
+          // Requirement text match
+          return (b.requirements || []).some((r) => `${r.no}. ${r.text}`.toLowerCase().includes(q));
+        });
 
         return h(
           "div",
-          { style: Object.assign(cssBox(), { padding: "12px" }) },
-          h("div", { style: { fontSize: "18px", fontWeight: 800, marginBottom: "6px" } }, "STEM Badge Map Manager"),
+          { style: { padding: 2 } },
+          h("div", { style: styles.header }, "STEM Badge Map Manager"),
           h(
             "div",
-            { style: { color: "#666", fontSize: "13px", marginBottom: "12px" } },
-            "Search a badge, expand it, then Add/Remove individual requirements. This avoids flaky behaviour from many separate files."
+            { style: styles.sub },
+            "Search a badge, expand it, then Add/Remove individual requirements. Existing mapped content is loaded from _data/stem_badge_map.yml (badges → stem_requirements)."
           ),
-
-          h("input", {
-            type: "text",
-            value: this.state.q,
-            onInput: this.setQuery,
-            placeholder: "Search badge name or requirement text…",
-            style: {
-              width: "100%",
-              padding: "10px 12px",
-              borderRadius: "8px",
-              border: "1px solid #ccc",
-              marginBottom: "12px",
-              fontSize: "14px",
-            },
-          }),
-
+          h(
+            "div",
+            { style: styles.toolbar },
+            h("input", {
+              type: "search",
+              placeholder: "Search badge name or requirement text…",
+              value: this.state.query,
+              onInput: this.setQuery,
+              style: styles.search,
+            }),
+            h(
+              "button",
+              { type: "button", onClick: this.importLegacy, style: styles.btn },
+              "Import existing mapping"
+            )
+          ),
+          this.state.message ? h("div", { style: styles.msg }, this.state.message) : null,
           this.state.loading
-            ? h("div", { style: { color: "#666", padding: "8px 0" } }, "Loading badges…")
-            : null,
+            ? h("div", null, "Loading badges…")
+            : filtered.map((b) => {
+                const entry = idx.get(b.id);
+                const mappedCount = entry && entry.stem_requirements ? entry.stem_requirements.length : 0;
+                const isExpanded = !!this.state.expanded[b.id];
+                const badgeTitle = `${b.section} — ${b.title}`.trim();
+                const meta = `${b.section_slug} · ${b.category || ""}`.trim();
 
-          filtered.map((b) => this.renderBadgeCard(b)),
+                return h(
+                  "div",
+                  { key: b.id, style: styles.card(mappedCount > 0) },
+                  h(
+                    "div",
+                    { style: styles.row },
+                    h(
+                      "div",
+                      null,
+                      h("div", { style: styles.title }, badgeTitle),
+                      h("div", { style: styles.meta }, meta)
+                    ),
+                    h(
+                      "div",
+                      { style: { display: "flex", gap: 8, alignItems: "center" } },
+                      h(
+                        "span",
+                        { style: styles.pill(mappedCount > 0) },
+                        mappedCount > 0 ? `✅ ${mappedCount} mapped` : "—"
+                      ),
+                      h(
+                        "button",
+                        {
+                          type: "button",
+                          style: styles.toggle,
+                          onClick: () => this.toggleExpanded(b.id),
+                          title: isExpanded ? "Collapse" : "Expand",
+                        },
+                        isExpanded ? "–" : "+"
+                      )
+                    )
+                  ),
 
-          !this.state.loading && filtered.length === 0
-            ? h("div", { style: { color: "#666", padding: "8px 0" } }, "No badges match your search.")
-            : null
+                  isExpanded
+                    ? h(
+                        "div",
+                        null,
+                        (b.requirements || []).map((r) => {
+                          const mapped = entry ? !!findReqEntry(entry, r.no) : false;
+                          return h(
+                            "div",
+                            { key: `${b.id}::${r.no}`, style: styles.reqRow },
+                            h(
+                              "div",
+                              { style: styles.reqLeft },
+                              h("div", { style: styles.reqRef }, `Req ${r.no}`),
+                              h("div", { style: styles.reqText }, `${r.no}. ${r.text}`)
+                            ),
+                            mapped
+                              ? h(
+                                  "button",
+                                  {
+                                    type: "button",
+                                    style: styles.reqBtn(false),
+                                    onClick: () => this.removeReq(b.id, r.no),
+                                  },
+                                  "Remove"
+                                )
+                              : h(
+                                  "button",
+                                  {
+                                    type: "button",
+                                    style: styles.reqBtn(true),
+                                    onClick: () => this.addReq(b, r),
+                                  },
+                                  "Add"
+                                )
+                          );
+                        })
+                      )
+                    : null
+                );
+              })
         );
       },
     });
@@ -433,9 +565,10 @@
     return true;
   }
 
-  let tries = 0;
-  const t = setInterval(() => {
-    tries += 1;
-    if (register() || tries > 120) clearInterval(t);
-  }, 100);
+  // Register now / later
+  if (!register()) {
+    const t = setInterval(() => {
+      if (register()) clearInterval(t);
+    }, 50);
+  }
 })();
