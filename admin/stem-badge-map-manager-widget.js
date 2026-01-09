@@ -4,6 +4,27 @@
   }
 
   // ----------------------------
+  // Configurable options (edit to taste)
+  // ----------------------------
+  const AREA_OPTIONS = [
+    "Coding",
+    "Electronics",
+    "Engineering",
+    "Design",
+    "Science",
+    "Maths",
+    "Digital making",
+    "Craft & build",
+    "Sustainability",
+  ];
+
+  const STRENGTH_OPTIONS = [
+    { value: "strong", label: "Strong" },
+    { value: "medium", label: "Medium" },
+    { value: "light", label: "Light" },
+  ];
+
+  // ----------------------------
   // Data loaders
   // ----------------------------
   let _badges = null;
@@ -103,7 +124,6 @@
   function toPlain(v) {
     let out = v;
     if (out && typeof out.get === "function") {
-      // Immutable
       try {
         out = out.toJS();
       } catch (e) {
@@ -119,14 +139,10 @@
 
     if (Array.isArray(v)) return v;
 
-    // Recover from the broken nesting (badges: { badges: [...] })
+    // Recover from broken nesting (badges: { badges: [...] })
     if (v && typeof v === "object" && Array.isArray(v.badges)) return v.badges;
 
     return [];
-  }
-
-  function clone(obj) {
-    return JSON.parse(JSON.stringify(obj || {}));
   }
 
   function cloneArr(arr) {
@@ -231,9 +247,10 @@
           loading: true,
           badges: [],
           query: "",
-          expanded: {},      // badge_id -> bool
+          expanded: {},          // badge_id -> bool
+          reqExpanded: {},       // "badge_id::reqNo" -> bool
           valueHash: "",
-          mappedBadges: [],  // ARRAY of mapped badge entries
+          mappedBadges: [],      // ARRAY of mapped badge entries
           message: "",
           lastNonEmptyHash: "",
         };
@@ -281,7 +298,6 @@
           if (!ok) return;
         }
 
-        // FIELD VALUE MUST BE AN ARRAY
         this.props.onChange(nextArr);
       },
 
@@ -293,6 +309,12 @@
         const expanded = Object.assign({}, this.state.expanded);
         expanded[badgeId] = !expanded[badgeId];
         this.setState({ expanded });
+      },
+
+      toggleReqDetails(key) {
+        const reqExpanded = Object.assign({}, this.state.reqExpanded);
+        reqExpanded[key] = !reqExpanded[key];
+        this.setState({ reqExpanded });
       },
 
       addReq(badge, req) {
@@ -350,6 +372,47 @@
         this.emit(arr);
       },
 
+      // ---- NEW: update fields for a mapped requirement ----
+      updateReqField(badgeId, reqNo, field, value) {
+        const arr = cloneArr(this.state.mappedBadges);
+        const i = arr.findIndex((b) => b && String(b.badge_id) === String(badgeId));
+        if (i < 0) return;
+
+        const entry = arr[i];
+        const req = (entry.stem_requirements || []).find(
+          (r) => String(r.ref || "") === String(reqNo) || String(r.rid || "").endsWith(`::${String(reqNo)}`)
+        );
+        if (!req) return;
+
+        req[field] = value;
+
+        // Normalise types
+        if (field === "areas" && !Array.isArray(req.areas)) req.areas = [];
+        if (field === "leader_prompts" && !Array.isArray(req.leader_prompts)) req.leader_prompts = [];
+
+        this.emit(arr);
+      },
+
+      toggleArea(badgeId, reqNo, area) {
+        const arr = cloneArr(this.state.mappedBadges);
+        const i = arr.findIndex((b) => b && String(b.badge_id) === String(badgeId));
+        if (i < 0) return;
+
+        const entry = arr[i];
+        const req = (entry.stem_requirements || []).find(
+          (r) => String(r.ref || "") === String(reqNo) || String(r.rid || "").endsWith(`::${String(reqNo)}`)
+        );
+        if (!req) return;
+
+        req.areas = Array.isArray(req.areas) ? req.areas : [];
+        const set = new Set(req.areas.map(String));
+        if (set.has(String(area))) set.delete(String(area));
+        else set.add(String(area));
+        req.areas = Array.from(set);
+
+        this.emit(arr);
+      },
+
       async importLegacy() {
         const ok = window.confirm(
           "Import existing mapping from assets/data/stem_badge_map.json?\n\nThis will REPLACE the current mapping."
@@ -366,7 +429,7 @@
             message: `Imported ${imported.length} badges. Click Save.`,
           });
 
-          this.emit(imported); // ARRAY (correct)
+          this.emit(imported);
         } catch (e) {
           console.error("[stem_badge_map_manager] import failed:", e);
           this.setState({ message: `Import failed: ${String(e.message || e)}` });
@@ -392,11 +455,32 @@
           reqRef: { fontWeight: 700, fontSize: 13 },
           reqText: { color: "#444", fontSize: 13, marginTop: 2 },
           reqBtn: (primary) => ({ minWidth: 72, padding: "8px 10px", borderRadius: 8, border: primary ? "1px solid #1f883d" : "1px solid #d0d7de", background: primary ? "#1f883d" : "#fff", color: primary ? "#fff" : "#111", cursor: "pointer", fontWeight: 700 }),
+          smallBtn: { padding: "6px 10px", borderRadius: 999, border: "1px solid #d0d7de", background: "#fff", cursor: "pointer", fontWeight: 700, fontSize: 12 },
+          detailsBox: { marginTop: 10, padding: 10, borderRadius: 10, border: "1px dashed #c9c9c9", background: "#fff" },
+          label: { display: "block", fontSize: 12, fontWeight: 700, color: "#444", marginTop: 10, marginBottom: 4 },
+          select: { width: "220px", padding: "8px 10px", borderRadius: 8, border: "1px solid #cfcfcf" },
+          textarea: { width: "100%", minHeight: 70, padding: "8px 10px", borderRadius: 8, border: "1px solid #cfcfcf", resize: "vertical" },
+          areasWrap: { display: "flex", flexWrap: "wrap", gap: 8, marginTop: 6 },
+          areaChip: (on) => ({
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            padding: "6px 10px",
+            borderRadius: 999,
+            border: "1px solid #d0d7de",
+            background: on ? "#dbeafe" : "#f6f8fa",
+            cursor: "pointer",
+            fontSize: 12,
+            fontWeight: 600,
+            userSelect: "none",
+          }),
         };
 
+        // Index mapped badges
         const idx = indexExisting(this.state.mappedBadges);
         const q = String(this.state.query || "").trim().toLowerCase();
 
+        // Search matches badge title OR req text
         const filtered = (this.state.badges || []).filter((b) => {
           if (!q) return true;
           const titleHit = (b._display || "").includes(q) || String(b.id || "").includes(q);
@@ -408,7 +492,7 @@
           "div",
           { style: { padding: 2 } },
           h("div", { style: styles.header }, "STEM Badge Map Manager"),
-          h("div", { style: styles.sub }, "Expand a badge, then Add/Remove individual requirements. This editor writes directly to the 'badges' array in _data/stem_badge_map.yml."),
+          h("div", { style: styles.sub }, "Expand a badge, then Add/Remove individual requirements. For mapped requirements, open Details to add Strength / Areas / Why STEM / Leader prompts."),
           h(
             "div",
             { style: styles.toolbar },
@@ -439,16 +523,102 @@
                       h("button", { type: "button", style: styles.toggle, onClick: () => this.toggleExpanded(b.id), title: isExpanded ? "Collapse" : "Expand" }, isExpanded ? "–" : "+")
                     )
                   ),
+
                   isExpanded
                     ? h(
                         "div",
                         null,
                         (b.requirements || []).map((r) => {
-                          const mapped = entry ? !!findReqEntry(entry, r.no) : false;
+                          const mappedReq = entry ? findReqEntry(entry, r.no) : null;
+                          const mapped = !!mappedReq;
+                          const key = `${b.id}::${r.no}`;
+                          const showDetails = !!this.state.reqExpanded[key];
+
                           return h(
                             "div",
-                            { key: `${b.id}::${r.no}`, style: styles.reqRow },
-                            h("div", { style: styles.reqLeft }, h("div", { style: styles.reqRef }, `Req ${r.no}`), h("div", { style: styles.reqText }, `${r.no}. ${r.text}`)),
+                            { key, style: styles.reqRow },
+                            h(
+                              "div",
+                              { style: styles.reqLeft },
+                              h(
+                                "div",
+                                { style: { display: "flex", justifyContent: "space-between", gap: 10, alignItems: "center" } },
+                                h("div", null,
+                                  h("div", { style: styles.reqRef }, `Req ${r.no}`),
+                                  h("div", { style: styles.reqText }, `${r.no}. ${r.text}`)
+                                ),
+                                mapped
+                                  ? h(
+                                      "button",
+                                      { type: "button", style: styles.smallBtn, onClick: () => this.toggleReqDetails(key) },
+                                      showDetails ? "Hide details" : "Details"
+                                    )
+                                  : null
+                              ),
+
+                              mapped && showDetails
+                                ? h(
+                                    "div",
+                                    { style: styles.detailsBox },
+
+                                    // Strength
+                                    h("label", { style: styles.label }, "Strength"),
+                                    h(
+                                      "select",
+                                      {
+                                        style: styles.select,
+                                        value: (mappedReq.strength || "strong"),
+                                        onChange: (e) => this.updateReqField(b.id, r.no, "strength", e.target.value),
+                                      },
+                                      STRENGTH_OPTIONS.map((opt) =>
+                                        h("option", { key: opt.value, value: opt.value }, opt.label)
+                                      )
+                                    ),
+
+                                    // Areas
+                                    h("label", { style: styles.label }, "Areas"),
+                                    h(
+                                      "div",
+                                      { style: styles.areasWrap },
+                                      AREA_OPTIONS.map((area) => {
+                                        const on = Array.isArray(mappedReq.areas) && mappedReq.areas.map(String).includes(String(area));
+                                        return h(
+                                          "span",
+                                          { key: area, style: styles.areaChip(on), onClick: () => this.toggleArea(b.id, r.no, area), role: "button", title: "Toggle" },
+                                          on ? "✓" : "+",
+                                          " ",
+                                          area
+                                        );
+                                      })
+                                    ),
+
+                                    // Why STEM
+                                    h("label", { style: styles.label }, "Why STEM (short explanation)"),
+                                    h("textarea", {
+                                      style: styles.textarea,
+                                      value: mappedReq.why_stem || "",
+                                      onInput: (e) => this.updateReqField(b.id, r.no, "why_stem", e.target.value),
+                                      placeholder: "e.g. Links to problem-solving, design thinking, electronics, coding…",
+                                    }),
+
+                                    // Leader prompts
+                                    h("label", { style: styles.label }, "Leader prompts (one per line)"),
+                                    h("textarea", {
+                                      style: styles.textarea,
+                                      value: Array.isArray(mappedReq.leader_prompts) ? mappedReq.leader_prompts.join("\n") : "",
+                                      onInput: (e) => {
+                                        const lines = String(e.target.value || "")
+                                          .split("\n")
+                                          .map((s) => s.trim())
+                                          .filter(Boolean);
+                                        this.updateReqField(b.id, r.no, "leader_prompts", lines);
+                                      },
+                                      placeholder: "Ask: What did you change when it didn’t work?\nAsk: What would you improve next time?",
+                                    })
+                                  )
+                                : null
+                            ),
+
                             mapped
                               ? h("button", { type: "button", style: styles.reqBtn(false), onClick: () => this.removeReq(b.id, r.no) }, "Remove")
                               : h("button", { type: "button", style: styles.reqBtn(true), onClick: () => this.addReq(b, r) }, "Add")
