@@ -30,8 +30,9 @@ Add badge metadata for filtering and search.
           {%- assign badge_search = badge_search | append: " " | append: badge_name -%}
 
           {%- if badge_obj and bl.requirements_met and bl.requirements_met.size > 0 -%}
+            {%- assign reqs = badge_obj.requirements | where_exp: "r", "r.kind == 'req' or r.kind == nil" -%}
             {%- for rid in bl.requirements_met -%}
-              {%- assign req = badge_obj.requirements | where: "id", rid | first -%}
+              {%- assign req = reqs | where: "id", rid | first -%}
               {%- if req and req.text -%}
                 {%- assign badge_search = badge_search | append: " " | append: req.text -%}
               {%- endif -%}

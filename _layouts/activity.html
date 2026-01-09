@@ -216,9 +216,10 @@ So we place the section IDs on the <h3> headings below (not on the <section> wra
           </div>
 
           {% if badge_obj and bl.requirements_met and bl.requirements_met.size > 0 %}
+            {% assign reqs = badge_obj.requirements | where_exp: "r", "r.kind == 'req' or r.kind == nil" %}
             <ul style="margin: .5rem 0 0 1.25rem;">
               {% for rid in bl.requirements_met %}
-                {% assign req = badge_obj.requirements | where: "id", rid | first %}
+                {% assign req = reqs | where: "id", rid | first %}
                 {% if req and req.text %}
                   <li><strong>{{ rid }}.</strong> {{ req.text }}</li>
                 {% else %}

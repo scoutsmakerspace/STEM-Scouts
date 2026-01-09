@@ -11,7 +11,7 @@ sections:
   - cubs
   - scouts
 partner_name: The Royal Air Force
-url: https://www.scouts.org.uk/supporters/raf/
+official_url: https://www.scouts.org.uk/supporters/raf/
 status: active
 last_checked: 2026-01-09
 ---

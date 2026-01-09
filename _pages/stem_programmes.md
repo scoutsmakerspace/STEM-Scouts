@@ -12,26 +12,14 @@ This page is a growing directory of programmes and resources leaders may want to
 > Items marked **Wider youth STEM programme** are not run by Scouts — leaders should review suitability, safeguarding, and requirements before use.
 
 {% assign items = site.stem_programmes %}
+{% assign cats = site.programme_categories | sort: "order" %}
 
-## National / UK-wide programmes
-{% assign group = items | where: "category", "national" | sort: "title" %}
+{% for c in cats %}
+## {{ c.title }}
+{% assign group = items | where: "category", c.key | sort: "title" %}
 {% include stem_programmes_list.html items=group %}
 
-## Radio & space
-{% assign group = items | where: "category", "radio_space" | sort: "title" %}
-{% include stem_programmes_list.html items=group %}
-
-## Digital skills & coding
-{% assign group = items | where: "category", "digital_coding" | sort: "title" %}
-{% include stem_programmes_list.html items=group %}
-
-## Environment & science
-{% assign group = items | where: "category", "environment_science" | sort: "title" %}
-{% include stem_programmes_list.html items=group %}
-
-## Other
-{% assign group = items | where: "category", "other" | sort: "title" %}
-{% include stem_programmes_list.html items=group %}
+{% endfor %}
 
 ## Suggest a programme
 If you know a programme that should be listed here, add it via the CMS (recommended) or via a GitHub PR.

@@ -29,6 +29,11 @@
       })
       .then((json) => {
         const arr = normalizeBadgesPayload(json);
+        const cleanReqText = (t) => {
+          const s = String(t || '').trim();
+          return s.replace(/^\s*\d+\s*[\.\)\-:]\s*/, '');
+        };
+
         _badges = (arr || []).map((b) => {
           const title = (b.badge_name || b.title || b.badge || '').toString().trim();
           const section = (b.section || '').toString().trim();
@@ -37,10 +42,10 @@
 
           const reqs = Array.isArray(b.requirements) ? b.requirements : [];
           const requirements = reqs
-            .filter((r) => r && (r.id != null || r.no != null || r.ref != null) && (r.text || r.requirement))
+            .filter((r) => r && (r.kind === 'req' || r.kind == null) && (r.id != null || r.no != null || r.ref != null) && (r.text || r.requirement))
             .map((r) => {
               const ref = String(r.ref ?? r.id ?? r.no).trim();
-              const text = String(r.text ?? r.requirement).trim();
+              const text = cleanReqText(r.text ?? r.requirement);
               const rid = String(r.rid ?? (b.id + '::' + ref));
               return { ref, rid, text };
             });
@@ -149,9 +154,33 @@
         this.emit({ badge_id: this.state.badge_id, req: cur });
       },
 
+      getSelectedBadge() {
+        return this.state.badge_id
+          ? this.state.badges.find((b) => b.id === this.state.badge_id)
+          : null;
+      },
+
+      clearReq(ref) {
+        const cur = Object.assign({}, this.state.req);
+        delete cur[ref];
+        this.setState({ req: cur });
+        this.emit({ badge_id: this.state.badge_id, req: cur });
+      },
+
       toggleInclude(ref) {
         const cur = this.state.req[ref] || {};
-        this.setReqField(ref, { include: !cur.include });
+        const nextInclude = !cur.include;
+
+        // When turning ON, snapshot the official requirement text so the site
+        // can still render sensibly even if the base map is missing/old.
+        let textPatch = {};
+        if (nextInclude && !(cur.text && String(cur.text).trim())) {
+          const badge = this.getSelectedBadge();
+          const r = badge ? (badge.requirements || []).find((x) => String(x.ref) === String(ref)) : null;
+          if (r && r.text) textPatch = { text: r.text };
+        }
+
+        this.setReqField(ref, { include: nextInclude, ...textPatch });
       },
 
       addPrompt(ref) {
@@ -261,6 +290,16 @@
                               },
                               h('option', { value: 'strong' }, 'Strong'),
                               h('option', { value: 'borderline' }, 'Borderline')
+                            ),
+                            h(
+                              'button',
+                              {
+                                type: 'button',
+                                onClick: () => this.clearReq(ref),
+                                style: { padding: '6px 8px' },
+                                title: 'Remove this requirement mapping completely'
+                              },
+                              'Remove'
                             )
                           ),
 

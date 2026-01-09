@@ -19,13 +19,28 @@
       .then((json) => {
         const arr = Array.isArray(json) ? json : (Array.isArray(json.badges) ? json.badges : []);
         // Precompute display text for searching
+        const cleanReqText = (t) => {
+          const s = String(t || '').trim();
+          // Strip leading "1." / "1)" / "1 -" etc if present
+          return s.replace(/^\s*\d+\s*[\.\)\-:]\s*/, '');
+        };
+
         _badges = (arr || []).map((b) => ({
           id: b.id,
           section: b.section,
           category: b.category,
           title: b.badge_name || b.badge || b.title || b.id,
-          requirements: Array.isArray(b.requirements) ? b.requirements : [],
-          _display: `${b.section || ""} — ${(b.badge_name || b.title || b.id) || ""} — ${b.category || ""}`.trim(),
+          // Only keep real numbered requirements (ignore headings)
+          requirements: Array.isArray(b.requirements)
+            ? b.requirements
+                .filter((r) => r && r.kind === 'req' && (r.id != null || r.no != null) && (r.text || '').trim() !== '')
+                .map((r) => ({
+                  id: String(r.id ?? r.no).trim(),
+                  no: String(r.no ?? r.id).trim(),
+                  text: cleanReqText(r.text),
+                }))
+            : [],
+          _display: `${b.section_label || b.section || ""} — ${(b.badge_name || b.title || b.id) || ""}`.trim(),
         }));
         console.log("[badge_link] loaded badges:", _badges.length);
         return _badges;
@@ -239,7 +254,7 @@
                             style: { marginTop: 3 },
                           }),
                           h("div", null,
-                            h("div", { style: { fontWeight: 600 } }, `${r.id}.`),
+                            h("div", { style: { fontWeight: 600 } }, `${r.no || r.id}.`),
                             h("div", null, r.text)
                           )
                         )

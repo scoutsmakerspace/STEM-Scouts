@@ -15,6 +15,22 @@ media_folder: assets/images/uploads
 public_folder: /assets/images/uploads
 
 collections:
+  - name: programme_categories
+    label: Programme Categories
+    label_singular: Programme Category
+    folder: _programme_categories
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    editor:
+      preview: false
+    fields:
+      - { label: Key, name: key, widget: string, hint: "Internal id used for grouping (e.g. radio_space). Keep stable once used." }
+      - { label: Title, name: title, widget: string }
+      - { label: Order, name: order, widget: number, value_type: int, default: 50 }
+
   - name: activities
     label: Activities
     label_singular: Activity
@@ -315,13 +331,11 @@ collections:
 
       - label: Category
         name: category
-        widget: select
-        options:
-          - { label: "National / UK-wide programmes", value: national }
-          - { label: "Radio & space", value: radio_space }
-          - { label: "Digital skills & coding", value: digital_coding }
-          - { label: "Environment & science", value: environment_science }
-          - { label: Other, value: other }
+        widget: relation
+        collection: programme_categories
+        search_fields: [title, key]
+        value_field: key
+        display_fields: [title]
 
       - label: Target sections
         name: sections
@@ -335,7 +349,7 @@ collections:
           - { label: Explorers, value: explorers }
 
       - { label: "Partner organisation (optional)", name: partner_name, widget: string, required: false }
-      - { label: "Official link", name: url, widget: string }
+      - { label: "Official link", name: official_url, widget: string }
 
       - label: "Status (optional)"
         name: status
