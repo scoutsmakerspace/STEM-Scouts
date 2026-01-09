@@ -16,6 +16,7 @@ classes: activities-index
     <div class="section-quicklinks">
       <span class="section-quicklinks__label">Browse by section</span>
       <a class="section-chip section-chip--active" href="{{ '/activities/' | relative_url }}">All</a>
+      <a class="section-chip" href="{{ '/squirrels/' | relative_url }}">Squirrels</a>
       <a class="section-chip" href="{{ '/beavers/' | relative_url }}">Beavers</a>
       <a class="section-chip" href="{{ '/cubs/' | relative_url }}">Cubs</a>
       <a class="section-chip" href="{{ '/scouts/' | relative_url }}">Scouts</a>

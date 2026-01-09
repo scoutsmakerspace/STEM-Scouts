@@ -17,6 +17,68 @@
 
   const norm = (s) => String(s || '').toLowerCase();
 
+  function applyOverrides(badges, overrides) {
+    if (!Array.isArray(overrides) || overrides.length === 0) return badges;
+
+    const byId = new Map(badges.map(b => [b.badge_id, b]));
+
+    for (const ov of overrides) {
+      if (!ov || !ov.badge_id || !ov.requirement_ref) continue;
+      const action = (ov.action || 'include');
+
+      let badge = byId.get(ov.badge_id);
+
+      if (!badge) {
+        // Create badge container only if we are including something
+        if (action !== 'include') continue;
+        badge = {
+          badge_id: ov.badge_id,
+          title: ov.badge_title || ov.badge_id,
+          section: ov.section || '',
+          section_slug: ov.section_slug || '',
+          category: ov.category || '',
+          badge_type: ov.badge_type || '',
+          stem_requirements: []
+        };
+        byId.set(ov.badge_id, badge);
+      }
+
+      const reqs = Array.isArray(badge.stem_requirements) ? badge.stem_requirements : (badge.stem_requirements = []);
+      const idx = reqs.findIndex(r => r && r.ref === ov.requirement_ref);
+
+      if (action === 'exclude') {
+        if (idx >= 0) reqs.splice(idx, 1);
+        if (reqs.length === 0) {
+          byId.delete(ov.badge_id);
+        }
+        continue;
+      }
+
+      // include (add or update)
+      const next = {
+        rid: ov.rid || (ov.badge_id + '::' + ov.requirement_ref),
+        ref: ov.requirement_ref,
+        text: ov.requirement_text || '',
+        strength: ov.strength || 'borderline',
+        areas: Array.isArray(ov.areas) ? ov.areas : [],
+        why_stem: ov.why_stem || '',
+        leader_prompts: Array.isArray(ov.leader_prompts) ? ov.leader_prompts : []
+      };
+
+      if (idx >= 0) reqs[idx] = next;
+      else reqs.push(next);
+    }
+
+    const out = Array.from(byId.values());
+    // stable sort by section then title
+    out.sort((a, b) => {
+      const sa = (a.section || '').localeCompare(b.section || '');
+      if (sa !== 0) return sa;
+      return (a.title || '').localeCompare(b.title || '');
+    });
+    return out;
+  }
+
   function buildSections(badges) {
     const set = new Set(badges.map(b => b.section));
     const sections = Array.from(set).sort((a,b) => a.localeCompare(b));
@@ -119,7 +181,8 @@
       return r.json();
     })
     .then(data => {
-      const badges = (data && data.badges) ? data.badges : [];
+      const baseBadges = (data && data.badges) ? data.badges : [];
+      const badges = applyOverrides(baseBadges, window.STEM_MAP_OVERRIDES || []);
       const sections = buildSections(badges);
       populateSectionSelect(sections);
 

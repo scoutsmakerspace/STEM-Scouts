@@ -52,6 +52,7 @@ collections:
         widget: select
         multiple: true
         options:
+          - { label: Squirrels, value: squirrels }
           - { label: Beavers, value: beavers }
           - { label: Cubs, value: cubs }
           - { label: Scouts, value: scouts }
@@ -262,6 +263,7 @@ collections:
         widget: select
         multiple: true
         options:
+          - { label: Squirrels, value: squirrels }
           - { label: Beavers, value: beavers }
           - { label: Cubs, value: cubs }
           - { label: Scouts, value: scouts }
@@ -326,6 +328,7 @@ collections:
         widget: select
         multiple: true
         options:
+          - { label: Squirrels, value: squirrels }
           - { label: Beavers, value: beavers }
           - { label: Cubs, value: cubs }
           - { label: Scouts, value: scouts }
@@ -369,3 +372,27 @@ collections:
         fields:
           - { label: No, name: no, widget: number, value_type: int, required: false }
           - { label: Text, name: text, widget: text }
+
+  # =========================
+  # STEM badge mapping overrides (curation layer)
+  # =========================
+  - name: stem_map
+    label: "STEM Badge Map"
+    label_singular: "Override"
+    files:
+      - file: "_data/stem_map_overrides.json"
+        label: "Overrides"
+        name: "overrides"
+        format: "json"
+        fields:
+          - label: "Overrides"
+            name: "overrides"
+            widget: "list"
+            required: false
+            collapsed: false
+            summary: "{{fields.action}} — {{fields.badge_title}} — {{fields.requirement_ref}}"
+            field:
+              label: "Override"
+              name: "item"
+              widget: "stem_map_override"
+              required: false

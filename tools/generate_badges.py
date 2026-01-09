@@ -66,31 +66,42 @@ def main() -> None:
         category = str(b.get("category") or "").strip()
         badge_type = str(b.get("type") or "").strip()
         completion_rules = str(b.get("completion_rules") or "").strip()
-        requirements = b.get("requirements") or []
+        # requirements can include headings + reqs (from CSV parser)
+        requirements_all = b.get("requirements") or []
+        requirements = [r for r in requirements_all if isinstance(r, dict) and r.get("kind") in (None, "req")]
 
         # YAML front matter (simple + safe)
+        title_escaped = title.replace('"', '\\"')
+        cat_escaped = category.replace('"', '\\"') if category else ""
+        type_escaped = badge_type.replace('"', '\\"') if badge_type else ""
+        rules_escaped = completion_rules.replace('"', '\\"') if completion_rules else ""
+
         lines = [
             "---",
             "layout: badge",
-            f'title: "{title.replace("\"", "\\\"")}"',
+            f'title: "{title_escaped}"',
             f'id: "{bid}"',
             f'section: "{section}"',
         ]
         if category:
-            lines.append(f'category: "{category.replace("\"", "\\\"")}"')
+            lines.append(f'category: "{cat_escaped}"')
         if badge_type:
-            lines.append(f'badge_type: "{badge_type.replace("\"", "\\\"")}"')
+            lines.append(f'badge_type: "{type_escaped}"')
         if completion_rules:
-            lines.append(f'completion_rules: "{completion_rules.replace("\"", "\\\"")}"')
+            lines.append(f'completion_rules: "{rules_escaped}"')
 
         # requirements list
         if isinstance(requirements, list) and requirements:
-            lines.append(f"requirements_count: {sum(1 for r in requirements if isinstance(r, dict) and r.get('no') is not None)}")
+            lines.append(
+                f"requirements_count: {sum(1 for r in requirements if isinstance(r, dict) and (r.get('no') is not None or r.get('id')))}"
+            )
             lines.append("requirements:")
             for r in requirements:
                 if not isinstance(r, dict):
                     continue
                 no = r.get("no", None)
+                if (no is None or no == "") and r.get("id"):
+                    no = r.get("id")
                 text = str(r.get("text") or "").strip()
                 # keep non-numbered lines too
                 if no is None or no == "":
@@ -115,6 +126,8 @@ def main() -> None:
                 if not isinstance(r, dict):
                     continue
                 no = r.get("no", None)
+                if (no is None or no == "") and r.get("id"):
+                    no = r.get("id")
                 text = str(r.get("text") or "").strip()
                 if no is None or no == "":
                     lines.append(f"- {text}")
