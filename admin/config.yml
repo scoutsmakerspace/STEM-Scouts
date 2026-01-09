@@ -375,19 +375,16 @@ collections:
 
   # =========================
   # STEM badge mapping (curation layer)
-  # Single file to avoid create/delete inconsistencies.
+  # Single source of truth edited via a manager UI.
   # =========================
   - name: stem_badge_map
     label: "STEM Badge Map"
+    label_singular: "STEM Badge Map"
     files:
-      - label: "Badge mapping"
-        name: "badge_mapping"
-        file: "_data/stem_badge_map.yml"
-        extension: "yml"
-        format: "yml"
-        editor:
-          preview: false
+      - file: "_data/stem_badge_map.yml"
+        label: "Badge mapping"
+        name: "stem_badge_map"
         fields:
-          - label: "STEM Badge Map"
-            name: "map"
+          - label: "STEM Badge Map Manager"
+            name: "badges"
             widget: "stem_badge_map_manager"

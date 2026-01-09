@@ -37,8 +37,8 @@
 
 <script>window.siteBaseUrl = "{{ site.baseurl }}";</script>
 <script>
-  // Decap stores the single-file map under `map:` (config field name).
-  // Keep backward compatibility if we ever move it to the root.
-  window.STEM_OVERRIDES = {{ site.data.stem_badge_map.map | default: site.data.stem_badge_map | jsonify }};
+  // Single source of truth for the curated STEM mapping.
+  // This is edited via the CMS "STEM Badge Map" manager.
+  window.STEM_BADGE_MAP_DATA = {{ site.data.stem_badge_map | jsonify }};
 </script>
 <script defer src="{{ '/assets/js/stem-badge-map.js' | relative_url }}"></script>
