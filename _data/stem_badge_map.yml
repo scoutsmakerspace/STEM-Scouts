@@ -4509,3 +4509,17 @@ badges:
         leader_prompts:
           - "Ask: What was your constraint? What did you change to improve it?
             What would you try next?"
+  - badge_id: beavers-collector
+    title: Collector
+    section: Beavers
+    section_slug: beavers
+    category: Activity Badges
+    badge_type: Activity
+    stem_requirements:
+      - rid: beavers-collector::1
+        ref: "1"
+        text: 1. Spend at least six weeks making a collection.
+        strength: strong
+        areas: []
+        why_stem: ""
+        leader_prompts: []
