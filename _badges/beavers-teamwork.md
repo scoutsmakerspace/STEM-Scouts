@@ -1,30 +1,25 @@
 ---
-title: Teamwork
-id: beavers-teamwork
-section: beavers
-category: Challenge Awards
-badge_type: Challenge Award
-completion_rules: Complete ALL 6 requirements
+layout: badge
+title: "Teamwork"
+id: "beavers-teamwork"
+section: "beavers"
+category: "Challenge Awards"
+badge_type: "Challenge Award"
+completion_rules: "Complete ALL 6 requirements"
 requirements_count: 6
 requirements:
-- id: '1'
-  'no': 1
-  text: Take part in at least four different team games.
-- id: '2'
-  'no': 2
-  text: Work with other Beaver Scouts to make something or complete a challenge or activity together.
-- id: '3'
-  'no': 3
-  text: Show your leader that you are a helpful team member.
-- id: '4'
-  'no': 4
-  text: Take part in at least two Log Chews.
-- id: '5'
-  'no': 5
-  text: Be a leader in an activity or captain of a team.
-- id: '6'
-  'no': 6
-  text: Show that you are a good friend.
+  - no: 1
+    text: "Take part in at least four different team games."
+  - no: 2
+    text: "Work with other Beaver Scouts to make something or complete a challenge or activity together."
+  - no: 3
+    text: "Show your leader that you are a helpful team member."
+  - no: 4
+    text: "Take part in at least two Log Chews."
+  - no: 5
+    text: "Be a leader in an activity or captain of a team."
+  - no: 6
+    text: "Show that you are a good friend."
 ---
 
 ## Requirements
