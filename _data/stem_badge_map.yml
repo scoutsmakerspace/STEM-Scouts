@@ -3,22 +3,4 @@ map:
   badges:
     beavers-animal-friend:
       badge_title: Beavers — Animal Friend
-      req:
-        "1":
-          include: true
-          text: 1. Learn how to care for an animal.
-          strength: strong
-          areas:
-            - Computing & programming
-          why_stem: sdasdas
-          leader_prompts:
-            - asdsad
-        "3":
-          include: true
-          text: 3. Keep a note of how you have looked after the animal for four weeks.
-          strength: strong
-          areas:
-            - Engineering & design
-          why_stem: weqwewqqqwe
-          leader_prompts:
-            - wewqewqe
+      req: {}
