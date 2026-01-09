@@ -1,0 +1,12 @@
+override:
+  badge_id: beavers-chief-scout-s-bronze-award
+  req:
+    PREREQUISITE BADGES (all required) 5:
+      include: true
+      strength: strong
+      areas:
+        - Computing & programming
+        - Engineering & design
+      why_stem: fsadfsdfds
+      leader_prompts: []
+      text: Teamwork
