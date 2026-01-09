@@ -9,7 +9,15 @@ This page links to official badge requirement pages / trusted references where a
 
 (We avoid copying requirement text so links stay current.)
 
+---
+
+## STEM badge requirement map
+
 {% include stem_badge_map.html %}
+
+---
+
+## Official links
 
 {% for section in site.data.badges %}
 ## {{ section.section_name }}

@@ -1,88 +1,34 @@
-{% comment %}
-STEM badge mapping embed for /badges/
-Loads JSON via data-json-url (respects baseurl) and renders a compact, filterable list.
-{% endcomment %}
-
-<section class="stem-map">
-  <h2 id="stem-badge-mapping">STEM Badge Mapping</h2>
-  <p class="stem-map__intro">
-    Quickly spot <strong>badge requirements</strong> that fit STEM activities (including <em>borderline</em> ones with a clear justification).
-    Use filters to keep it tidy.
-  </p>
-
-  <div class="stem-map__panel" data-json-url="{{ '/assets/data/stem_badge_map.json' | relative_url }}">
-    <div class="stem-map__controls">
-      <div class="stem-map__row">
-        <label class="stem-map__label">
-          <span>Section</span>
-          <select id="stemMapSection">
-            <option value="all">All sections</option>
-            <option value="universal">Staged / universal</option>
-            <option value="squirrels">Squirrels</option>
-            <option value="beavers">Beavers</option>
-            <option value="cubs">Cubs</option>
-            <option value="scouts">Scouts</option>
-            <option value="explorers">Explorers</option>
-          </select>
-        </label>
-
-        <label class="stem-map__label">
-          <span>STEM area</span>
-          <select id="stemMapArea">
-            <option value="all">All STEM areas</option>
-            <option value="Coding &amp; digital">Coding &amp; digital</option>
-            <option value="Electronics &amp; circuits">Electronics &amp; circuits</option>
-            <option value="Science &amp; investigation">Science &amp; investigation</option>
-            <option value="Engineering &amp; design">Engineering &amp; design</option>
-            <option value="Radio &amp; space">Radio &amp; space</option>
-            <option value="Maths &amp; data">Maths &amp; data</option>
-          </select>
-        </label>
-
-        <label class="stem-map__label">
-          <span>Search</span>
-          <input id="stemMapSearch" type="text" placeholder="Try: debugging, circuit, fair test, antenna…" />
-        </label>
-
-        <label class="stem-map__label">
-          <span>Sort</span>
-          <select id="stemMapSort">
-            <option value="az">Badge A–Z</option>
-            <option value="section">By section</option>
-            <option value="reqcount">Most STEM requirements</option>
-          </select>
-        </label>
-      </div>
-
-      <div class="stem-map__row stem-map__row--small">
-        <label class="stem-map__check">
-          <input id="stemMapIncludeBorderline" type="checkbox" checked />
-          <span>Include borderline matches</span>
-        </label>
-        <label class="stem-map__check">
-          <input id="stemMapShowReasons" type="checkbox" checked />
-          <span>Show “why STEM” notes</span>
-        </label>
-        <label class="stem-map__check">
-          <input id="stemMapShowReqs" type="checkbox" />
-          <span>Expand all requirements</span>
-        </label>
-      </div>
+<div class="stem-badge-map" id="stemBadgeMap">
+  <div class="stem-badge-map__controls">
+    <div class="stem-badge-map__control">
+      <label for="stemSectionSelect"><strong>Section</strong></label>
+      <select id="stemSectionSelect"></select>
     </div>
 
-    <div class="stem-map__status" id="stemMapStatus" aria-live="polite"></div>
-    <div class="stem-map__results" id="stemMapResults"></div>
+    <div class="stem-badge-map__control">
+      <label for="stemSearchInput"><strong>Search</strong></label>
+      <input id="stemSearchInput" type="search" placeholder="Search badges or requirement text…" autocomplete="off" />
+    </div>
 
-    <details class="stem-map__how">
-      <summary>How this mapping works</summary>
-      <p>
-        The map is generated from the official requirement wording and tries to classify the <strong>skill</strong> being used (e.g., fair testing,
-        measuring, debugging, building circuits, designing and improving). Some requirements are marked <strong>Borderline</strong> when the STEM link
-        is about transferable STEM practice rather than an obvious topic.
-      </p>
-    </details>
+    <div class="stem-badge-map__control stem-badge-map__control--checkbox">
+      <label>
+        <input id="stemIncludeBorderline" type="checkbox" checked />
+        Include borderline links
+      </label>
+    </div>
   </div>
-</section>
 
-<link rel="stylesheet" href="{{ '/assets/css/stem-badge-map.css' | relative_url }}">
+  <p class="stem-badge-map__intro">
+    This is a curated map of badge requirements with a clear STEM link. Each included requirement has a short <em>Why STEM</em> justification.
+    Leader prompts are available on demand to help you run it in a meeting (age notes included where helpful).
+  </p>
+
+  <div id="stemBadgeMapResults" class="stem-badge-map__results" aria-live="polite"></div>
+
+  <p class="stem-badge-map__footnote">
+    Note: This page summarises STEM links and does not replace official badge requirements or programme guidance.
+  </p>
+</div>
+
+<script>window.siteBaseUrl = "{{ site.baseurl }}";</script>
 <script defer src="{{ '/assets/js/stem-badge-map.js' | relative_url }}"></script>

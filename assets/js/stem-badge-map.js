@@ -1,201 +1,145 @@
-(function () {
-  const root = document.querySelector(".stem-map__panel");
-  if (!root) return;
+(() => {
+  const DATA_URL = (window.siteBaseUrl || '') + '/assets/data/stem_badge_map.json';
 
-  const jsonUrl = root.getAttribute("data-json-url");
+  const elSection = document.getElementById('stemSectionSelect');
+  const elSearch = document.getElementById('stemSearchInput');
+  const elBorderline = document.getElementById('stemIncludeBorderline');
+  const elResults = document.getElementById('stemBadgeMapResults');
 
-  const elSection = document.getElementById("stemMapSection");
-  const elArea = document.getElementById("stemMapArea");
-  const elSearch = document.getElementById("stemMapSearch");
-  const elSort = document.getElementById("stemMapSort");
-  const elShowReasons = document.getElementById("stemMapShowReasons");
-  const elShowReqs = document.getElementById("stemMapShowReqs");
-  const elIncludeBorderline = document.getElementById("stemMapIncludeBorderline");
-  const elStatus = document.getElementById("stemMapStatus");
-  const elResults = document.getElementById("stemMapResults");
+  if (!elSection || !elSearch || !elBorderline || !elResults) return;
 
-  function norm(s) {
-    return String(s || "").toLowerCase().trim();
+  const escapeHtml = (s) => String(s)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+
+  const norm = (s) => String(s || '').toLowerCase();
+
+  function buildSections(badges) {
+    const set = new Set(badges.map(b => b.section));
+    const sections = Array.from(set).sort((a,b) => a.localeCompare(b));
+    // Put Staged first
+    sections.sort((a,b) => (a === 'Staged' ? -1 : b === 'Staged' ? 1 : a.localeCompare(b)));
+    return ['All', ...sections];
   }
 
-  function escapeHtml(s) {
-    return String(s || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
-  }
-
-  // Accept multiple JSON shapes so we can evolve the generator without breaking the page.
-  function normalizeData(data) {
-    if (!data) return [];
-
-    // Legacy shape: { stem_badges: [ { requirements: [...] } ] }
-    if (Array.isArray(data.stem_badges)) return data.stem_badges;
-
-    // New shape: { badges: [ { stem_requirements: [...] } ] }
-    if (Array.isArray(data.badges)) {
-      return data.badges.map((b) => ({
-        id: b.id,
-        section: b.section,
-        badge_name: b.badge_name,
-        category: b.category,
-        type: b.type,
-        areas: b.areas || [],
-        requirements: Array.isArray(b.stem_requirements) ? b.stem_requirements : [],
-      }));
+  function populateSectionSelect(sections) {
+    elSection.innerHTML = '';
+    for (const s of sections) {
+      const opt = document.createElement('option');
+      opt.value = s;
+      opt.textContent = s;
+      elSection.appendChild(opt);
     }
-
-    return [];
   }
 
-  function render(badges) {
-    const showReasons = !!(elShowReasons && elShowReasons.checked);
-    const expandAll = !!(elShowReqs && elShowReqs.checked);
+  function requirementMatches(req, q) {
+    if (!q) return true;
+    return norm(req.text).includes(q) || norm(req.why_stem).includes(q) || norm((req.areas || []).join(' ')).includes(q) || norm(req.ref).includes(q);
+  }
 
-    if (!badges.length) {
-      elResults.innerHTML = `<div class="stem-map__empty">No matching STEM-linked requirements found for those filters.</div>`;
-      return;
-    }
+  function badgeMatches(badge, q) {
+    if (!q) return true;
+    if (norm(badge.title).includes(q)) return true;
+    return badge.stem_requirements.some(r => requirementMatches(r, q));
+  }
 
-    elResults.innerHTML = badges
-      .map((b) => {
-        const reqs = b.requirements || [];
-        const reqHtml = reqs
-          .map((r) => {
-            const areas = (r.areas || []).map(escapeHtml).join(", ");
-            const strength = norm(r.strength) === "borderline" ? "borderline" : "strong";
-            const tag =
-              strength === "borderline"
-                ? `<span class="stem-map__tag stem-map__tag--borderline">Borderline</span>`
-                : `<span class="stem-map__tag stem-map__tag--strong">Strong</span>`;
+  function renderBadges(badges, q, section, includeBorderline) {
+    const items = badges
+      .filter(b => section === 'All' ? true : b.section === section)
+      .filter(b => badgeMatches(b, q))
+      .map(b => {
+        const reqs = b.stem_requirements
+          .filter(r => includeBorderline ? true : r.strength !== 'borderline')
+          .filter(r => requirementMatches(r, q));
 
-            const reason =
-              showReasons && r.reason
-                ? `<div class="stem-map__reason"><strong>Why STEM:</strong> ${escapeHtml(r.reason)}</div>`
-                : "";
+        if (reqs.length === 0) return null;
 
-            return `
-              <li class="stem-map__req">
-                <div class="stem-map__req-head">
-                  <span class="stem-map__req-id">${escapeHtml(r.id)}</span>
-                  ${tag}
-                  <span class="stem-map__req-areas">${areas}</span>
-                </div>
-                <div class="stem-map__req-text">${escapeHtml(r.text)}</div>
-                ${reason}
-              </li>
-            `;
-          })
-          .join("");
+        const reqHtml = reqs.map(r => {
+          const strengthTag = r.strength === 'borderline'
+            ? '<span class="stem-tag stem-tag--borderline">Borderline</span>'
+            : '<span class="stem-tag stem-tag--strong">Strong</span>';
 
-        const openAttr = expandAll ? " open" : "";
-        const countLabel = `${reqs.length} STEM requirement${reqs.length === 1 ? "" : "s"}`;
+          const areas = (r.areas || []).map(a => `<span class="stem-tag">${escapeHtml(a)}</span>`).join('');
 
+          const prompts = Array.isArray(r.leader_prompts) ? r.leader_prompts : [];
+          const promptHtml = prompts.length
+            ? `<details><summary>Leader prompts</summary><ul>${prompts.map(p => `<li>${escapeHtml(p)}</li>`).join('')}</ul></details>`
+            : '';
+
+          return `
+            <div class="stem-req">
+              <div class="stem-req__header">
+                <span class="stem-req__ref">${escapeHtml(r.ref)}.</span>
+                <span class="stem-req__text">${escapeHtml(r.text)}</span>
+                ${strengthTag}
+              </div>
+              <div class="stem-req__areas">${areas}</div>
+              <p class="stem-req__why"><strong>Why STEM:</strong> ${escapeHtml(r.why_stem)}</p>
+              <div class="stem-req__prompt">${promptHtml}</div>
+            </div>
+          `;
+        }).join('');
+
+        const metaBits = [b.section, b.category].filter(Boolean).map(escapeHtml).join(' · ');
         return `
-          <details class="stem-map__card"${openAttr}>
-            <summary class="stem-map__card-sum">
-              <span class="stem-map__badge">${escapeHtml(b.badge_name)}</span>
-              <span class="stem-map__meta">${escapeHtml(b.section || "")}${b.category ? " • " + escapeHtml(b.category) : ""}</span>
-              <span class="stem-map__count">${countLabel}</span>
+          <details>
+            <summary>
+              <span class="stem-badge-map__badge-title">${escapeHtml(b.title)}</span>
+              <span class="stem-badge-map__badge-meta">${metaBits}</span>
+              <span class="stem-badge-map__count">${reqs.length} requirement${reqs.length === 1 ? '' : 's'}</span>
             </summary>
-            <ul class="stem-map__reqs">${reqHtml}</ul>
+            ${reqHtml}
           </details>
         `;
       })
-      .join("");
-  }
-
-  function applyFilters(all) {
-    const section = norm(elSection ? elSection.value : "all");
-    const area = elArea && elArea.value !== "all" ? elArea.value : "all";
-    const q = norm(elSearch ? elSearch.value : "");
-    const sort = elSort ? elSort.value : "az";
-    const includeBorderline = !!(elIncludeBorderline && elIncludeBorderline.checked);
-
-    let out = all.slice();
-
-    if (section !== "all") {
-      out = out.filter((b) => norm(b.section) === section);
-    }
-
-    // Filter requirements by STEM area and/or borderline/strong
-    out = out
-      .map((b) => {
-        let reqs = (b.requirements || []).slice();
-
-        if (!includeBorderline) {
-          reqs = reqs.filter((r) => norm(r.strength) !== "borderline");
-        }
-
-        if (area !== "all") {
-          reqs = reqs.filter((r) => (r.areas || []).includes(area));
-        }
-
-        return reqs.length ? { ...b, requirements: reqs } : null;
-      })
       .filter(Boolean);
 
-    if (q) {
-      out = out.filter((b) => {
-        const hay = [
-          b.badge_name,
-          b.category,
-          b.section,
-          ...(b.requirements || []).map((r) => `${r.id} ${r.text} ${(r.areas || []).join(" ")} ${r.reason || ""} ${r.strength || ""}`),
-        ]
-          .join(" ")
-          .toLowerCase();
-        return hay.includes(q);
-      });
+    if (items.length === 0) {
+      elResults.innerHTML = '<p><em>No matches.</em></p>';
+      return;
     }
 
-    if (sort === "az") {
-      out.sort((a, b) => (a.badge_name || "").localeCompare(b.badge_name || ""));
-    } else if (sort === "section") {
-      out.sort(
-        (a, b) =>
-          (a.section || "").localeCompare(b.section || "") ||
-          (a.badge_name || "").localeCompare(b.badge_name || "")
-      );
-    } else if (sort === "reqcount") {
-      out.sort(
-        (a, b) =>
-          ((b.requirements || []).length - (a.requirements || []).length) ||
-          (a.badge_name || "").localeCompare(b.badge_name || "")
-      );
-    }
-
-    elStatus.textContent = `${out.length} badge${out.length === 1 ? "" : "s"} shown`;
-    render(out);
+    elResults.innerHTML = items.join('');
   }
 
-  async function init() {
-    try {
-      elStatus.textContent = "Loading STEM badge mapping…";
-      const res = await fetch(jsonUrl, { cache: "no-store" });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
-
-      const all = normalizeData(data);
-
-      elStatus.textContent = `${all.length} STEM-linked badges loaded`;
-
-      const onChange = () => applyFilters(all);
-      [elSection, elArea, elSort, elShowReasons, elShowReqs, elIncludeBorderline]
-        .filter(Boolean)
-        .forEach((el) => el.addEventListener("change", onChange));
-
-      if (elSearch) elSearch.addEventListener("input", () => applyFilters(all));
-
-      applyFilters(all);
-    } catch (e) {
-      console.error("[stem_map] load failed:", e);
-      elStatus.textContent = "Could not load badge mapping data.";
-      elResults.innerHTML = `<div class="stem-map__error">Could not load badge mapping data. (Check the JSON file path.)</div>`;
-    }
+  function debounce(fn, ms) {
+    let t = null;
+    return (...args) => {
+      if (t) window.clearTimeout(t);
+      t = window.setTimeout(() => fn(...args), ms);
+    };
   }
 
-  init();
+  fetch(DATA_URL, { cache: 'no-store' })
+    .then(r => {
+      if (!r.ok) throw new Error('Failed to load STEM badge map');
+      return r.json();
+    })
+    .then(data => {
+      const badges = (data && data.badges) ? data.badges : [];
+      const sections = buildSections(badges);
+      populateSectionSelect(sections);
+
+      const rerender = () => renderBadges(
+        badges,
+        norm(elSearch.value).trim(),
+        elSection.value,
+        !!elBorderline.checked
+      );
+
+      const rerenderDebounced = debounce(rerender, 120);
+
+      elSearch.addEventListener('input', rerenderDebounced);
+      elSection.addEventListener('change', rerender);
+      elBorderline.addEventListener('change', rerender);
+
+      rerender();
+    })
+    .catch(err => {
+      console.error(err);
+      elResults.innerHTML = '<p><em>Could not load the STEM badge map.</em></p>';
+    });
 })();

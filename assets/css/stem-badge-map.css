@@ -1,46 +1,30 @@
-.stem-map { margin-top: 1.5rem; }
-.stem-map__intro { margin: 0.25rem 0 1rem; opacity: 0.9; }
-.stem-map__panel { border: 1px solid rgba(0,0,0,.12); border-radius: 10px; padding: 1rem; background: rgba(0,0,0,.02); }
-.stem-map__controls { display: grid; gap: 0.75rem; margin-bottom: 0.75rem; }
-.stem-map__row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
-.stem-map__row--small { grid-template-columns: 1fr 1fr; }
-.stem-map__label span { display: block; font-size: 0.85rem; opacity: 0.85; margin-bottom: 0.25rem; }
-.stem-map__label input, .stem-map__label select { width: 100%; padding: 0.5rem 0.6rem; border-radius: 8px; border: 1px solid rgba(0,0,0,.2); background: #fff; }
-.stem-map__check { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; }
-.stem-map__status { font-size: 0.9rem; opacity: 0.85; margin: 0.25rem 0 0.75rem; }
-.stem-map__card { border: 1px solid rgba(0,0,0,.12); border-radius: 10px; padding: 0.25rem 0.75rem; background: #fff; margin-bottom: 0.6rem; }
-.stem-map__card-sum { cursor: pointer; list-style: none; display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; align-items: start; padding: 0.5rem 0; }
-.stem-map__badge { font-weight: 700; }
-.stem-map__meta { display: block; font-size: 0.85rem; opacity: 0.75; margin-top: 0.2rem; }
-.stem-map__count { font-size: 0.85rem; opacity: 0.8; white-space: nowrap; margin-top: 0.1rem; }
-.stem-map__reqs { margin: 0.4rem 0 0.8rem 0; padding-left: 1rem; }
-.stem-map__req { margin: 0.55rem 0; }
-.stem-map__req-head { display: flex; gap: 0.6rem; align-items: baseline; }
-.stem-map__req-id { font-weight: 700; }
-.stem-map__req-areas { font-size: 0.8rem; opacity: 0.75; }
-.stem-map__req-text { margin-top: 0.2rem; }
-.stem-map__reason { margin-top: 0.25rem; font-size: 0.9rem; opacity: 0.9; }
-.stem-map__how { margin-top: 0.75rem; }
-.stem-map__empty, .stem-map__error { padding: 0.75rem; border-radius: 10px; background: rgba(0,0,0,.03); }
-@media (max-width: 900px) {
-  .stem-map__row { grid-template-columns: 1fr; }
-  .stem-map__row--small { grid-template-columns: 1fr; }
+.stem-badge-map { margin-top: 1.5rem; }
+.stem-badge-map__controls { display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; align-items: end; margin-bottom: 0.75rem; }
+.stem-badge-map__control { display: flex; flex-direction: column; gap: 0.25rem; min-width: 220px; }
+.stem-badge-map__control--checkbox { min-width: auto; padding-top: 1.5rem; }
+.stem-badge-map__control input[type="search"], .stem-badge-map__control select {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 6px;
+  font-size: 0.95rem;
 }
-
-
-/* Strength tag */
-.stem-map__tag{
-  display:inline-block;
-  font-size: 0.75rem;
-  padding: 0.1rem 0.45rem;
-  border-radius: 999px;
-  border: 1px solid #ddd;
-  margin-right: 0.4rem;
-  line-height: 1.2;
-}
-.stem-map__tag--strong{
-  background: #f4fff6;
-}
-.stem-map__tag--borderline{
-  background: #fff7f0;
-}
+.stem-badge-map__intro { margin: 0.75rem 0 1rem; }
+.stem-badge-map__results details { border: 1px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 0.6rem 0.8rem; margin-bottom: 0.75rem; background: rgba(0,0,0,0.02); }
+.stem-badge-map__results summary { cursor: pointer; list-style: none; display: flex; gap: 0.5rem; align-items: baseline; }
+.stem-badge-map__results summary::-webkit-details-marker { display: none; }
+.stem-badge-map__badge-title { font-weight: 700; }
+.stem-badge-map__badge-meta { opacity: 0.75; font-size: 0.9rem; }
+.stem-badge-map__count { margin-left: auto; font-weight: 600; opacity: 0.9; }
+.stem-req { margin-top: 0.65rem; padding-top: 0.65rem; border-top: 1px dashed rgba(0,0,0,0.12); }
+.stem-req__header { display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem; align-items: baseline; }
+.stem-req__ref { font-weight: 700; }
+.stem-tag { display: inline-block; padding: 0.15rem 0.45rem; border-radius: 999px; font-size: 0.78rem; border: 1px solid rgba(0,0,0,0.18); opacity: 0.9; }
+.stem-tag--strong { font-weight: 700; }
+.stem-tag--borderline { font-style: italic; }
+.stem-req__areas { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.35rem 0 0.35rem; }
+.stem-req__why { margin: 0.35rem 0 0.35rem; }
+.stem-req__prompt { margin-top: 0.25rem; }
+.stem-req__prompt details { border: none; padding: 0; background: transparent; }
+.stem-req__prompt summary { font-weight: 600; opacity: 0.9; }
+.stem-req__prompt ul { margin: 0.25rem 0 0.25rem 1.2rem; }
+.stem-badge-map__footnote { margin-top: 1rem; font-size: 0.9rem; opacity: 0.75; }
