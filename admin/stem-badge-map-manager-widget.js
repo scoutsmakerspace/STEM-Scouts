@@ -122,7 +122,62 @@
       async componentDidMount() {
         const badges = await loadBadges();
         this.setState({ badges, loading: false });
+
+        // First, hydrate from the current file value.
         this.hydrate(this.props.value);
+
+        // One-time migration: if the single-file map is empty, seed it from the
+        // currently-published curated mapping (assets/data/stem_badge_map.json).
+        // This ensures the manager reflects what's already live and lets you remove items.
+        try {
+          const cur = toPlain(this.props.value) || {};
+          const curBadges = (cur.badges && typeof cur.badges === 'object') ? cur.badges : {};
+          const isEmpty = Object.keys(curBadges).length === 0;
+
+          if (isEmpty) {
+            const res = await fetch('/assets/data/stem_badge_map.json', { cache: 'no-store' });
+            if (res.ok) {
+              const data = await res.json();
+              const published = Array.isArray(data && data.badges) ? data.badges : [];
+              const next = { badges: {} };
+
+              for (const b of published) {
+                const reqs = Array.isArray(b && b.stem_requirements) ? b.stem_requirements : [];
+                if (!b || !b.badge_id || reqs.length === 0) continue;
+
+                const reqMap = {};
+                for (const r of reqs) {
+                  if (!r || r.ref == null) continue;
+                  const ref = String(r.ref);
+                  reqMap[ref] = {
+                    include: true,
+                    text: r.text || '',
+                    strength: r.strength || 'borderline',
+                    areas: Array.isArray(r.areas) ? r.areas : [],
+                    why_stem: r.why_stem || '',
+                    leader_prompts: Array.isArray(r.leader_prompts) ? r.leader_prompts : [],
+                  };
+                }
+
+                next.badges[b.badge_id] = {
+                  badge_title: b.title || b.badge_id,
+                  section: b.section || '',
+                  section_slug: b.section_slug || '',
+                  category: b.category || '',
+                  badge_type: b.badge_type || '',
+                  req: reqMap,
+                };
+              }
+
+              // Update state and mark the entry as changed so it can be saved.
+              this.setState({ map: next });
+              this.emit(next);
+            }
+          }
+        } catch (e) {
+          // Non-fatal; the editor can still be used normally.
+          console.warn('STEM badge map migration skipped:', e);
+        }
       },
 
       componentDidUpdate(prevProps) {

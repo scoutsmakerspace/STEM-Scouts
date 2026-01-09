@@ -6,6 +6,11 @@
     </div>
 
     <div class="stem-badge-map__control">
+      <label for="stemCategorySelect"><strong>Category</strong></label>
+      <select id="stemCategorySelect"></select>
+    </div>
+
+    <div class="stem-badge-map__control">
       <label for="stemSearchInput"><strong>Search</strong></label>
       <input id="stemSearchInput" type="search" placeholder="Search badges or requirement text…" autocomplete="off" />
     </div>
@@ -32,6 +37,8 @@
 
 <script>window.siteBaseUrl = "{{ site.baseurl }}";</script>
 <script>
-  window.STEM_OVERRIDES = {{ site.data.stem_badge_map | jsonify }};
+  // Decap stores the single-file map under `map:` (config field name).
+  // Keep backward compatibility if we ever move it to the root.
+  window.STEM_OVERRIDES = {{ site.data.stem_badge_map.map | default: site.data.stem_badge_map | jsonify }};
 </script>
 <script defer src="{{ '/assets/js/stem-badge-map.js' | relative_url }}"></script>

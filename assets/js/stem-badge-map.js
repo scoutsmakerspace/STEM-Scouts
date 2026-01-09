@@ -2,11 +2,12 @@
   const DATA_URL = (window.siteBaseUrl || '') + '/assets/data/stem_badge_map.json';
 
   const elSection = document.getElementById('stemSectionSelect');
+  const elCategory = document.getElementById('stemCategorySelect');
   const elSearch = document.getElementById('stemSearchInput');
   const elBorderline = document.getElementById('stemIncludeBorderline');
   const elResults = document.getElementById('stemBadgeMapResults');
 
-  if (!elSection || !elSearch || !elBorderline || !elResults) return;
+  if (!elSection || !elCategory || !elSearch || !elBorderline || !elResults) return;
 
   const escapeHtml = (s) => String(s)
     .replaceAll('&', '&amp;')
@@ -16,6 +17,17 @@
     .replaceAll("'", '&#39;');
 
   const norm = (s) => String(s || '').toLowerCase();
+
+  function hasAnyOverrides(ov) {
+    if (!ov || typeof ov !== 'object') return false;
+    if (!ov.badges || typeof ov.badges !== 'object') return false;
+    for (const bid of Object.keys(ov.badges)) {
+      const b = ov.badges[bid];
+      const req = b && typeof b === 'object' ? b.req : null;
+      if (req && typeof req === 'object' && Object.keys(req).length) return true;
+    }
+    return false;
+  }
 
 
   function applyOverrides(badges, overridesAny) {
@@ -230,6 +242,12 @@
     return ['All', ...sections];
   }
 
+  function buildCategories(badges) {
+    const set = new Set(badges.map(b => b.category).filter(Boolean));
+    const cats = Array.from(set).sort((a,b) => a.localeCompare(b));
+    return ['All', ...cats];
+  }
+
   function populateSectionSelect(sections) {
     elSection.innerHTML = '';
     for (const s of sections) {
@@ -237,6 +255,16 @@
       opt.value = s;
       opt.textContent = s;
       elSection.appendChild(opt);
+    }
+  }
+
+  function populateCategorySelect(categories) {
+    elCategory.innerHTML = '';
+    for (const c of categories) {
+      const opt = document.createElement('option');
+      opt.value = c;
+      opt.textContent = c;
+      elCategory.appendChild(opt);
     }
   }
 
@@ -251,9 +279,10 @@
     return badge.stem_requirements.some(r => requirementMatches(r, q));
   }
 
-  function renderBadges(badges, q, section, includeBorderline) {
+  function renderBadges(badges, q, section, category, includeBorderline) {
     const items = badges
       .filter(b => section === 'All' ? true : b.section === section)
+      .filter(b => category === 'All' ? true : (b.category || '') === category)
       .filter(b => badgeMatches(b, q))
       .map(b => {
         const reqs = b.stem_requirements
@@ -325,14 +354,26 @@
     })
     .then(data => {
       const baseBadges = (data && data.badges) ? data.badges : [];
-      const badges = applyOverrides(baseBadges, window.STEM_OVERRIDES || null);
+      // If we have explicit overrides, treat them as the *only* curation source.
+      // This makes add/remove deterministic.
+      const overrides = window.STEM_OVERRIDES || null;
+      const hasExplicitOverrides = hasAnyOverrides(overrides);
+
+      const sanitizedBase = hasExplicitOverrides
+        ? baseBadges.map(b => ({ ...b, stem_requirements: [] }))
+        : baseBadges;
+
+      const badges = applyOverrides(sanitizedBase, overrides);
       const sections = buildSections(badges);
+      const categories = buildCategories(badges);
       populateSectionSelect(sections);
+      populateCategorySelect(categories);
 
       const rerender = () => renderBadges(
         badges,
         norm(elSearch.value).trim(),
         elSection.value,
+        elCategory.value,
         !!elBorderline.checked
       );
 
@@ -340,6 +381,7 @@
 
       elSearch.addEventListener('input', rerenderDebounced);
       elSection.addEventListener('change', rerender);
+      elCategory.addEventListener('change', rerender);
       elBorderline.addEventListener('change', rerender);
 
       rerender();
