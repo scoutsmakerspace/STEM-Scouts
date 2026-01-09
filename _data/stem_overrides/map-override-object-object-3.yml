@@ -1,0 +1,10 @@
+override:
+  badge_id: beavers-camp-craft
+  req:
+    "1":
+      include: false
+      strength: strong
+      areas: []
+      why_stem: ""
+      leader_prompts: []
+      text: Help to put up a tent.
