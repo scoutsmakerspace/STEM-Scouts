@@ -1,47 +1,83 @@
-<div class="stem-badge-map" id="stemBadgeMap">
-  <div class="sbm-controls">
-    <div class="sbm-row sbm-row-top">
-      <div class="sbm-section">
-        <span class="sbm-label">Section</span>
-        <div class="sbm-tabs" id="sbmTabs" aria-label="Choose section"></div>
+{% comment %}
+STEM badge mapping embed for /badges/
+Loads JSON via data-json-url (respects baseurl) and renders a compact, filterable list.
+{% endcomment %}
+
+<section class="stem-map">
+  <h2 id="stem-badge-mapping">STEM Badge Mapping</h2>
+  <p class="stem-map__intro">
+    Quickly spot <strong>badge requirements</strong> that naturally fit STEM activities. Use filters to keep it tidy.
+  </p>
+
+  <div class="stem-map__panel" data-json-url="{{ '/assets/data/stem_badge_map.json' | relative_url }}">
+    <div class="stem-map__controls">
+      <div class="stem-map__row">
+        <label class="stem-map__label">
+          <span>Section</span>
+          <select id="stemMapSection">
+            <option value="all">All sections</option>
+            <option value="universal">Staged / universal</option>
+            <option value="squirrels">Squirrels</option>
+            <option value="beavers">Beavers</option>
+            <option value="cubs">Cubs</option>
+            <option value="scouts">Scouts</option>
+            <option value="explorers">Explorers</option>
+          </select>
+        </label>
+
+        <label class="stem-map__label">
+          <span>STEM area</span>
+          <select id="stemMapArea">
+            <option value="all">All STEM areas</option>
+            <option value="Coding &amp; digital">Coding &amp; digital</option>
+            <option value="Electronics &amp; circuits">Electronics &amp; circuits</option>
+            <option value="Science &amp; investigation">Science &amp; investigation</option>
+            <option value="Engineering &amp; design">Engineering &amp; design</option>
+            <option value="Radio &amp; space">Radio &amp; space</option>
+            <option value="Maths &amp; data">Maths &amp; data</option>
+          </select>
+        </label>
+
+        <label class="stem-map__label">
+          <span>Search</span>
+          <input id="stemMapSearch" type="text" placeholder="Try: coding, circuit, experiment, radio…" />
+        </label>
+
+        <label class="stem-map__label">
+          <span>Sort</span>
+          <select id="stemMapSort">
+            <option value="az">Badge A–Z</option>
+            <option value="section">By section</option>
+            <option value="reqcount">Most STEM requirements</option>
+          </select>
+        </label>
       </div>
-      <label class="sbm-toggle" title="Staged badges apply across sections">
-        <input type="checkbox" id="sbmIncludeUniversal" checked>
-        Include staged/universal
-      </label>
+
+      <div class="stem-map__row stem-map__row--small">
+        <label class="stem-map__check">
+          <input id="stemMapShowReasons" type="checkbox" checked />
+          <span>Show “why STEM” notes</span>
+        </label>
+        <label class="stem-map__check">
+          <input id="stemMapShowReqs" type="checkbox" />
+          <span>Expand all requirements</span>
+        </label>
+      </div>
     </div>
 
-    <div class="sbm-row">
-      <div class="sbm-field">
-        <label class="sbm-label" for="sbmSearch">Search</label>
-        <input id="sbmSearch" class="sbm-input" type="search" placeholder="Try: coding, circuit, radio, measure…">
-      </div>
+    <div class="stem-map__status" id="stemMapStatus" aria-live="polite"></div>
+    <div class="stem-map__results" id="stemMapResults"></div>
 
-      <div class="sbm-field">
-        <label class="sbm-label" for="sbmArea">STEM area</label>
-        <select id="sbmArea" class="sbm-select"></select>
-      </div>
-
-      <div class="sbm-field">
-        <label class="sbm-label" for="sbmSort">Sort</label>
-        <select id="sbmSort" class="sbm-select">
-          <option value="title">Badge A–Z</option>
-          <option value="stemcount">Most STEM requirements</option>
-        </select>
-      </div>
-    </div>
+    <details class="stem-map__how">
+      <summary>How this mapping works</summary>
+      <p>
+        This is a <strong>starter map</strong> to help leaders plan STEM sessions. It highlights requirements whose wording
+        strongly suggests STEM skills (coding, circuits, scientific testing, design/engineering, radio/space, maths/data).
+        It’s not a rulebook — leaders still decide what genuinely fits their programme.
+      </p>
+    </details>
   </div>
+</section>
 
-  <div class="sbm-meta" id="sbmMeta"></div>
-
-  <div class="sbm-results" id="sbmResults" aria-live="polite"></div>
-
-  <details class="sbm-about">
-    <summary>How this mapping works</summary>
-    <p>
-      This page highlights <strong>badge requirements that naturally lend themselves to STEM activities</strong>.
-      It’s generated from the official requirement wording using keyword heuristics, then presented in a compact way.
-      Use it as a starting point (not a rulebook) — leaders still decide what genuinely fits their programme.
-    </p>
-  </details>
-</div>
+<link rel="stylesheet" href="{{ '/assets/css/stem-badge-map.css' | relative_url }}">
+<script defer src="{{ '/assets/js/stem-badge-map.js' | relative_url }}"></script>
