@@ -4515,3 +4515,17 @@ badges:
           leader_prompts:
             - "Ask: What was your constraint? What did you change to improve it?
               What would you try next?"
+    - badge_id: beavers-book-reader
+      title: Book Reader
+      section: Beavers
+      section_slug: beavers
+      category: Activity Badges
+      badge_type: Activity
+      stem_requirements:
+        - rid: beavers-book-reader::1
+          ref: "1"
+          text: 1. Design a cover for your favourite book.
+          strength: strong
+          areas: []
+          why_stem: ""
+          leader_prompts: []
