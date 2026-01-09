@@ -1,0 +1,24 @@
+override:
+  badge_id: beavers-chief-scout-s-bronze-award
+  req:
+    PREREQUISITE BADGES (all required) 1:
+      include: true
+      strength: strong
+      areas:
+        - Science & investigation
+        - STEM careers & workplaces
+      why_stem: sdwadasdasda
+      leader_prompts:
+        - hfghfgh
+      text: My Adventure
+    PREREQUISITE BADGES (all required) 4:
+      include: true
+      strength: strong
+      areas:
+        - Science & investigation
+        - STEM careers & workplaces
+        - Engineering & design
+      why_stem: ""
+      leader_prompts:
+        - fghfghfgh
+      text: My Skills
