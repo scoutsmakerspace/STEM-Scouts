@@ -380,6 +380,7 @@ collections:
   - name: stem_badge_map
     label: "STEM Badge Map"
     label_singular: "STEM Badge Map"
+    preview: false
     files:
       - file: "_data/stem_badge_map.yml"
         label: "Badge mapping"
