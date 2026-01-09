@@ -6,7 +6,8 @@ Loads JSON via data-json-url (respects baseurl) and renders a compact, filterabl
 <section class="stem-map">
   <h2 id="stem-badge-mapping">STEM Badge Mapping</h2>
   <p class="stem-map__intro">
-    Quickly spot <strong>badge requirements</strong> that naturally fit STEM activities. Use filters to keep it tidy.
+    Quickly spot <strong>badge requirements</strong> that fit STEM activities (including <em>borderline</em> ones with a clear justification).
+    Use filters to keep it tidy.
   </p>
 
   <div class="stem-map__panel" data-json-url="{{ '/assets/data/stem_badge_map.json' | relative_url }}">
@@ -40,7 +41,7 @@ Loads JSON via data-json-url (respects baseurl) and renders a compact, filterabl
 
         <label class="stem-map__label">
           <span>Search</span>
-          <input id="stemMapSearch" type="text" placeholder="Try: coding, circuit, experiment, radio…" />
+          <input id="stemMapSearch" type="text" placeholder="Try: debugging, circuit, fair test, antenna…" />
         </label>
 
         <label class="stem-map__label">
@@ -54,6 +55,10 @@ Loads JSON via data-json-url (respects baseurl) and renders a compact, filterabl
       </div>
 
       <div class="stem-map__row stem-map__row--small">
+        <label class="stem-map__check">
+          <input id="stemMapIncludeBorderline" type="checkbox" checked />
+          <span>Include borderline matches</span>
+        </label>
         <label class="stem-map__check">
           <input id="stemMapShowReasons" type="checkbox" checked />
           <span>Show “why STEM” notes</span>
@@ -71,9 +76,9 @@ Loads JSON via data-json-url (respects baseurl) and renders a compact, filterabl
     <details class="stem-map__how">
       <summary>How this mapping works</summary>
       <p>
-        This is a <strong>starter map</strong> to help leaders plan STEM sessions. It highlights requirements whose wording
-        strongly suggests STEM skills (coding, circuits, scientific testing, design/engineering, radio/space, maths/data).
-        It’s not a rulebook — leaders still decide what genuinely fits their programme.
+        The map is generated from the official requirement wording and tries to classify the <strong>skill</strong> being used (e.g., fair testing,
+        measuring, debugging, building circuits, designing and improving). Some requirements are marked <strong>Borderline</strong> when the STEM link
+        is about transferable STEM practice rather than an obvious topic.
       </p>
     </details>
   </div>

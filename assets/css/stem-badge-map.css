@@ -26,3 +26,21 @@
   .stem-map__row { grid-template-columns: 1fr; }
   .stem-map__row--small { grid-template-columns: 1fr; }
 }
+
+
+/* Strength tag */
+.stem-map__tag{
+  display:inline-block;
+  font-size: 0.75rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  margin-right: 0.4rem;
+  line-height: 1.2;
+}
+.stem-map__tag--strong{
+  background: #f4fff6;
+}
+.stem-map__tag--borderline{
+  background: #fff7f0;
+}
