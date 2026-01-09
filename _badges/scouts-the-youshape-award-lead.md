@@ -1,24 +1,21 @@
 ---
-title: The YouShape Award - Lead
-id: scouts-the-youshape-award-lead
-section: scouts
-category: Core Badges
-badge_type: YouShape
-completion_rules: Complete 1 of 4 requirements
+layout: badge
+title: "The YouShape Award - Lead"
+id: "scouts-the-youshape-award-lead"
+section: "scouts"
+category: "Core Badges"
+badge_type: "YouShape"
+completion_rules: "Complete 1 of 4 requirements"
 requirements_count: 4
 requirements:
-- id: '1'
-  'no': 1
-  text: Lead a session that shows older Cubs the best of Scouts.
-- id: '2'
-  'no': 2
-  text: Lead a session for your Troop.
-- id: '3'
-  'no': 3
-  text: Lead a Troop Forum for your section.
-- id: '4'
-  'no': 4
-  text: Lead a one night camp with no adult volunteers. You’ll need a Nights Away Events Passport.
+  - no: 1
+    text: "Lead a session that shows older Cubs the best of Scouts."
+  - no: 2
+    text: "Lead a session for your Troop."
+  - no: 3
+    text: "Lead a Troop Forum for your section."
+  - no: 4
+    text: "Lead a one night camp with no adult volunteers. You\u2019ll need a Nights Away Events Passport."
 ---
 
 ## Requirements

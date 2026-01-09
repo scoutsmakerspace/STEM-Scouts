@@ -1,0 +1,13 @@
+---
+layout: badge
+title: "Joining in Award 1"
+id: "staged-joining-in-award-1"
+section: "staged"
+category: "Core Badges"
+badge_type: "Joining In"
+completion_rules: "Automatically awarded after 1 year of membership"
+---
+
+## Requirements
+
+- (No requirements found)

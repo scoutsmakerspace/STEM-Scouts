@@ -1,21 +1,19 @@
 ---
-title: Let It Grow
-id: squirrels-let-it-grow
-section: squirrels
-category: Activity Badges
-badge_type: Activity
-completion_rules: Complete ALL 3 requirements
+layout: badge
+title: "Let It Grow"
+id: "squirrels-let-it-grow"
+section: "squirrels"
+category: "Activity Badges"
+badge_type: "Activity"
+completion_rules: "Complete ALL 3 requirements"
 requirements_count: 3
 requirements:
-- id: '1'
-  'no': 1
-  text: There are lots of different plants – you may have seen prickly cacti, tall trees, or brightly coloured flowers. Some plants even eat bugs! Have a go at growing a plant of your own.
-- id: '2'
-  'no': 2
-  text: Plants change a lot as they grow. Look after your plant, give it water and sunlight, and watch what happens; it might grow taller, change colour or make flowers or fruit. Tell some other Squirrels what happened to your plant and how it changed.
-- id: '3'
-  'no': 3
-  text: Fruit and vegetables come in different shapes, sizes, and colours and grow in lots of different ways. Find out where some of the fruit and vegetables you eat come from and how they’re grown. Do the plants look different to the foods on your plate?
+  - no: 1
+    text: "There are lots of different plants \u2013\u202fyou may have seen prickly cacti, tall trees, or brightly coloured flowers. Some plants even eat bugs! Have a go at growing a plant of your own."
+  - no: 2
+    text: "Plants change a lot as they grow. Look after your plant, give it water and sunlight, and watch what happens; it might grow taller, change colour or make flowers or fruit. Tell some other Squirrels what happened to your plant and how it changed."
+  - no: 3
+    text: "Fruit and vegetables come in different shapes, sizes, and colours and grow in lots of different ways. Find out where some of the fruit and vegetables you eat come from and how they\u2019re grown. Do the plants look different to the foods on your plate?"
 ---
 
 ## Requirements
