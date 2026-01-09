@@ -73,11 +73,28 @@
       },
 
       hydrateFromValue(value) {
-        const v = value && typeof value === "object" ? value : {};
-        const selectedId = v.badge_id || v.badge || null;
+        // Decap often provides Immutable.js Maps here
+        let v = value;
+      
+        // Immutable Map -> plain JS
+        if (v && typeof v.get === "function") {
+          try { v = v.toJS(); } catch (e) { v = {}; }
+        }
+      
+        // Some Decap list configs wrap the value under the field name (e.g. { item: {...} })
+        if (v && typeof v === "object" && v.item && typeof v.item === "object") {
+          v = v.item;
+        }
+      
+        v = (v && typeof v === "object") ? v : {};
+      
+        // Backwards compatibility: accept older key names too
+        const selectedId = v.badge_id || v.badge || v.id || null;
         const notes = v.notes || "";
-        const reqsSelected = Array.isArray(v.requirements_met) ? v.requirements_met.map(String) : [];
-
+        const reqsSelected = Array.isArray(v.requirements_met)
+          ? v.requirements_met.map(String)
+          : [];
+      
         // Avoid unnecessary re-renders
         if (
           selectedId === this.state.selectedId &&
@@ -86,7 +103,7 @@
         ) {
           return;
         }
-
+      
         this.setState({ selectedId, notes, reqsSelected });
       },
 
@@ -96,13 +113,13 @@
         const b = next.badge_id ? byId(badges, next.badge_id) : null;
 
         const out = {
-          badge_id: next.badge_id || null,
+          badge_id: next.badge_id || "",
           badge_title: b ? b._display : "",
           requirements_met: Array.isArray(next.requirements_met) ? next.requirements_met : [],
           notes: next.notes || "",
         };
-
         this.props.onChange(out);
+
       },
 
       setBadge(id) {
