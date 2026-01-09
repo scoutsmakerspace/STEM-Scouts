@@ -1,0 +1,23 @@
+override:
+  badge_id: explorers-king-s-scout-award
+  req:
+    "1":
+      include: true
+      strength: strong
+      areas:
+        - STEM careers & workplaces
+      why_stem: ""
+      leader_prompts: []
+    1 (2):
+      include: true
+      strength: strong
+      areas:
+        - Engineering & design
+      why_stem: ""
+      leader_prompts: []
+    1 (3):
+      include: true
+      strength: strong
+      areas: []
+      why_stem: ""
+      leader_prompts: []
