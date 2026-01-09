@@ -79,18 +79,24 @@ running:
 
     Sollicitudin felis gravida sed aptent magna suscipit himenaeos commodo inceptos malesuada odio erat inceptos venenatis. Egestas pharetra tristique tempor sodales molestie sapien orci lobortis lectus lacinia venenatis condimentum. Mattis feugiat massa risus ornare ante neque consectetur ornare adipiscing. Nullam ac luctus potenti nisi consequat.
 badge_links:
-  - badge_id: cubs-chief-scout-s-silver-award
-    badge_title: cubs — Chief Scout's Silver Award — Challenge Awards
+  - badge_id: beavers-creative
+    badge_title: beavers — Creative — Activity Badges
     requirements_met:
-      - "2"
+      - "3"
       - "4"
-    notes: fafaafaf
+    notes: ""
   - badge_id: universal-air-activities-stage-3
     badge_title: universal — Air Activities - Stage 3 — Staged Activity Badges
     requirements_met:
-      - "1"
       - "2"
-    notes: fafadfdafad
+      - "3"
+    notes: ""
+  - badge_id: universal-navigator-stage-2
+    badge_title: universal — Navigator - Stage 2 — Staged Activity Badges
+    requirements_met:
+      - "2"
+      - "3"
+    notes: ""
 ---
 Finibus condimentum a nullam phasellus maecenas nisi nisi eget at molestie. Morbi nostra faucibus eleifend quis auctor cubilia lorem purus inceptos finibus faucibus nibh enim. Et nulla molestie augue senectus eu nisl in nulla quisque magna.
 
