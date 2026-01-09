@@ -1,95 +1,62 @@
-/* STEM Badge Map Manager – crash-proof registration for Decap CMS 3.x */
+/* STEM Badge Map Manager – minimal stable widget for Decap CMS 3.x
+   Goal: STOP React #31 and confirm widget registration/rendering works.
+*/
 
 (function () {
   if (typeof CMS === "undefined") {
-    console.error("[stem_badge_map_manager] Decap CMS global 'CMS' not found");
+    console.error("[stem_badge_map_manager] CMS global not found");
     return;
   }
 
-  // Decap exposes React on window in many builds; CMS.react is not reliable.
-  const React = window.React || (CMS && CMS.react);
-  if (!React) {
-    console.error(
-      "[stem_badge_map_manager] React not found. window.React is missing and CMS.react is undefined."
-    );
-    // Register a dummy widget so Decap doesn't hard-fail the editor UI.
-    CMS.registerWidget("stem_badge_map_manager", function Dummy() {
-      return document.createTextNode(
-        "STEM Badge Map Manager: React not available (check admin/index.html script order)."
-      );
-    });
+  // Decap/React availability varies. Use window.React first.
+  var React = window.React || (CMS && CMS.react);
+  if (!React || !React.createElement) {
+    console.error("[stem_badge_map_manager] React not available on window.React");
+    // IMPORTANT: Do NOT register a widget that returns DOM nodes.
+    // If React is missing, just do nothing and fail loudly in console.
     return;
   }
 
-  const h = window.h || React.createElement;
+  var h = React.createElement;
 
-  class StemBadgeMapManagerControl extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = { error: null };
-    }
+  function StemBadgeMapManagerControl(props) {
+    // Never render raw objects; keep output string-only for now.
+    var hasValue = props && props.value != null;
+    var type = hasValue ? Object.prototype.toString.call(props.value) : "null";
 
-    componentDidCatch(err) {
-      console.error("[stem_badge_map_manager] widget crashed:", err);
-      this.setState({ error: String(err) });
-    }
-
-    render() {
-      if (this.state.error) {
-        return h(
-          "div",
-          {
-            style: {
-              padding: "12px",
-              border: "2px solid #c00",
-              background: "#fff5f5",
-              color: "#900",
-              fontFamily: "monospace",
-              whiteSpace: "pre-wrap",
-            },
-          },
-          "STEM Badge Map Manager crashed:\n\n" + this.state.error
-        );
-      }
-
-      // Minimal “it works” UI (we’ll re-enable the full manager once stable)
-      return h(
+    return h(
+      "div",
+      {
+        style: {
+          padding: "12px",
+          border: "1px solid #cfcfcf",
+          background: "#f9f9f9",
+          borderRadius: "6px",
+        },
+      },
+      h("div", { style: { fontWeight: 700, marginBottom: "6px" } }, "STEM Badge Map Manager"),
+      h(
         "div",
-        { style: { padding: "12px", border: "1px solid #ccc", background: "#f9f9f9" } },
-        h("strong", null, "STEM Badge Map Manager"),
-        h(
-          "p",
-          { style: { marginTop: "6px", color: "#555" } },
-          "Widget loaded successfully (React available)."
-        ),
-        h(
-          "pre",
-          {
-            style: {
-              marginTop: "10px",
-              fontSize: "12px",
-              background: "#eee",
-              padding: "8px",
-              overflow: "auto",
-              maxHeight: "240px",
-            },
-          },
-          JSON.stringify(this.props.value || {}, null, 2)
-        )
-      );
-    }
+        { style: { color: "#555", fontSize: "13px" } },
+        "Widget loaded successfully. Value type: " + type
+      ),
+      h(
+        "div",
+        { style: { marginTop: "10px", fontSize: "12px", color: "#777" } },
+        "Next step: re-enable full manager UI."
+      )
+    );
   }
 
-  const StemBadgeMapManagerPreview = function Preview() {
+  function StemBadgeMapManagerPreview() {
     return h("div", null, "STEM Badge Map Manager");
-  };
+  }
 
-  // ✅ Register the widget (3rd arg is preview component)
   CMS.registerWidget(
     "stem_badge_map_manager",
     StemBadgeMapManagerControl,
     StemBadgeMapManagerPreview
   );
 
-  console.log("[stem_badge_map_manager] widget registered");
+  console.log("[stem_badge_map_manager] widget registered OK");
 })();
