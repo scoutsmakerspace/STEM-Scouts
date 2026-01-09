@@ -14,6 +14,7 @@ summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 hero_image: /assets/images/uploads/top.png
 sections:
   - cubs
+  - squirrels
 difficulty: 5
 time_minutes: 60
 type: electronics
