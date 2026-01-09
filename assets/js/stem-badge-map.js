@@ -21,6 +21,77 @@
   function applyOverrides(badges, overridesAny) {
     if (!overridesAny) return badges;
 
+    // New single-file format (preferred): { badges: { <badge_id>: { badge_title, req: {...} } } }
+    if (overridesAny && typeof overridesAny === 'object' && overridesAny.badges && typeof overridesAny.badges === 'object') {
+      const byId = new Map(badges.map(b => [b.badge_id, b]));
+
+      function ensureBadge(badge_id, meta) {
+        let badge = byId.get(badge_id);
+        if (badge) return badge;
+        badge = {
+          badge_id,
+          title: meta && meta.badge_title ? meta.badge_title : badge_id,
+          section: meta && meta.section ? meta.section : '',
+          section_slug: meta && meta.section_slug ? meta.section_slug : '',
+          category: meta && meta.category ? meta.category : '',
+          badge_type: meta && meta.badge_type ? meta.badge_type : '',
+          stem_requirements: []
+        };
+        byId.set(badge_id, badge);
+        return badge;
+      }
+
+      const badgesObj = overridesAny.badges;
+      for (const badge_id of Object.keys(badgesObj)) {
+        const ov = badgesObj[badge_id];
+        if (!ov || !badge_id) continue;
+        const badge = ensureBadge(badge_id, ov);
+
+        const reqMap = new Map((badge.stem_requirements || []).map(r => [String(r.ref), r]));
+        const req = (ov.req && typeof ov.req === 'object') ? ov.req : {};
+
+        for (const refKey of Object.keys(req)) {
+          const row = req[refKey];
+          const ref = String(refKey);
+          const include = !!(row && row.include);
+
+          if (!include) {
+            reqMap.delete(ref);
+            continue;
+          }
+
+          const existing = reqMap.get(ref) || { rid: badge_id + '::' + ref, ref, text: '' };
+          reqMap.set(ref, {
+            ...existing,
+            rid: existing.rid || (badge_id + '::' + ref),
+            ref,
+            text: (row && row.text) ? String(row.text) : (existing.text || ''),
+            strength: (row && row.strength) ? row.strength : (existing.strength || 'borderline'),
+            areas: (row && Array.isArray(row.areas)) ? row.areas : (existing.areas || []),
+            why_stem: (row && row.why_stem) ? row.why_stem : (existing.why_stem || ''),
+            leader_prompts: (row && Array.isArray(row.leader_prompts)) ? row.leader_prompts : (existing.leader_prompts || [])
+          });
+        }
+
+        badge.stem_requirements = Array.from(reqMap.values()).sort((a, b) => {
+          const na = parseFloat(a.ref);
+          const nb = parseFloat(b.ref);
+          if (!Number.isNaN(na) && !Number.isNaN(nb) && na !== nb) return na - nb;
+          return String(a.ref).localeCompare(String(b.ref));
+        });
+
+        if (!badge.stem_requirements.length) byId.delete(badge_id);
+      }
+
+      const out = Array.from(byId.values());
+      out.sort((a, b) => {
+        const sa = (a.section || '').localeCompare(b.section || '');
+        if (sa !== 0) return sa;
+        return (a.title || '').localeCompare(b.title || '');
+      });
+      return out;
+    }
+
     // Accept either:
     //  - Array of legacy overrides (back-compat)
     //  - Object from site.data.stem_overrides (one file per badge)

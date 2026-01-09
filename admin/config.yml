@@ -15,22 +15,6 @@ media_folder: assets/images/uploads
 public_folder: /assets/images/uploads
 
 collections:
-  - name: programme_categories
-    label: Programme Categories
-    label_singular: Programme Category
-    folder: _programme_categories
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    extension: md
-    format: frontmatter
-    editor:
-      preview: false
-    fields:
-      - { label: Key, name: key, widget: string, hint: "Internal id used for grouping (e.g. radio_space). Keep stable once used." }
-      - { label: Title, name: title, widget: string }
-      - { label: Order, name: order, widget: number, value_type: int, default: 50 }
-
   - name: activities
     label: Activities
     label_singular: Activity
@@ -331,11 +315,13 @@ collections:
 
       - label: Category
         name: category
-        widget: relation
-        collection: programme_categories
-        search_fields: [title, key]
-        value_field: key
-        display_fields: [title]
+        widget: select
+        options:
+          - { label: "National / UK-wide programmes", value: national }
+          - { label: "Radio & space", value: radio_space }
+          - { label: "Digital skills & coding", value: digital_coding }
+          - { label: "Environment & science", value: environment_science }
+          - { label: Other, value: other }
 
       - label: Target sections
         name: sections
@@ -349,7 +335,7 @@ collections:
           - { label: Explorers, value: explorers }
 
       - { label: "Partner organisation (optional)", name: partner_name, widget: string, required: false }
-      - { label: "Official link", name: official_url, widget: string }
+      - { label: "Official link", name: url, widget: string }
 
       - label: "Status (optional)"
         name: status
@@ -388,20 +374,20 @@ collections:
           - { label: Text, name: text, widget: text }
 
   # =========================
-  # STEM badge mapping overrides (curation layer)
-  # One file per badge under _data/stem_overrides/
+  # STEM badge mapping (curation layer)
+  # Single file to avoid create/delete inconsistencies.
   # =========================
-  - name: stem_overrides
+  - name: stem_badge_map
     label: "STEM Badge Map"
-    label_singular: "STEM Override"
-    folder: "_data/stem_overrides"
-    create: true
-    delete: true
-    extension: "yml"
-    format: "yml"
-    editor:
-      preview: false
-    fields:
-      - label: "Badge override"
-        name: "override"
-        widget: "stem_override"
+    files:
+      - label: "Badge mapping"
+        name: "badge_mapping"
+        file: "_data/stem_badge_map.yml"
+        extension: "yml"
+        format: "yml"
+        editor:
+          preview: false
+        fields:
+          - label: "STEM Badge Map"
+            name: "map"
+            widget: "stem_badge_map_manager"

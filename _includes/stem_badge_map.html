@@ -32,6 +32,6 @@
 
 <script>window.siteBaseUrl = "{{ site.baseurl }}";</script>
 <script>
-  window.STEM_OVERRIDES = {{ site.data.stem_overrides | jsonify }};
+  window.STEM_OVERRIDES = {{ site.data.stem_badge_map | jsonify }};
 </script>
 <script defer src="{{ '/assets/js/stem-badge-map.js' | relative_url }}"></script>
