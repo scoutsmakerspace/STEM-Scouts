@@ -1,0 +1,47 @@
+<div class="stem-badge-map" id="stemBadgeMap">
+  <div class="sbm-controls">
+    <div class="sbm-row sbm-row-top">
+      <div class="sbm-section">
+        <span class="sbm-label">Section</span>
+        <div class="sbm-tabs" id="sbmTabs" aria-label="Choose section"></div>
+      </div>
+      <label class="sbm-toggle" title="Staged badges apply across sections">
+        <input type="checkbox" id="sbmIncludeUniversal" checked>
+        Include staged/universal
+      </label>
+    </div>
+
+    <div class="sbm-row">
+      <div class="sbm-field">
+        <label class="sbm-label" for="sbmSearch">Search</label>
+        <input id="sbmSearch" class="sbm-input" type="search" placeholder="Try: coding, circuit, radio, measure…">
+      </div>
+
+      <div class="sbm-field">
+        <label class="sbm-label" for="sbmArea">STEM area</label>
+        <select id="sbmArea" class="sbm-select"></select>
+      </div>
+
+      <div class="sbm-field">
+        <label class="sbm-label" for="sbmSort">Sort</label>
+        <select id="sbmSort" class="sbm-select">
+          <option value="title">Badge A–Z</option>
+          <option value="stemcount">Most STEM requirements</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="sbm-meta" id="sbmMeta"></div>
+
+  <div class="sbm-results" id="sbmResults" aria-live="polite"></div>
+
+  <details class="sbm-about">
+    <summary>How this mapping works</summary>
+    <p>
+      This page highlights <strong>badge requirements that naturally lend themselves to STEM activities</strong>.
+      It’s generated from the official requirement wording using keyword heuristics, then presented in a compact way.
+      Use it as a starting point (not a rulebook) — leaders still decide what genuinely fits their programme.
+    </p>
+  </details>
+</div>
