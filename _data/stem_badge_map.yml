@@ -4520,6 +4520,9 @@ badges:
         ref: "1"
         text: 1. Spend at least six weeks making a collection.
         strength: strong
-        areas: []
-        why_stem: ""
-        leader_prompts: []
+        areas:
+          - Electronics
+          - Maths
+        why_stem: bla bla bla
+        leader_prompts:
+          - blablabla
