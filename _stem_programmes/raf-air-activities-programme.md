@@ -5,7 +5,7 @@ summary: The RAF sponsors our staged Air Activities badges across all Scout
   sections and is on hand to share expert knowledge in the field of Science,
   Technology, Engineering and Maths (STEM).
 programme_type: scouts
-category: other
+category: radio_space
 sections:
   - beavers
   - cubs
