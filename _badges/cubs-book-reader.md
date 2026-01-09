@@ -1,27 +1,23 @@
 ---
-title: Book Reader
-id: cubs-book-reader
-section: cubs
-category: Activity Badges
-badge_type: Activity
-completion_rules: Complete ALL 5 requirements
+layout: badge
+title: "Book Reader"
+id: "cubs-book-reader"
+section: "cubs"
+category: "Activity Badges"
+badge_type: "Activity"
+completion_rules: "Complete ALL 5 requirements"
 requirements_count: 5
 requirements:
-- id: '1'
-  'no': 1
-  text: Make a list of at least six books you have read or used recently.
-- id: '2'
-  'no': 2
-  text: Name the authors of your books.
-- id: '3'
-  'no': 3
-  text: Show that you know how to care for your books and know the benefits a library can bring to people who enjoy reading.
-- id: '4'
-  'no': 4
-  text: Show that you can use a dictionary and a thesaurus.
-- id: '5'
-  'no': 5
-  text: Write a review of your favourite book and share it with your Sixer, an Explorer Scout Young Leader or your Cub Leader
+  - no: 1
+    text: "Make a list of at least six books you have read or used recently."
+  - no: 2
+    text: "Name the authors of your books."
+  - no: 3
+    text: "Show that you know how to care for your books and know the benefits a library can bring to people who enjoy reading."
+  - no: 4
+    text: "Show that you can use a dictionary and a thesaurus."
+  - no: 5
+    text: "Write a review of your favourite book and share it with your Sixer, an Explorer Scout Young Leader or your Cub Leader"
 ---
 
 ## Requirements

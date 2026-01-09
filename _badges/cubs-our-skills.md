@@ -1,27 +1,23 @@
 ---
-title: Our Skills
-id: cubs-our-skills
-section: cubs
-category: Challenge Awards
-badge_type: Challenge Award
-completion_rules: Complete ALL 5 requirements
+layout: badge
+title: "Our Skills"
+id: "cubs-our-skills"
+section: "cubs"
+category: "Challenge Awards"
+badge_type: "Challenge Award"
+completion_rules: "Complete ALL 5 requirements"
 requirements_count: 5
 requirements:
-- id: '1'
-  'no': 1
-  text: Try two new sports or physical activities at least once.
-- id: '2'
-  'no': 2
-  text: Take part in three activities to help you be healthy.
-- id: '3'
-  'no': 3
-  text: Pick two creative things to try, and show your leader what you've done.
-- id: '4'
-  'no': 4
-  text: Learn and use at least four skills
-- id: '5'
-  'no': 5
-  text: Take part in at least two problem-solving activities that you haven't done before
+  - no: 1
+    text: "Try two new sports or physical activities at least once."
+  - no: 2
+    text: "Take part in three activities to help you be healthy."
+  - no: 3
+    text: "Pick two creative things to try, and show your leader what you've done."
+  - no: 4
+    text: "Learn and use at least four skills"
+  - no: 5
+    text: "Take part in at least two problem-solving activities that you haven't done before"
 ---
 
 ## Requirements
