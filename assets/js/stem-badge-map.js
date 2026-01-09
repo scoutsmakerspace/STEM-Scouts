@@ -17,67 +17,139 @@
 
   const norm = (s) => String(s || '').toLowerCase();
 
-  function applyOverrides(badges, overrides) {
-    if (!Array.isArray(overrides) || overrides.length === 0) return badges;
+
+  function applyOverrides(badges, overridesAny) {
+    if (!overridesAny) return badges;
+
+    // Accept either:
+    //  - Array of legacy overrides (back-compat)
+    //  - Object from site.data.stem_overrides (one file per badge)
+    const legacy = Array.isArray(overridesAny) ? overridesAny : null;
+    const overridesObj = (!legacy && typeof overridesAny === 'object') ? overridesAny : null;
 
     const byId = new Map(badges.map(b => [b.badge_id, b]));
 
-    for (const ov of overrides) {
-      if (!ov || !ov.badge_id || !ov.requirement_ref) continue;
-      const action = (ov.action || 'include');
-
-      let badge = byId.get(ov.badge_id);
-
-      if (!badge) {
-        // Create badge container only if we are including something
-        if (action !== 'include') continue;
-        badge = {
-          badge_id: ov.badge_id,
-          title: ov.badge_title || ov.badge_id,
-          section: ov.section || '',
-          section_slug: ov.section_slug || '',
-          category: ov.category || '',
-          badge_type: ov.badge_type || '',
-          stem_requirements: []
-        };
-        byId.set(ov.badge_id, badge);
-      }
-
-      const reqs = Array.isArray(badge.stem_requirements) ? badge.stem_requirements : (badge.stem_requirements = []);
-      const idx = reqs.findIndex(r => r && r.ref === ov.requirement_ref);
-
-      if (action === 'exclude') {
-        if (idx >= 0) reqs.splice(idx, 1);
-        if (reqs.length === 0) {
-          byId.delete(ov.badge_id);
-        }
-        continue;
-      }
-
-      // include (add or update)
-      const next = {
-        rid: ov.rid || (ov.badge_id + '::' + ov.requirement_ref),
-        ref: ov.requirement_ref,
-        text: ov.requirement_text || '',
-        strength: ov.strength || 'borderline',
-        areas: Array.isArray(ov.areas) ? ov.areas : [],
-        why_stem: ov.why_stem || '',
-        leader_prompts: Array.isArray(ov.leader_prompts) ? ov.leader_prompts : []
+    function ensureBadge(badge_id, meta) {
+      let badge = byId.get(badge_id);
+      if (badge) return badge;
+      badge = {
+        badge_id,
+        title: meta && meta.badge_title ? meta.badge_title : (meta && meta.title ? meta.title : badge_id),
+        section: meta && meta.section ? meta.section : '',
+        section_slug: meta && meta.section_slug ? meta.section_slug : '',
+        category: meta && meta.category ? meta.category : '',
+        badge_type: meta && meta.badge_type ? meta.badge_type : '',
+        stem_requirements: []
       };
-
-      if (idx >= 0) reqs[idx] = next;
-      else reqs.push(next);
+      byId.set(badge_id, badge);
+      return badge;
     }
 
-    const out = Array.from(byId.values());
-    // stable sort by section then title
-    out.sort((a, b) => {
-      const sa = (a.section || '').localeCompare(b.section || '');
-      if (sa !== 0) return sa;
-      return (a.title || '').localeCompare(b.title || '');
-    });
-    return out;
+    // ---------- legacy list format ----------
+    if (legacy && legacy.length) {
+      for (const ov of legacy) {
+        if (!ov || !ov.badge_id || !ov.requirement_ref) continue;
+        const action = (ov.action || 'include');
+        let badge = byId.get(ov.badge_id);
+
+        if (!badge) {
+          if (action !== 'include') continue;
+          badge = ensureBadge(ov.badge_id, ov);
+        }
+
+        const reqs = Array.isArray(badge.stem_requirements) ? badge.stem_requirements : (badge.stem_requirements = []);
+        const idx = reqs.findIndex(r => r && r.ref === ov.requirement_ref);
+
+        if (action === 'exclude') {
+          if (idx >= 0) reqs.splice(idx, 1);
+          if (reqs.length === 0) byId.delete(ov.badge_id);
+          continue;
+        }
+
+        const next = {
+          rid: ov.rid || (ov.badge_id + '::' + ov.requirement_ref),
+          ref: ov.requirement_ref,
+          text: ov.requirement_text || '',
+          strength: ov.strength || 'borderline',
+          areas: Array.isArray(ov.areas) ? ov.areas : [],
+          why_stem: ov.why_stem || '',
+          leader_prompts: Array.isArray(ov.leader_prompts) ? ov.leader_prompts : []
+        };
+
+        if (idx >= 0) reqs[idx] = next;
+        else reqs.push(next);
+      }
+
+      const out = Array.from(byId.values());
+      out.sort((a, b) => {
+        const sa = (a.section || '').localeCompare(b.section || '');
+        if (sa !== 0) return sa;
+        return (a.title || '').localeCompare(b.title || '');
+      });
+      return out;
+    }
+
+    // ---------- new per-badge file format ----------
+    // overridesObj is an object keyed by filename, each value either:
+    //   { override: { badge_id, req: {...} } }  OR  { badge_id, req: {...} }
+    if (overridesObj) {
+      for (const key of Object.keys(overridesObj)) {
+        const raw = overridesObj[key];
+        const ov = raw && raw.override ? raw.override : raw;
+        if (!ov || !ov.badge_id) continue;
+
+        const badge_id = ov.badge_id;
+        const badge = ensureBadge(badge_id, ov);
+        const reqMap = new Map((badge.stem_requirements || []).map(r => [String(r.ref), r]));
+        const req = (ov.req && typeof ov.req === 'object') ? ov.req : {};
+
+        for (const refKey of Object.keys(req)) {
+          const row = req[refKey];
+          const ref = String(refKey);
+          const include = !!(row && row.include);
+
+          if (!include) {
+            // Exclude means remove from stem list
+            reqMap.delete(ref);
+            continue;
+          }
+
+          const existing = reqMap.get(ref) || { rid: badge_id + '::' + ref, ref, text: '' };
+          reqMap.set(ref, {
+            ...existing,
+            rid: existing.rid || (badge_id + '::' + ref),
+            ref,
+            text: (row && row.text) ? String(row.text) : (existing.text || ''),
+            strength: (row && row.strength) ? row.strength : (existing.strength || 'borderline'),
+            areas: (row && Array.isArray(row.areas)) ? row.areas : (existing.areas || []),
+            why_stem: (row && row.why_stem) ? row.why_stem : (existing.why_stem || ''),
+            leader_prompts: (row && Array.isArray(row.leader_prompts)) ? row.leader_prompts : (existing.leader_prompts || [])
+          });
+        }
+
+        badge.stem_requirements = Array.from(reqMap.values()).sort((a, b) => {
+          // Try numeric sort if possible
+          const na = parseFloat(a.ref);
+          const nb = parseFloat(b.ref);
+          if (!Number.isNaN(na) && !Number.isNaN(nb) && na !== nb) return na - nb;
+          return String(a.ref).localeCompare(String(b.ref));
+        });
+
+        if (!badge.stem_requirements.length) byId.delete(badge_id);
+      }
+
+      const out = Array.from(byId.values());
+      out.sort((a, b) => {
+        const sa = (a.section || '').localeCompare(b.section || '');
+        if (sa !== 0) return sa;
+        return (a.title || '').localeCompare(b.title || '');
+      });
+      return out;
+    }
+
+    return badges;
   }
+
 
   function buildSections(badges) {
     const set = new Set(badges.map(b => b.section));
@@ -182,7 +254,7 @@
     })
     .then(data => {
       const baseBadges = (data && data.badges) ? data.badges : [];
-      const badges = applyOverrides(baseBadges, window.STEM_MAP_OVERRIDES || []);
+      const badges = applyOverrides(baseBadges, window.STEM_OVERRIDES || null);
       const sections = buildSections(badges);
       populateSectionSelect(sections);
 

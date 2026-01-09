@@ -375,24 +375,19 @@ collections:
 
   # =========================
   # STEM badge mapping overrides (curation layer)
+  # One file per badge under _data/stem_overrides/
   # =========================
-  - name: stem_map
+  - name: stem_overrides
     label: "STEM Badge Map"
-    label_singular: "Override"
-    files:
-      - file: "_data/stem_map_overrides.json"
-        label: "Overrides"
-        name: "overrides"
-        format: "json"
-        fields:
-          - label: "Overrides"
-            name: "overrides"
-            widget: "list"
-            required: false
-            collapsed: false
-            summary: "{{fields.action}} — {{fields.badge_title}} — {{fields.requirement_ref}}"
-            field:
-              label: "Override"
-              name: "item"
-              widget: "stem_map_override"
-              required: false
+    label_singular: "STEM Override"
+    folder: "_data/stem_overrides"
+    create: true
+    delete: true
+    extension: "yml"
+    format: "yml"
+    editor:
+      preview: false
+    fields:
+      - label: "Badge override"
+        name: "override"
+        widget: "stem_override"
