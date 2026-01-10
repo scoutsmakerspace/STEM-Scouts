@@ -514,6 +514,7 @@
           title: { fontWeight: 700, fontSize: 15 },
           meta: { color: "#666", fontSize: 12, marginTop: 2 },
           pill: (mapped) => ({ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 8px", borderRadius: 999, border: "1px solid #d0d7de", background: mapped ? "#d1f5d8" : "#f6f8fa", fontSize: 12, fontWeight: 600, whiteSpace: "nowrap" }),
+          pillInfo: { display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 8px", borderRadius: 999, border: "1px solid #d0d7de", background: "#e7f0ff", fontSize: 12, fontWeight: 600, whiteSpace: "nowrap" },
           toggle: { border: "1px solid #d0d7de", background: "#fff", borderRadius: 999, width: 34, height: 28, cursor: "pointer" },
           reqRow: { display: "flex", justifyContent: "space-between", gap: 12, padding: "10px 0", borderTop: "1px solid #efefef" },
           reqLeft: { flex: "1 1 auto" },
@@ -553,6 +554,7 @@
           }),
 
           usedByWrap: { marginTop: 8, paddingTop: 8, borderTop: "1px solid #efefef" },
+          usedByInline: { marginTop: 10, paddingTop: 10, borderTop: "1px dashed #e5e5e5" },
           usedByLabel: { color: "#444", fontSize: 12, fontWeight: 700, marginBottom: 6 },
           usedByLinks: { display: "flex", flexWrap: "wrap", gap: 8 },
           usedByLink: {
@@ -617,44 +619,37 @@
                       "div",
                       { style: { display: "flex", gap: 8, alignItems: "center" } },
                       h("span", { style: styles.pill(mappedCount > 0) }, mappedCount > 0 ? `✅ ${mappedCount} mapped` : "—"),
+                      usedBy.length > 0 ? h("span", { style: styles.pillInfo }, `📎 ${usedBy.length} activit${usedBy.length === 1 ? "y" : "ies"}`) : null,
                       h("button", { type: "button", style: styles.toggle, onClick: () => this.toggleExpanded(b.id), title: isExpanded ? "Collapse" : "Expand" }, isExpanded ? "–" : "+")
                     )
                   ),
-
-                  usedBy.length > 0
-                    ? h(
-                        "div",
-                        { style: styles.usedByWrap },
-                        h(
-                          "div",
-                          { style: styles.usedByLabel },
-                          `Used by ${usedBy.length} activit${usedBy.length === 1 ? "y" : "ies"}`
-                        ),
-                        h(
-                          "div",
-                          { style: styles.usedByLinks },
-                          usedBy.map((a) =>
-                            h(
-                              "a",
-                              {
-                                key: a.url + "::" + a.title,
-                                href: a.url,
-                                target: "_blank",
-                                rel: "noopener noreferrer",
-                                style: styles.usedByLink,
-                                title: "Open activity",
-                              },
-                              a.title || a.url
-                            )
-                          )
-                        )
-                      )
-                    : null,
 
                   isExpanded
                     ? h(
                         "div",
                         null,
+                        usedBy.length > 0
+                          ? h(
+                              "div",
+                              { style: styles.usedByInline },
+                              h(
+                                "div",
+                                { style: styles.usedByLabel },
+                                `Used by ${usedBy.length} activit${usedBy.length === 1 ? "y" : "ies"}`
+                              ),
+                              h(
+                                "div",
+                                { style: styles.usedByLinks },
+                                usedBy.map((a) =>
+                                  h(
+                                    "a",
+                                    { key: a.url + a.title, href: a.url, target: "_blank", rel: "noopener noreferrer", style: styles.usedByLink },
+                                    a.title || a.url
+                                  )
+                                )
+                              )
+                            )
+                          : null,
                         (b.requirements || []).map((r) => {
                           const mappedReq = entry ? findReqEntry(entry, r.no) : null;
                           const mapped = !!mappedReq;
