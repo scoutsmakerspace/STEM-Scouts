@@ -4,42 +4,46 @@ permalink: /assets/data/activities_index.json
 ---
 [
 {% for a in site.activities %}
+  {%- assign ids = "" -%}
+
+  {%- if a.badge_links -%}
+    {%- for bl in a.badge_links -%}
+      {%- if bl.badge_id -%}
+        {%- assign ids = ids | append: bl.badge_id | append: "||" -%}
+      {%- elsif bl.badge -%}
+        {%- assign ids = ids | append: bl.badge | append: "||" -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- if a.badges -%}
+    {%- for b in a.badges -%}
+      {%- if b.badge_id -%}
+        {%- assign ids = ids | append: b.badge_id | append: "||" -%}
+      {%- elsif b.badge -%}
+        {%- assign ids = ids | append: b.badge | append: "||" -%}
+      {%- else -%}
+        {%- if b -%}
+          {%- assign ids = ids | append: b | append: "||" -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- assign id_list = ids | split: "||" | uniq -%}
+
   {
     "title": {{ a.title | jsonify }},
     "url": {{ a.url | relative_url | jsonify }},
     "badge_ids": [
-      {% assign ids = "" %}
-      {% comment %}New field: badge_links: [{badge_id: "..."}]{% endcomment %}
-      {% if a.badge_links %}
-        {% for bl in a.badge_links %}
-          {% if bl.badge_id %}
-            {% assign ids = ids | append: bl.badge_id | append: "|" %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-
-      {% comment %}Legacy field: badges can be [{badge_id: ...}] or [{badge: ...}] or ["slug", ...]{% endcomment %}
-      {% if a.badges %}
-        {% for b in a.badges %}
-          {% if b.badge_id %}
-            {% assign ids = ids | append: b.badge_id | append: "|" %}
-          {% elsif b.badge %}
-            {% assign ids = ids | append: b.badge | append: "|" %}
-          {% else %}
-            {% assign ids = ids | append: b | append: "|" %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-
-      {% assign uniq = ids | split: "|" | uniq %}
-      {% assign first = true %}
-      {% for id in uniq %}
-        {% assign idt = id | strip %}
-        {% if idt != "" %}
-          {% unless first %},{% endunless %}{{ idt | jsonify }}
-          {% assign first = false %}
-        {% endif %}
-      {% endfor %}
+      {%- assign first = true -%}
+      {%- for id in id_list -%}
+        {%- assign tid = id | strip -%}
+        {%- if tid != "" -%}
+          {%- unless first -%},{%- endunless -%}{{ tid | jsonify }}
+          {%- assign first = false -%}
+        {%- endif -%}
+      {%- endfor -%}
     ]
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}
