@@ -1,0 +1,23 @@
+---
+layout: null
+permalink: /assets/data/activities_index.json
+---
+[
+{% for a in site.activities %}
+  {
+    "title": {{ a.title | jsonify }},
+    "url": {{ a.url | relative_url | jsonify }},
+    "badge_ids": [
+      {% if a.badge_links %}
+        {% assign first = true %}
+        {% for bl in a.badge_links %}
+          {% if bl.badge_id %}
+            {% unless first %},{% endunless %}{{ bl.badge_id | jsonify }}
+            {% assign first = false %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    ]
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
