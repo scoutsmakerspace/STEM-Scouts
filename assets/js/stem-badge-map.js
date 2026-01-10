@@ -109,26 +109,6 @@
 
         if (reqs.length === 0) return null;
 
-        const acts = Array.isArray(activitiesByBadgeId[b.badge_id || b.id])
-          ? activitiesByBadgeId[b.badge_id || b.id]
-          : Array.isArray(activitiesByBadgeId[b.id])
-            ? activitiesByBadgeId[b.id]
-            : [];
-        const actCount = acts.length;
-        const actPill = actCount > 0
-          ? `<span class="stem-badge-map__activities" title="Used by ${actCount} activit${actCount === 1 ? 'y' : 'ies'}">📎 ${actCount} activit${actCount === 1 ? 'y' : 'ies'}</span>`
-          : '';
-
-        const actLinks = actCount > 0
-          ? `
-            <div class="stem-badge-map__used">
-              <div class="stem-badge-map__used-title">Used in activities</div>
-              <div class="stem-badge-map__used-links">
-                ${acts.map(a => `<a class="stem-badge-map__used-link" href="${escapeHtml(a.url)}">${escapeHtml(a.title)}</a>`).join('')}
-              </div>
-            </div>
-          `
-          : '';
 
         const reqHtml = reqs.map(r => {
           const strengthTag = r.strength === 'borderline'
