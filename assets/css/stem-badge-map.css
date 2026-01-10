@@ -28,3 +28,13 @@
 .stem-req__prompt summary { font-weight: 600; opacity: 0.9; }
 .stem-req__prompt ul { margin: 0.25rem 0 0.25rem 1.2rem; }
 .stem-badge-map__footnote { margin-top: 1rem; font-size: 0.9rem; opacity: 0.75; }
+
+/* Leader prompts – plain lines (no bullets) */
+.req-leader-prompts {
+  margin-top: 8px;
+}
+
+.leader-prompt-line {
+  margin: 2px 0;
+}
+
