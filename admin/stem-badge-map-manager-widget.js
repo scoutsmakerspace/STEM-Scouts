@@ -606,22 +606,9 @@
                                     h("textarea", {
                                       style: styles.textarea,
                                       value: mappedReq.why_stem || "",
-                                      onKeyDownCapture: (e) => {
-                                        // Allow newline, but stop Decap/parent hotkeys from eating Enter
-                                        if (e.key === "Enter") {
-                                          e.stopPropagation();
-                                          if (e.nativeEvent && typeof e.nativeEvent.stopImmediatePropagation === "function") {
-                                            e.nativeEvent.stopImmediatePropagation();
-                                          }
-                                        }
-                                      },
-                                      onKeyPressCapture: (e) => {
-                                        if (e.key === "Enter") {
-                                          e.stopPropagation();
-                                          if (e.nativeEvent && typeof e.nativeEvent.stopImmediatePropagation === "function") {
-                                            e.nativeEvent.stopImmediatePropagation();
-                                          }
-                                        }
+                                      onKeyDown: (e) => {
+                                        // Prevent parent handlers from intercepting Enter
+                                        if (e.key === "Enter") e.stopPropagation();
                                       },
                                       onInput: (e) => this.updateReqField(b.id, r.no, "why_stem", e.target.value),
                                       placeholder: "e.g. Links to problem-solving, design thinking, electronics, coding…",
@@ -632,29 +619,24 @@
                                     h("textarea", {
                                       style: styles.textarea,
                                       value: Array.isArray(mappedReq.leader_prompts) ? mappedReq.leader_prompts.join("\n") : "",
-                                      onKeyDownCapture: (e) => {
-                                        // Allow newline, but stop Decap/parent hotkeys from eating Enter
-                                        if (e.key === "Enter") {
-                                          e.stopPropagation();
-                                          if (e.nativeEvent && typeof e.nativeEvent.stopImmediatePropagation === "function") {
-                                            e.nativeEvent.stopImmediatePropagation();
-                                          }
-                                        }
-                                      },
-                                      onKeyPressCapture: (e) => {
-                                        if (e.key === "Enter") {
-                                          e.stopPropagation();
-                                          if (e.nativeEvent && typeof e.nativeEvent.stopImmediatePropagation === "function") {
-                                            e.nativeEvent.stopImmediatePropagation();
-                                          }
-                                        }
+                                      onKeyDown: (e) => {
+                                        // Critical: stop CMS/editor key handlers from eating Enter.
+                                        if (e.key === "Enter") e.stopPropagation();
                                       },
                                       onInput: (e) => {
-                                        const lines = String(e.target.value || "")
+                                        const raw = String(e.target.value || "").replace(/\r\n/g, "\n");
+                                        // Preserve empty lines while typing so Enter works reliably.
+                                        // We'll trim/clean on blur.
+                                        const lines = raw.split("\n");
+                                        this.updateReqField(b.id, r.no, "leader_prompts", lines);
+                                      },
+                                      onBlur: (e) => {
+                                        const raw = String(e.target.value || "").replace(/\r\n/g, "\n");
+                                        const cleaned = raw
                                           .split("\n")
                                           .map((s) => s.trim())
-                                          .filter(Boolean);
-                                        this.updateReqField(b.id, r.no, "leader_prompts", lines);
+                                          .filter((s) => s.length > 0);
+                                        this.updateReqField(b.id, r.no, "leader_prompts", cleaned);
                                       },
                                       placeholder: "Ask: What did you change when it didn’t work?\nAsk: What would you improve next time?",
                                     })
