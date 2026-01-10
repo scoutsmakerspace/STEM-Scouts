@@ -84,8 +84,11 @@
           const areas = (r.areas || []).map(a => `<span class="stem-tag">${escapeHtml(a)}</span>`).join('');
 
           const prompts = Array.isArray(r.leader_prompts) ? r.leader_prompts : [];
+          // Leader prompts: render as plain lines (no bullets)
           const promptHtml = prompts.length
-            ? `<details><summary>Leader prompts</summary><ul>${prompts.map(p => `<li>${escapeHtml(p)}</li>`).join('')}</ul></details>`
+            ? `<details><summary>Leader prompts</summary><div class="stem-prompts">${prompts
+                .map((p) => `<div class="stem-prompt-line">${escapeHtml(p)}</div>`)
+                .join('')}</div></details>`
             : '';
 
           return `
