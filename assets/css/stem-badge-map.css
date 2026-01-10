@@ -14,7 +14,14 @@
 .stem-badge-map__results summary::-webkit-details-marker { display: none; }
 .stem-badge-map__badge-title { font-weight: 700; }
 .stem-badge-map__badge-meta { opacity: 0.75; font-size: 0.9rem; }
-.stem-badge-map__count { margin-left: auto; font-weight: 600; opacity: 0.9; }
+.stem-badge-map__counts { margin-left: auto; display: inline-flex; gap: 0.5rem; align-items: center; font-weight: 600; opacity: 0.9; }
+.stem-badge-map__count { font-weight: 600; opacity: 0.9; }
+.stem-badge-map__pill { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.8rem; border: 1px solid rgba(0,0,0,0.18); background: rgba(0,0,0,0.04); }
+.stem-badge-map__activity-block { margin-top: 0.65rem; padding-top: 0.65rem; border-top: 1px dashed rgba(0,0,0,0.12); }
+.stem-badge-map__activity-title { font-weight: 600; opacity: 0.9; margin-bottom: 0.35rem; }
+.stem-badge-map__activity-links { display: flex; flex-direction: column; gap: 0.25rem; }
+.stem-badge-map__activity-link a { text-decoration: none; }
+.stem-badge-map__activity-link a:hover { text-decoration: underline; }
 .stem-req { margin-top: 0.65rem; padding-top: 0.65rem; border-top: 1px dashed rgba(0,0,0,0.12); }
 .stem-req__header { display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem; align-items: baseline; }
 .stem-req__ref { font-weight: 700; }
@@ -33,11 +40,3 @@
 /* Multiline leader prompts (no bullets) */
 .stem-prompts-lines { margin-top: 0.5rem; }
 .stem-prompt-line { margin: 0.15rem 0; }
-
-
-/* Activity count + links */
-.stem-badge-map__count--acts{margin-left:8px;}
-.stem-badge-map__activities{margin:8px 0 12px 0;padding:10px 12px;border:1px dashed #d0d7de;border-radius:10px;background:#fff;}
-.stem-badge-map__activities-title{font-weight:700;margin-bottom:6px;}
-.stem-badge-map__activities-links{display:flex;flex-wrap:wrap;gap:8px;}
-.stem-badge-map__activity-link{display:inline-block;padding:6px 10px;border:1px solid #d0d7de;border-radius:999px;text-decoration:none;}
