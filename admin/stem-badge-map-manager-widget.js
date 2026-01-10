@@ -30,6 +30,10 @@
   let _badges = null;
   let _badgesLoading = null;
 
+  // Activities index (badge_id -> [{ title, url } ...])
+  let _activitiesByBadge = null;
+  let _activitiesLoading = null;
+
   function slugify(s) {
     return String(s || "")
       .toLowerCase()
@@ -116,6 +120,69 @@
       });
 
     return _badgesLoading;
+  }
+
+  async function loadActivitiesByBadge() {
+    if (_activitiesByBadge) return _activitiesByBadge;
+    if (_activitiesLoading) return _activitiesLoading;
+
+    // In CMS we are under /admin/, so assets live one level up.
+    const urls = [
+      "../assets/data/activities_index.json",
+      "../assets/data/activities_index.json?cachebust=" + Date.now(),
+    ];
+
+    _activitiesLoading = (async () => {
+      let json = null;
+      let lastErr = null;
+
+      for (const u of urls) {
+        try {
+          const r = await fetch(u, { cache: "no-store" });
+          if (!r.ok) throw new Error(`activities_index fetch failed: ${r.status}`);
+          json = await r.json();
+          break;
+        } catch (e) {
+          lastErr = e;
+        }
+      }
+
+      if (!Array.isArray(json)) {
+        console.warn(
+          "[stem_badge_map_manager] activities index not available (this is optional)",
+          lastErr || ""
+        );
+        _activitiesByBadge = {};
+        return _activitiesByBadge;
+      }
+
+      const byBadge = {};
+      json.forEach((a) => {
+        const title = a && a.title ? String(a.title) : "";
+        const url = a && a.url ? String(a.url) : "";
+        const badgeIds = Array.isArray(a && a.badge_ids) ? a.badge_ids : [];
+        badgeIds.forEach((bid) => {
+          const id = String(bid || "").trim();
+          if (!id) return;
+          if (!byBadge[id]) byBadge[id] = [];
+          byBadge[id].push({ title, url });
+        });
+      });
+
+      // Sort activity lists by title for stable UX
+      Object.keys(byBadge).forEach((bid) => {
+        byBadge[bid].sort((x, y) => String(x.title).localeCompare(String(y.title)));
+      });
+
+      _activitiesByBadge = byBadge;
+      console.log(
+        "[stem_badge_map_manager] loaded activities index for badges:",
+        Object.keys(_activitiesByBadge).length
+      );
+      return _activitiesByBadge;
+    })();
+
+    return _activitiesLoading;
   }
 
   // ----------------------------
@@ -243,7 +310,9 @@
       getInitialState() {
         return {
           loading: true,
+          loadingActivities: true,
           badges: [],
+          activitiesByBadge: {},
           query: "",
           expanded: {}, // badge_id -> bool
           reqExpanded: {}, // "badge_id::reqNo" -> bool
@@ -256,7 +325,8 @@
 
       async componentDidMount() {
         const badges = await loadBadges();
-        this.setState({ badges, loading: false });
+        const activitiesByBadge = await loadActivitiesByBadge();
+        this.setState({ badges, activitiesByBadge: activitiesByBadge || {}, loading: false, loadingActivities: false });
         this.hydrateFromValue(this.props.value);
       },
 
@@ -481,6 +551,22 @@
             fontWeight: 600,
             userSelect: "none",
           }),
+
+          usedByWrap: { marginTop: 8, paddingTop: 8, borderTop: "1px solid #efefef" },
+          usedByLabel: { color: "#444", fontSize: 12, fontWeight: 700, marginBottom: 6 },
+          usedByLinks: { display: "flex", flexWrap: "wrap", gap: 8 },
+          usedByLink: {
+            display: "inline-flex",
+            alignItems: "center",
+            padding: "6px 10px",
+            borderRadius: 999,
+            border: "1px solid #d0d7de",
+            background: "#f6f8fa",
+            fontSize: 12,
+            fontWeight: 600,
+            textDecoration: "none",
+            color: "#0969da",
+          },
         };
 
         const idx = indexExisting(this.state.mappedBadges);
@@ -517,6 +603,8 @@
                 const isExpanded = !!this.state.expanded[b.id];
                 const badgeTitle = `${b.section} — ${b.title}`.trim();
                 const meta = `${b.section_slug} · ${b.category || ""}`.trim();
+                const usedBy =
+                  (this.state.activitiesByBadge && this.state.activitiesByBadge[b.id]) || [];
 
                 return h(
                   "div",
@@ -532,6 +620,36 @@
                       h("button", { type: "button", style: styles.toggle, onClick: () => this.toggleExpanded(b.id), title: isExpanded ? "Collapse" : "Expand" }, isExpanded ? "–" : "+")
                     )
                   ),
+
+                  usedBy.length > 0
+                    ? h(
+                        "div",
+                        { style: styles.usedByWrap },
+                        h(
+                          "div",
+                          { style: styles.usedByLabel },
+                          `Used by ${usedBy.length} activit${usedBy.length === 1 ? "y" : "ies"}`
+                        ),
+                        h(
+                          "div",
+                          { style: styles.usedByLinks },
+                          usedBy.map((a) =>
+                            h(
+                              "a",
+                              {
+                                key: a.url + "::" + a.title,
+                                href: a.url,
+                                target: "_blank",
+                                rel: "noopener noreferrer",
+                                style: styles.usedByLink,
+                                title: "Open activity",
+                              },
+                              a.title || a.url
+                            )
+                          )
+                        )
+                      )
+                    : null,
 
                   isExpanded
                     ? h(

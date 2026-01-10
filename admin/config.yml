@@ -229,6 +229,7 @@ collections:
         required: false
         collapsed: true
         summary: "{{fields.badge_title}}"
+        hint: "Only badges/requirements that exist in the STEM Badge Map can be selected here. If you can't find a badge, go to: STEM Badge Map → Badge mapping → Add/Remove requirements → Save/Publish, then come back here and refresh the page."
         field:
           label: "Badge link"
           name: item
