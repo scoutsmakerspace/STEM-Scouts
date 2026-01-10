@@ -1,7 +1,7 @@
 ---
 layout: activity
 card_sections: true
-title: Test activity
+title: Test activity 3
 summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
   tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea
   sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit
@@ -100,6 +100,22 @@ kit_items: |-
   item 3
   item 4
   item 5
+badge_links:
+  - badge_id: squirrels-feel-good
+    badge_title: Squirrels — Feel Good
+    requirements_met:
+      - "3"
+    notes: ""
+  - badge_id: beavers-book-reader
+    badge_title: Beavers — Book Reader
+    requirements_met:
+      - "1"
+    notes: ""
+  - badge_id: scouts-equestrian
+    badge_title: Scouts — Equestrian
+    requirements_met:
+      - "7"
+    notes: ""
 ---
 **Sagittis ac aenean** nam tristique rhoncus cras augue dignissim posuere arcu netus iaculis. Ligula sem integer aliquam arcu tincidunt libero vestibulum ad phasellus imperdiet metus dictum torquent dictum. Odio est arcu cras praesent commodo cras mauris litora. Rhoncus tristique lobortis varius tincidunt felis.
 
