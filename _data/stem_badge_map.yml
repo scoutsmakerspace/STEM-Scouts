@@ -4523,6 +4523,8 @@ badges:
         areas:
           - Electronics
           - Maths
-        why_stem: bla bla bla
+        why_stem: |-
+          bla bla bla
+          bla bla bla
         leader_prompts:
           - blablabla
