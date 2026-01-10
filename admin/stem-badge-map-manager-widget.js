@@ -162,9 +162,7 @@
     const no = String(reqNo);
     return (
       list.find(
-        (r) =>
-          String(r.ref || "") === no ||
-          String(r.rid || "").endsWith(`::${no}`)
+        (r) => String(r.ref || "") === no || String(r.rid || "").endsWith(`::${no}`)
       ) || null
     );
   }
@@ -247,10 +245,10 @@
           loading: true,
           badges: [],
           query: "",
-          expanded: {},          // badge_id -> bool
-          reqExpanded: {},       // "badge_id::reqNo" -> bool
+          expanded: {}, // badge_id -> bool
+          reqExpanded: {}, // "badge_id::reqNo" -> bool
           valueHash: "",
-          mappedBadges: [],      // ARRAY of mapped badge entries
+          mappedBadges: [], // ARRAY of mapped badge entries
           message: "",
           lastNonEmptyHash: "",
         };
@@ -274,8 +272,7 @@
 
         if (hash === this.state.valueHash) return;
 
-        const lastNonEmptyHash =
-          (arr && arr.length > 0) ? hash : (this.state.lastNonEmptyHash || "");
+        const lastNonEmptyHash = arr && arr.length > 0 ? hash : this.state.lastNonEmptyHash || "";
 
         this.setState({
           mappedBadges: cloneArr(arr),
@@ -335,9 +332,7 @@
           arr.push(entry);
         }
 
-        entry.stem_requirements = Array.isArray(entry.stem_requirements)
-          ? entry.stem_requirements
-          : [];
+        entry.stem_requirements = Array.isArray(entry.stem_requirements) ? entry.stem_requirements : [];
 
         if (findReqEntry(entry, req.no)) return;
 
@@ -372,7 +367,7 @@
         this.emit(arr);
       },
 
-      // ---- NEW: update fields for a mapped requirement ----
+      // ---- update fields for a mapped requirement ----
       updateReqField(badgeId, reqNo, field, value) {
         const arr = cloneArr(this.state.mappedBadges);
         const i = arr.findIndex((b) => b && String(b.badge_id) === String(badgeId));
@@ -380,13 +375,14 @@
 
         const entry = arr[i];
         const req = (entry.stem_requirements || []).find(
-          (r) => String(r.ref || "") === String(reqNo) || String(r.rid || "").endsWith(`::${String(reqNo)}`)
+          (r) =>
+            String(r.ref || "") === String(reqNo) ||
+            String(r.rid || "").endsWith(`::${String(reqNo)}`)
         );
         if (!req) return;
 
         req[field] = value;
 
-        // Normalise types
         if (field === "areas" && !Array.isArray(req.areas)) req.areas = [];
         if (field === "leader_prompts" && !Array.isArray(req.leader_prompts)) req.leader_prompts = [];
 
@@ -400,7 +396,9 @@
 
         const entry = arr[i];
         const req = (entry.stem_requirements || []).find(
-          (r) => String(r.ref || "") === String(reqNo) || String(r.rid || "").endsWith(`::${String(reqNo)}`)
+          (r) =>
+            String(r.ref || "") === String(reqNo) ||
+            String(r.rid || "").endsWith(`::${String(reqNo)}`)
         );
         if (!req) return;
 
@@ -425,10 +423,7 @@
           const json = await r.json();
           const imported = normaliseImportedJSON(json);
 
-          this.setState({
-            message: `Imported ${imported.length} badges. Click Save.`,
-          });
-
+          this.setState({ message: `Imported ${imported.length} badges. Click Save.` });
           this.emit(imported);
         } catch (e) {
           console.error("[stem_badge_map_manager] import failed:", e);
@@ -459,7 +454,19 @@
           detailsBox: { marginTop: 10, padding: 10, borderRadius: 10, border: "1px dashed #c9c9c9", background: "#fff" },
           label: { display: "block", fontSize: 12, fontWeight: 700, color: "#444", marginTop: 10, marginBottom: 4 },
           select: { width: "220px", padding: "8px 10px", borderRadius: 8, border: "1px solid #cfcfcf" },
-          textarea: { width: "100%", minHeight: 70, padding: "8px 10px", borderRadius: 8, border: "1px solid #cfcfcf", resize: "vertical" },
+
+          // ✅ UPDATED: make textareas clearly multi-line, and preserve line breaks nicely
+          textarea: {
+            width: "100%",
+            minHeight: 120,
+            padding: "8px 10px",
+            borderRadius: 8,
+            border: "1px solid #cfcfcf",
+            resize: "vertical",
+            lineHeight: 1.35,
+            whiteSpace: "pre-wrap",
+          },
+
           areasWrap: { display: "flex", flexWrap: "wrap", gap: 8, marginTop: 6 },
           areaChip: (on) => ({
             display: "inline-flex",
@@ -476,11 +483,9 @@
           }),
         };
 
-        // Index mapped badges
         const idx = indexExisting(this.state.mappedBadges);
         const q = String(this.state.query || "").trim().toLowerCase();
 
-        // Search matches badge title OR req text
         const filtered = (this.state.badges || []).filter((b) => {
           if (!q) return true;
           const titleHit = (b._display || "").includes(q) || String(b.id || "").includes(q);
@@ -492,7 +497,11 @@
           "div",
           { style: { padding: 2 } },
           h("div", { style: styles.header }, "STEM Badge Map Manager"),
-          h("div", { style: styles.sub }, "Expand a badge, then Add/Remove individual requirements. For mapped requirements, open Details to add Strength / Areas / Why STEM / Leader prompts."),
+          h(
+            "div",
+            { style: styles.sub },
+            "Expand a badge, then Add/Remove individual requirements. For mapped requirements, open Details to add Strength / Areas / Why STEM / Leader prompts."
+          ),
           h(
             "div",
             { style: styles.toolbar },
@@ -543,7 +552,9 @@
                               h(
                                 "div",
                                 { style: { display: "flex", justifyContent: "space-between", gap: 10, alignItems: "center" } },
-                                h("div", null,
+                                h(
+                                  "div",
+                                  null,
                                   h("div", { style: styles.reqRef }, `Req ${r.no}`),
                                   h("div", { style: styles.reqText }, `${r.no}. ${r.text}`)
                                 ),
@@ -567,12 +578,10 @@
                                       "select",
                                       {
                                         style: styles.select,
-                                        value: (mappedReq.strength || "strong"),
+                                        value: mappedReq.strength || "strong",
                                         onChange: (e) => this.updateReqField(b.id, r.no, "strength", e.target.value),
                                       },
-                                      STRENGTH_OPTIONS.map((opt) =>
-                                        h("option", { key: opt.value, value: opt.value }, opt.label)
-                                      )
+                                      STRENGTH_OPTIONS.map((opt) => h("option", { key: opt.value, value: opt.value }, opt.label))
                                     ),
 
                                     // Areas
@@ -597,6 +606,10 @@
                                     h("textarea", {
                                       style: styles.textarea,
                                       value: mappedReq.why_stem || "",
+                                      onKeyDown: (e) => {
+                                        // Prevent parent handlers from intercepting Enter
+                                        if (e.key === "Enter") e.stopPropagation();
+                                      },
                                       onInput: (e) => this.updateReqField(b.id, r.no, "why_stem", e.target.value),
                                       placeholder: "e.g. Links to problem-solving, design thinking, electronics, coding…",
                                     }),
@@ -606,6 +619,10 @@
                                     h("textarea", {
                                       style: styles.textarea,
                                       value: Array.isArray(mappedReq.leader_prompts) ? mappedReq.leader_prompts.join("\n") : "",
+                                      onKeyDown: (e) => {
+                                        // Critical: stop CMS/editor key handlers from eating Enter.
+                                        if (e.key === "Enter") e.stopPropagation();
+                                      },
                                       onInput: (e) => {
                                         const lines = String(e.target.value || "")
                                           .split("\n")
