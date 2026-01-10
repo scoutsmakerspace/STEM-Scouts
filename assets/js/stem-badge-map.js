@@ -84,11 +84,8 @@
           const areas = (r.areas || []).map(a => `<span class="stem-tag">${escapeHtml(a)}</span>`).join('');
 
           const prompts = Array.isArray(r.leader_prompts) ? r.leader_prompts : [];
-          // Leader prompts: render as plain lines (no bullets)
           const promptHtml = prompts.length
-            ? `<details><summary>Leader prompts</summary><div class="stem-prompts">${prompts
-                .map((p) => `<div class="stem-prompt-line">${escapeHtml(p)}</div>`)
-                .join('')}</div></details>`
+            ? `<details><summary>Leader prompts</summary><div class="stem-prompts-lines">${prompts.map(p => `<div class="stem-prompt-line">${escapeHtml(p)}</div>`).join('')}</div></details>`
             : '';
 
           return `
@@ -99,7 +96,7 @@
                 ${strengthTag}
               </div>
               <div class="stem-req__areas">${areas}</div>
-              <p class="stem-req__why"><strong>Why STEM:</strong> ${escapeHtml(r.why_stem)}</p>
+              <p class="stem-req__why"><strong>Why STEM:</strong> ${escapeHtml(r.why_stem || '').replace(/\n/g,'<br>')}</p>
               <div class="stem-req__prompt">${promptHtml}</div>
             </div>
           `;
