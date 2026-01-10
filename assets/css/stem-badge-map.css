@@ -34,41 +34,10 @@
 .stem-prompts-lines { margin-top: 0.5rem; }
 .stem-prompt-line { margin: 0.15rem 0; }
 
-/* Badge -> activities links */
-.stem-badge-map__activities {
-  display: inline-block;
-  margin-left: 0.75rem;
-  font-weight: 600;
-  color: #4b5563;
-}
 
-.stem-badge-map__used-in {
-  margin: 0.75rem 0 0.5rem;
-  padding: 0.6rem 0.8rem;
-  border: 1px dashed #d1d5db;
-  border-radius: 0.75rem;
-  background: #fff;
-}
-
-.stem-badge-map__used-in-title {
-  font-weight: 700;
-  margin-bottom: 0.35rem;
-}
-
-.stem-badge-map__used-in-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 0.6rem;
-}
-
-.stem-badge-map__activity-link {
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  border-radius: 999px;
-  border: 1px solid #d0d7de;
-  text-decoration: none;
-}
-
-.stem-badge-map__activity-link:hover {
-  text-decoration: underline;
-}
+/* Activity count + links */
+.stem-badge-map__count--acts{margin-left:8px;}
+.stem-badge-map__activities{margin:8px 0 12px 0;padding:10px 12px;border:1px dashed #d0d7de;border-radius:10px;background:#fff;}
+.stem-badge-map__activities-title{font-weight:700;margin-bottom:6px;}
+.stem-badge-map__activities-links{display:flex;flex-wrap:wrap;gap:8px;}
+.stem-badge-map__activity-link{display:inline-block;padding:6px 10px;border:1px solid #d0d7de;border-radius:999px;text-decoration:none;}
