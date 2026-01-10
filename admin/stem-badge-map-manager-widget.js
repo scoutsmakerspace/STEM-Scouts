@@ -467,7 +467,38 @@
             whiteSpace: "pre-wrap",
           },
 
-          areasWrap: { display: "flex", flexWrap: "wrap", gap: 8, marginTop: 6 },
+          // Leader prompts list editor (no multiline textarea needed)
+          promptsBox: { marginTop: 6 },
+          promptRow: { display: "flex", gap: 8, alignItems: "center", marginTop: 6 },
+          promptInput: {
+            flex: "1 1 auto",
+            padding: "8px 10px",
+            borderRadius: 8,
+            border: "1px solid #cfcfcf",
+            fontSize: 13,
+          },
+          promptRemove: {
+            padding: "8px 10px",
+            borderRadius: 8,
+            border: "1px solid #d0d7de",
+            background: "#fff",
+            cursor: "pointer",
+            fontWeight: 700,
+            fontSize: 12,
+          },
+          promptAdd: {
+            marginTop: 8,
+            padding: "8px 10px",
+            borderRadius: 8,
+            border: "1px solid #1f883d",
+            background: "#1f883d",
+            color: "#fff",
+            cursor: "pointer",
+            fontWeight: 800,
+            fontSize: 12,
+          },
+          promptsHint: { marginTop: 6, fontSize: 12, color: "#666" },
+areasWrap: { display: "flex", flexWrap: "wrap", gap: 8, marginTop: 6 },
           areaChip: (on) => ({
             display: "inline-flex",
             alignItems: "center",
@@ -615,24 +646,67 @@
                                     }),
 
                                     // Leader prompts
-                                    h("label", { style: styles.label }, "Leader prompts (one per line)"),
-                                    h("textarea", {
-                                      style: styles.textarea,
-                                      value: Array.isArray(mappedReq.leader_prompts) ? mappedReq.leader_prompts.join("\n") : "",
-                                      onKeyDown: (e) => {
-                                        // Critical: stop CMS/editor key handlers from eating Enter.
-                                        if (e.key === "Enter") e.stopPropagation();
-                                      },
-                                      onInput: (e) => {
-                                        const lines = String(e.target.value || "")
-                                          .split("\n")
-                                          .map((s) => s.trim())
-                                          .filter(Boolean);
-                                        this.updateReqField(b.id, r.no, "leader_prompts", lines);
-                                      },
-                                      placeholder: "Ask: What did you change when it didn’t work?\nAsk: What would you improve next time?",
-                                    })
-                                  )
+                                    h("label", { style: styles.label }, "Leader prompts"),
+                                    h(
+                                      "div",
+                                      { style: styles.promptsBox },
+                                      (Array.isArray(mappedReq.leader_prompts) ? mappedReq.leader_prompts : []).map((p, idxP) =>
+                                        h(
+                                          "div",
+                                          { key: `lp-${b.id}-${r.no}-${idxP}`, style: styles.promptRow },
+                                          h("input", {
+                                            type: "text",
+                                            value: String(p || ""),
+                                            placeholder: "Type a leader prompt…",
+                                            style: styles.promptInput,
+                                            onInput: (e) => {
+                                              const next = (Array.isArray(mappedReq.leader_prompts) ? mappedReq.leader_prompts : []).slice();
+                                              next[idxP] = (e.target && e.target.value) || "";
+                                              // keep empty lines while editing; we'll trim on save-ish update
+                                              this.updateReqField(
+                                                b.id,
+                                                r.no,
+                                                "leader_prompts",
+                                                next
+                                                  .map((s) => String(s || "").trim())
+                                                  .filter((s) => s.length > 0)
+                                              );
+                                            },
+                                          }),
+                                          h(
+                                            "button",
+                                            {
+                                              type: "button",
+                                              style: styles.promptRemove,
+                                              onClick: () => {
+                                                const next = (Array.isArray(mappedReq.leader_prompts) ? mappedReq.leader_prompts : []).slice();
+                                                next.splice(idxP, 1);
+                                                this.updateReqField(b.id, r.no, "leader_prompts", next);
+                                              },
+                                            },
+                                            "Remove"
+                                          )
+                                        )
+                                      ),
+                                      h(
+                                        "button",
+                                        {
+                                          type: "button",
+                                          style: styles.promptAdd,
+                                          onClick: () => {
+                                            const next = (Array.isArray(mappedReq.leader_prompts) ? mappedReq.leader_prompts : []).slice();
+                                            next.push("");
+                                            this.updateReqField(b.id, r.no, "leader_prompts", next);
+                                          },
+                                        },
+                                        "+ Add prompt"
+                                      ),
+                                      h(
+                                        "div",
+                                        { style: styles.promptsHint },
+                                        "Tip: use “Add prompt” to create another line (this avoids the Enter key being swallowed by the CMS)."
+                                      )
+                                    )
                                 : null
                             ),
 
