@@ -8,37 +8,38 @@ permalink: /assets/data/activities_index.json
     "title": {{ a.title | jsonify }},
     "url": {{ a.url | relative_url | jsonify }},
     "badge_ids": [
-      {%- assign _ids = "" | split: "|" -%}
+      {% assign ids = "" %}
+      {% comment %}New field: badge_links: [{badge_id: "..."}]{% endcomment %}
+      {% if a.badge_links %}
+        {% for bl in a.badge_links %}
+          {% if bl.badge_id %}
+            {% assign ids = ids | append: bl.badge_id | append: "|" %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
 
-      {%- comment -%}
-      Preferred: new field written by the Activities editor (badge_links: [{badge_id, ...}, ...])
-      {%- endcomment -%}
-      {%- if a.badge_links -%}
-        {%- for bl in a.badge_links -%}
-          {%- if bl.badge_id and bl.badge_id != "" -%}
-            {%- assign _ids = _ids | push: bl.badge_id -%}
-          {%- endif -%}
-        {%- endfor -%}
-      {%- endif -%}
+      {% comment %}Legacy field: badges can be [{badge_id: ...}] or [{badge: ...}] or ["slug", ...]{% endcomment %}
+      {% if a.badges %}
+        {% for b in a.badges %}
+          {% if b.badge_id %}
+            {% assign ids = ids | append: b.badge_id | append: "|" %}
+          {% elsif b.badge %}
+            {% assign ids = ids | append: b.badge | append: "|" %}
+          {% else %}
+            {% assign ids = ids | append: b | append: "|" %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
 
-      {%- comment -%}
-      Back-compat: legacy badges field (badges: [{badge_id|badge, ...}, ...])
-      If badge_id isn't present, we only include values that already look like a slug.
-      {%- endcomment -%}
-      {%- if a.badges -%}
-        {%- for b in a.badges -%}
-          {%- if b.badge_id and b.badge_id != "" -%}
-            {%- assign _ids = _ids | push: b.badge_id -%}
-          {%- elsif b.badge and b.badge != "" and b.badge contains "-" -%}
-            {%- assign _ids = _ids | push: b.badge -%}
-          {%- endif -%}
-        {%- endfor -%}
-      {%- endif -%}
-
-      {%- assign _ids = _ids | uniq -%}
-      {%- for id in _ids -%}
-        {%- unless forloop.first -%},{%- endunless -%}{{ id | jsonify }}
-      {%- endfor -%}
+      {% assign uniq = ids | split: "|" | uniq %}
+      {% assign first = true %}
+      {% for id in uniq %}
+        {% assign idt = id | strip %}
+        {% if idt != "" %}
+          {% unless first %},{% endunless %}{{ idt | jsonify }}
+          {% assign first = false %}
+        {% endif %}
+      {% endfor %}
     ]
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}
