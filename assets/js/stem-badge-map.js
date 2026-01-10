@@ -22,6 +22,39 @@
 
   const badges = Array.isArray(data.badges) ? data.badges : [];
 
+  // Badge -> activities index (loaded from /assets/data/activities_index.json)
+  // We keep this optional; the map renders even if it fails to load.
+  let activitiesByBadgeId = Object.create(null);
+
+  async function loadActivitiesIndex() {
+    try {
+      const res = await fetch((window.__STEM_ACTIVITIES_INDEX_URL__ || '/assets/data/activities_index.json'), { cache: 'no-store' });
+      if (!res.ok) throw new Error(`activities_index fetch failed: ${res.status}`);
+      const arr = await res.json();
+      const by = Object.create(null);
+      (Array.isArray(arr) ? arr : []).forEach((a) => {
+        const badgeIds = Array.isArray(a.badge_ids) ? a.badge_ids : [];
+        badgeIds.forEach((bid) => {
+          const id = String(bid || '').trim();
+          if (!id) return;
+          if (!by[id]) by[id] = [];
+          by[id].push({ title: a.title || id, url: a.url || '#' });
+        });
+      });
+
+      // Sort per badge for stable display
+      Object.keys(by).forEach((k) => {
+        by[k].sort((x, y) => String(x.title || '').localeCompare(String(y.title || '')));
+      });
+
+      activitiesByBadgeId = by;
+      // Re-render with activity info
+      rerender();
+    } catch (e) {
+      console.warn('[stem-badge-map] activities index not available:', e);
+    }
+  }
+
   function buildSections(items) {
     const set = new Set(items.map(b => b.section).filter(Boolean));
     const sections = Array.from(set).sort((a, b) => a.localeCompare(b));
@@ -76,6 +109,27 @@
 
         if (reqs.length === 0) return null;
 
+        const acts = Array.isArray(activitiesByBadgeId[b.badge_id || b.id])
+          ? activitiesByBadgeId[b.badge_id || b.id]
+          : Array.isArray(activitiesByBadgeId[b.id])
+            ? activitiesByBadgeId[b.id]
+            : [];
+        const actCount = acts.length;
+        const actPill = actCount > 0
+          ? `<span class="stem-badge-map__activities" title="Used by ${actCount} activit${actCount === 1 ? 'y' : 'ies'}">📎 ${actCount} activit${actCount === 1 ? 'y' : 'ies'}</span>`
+          : '';
+
+        const actLinks = actCount > 0
+          ? `
+            <div class="stem-badge-map__used">
+              <div class="stem-badge-map__used-title">Used in activities</div>
+              <div class="stem-badge-map__used-links">
+                ${acts.map(a => `<a class="stem-badge-map__used-link" href="${escapeHtml(a.url)}">${escapeHtml(a.title)}</a>`).join('')}
+              </div>
+            </div>
+          `
+          : '';
+
         const reqHtml = reqs.map(r => {
           const strengthTag = r.strength === 'borderline'
             ? '<span class="stem-tag stem-tag--borderline">Borderline</span>'
@@ -102,14 +156,33 @@
           `;
         }).join('');
 
+        const acts = Array.isArray(activitiesByBadgeId[b.id]) ? activitiesByBadgeId[b.id] : [];
+        const actCount = acts.length;
+        const actPill = actCount > 0
+          ? `<span class="stem-badge-map__activities">📎 ${actCount} activit${actCount === 1 ? 'y' : 'ies'}</span>`
+          : '';
+
+        const actLinks = actCount > 0
+          ? `
+            <div class="stem-badge-map__used-in">
+              <div class="stem-badge-map__used-in-title">Used in activities</div>
+              <div class="stem-badge-map__used-in-list">
+                ${acts.map(a => `<a class="stem-badge-map__activity-link" href="${escapeHtml(a.url)}">${escapeHtml(a.title)}</a>`).join('')}
+              </div>
+            </div>
+          `
+          : '';
+
         const metaBits = [b.section, b.category].filter(Boolean).map(escapeHtml).join(' · ');
         return `
           <details>
             <summary>
               <span class="stem-badge-map__badge-title">${escapeHtml(b.title)}</span>
               <span class="stem-badge-map__badge-meta">${metaBits}</span>
+              ${actPill}
               <span class="stem-badge-map__count">${reqs.length} requirement${reqs.length === 1 ? '' : 's'}</span>
             </summary>
+            ${actLinks}
             ${reqHtml}
           </details>
         `;
@@ -151,4 +224,7 @@
   elBorderline.addEventListener('change', rerender);
 
   rerender();
+
+  // Load activities index in the background and re-render when available.
+  loadActivitiesIndex();
 })();
