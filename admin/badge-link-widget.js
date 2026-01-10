@@ -7,6 +7,39 @@
   let _badges = null;
   let _loading = null;
 
+  // ---------- Load STEM Badge Map index (allowed badges / mapped requirements) ----------
+  let _mapIndex = null;
+  let _mapLoading = null;
+
+  async function loadMapIndex() {
+    if (_mapIndex) return _mapIndex;
+    if (_mapLoading) return _mapLoading;
+
+    // In CMS we are under /admin/, so go up one level.
+    _mapLoading = fetch("../assets/data/stem_badge_map_index.json", { cache: "no-store" })
+      .then((r) => {
+        if (!r.ok) throw new Error(`stem_badge_map_index.json fetch failed: ${r.status}`);
+        return r.json();
+      })
+      .then((json) => {
+        const arr = json && Array.isArray(json.badges) ? json.badges : [];
+        // Shape: [{ badge_id, req_refs: [...] }]
+        _mapIndex = arr.map((b) => ({
+          badge_id: String(b.badge_id || ""),
+          req_refs: Array.isArray(b.req_refs) ? b.req_refs.map(String) : [],
+        })).filter((b) => b.badge_id);
+        console.log("[badge_link] loaded stem_badge_map_index:", _mapIndex.length);
+        return _mapIndex;
+      })
+      .catch((e) => {
+        console.error("[badge_link] stem_badge_map_index load failed:", e);
+        _mapIndex = [];
+        return _mapIndex;
+      });
+
+    return _mapLoading;
+  }
+
   async function loadBadges() {
     if (_badges) return _badges;
     if (_loading) return _loading;
@@ -68,6 +101,7 @@
         return {
           loading: true,
           badges: [],
+          mapIndex: [],
           query: "",
           selectedId: null,
           notes: "",
@@ -76,8 +110,8 @@
       },
 
       async componentDidMount() {
-        const badges = await loadBadges();
-        this.setState({ badges, loading: false });
+        const [badges, mapIndex] = await Promise.all([loadBadges(), loadMapIndex()]);
+        this.setState({ badges, mapIndex, loading: false });
         this.hydrateFromValue(this.props.value);
       },
 
@@ -175,11 +209,29 @@
         const badges = this.state.badges;
         const selected = this.state.selectedId ? byId(badges, this.state.selectedId) : null;
 
+        // Allowed badges/requirements come from the curated STEM Badge Map.
+        const mapIndex = Array.isArray(this.state.mapIndex) ? this.state.mapIndex : [];
+        const allowedSet = new Set(mapIndex.map((m) => String(m.badge_id)));
+        const mapForSelected = this.state.selectedId
+          ? (mapIndex.find((m) => String(m.badge_id) === String(this.state.selectedId)) || null)
+          : null;
+        const allowedReqRefs = mapForSelected && Array.isArray(mapForSelected.req_refs)
+          ? new Set(mapForSelected.req_refs.map(String))
+          : null;
+        const selectedIsMapped = !!(this.state.selectedId && allowedSet.has(String(this.state.selectedId)));
+
         // Simple search (client side)
         const q = (this.state.query || "").trim().toLowerCase();
+        // Filter to only badges present in the curated map. Keep the currently-selected badge
+        // even if it's not mapped, so existing content doesn't disappear.
+        const curated = badges.filter((b) => allowedSet.has(String(b.id)));
+        const baseList = curated;
         const filtered = q
-          ? badges.filter((b) => (b._display || "").toLowerCase().includes(q))
-          : badges;
+          ? baseList.filter((b) => (b._display || "").toLowerCase().includes(q))
+          : baseList;
+
+        // If an activity already has an unmapped badge saved, keep it visible at the top.
+        const unmappedSelected = (selected && !selectedIsMapped) ? selected : null;
 
         return h(
           "div",
@@ -202,6 +254,11 @@
               style: { width: "100%", padding: "8px 10px", borderRadius: 6, border: "1px solid rgba(0,0,0,0.2)" }
             },
               h("option", { value: "" }, "Select a badge…"),
+              unmappedSelected
+                ? h("optgroup", { key: "unmapped", label: "⚠ Unmapped (add it to STEM Badge Map)" },
+                    h("option", { key: unmappedSelected.id, value: unmappedSelected.id }, unmappedSelected._display)
+                  )
+                : null,
               (() => {
               const groups = {};
               for (const b of filtered) {
@@ -229,6 +286,29 @@
             ? h(
                 "div",
                 null,
+                !selectedIsMapped
+                  ? h(
+                      "div",
+                      {
+                        style: {
+                          background: "#fff3cd",
+                          border: "1px solid #ffe69c",
+                          padding: "10px 12px",
+                          borderRadius: 8,
+                          margin: "8px 0 10px",
+                          lineHeight: 1.35,
+                        },
+                      },
+                      h("div", { style: { fontWeight: 700, marginBottom: 4 } }, "This badge isn't available yet"),
+                      h(
+                        "div",
+                        null,
+                        "This Activities picker only shows badges that exist in the STEM Badge Map. ",
+                        "Go to ‘STEM Badge Map’ in the CMS, add at least one requirement for this badge, Save, and Publish. ",
+                        "Then refresh this page and it will appear here."
+                      )
+                    )
+                  : null,
                 h("div", { style: { margin: "8px 0 6px", fontWeight: 600 } }, "Requirements (tick what this activity covers):"),
                 h(
                   "div",
@@ -243,7 +323,36 @@
                     },
                   },
                   (selected.requirements || []).length
-                    ? selected.requirements.map((r) =>
+                    ? (() => {
+                        // Only show mapped requirements for mapped badges.
+                        const allReqs = selected.requirements || [];
+                        const visibleReqs = selectedIsMapped && allowedReqRefs
+                          ? allReqs.filter((r) => allowedReqRefs.has(String(r.no || r.id)))
+                          : [];
+
+                        // If legacy data contains requirement ids that are no longer visible, warn.
+                        const visibleIds = new Set(visibleReqs.map((r) => String(r.id)));
+                        const hiddenSelectedCount = (this.state.reqsSelected || []).filter((id) => !visibleIds.has(String(id))).length;
+
+                        if (!selectedIsMapped) {
+                          return h("div", { style: { opacity: 0.85 } }, "Map this badge in STEM Badge Map to select requirements here.");
+                        }
+
+                        if (visibleReqs.length === 0) {
+                          return h("div", { style: { opacity: 0.85 } }, "This badge is mapped, but no mapped requirements were found. Add requirements in STEM Badge Map.");
+                        }
+
+                        return h(
+                          "div",
+                          null,
+                          hiddenSelectedCount > 0
+                            ? h(
+                                "div",
+                                { style: { background: "#f6f8fa", border: "1px solid rgba(0,0,0,0.08)", padding: "8px 10px", borderRadius: 6, marginBottom: 8, fontSize: 13 } },
+                                `Note: ${hiddenSelectedCount} previously-selected requirement(s) are no longer available because this picker only shows mapped requirements.`
+                              )
+                            : null,
+                          visibleReqs.map((r) =>
                         h(
                           "label",
                           { key: String(r.id), style: { display: "flex", gap: 8, padding: "6px 0", alignItems: "flex-start" } },
@@ -258,7 +367,9 @@
                             h("div", null, r.text)
                           )
                         )
-                      )
+                          )
+                        );
+                      })()
                     : h("div", { style: { opacity: 0.8 } }, "No numbered requirements found for this badge.")
                 )
               )
