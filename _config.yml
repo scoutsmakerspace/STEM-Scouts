@@ -4,8 +4,8 @@ description: "A practical STEM activity library for Scout leaders."
 # GitHub Pages project site:
 # NOTE: the build workflow can set the correct baseurl automatically as /<repo-name>.
 # Keep baseurl empty here to avoid mismatches.
-url: "https://scoutsmakerspace.github.io"
-baseurl: ""
+url: "https://stemscouts.space"
+baseurl: ""   # IMPORTANT: empty for custom domain root
 
 masthead_title: "STEM Scouts"
 
