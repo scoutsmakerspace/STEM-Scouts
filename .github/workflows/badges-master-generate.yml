@@ -1,0 +1,38 @@
+name: Generate badges_master.json
+
+on:
+  push:
+    paths:
+      - "_badges/*.md"
+      - "tools/generate_badges_master.py"
+      - ".github/workflows/badges-master-generate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-master:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install pyyaml
+
+      - name: Generate master JSON
+        run: python tools/generate_badges_master.py
+
+      - name: Commit updated master JSON (if changed)
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add admin/badges_master.json _data/badges_master.json
+            git commit -m "Auto-generate badges_master.json from _badges"
+            git push
+          fi
