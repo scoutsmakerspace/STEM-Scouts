@@ -178,6 +178,58 @@
     ]
   },
   {
+    "id": "beavers-chief-scout-s-bronze-award",
+    "badge_name": "Chief Scout's Bronze Award",
+    "section": "beavers",
+    "section_label": "Beavers",
+    "category": "Challenge Awards",
+    "type": "Top Award",
+    "description": "This is the highest award a Beaver can earn. To earn it, you’ll need complete all of the challenge awards, as well as any four activity badges of your choice (including staged activity badges)",
+    "completion_rules": "Complete 6 prerequisite badges + 4 activity badges",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "PREREQUISITE BADGES (all required)"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 1",
+        "no": "1",
+        "text": "My Adventure"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 2",
+        "no": "2",
+        "text": "My Outdoors"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 3",
+        "no": "3",
+        "text": "Personal"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 4",
+        "no": "4",
+        "text": "My Skills"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 5",
+        "no": "5",
+        "text": "Teamwork"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 6",
+        "no": "6",
+        "text": "My World PLUS 4 Activity or Staged Activity Badges of your choice"
+      }
+    ]
+  },
+  {
     "id": "beavers-collector",
     "badge_name": "Collector",
     "section": "beavers",
@@ -856,6 +908,56 @@
     ]
   },
   {
+    "id": "beavers-lodge-leader",
+    "badge_name": "Lodge Leader",
+    "section": "beavers",
+    "section_label": "Beavers",
+    "category": "Core Badges",
+    "type": "Leadership",
+    "description": "Within their Colony, Beavers join a Lodge - a smaller group sometimes led by a peer leader (called Lodge Leaders, Lodge Friends, or Junior Leaders). These Beavers take on extra duties like helping newcomers and running games, usually for one term so everyone gets a turn. They earn leadership stripes to celebrate their service.RetryClaude can make mistakes. Please double-check responses.",
+    "completion_rules": "Manually awarded",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "No formal requirements - awarded by leader discretion"
+      }
+    ]
+  },
+  {
+    "id": "beavers-membership-badge-beavers",
+    "badge_name": "Membership Badge - Beavers",
+    "section": "beavers",
+    "section_label": "Beavers",
+    "category": "Core Badges",
+    "type": "Activity",
+    "description": "Once you've made your Promise, you'll earn your Membership Award, featuring an image of the fleur de lis. This is the international Scout symbol, worn by Scouts all over the world.",
+    "completion_rules": "Complete ALL 3 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "1. Going to at least four meetings"
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "2. Learn about joining your Colony"
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "3. Become a Beaver Scout by making the Promise."
+      }
+    ]
+  },
+  {
     "id": "beavers-money-skills",
     "badge_name": "Money Skills",
     "section": "beavers",
@@ -892,6 +994,22 @@
         "id": "4",
         "no": "4",
         "text": "4. Explore how money can affect your feelings and wellbeing."
+      }
+    ]
+  },
+  {
+    "id": "beavers-moving-on",
+    "badge_name": "Moving On",
+    "section": "beavers",
+    "section_label": "Beavers",
+    "category": "Core Badges",
+    "type": "Moving On",
+    "description": "Between the ages of 7½ and 8½, it's usually time for Beavers to become Cubs. Complete this award to get to know your new leaders, make new friends and get a taste of what Cubs is really like before the big move.",
+    "completion_rules": "Manually awarded",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "No formal requirements - awarded by leader discretion"
       }
     ]
   },
@@ -1374,6 +1492,148 @@
     ]
   },
   {
+    "id": "beavers-the-youshape-award-central-badge",
+    "badge_name": "The YouShape Award - Central Badge",
+    "section": "beavers",
+    "section_label": "Beavers",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "This badge is all about thinking about what you want to achieve, setting a goal, and making it happen.",
+    "completion_rules": "Complete ALL 1 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Choose one thing you’d like to improve at Beavers. Work with a parent or carer, Young Leader, or leader to make it happen. This could be learning a new skill, developing your current talents or interests, or changing something about Beavers."
+      }
+    ]
+  },
+  {
+    "id": "beavers-the-youshape-award-lead",
+    "badge_name": "The YouShape Award - Lead",
+    "section": "beavers",
+    "section_label": "Beavers",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "Now it’s time to take the lead – think supporting others, delivering your programme, and stepping up on nights away. Complete at least one of the following requirements. You should make your own decisions about which requirement(s) you'd like to achieve.",
+    "completion_rules": "Complete 1 of 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Help a new Beaver to feel welcome in your Colony."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Lead an activity during a meeting with the help of a Young Leader or adult volunteer."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Lead a Log Chew for your Colony."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "On a camp, lead a game, song, or activity with the help of a Young Leader or adult volunteer."
+      }
+    ]
+  },
+  {
+    "id": "beavers-the-youshape-award-plan",
+    "badge_name": "The YouShape Award - Plan",
+    "section": "beavers",
+    "section_label": "Beavers",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "This badge is all about thinking creatively, working together, and planning some exciting activities for your programme. Complete at least one of the following requirements. You should make your own decisions about which requirement(s) you'd like to achieve.",
+    "completion_rules": "Complete 1 of 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Think of an idea for a camp or trip and tell a leader about it."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Share an idea during a Log Chew."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Choose a theme for a Beaver meeting with your leader."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Help create a new game for other Beavers."
+      }
+    ]
+  },
+  {
+    "id": "beavers-the-youshape-award-represent",
+    "badge_name": "The YouShape Award - Represent",
+    "section": "beavers",
+    "section_label": "Beavers",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "Think about how you’ll represent your group – you could engage your community, invite some friends to join the fun, or chat to your Trustee Board. Complete at least one of the following requirements. You should make your own decisions about which requirement(s) you'd like to achieve.",
+    "completion_rules": "Complete 1 of 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Tell your Group Trustee Board what you like and don’t like about Beavers."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Bring a friend to Beavers and help them to give it a go."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Tell a leader  about something you’ve learned at Beavers that you could use to help people in your community."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Write to a local decision maker, tell them what you like about Beavers, and ask them to help Scouts in your area."
+      }
+    ]
+  },
+  {
     "id": "cubs-animal-carer",
     "badge_name": "Animal Carer",
     "section": "cubs",
@@ -1768,6 +2028,64 @@
         "id": "4",
         "no": "4",
         "text": "Plan, cook, serve and clear away a two-course meal for at least two people."
+      }
+    ]
+  },
+  {
+    "id": "cubs-chief-scout-s-silver-award",
+    "badge_name": "Chief Scout's Silver Award",
+    "section": "cubs",
+    "section_label": "Cubs",
+    "category": "Challenge Awards",
+    "type": "Top Award",
+    "description": "This is the highest award a Cub can earn. To complete it, you need to earn six Activity or Staged Activity Badges of your choice, as well as all seven of the Challenge Awards.",
+    "completion_rules": "Complete 7 prerequisite badges + 6 activity badges",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "PREREQUISITE BADGES (all required)"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 1",
+        "no": "1",
+        "text": "Our World"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 2",
+        "no": "2",
+        "text": "Our Skills"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 3",
+        "no": "3",
+        "text": "Our Outdoors"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 4",
+        "no": "4",
+        "text": "Our Adventure"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 5",
+        "no": "5",
+        "text": "Teamwork"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 6",
+        "no": "6",
+        "text": "Team Leader"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 7",
+        "no": "7",
+        "text": "Personal PLUS 6 Activity or Staged Activity Badges of your choice"
       }
     ]
   },
@@ -2850,6 +3168,22 @@
     ]
   },
   {
+    "id": "cubs-moving-on",
+    "badge_name": "Moving On",
+    "section": "cubs",
+    "section_label": "Cubs",
+    "category": "Core Badges",
+    "type": "Moving On",
+    "description": "Between the ages of 10 and 11, it's usually time for Cubs to move up to Scouts. Complete this award to get prepared for your new adventures.",
+    "completion_rules": "Manually awarded",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "No formal requirements - awarded by leader discretion"
+      }
+    ]
+  },
+  {
     "id": "cubs-my-faith",
     "badge_name": "My Faith",
     "section": "cubs",
@@ -3620,6 +3954,38 @@
     ]
   },
   {
+    "id": "cubs-seconder",
+    "badge_name": "Seconder",
+    "section": "cubs",
+    "section_label": "Cubs",
+    "category": "Core Badges",
+    "type": "Leadership",
+    "description": "Within their Pack, Cubs join a Six - a smaller group led by a Sixer and Seconder. These older Cubs handle leadership duties like welcoming newcomers and running activities. They wear leadership stripes to show their roles and celebrate their service.",
+    "completion_rules": "Manually awarded",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "No formal requirements - awarded by leader discretion"
+      }
+    ]
+  },
+  {
+    "id": "cubs-sixer",
+    "badge_name": "Sixer",
+    "section": "cubs",
+    "section_label": "Cubs",
+    "category": "Core Badges",
+    "type": "Leadership",
+    "description": "Within their Pack, Cubs join a Six - a smaller group led by a Sixer and Seconder. These older Cubs handle leadership duties like welcoming newcomers and running activities. They wear leadership stripes to show their roles and celebrate their service.",
+    "completion_rules": "Manually awarded",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "No formal requirements - awarded by leader discretion"
+      }
+    ]
+  },
+  {
     "id": "cubs-skater",
     "badge_name": "Skater",
     "section": "cubs",
@@ -3852,6 +4218,148 @@
         "id": "5",
         "no": "5",
         "text": "Take part in at least two Pack forums or something similar, and make a contribution that will be positive for your Pack."
+      }
+    ]
+  },
+  {
+    "id": "cubs-the-youshape-award-central-badge",
+    "badge_name": "The YouShape Award - Central Badge",
+    "section": "cubs",
+    "section_label": "Cubs",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "This badge is all about thinking about what you want to achieve, setting a goal and making it happen.",
+    "completion_rules": "Complete ALL 1 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Choose one thing you’d like to improve at Cubs. Work with a parent or carer, Young Leader, or leader to make it happen. This could be learning a new skill, developing your current talents or interests, or changing something about Cubs."
+      }
+    ]
+  },
+  {
+    "id": "cubs-the-youshape-award-lead",
+    "badge_name": "The YouShape Award - Lead",
+    "section": "cubs",
+    "section_label": "Cubs",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "Now it's time to take the lead – think supporting others, delivering your programme and nights away.  Complete at least one of the following requirements.",
+    "completion_rules": "Complete 1 of 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Lead a session that welcomes new Cubs."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Lead an entire session with the help of a Young Leader or adult volunteer."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Lead a Pack Forum for your Pack."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "On camp, lead a day of activities and fun for your Pack with the help of a Young Leader or adult volunteer."
+      }
+    ]
+  },
+  {
+    "id": "cubs-the-youshape-award-plan",
+    "badge_name": "The YouShape Award - Plan",
+    "section": "cubs",
+    "section_label": "Cubs",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "This badge is all about thinking creatively, working together and planning some exciting activities for your programme. Complete at least one of the following requirements. You should make your own decisions about which requirement(s) you'd like to achieve.",
+    "completion_rules": "Complete 1 of 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Plan an idea for a camp or trip and present it to your Pack."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Think of a way your Pack could achieve a badge requirement and share your idea in a Pack Forum."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Plan a Cubs meeting with your leader."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Create an activity that helps other Cubs achieve a badge requirement."
+      }
+    ]
+  },
+  {
+    "id": "cubs-the-youshape-award-represent",
+    "badge_name": "The YouShape Award - Represent",
+    "section": "cubs",
+    "section_label": "Cubs",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "Think about how you’ll represent your group – you could engage your community, invite some friends to join the fun or chat to your Trustee Board. Complete at least one of the following requirements.",
+    "completion_rules": "Complete 1 of 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Tell your Group Trustee Board what you like and don’t like about Cubs."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Take part in a Scouts activity with young people who aren’t involved with Scouts."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "With your Pack, take part in a project that uses skills you’ve learned at Cubs to help people in your community."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Visit a local decision maker, tell them what you like about Cubs, and ask them to help Scouts in your area."
       }
     ]
   },
@@ -4240,6 +4748,134 @@
         "id": "6",
         "no": "6",
         "text": "Study an aspect of speleology and discuss the findings."
+      }
+    ]
+  },
+  {
+    "id": "explorers-chief-scout-s-diamond-award",
+    "badge_name": "Chief Scout's Diamond Award",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Challenge Awards",
+    "type": "Top Award",
+    "description": "The Chief Scout's Diamond Award is the highest of the Chief Scout's Awards, and the final step before the King's Scout Award.",
+    "completion_rules": "ALL mandatory + groups",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "MANDATORY (all required)"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Be a member of Explorer Scouts or the Scout Network or both for at least 12 months."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Complete 16 nights away as an Explorer Scout or member of the Scout Network, of which eight must be camping."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Complete four activities from the International, Communities and Values list :"
+      },
+      {
+        "kind": "req",
+        "id": "1 (2)",
+        "no": "1",
+        "text": "Hold the Silver Duke of Edinburgh's Award. :"
+      },
+      {
+        "kind": "req",
+        "id": "1 (3)",
+        "no": "1",
+        "text": "Take up a skill for three or six months*, and show progress and lasting interest. The skill can be an existing interest or something entirely new."
+      },
+      {
+        "kind": "req",
+        "id": "2 (2)",
+        "no": "2",
+        "text": "Take up a physical activity for three or six months*, completing an agreed programme of taking part and achievement."
+      },
+      {
+        "kind": "req",
+        "id": "3 (2)",
+        "no": "3",
+        "text": "Provide service to an individual or the community for six months*."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Complete a three day and two night expedition in rural or open country by foot, cycle, horse, canoe, boat or dinghy."
+      }
+    ]
+  },
+  {
+    "id": "explorers-chief-scout-s-platinum-award",
+    "badge_name": "Chief Scout's Platinum Award",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Challenge Awards",
+    "type": "Top Award",
+    "description": "The Chief Scout’s Platinum Award is a chance to celebrate your progress, and take stock of how far you've come.",
+    "completion_rules": "ALL mandatory + groups",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "MANDATORY (all required)"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Be a member of Explorer Scouts for at least six months."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Complete eight nights away as an Explorer Scout of which four must be camping."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Complete two activities from the International, Community and Values list. :"
+      },
+      {
+        "kind": "req",
+        "id": "1 (2)",
+        "no": "1",
+        "text": "Hold the Bronze Duke of Edinburgh's Award :"
+      },
+      {
+        "kind": "req",
+        "id": "1 (3)",
+        "no": "1",
+        "text": "Take up a skill for three or six months, and show progress and lasting interest. The skill can be an existing interest or something entirely new"
+      },
+      {
+        "kind": "req",
+        "id": "2 (2)",
+        "no": "2",
+        "text": "Take up a physical activity for three or six months*, completing an agreed programme of taking part and achievement"
+      },
+      {
+        "kind": "req",
+        "id": "3 (2)",
+        "no": "3",
+        "text": "Provide service to an individual or the community for three or six months*."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Complete a two day and one night expedition in rural country by foot, cycle, horse, canoe, boat or dinghy."
       }
     ]
   },
@@ -4724,6 +5360,88 @@
     ]
   },
   {
+    "id": "explorers-king-s-scout-award",
+    "badge_name": "King's Scout Award",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Challenge Awards",
+    "type": "Challenge Award",
+    "description": "The King’s Scout Award is the top achievement for Explorer Scouts and Scout Network members and comprises a variety of activities to complete",
+    "completion_rules": "ALL mandatory + groups",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "MANDATORY (all required)"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Award participants must: Be aged 16 or older to start the award and complete the award before your 25th birthday, Be a member of either Explorer Scouts or Scout Network (or a combination of both) for at least 18 months to complete the award. Be a member of Explorer Scouts or Scout Network at the time you complete the award"
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Complete 24 nights away as an Explorer Scout or Scout Network member, of which at least 12 must be camping."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Complete six activities in total, two from each topic area of the ICV activities list."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Make a presentation covering all elements of your award to a suitable audience, with the aim of inspiring and motivating others to achieve the award."
+      },
+      {
+        "kind": "req",
+        "id": "5",
+        "no": "5",
+        "text": "Each  requirement  needs  to  be  signed  off  by  an  assessor. :"
+      },
+      {
+        "kind": "req",
+        "id": "1 (2)",
+        "no": "1",
+        "text": "Hold the Gold Duke of Edinburgh's Award. :"
+      },
+      {
+        "kind": "req",
+        "id": "1 (3)",
+        "no": "1",
+        "text": "Skill"
+      },
+      {
+        "kind": "req",
+        "id": "2 (2)",
+        "no": "2",
+        "text": "Physical activity"
+      },
+      {
+        "kind": "req",
+        "id": "3 (2)",
+        "no": "3",
+        "text": "Service"
+      },
+      {
+        "kind": "req",
+        "id": "4 (2)",
+        "no": "4",
+        "text": "Expedition"
+      },
+      {
+        "kind": "req",
+        "id": "5 (2)",
+        "no": "5",
+        "text": "Residential"
+      }
+    ]
+  },
+  {
     "id": "explorers-leadership",
     "badge_name": "Leadership",
     "section": "explorers",
@@ -4944,6 +5662,52 @@
     ]
   },
   {
+    "id": "explorers-membership-badge-explorers",
+    "badge_name": "Membership Badge - Explorers",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Core Badges",
+    "type": "Activity",
+    "description": "Once you've made your Promise, you'll earn your Membership Award, featuring an image of the fleur de lis. This is the international Scout symbol, worn by Scouts all over the world.",
+    "completion_rules": "Complete ALL 5 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Describe the various ways you can become an Explorer Scout in your area"
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Show you understand the Scout Promise and Law"
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Demonstrate an understanding of local, national and international Scouting"
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "After discussing it with your Explorer leader, describe the Unit management and support available to you, including the Unit Constitutio"
+      },
+      {
+        "kind": "req",
+        "id": "5",
+        "no": "5",
+        "text": "ake the Scout Promise and accept the Scout Law"
+      }
+    ]
+  },
+  {
     "id": "explorers-money-skills",
     "badge_name": "Money Skills",
     "section": "explorers",
@@ -5122,6 +5886,22 @@
         "id": "Expedition 7",
         "no": "7",
         "text": "Be able to perform emergency repairs in the field as listed for a T1 Mountain Bike Permit."
+      }
+    ]
+  },
+  {
+    "id": "explorers-moving-on",
+    "badge_name": "Moving On",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Core Badges",
+    "type": "Moving On",
+    "description": "",
+    "completion_rules": "Manually awarded",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "No formal requirements - awarded by leader discretion"
       }
     ]
   },
@@ -5802,6 +6582,148 @@
     ]
   },
   {
+    "id": "explorers-the-youshape-award-central-badge",
+    "badge_name": "The YouShape Award - Central Badge",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "At Scouts, you learn how to speak up and take the lead. But you told us that the programme doesn't recognise this enough. That’s what the new YouShape Award is all about.",
+    "completion_rules": "Complete ALL 1 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Choose one thing you’d like to change, improve or deliver for Explorer Scouts in your District, and make it happen. This could be learning or teaching a new skill, developing your current talents or interests, or changing something about Explorers."
+      }
+    ]
+  },
+  {
+    "id": "explorers-the-youshape-award-lead",
+    "badge_name": "The YouShape Award - Lead",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "Complete at least one of the following requirements.",
+    "completion_rules": "Complete 1 of 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "1. . Help a new adult volunteer complete their induction."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "2. Lead a session for another Explorer Unit."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "3. Lead a Unit Forum for your Unit."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "4. Lead a two night camp with no adult volunteers. You’ll need a Nights Away Events Passport."
+      }
+    ]
+  },
+  {
+    "id": "explorers-the-youshape-award-plan",
+    "badge_name": "The YouShape Award - Plan",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "Complete at least one of the following requirements.",
+    "completion_rules": "Complete 1 of 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Plan a district event."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Think of a way to help people get better at something outside Scouts and share your idea in a Unit Forum."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Plan an entire programme to help other Explorers achieve a specific skill, goal, or badge."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Create an activity that helps young people not in Scouts to learn a Scouts skill."
+      }
+    ]
+  },
+  {
+    "id": "explorers-the-youshape-award-represent",
+    "badge_name": "The YouShape Award - Represent",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "Complete at least one of the following requirements.",
+    "completion_rules": "Complete 1 of 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "1. Work with a member of your District or County/Area/Region Trustee Board to research and propose something to improve Explorer Scouts in your District or County."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "2. Identify a group of potential adult volunteers and tell them about the benefits of volunteering with Scouts."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "3. Take part in a project with Explorers from across your District that uses skills you’ve learned at Scouts to help people in your community."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "4. Work with your Group Lead Volunteer, District Lead Volunteer, or County Lead Volunteer to lobby a decision maker about an issue that affects Scouts."
+      }
+    ]
+  },
+  {
     "id": "explorers-water-activities",
     "badge_name": "Water Activities",
     "section": "explorers",
@@ -5838,6 +6760,176 @@
         "id": "4",
         "no": "4",
         "text": "Hold The Scout Association’s Adventurous Activity Personal Permit for Windsurfing and meet the requirements for the RYA (Royal Yachting Association) Youth Windsurfing Scheme Stage Two."
+      }
+    ]
+  },
+  {
+    "id": "explorers-young-leader-award-mission-four",
+    "badge_name": "Young Leader Award - Mission Four",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Challenge Awards",
+    "type": "Leadership",
+    "description": "Hone your leadership skills by volunteering with a younger section",
+    "completion_rules": "Complete ALL 1 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Take responsibility for organising and running part of the section programme"
+      }
+    ]
+  },
+  {
+    "id": "explorers-young-leader-award-mission-one",
+    "badge_name": "Young Leader Award - Mission One",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Challenge Awards",
+    "type": "Leadership",
+    "description": "Hone your leadership skills by volunteering with a younger section",
+    "completion_rules": "Complete ALL 1 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Plan and run a minimum of three games with the section you are volunteering with. At least one game should take place indoors and one outdoors."
+      }
+    ]
+  },
+  {
+    "id": "explorers-young-leader-award-mission-three",
+    "badge_name": "Young Leader Award - Mission Three",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Challenge Awards",
+    "type": "Leadership",
+    "description": "Hone your leadership skills by volunteering with a younger section",
+    "completion_rules": "Complete ALL 1 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Take the section’s programme ideas to a programme planning meeting."
+      }
+    ]
+  },
+  {
+    "id": "explorers-young-leader-award-mission-two",
+    "badge_name": "Young Leader Award - Mission Two",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Challenge Awards",
+    "type": "Leadership",
+    "description": "Hone your leadership skills by volunteering with a younger section",
+    "completion_rules": "Complete ALL 1 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Plan and run an activity (not a game) with the section you are volunteering with."
+      }
+    ]
+  },
+  {
+    "id": "explorers-young-leader-award-modules",
+    "badge_name": "Young Leader Award - Modules",
+    "section": "explorers",
+    "section_label": "Explorers",
+    "category": "Challenge Awards",
+    "type": "Leadership",
+    "description": "Hone your leadership skills by volunteering with a younger section",
+    "completion_rules": "Complete ALL 11 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Module A - Prepare for take-off"
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Module B - Taking the lead"
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Module C- That’s the way to do it!"
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Module D - Understanding behaviour"
+      },
+      {
+        "kind": "req",
+        "id": "5",
+        "no": "5",
+        "text": "Module E - Game on!"
+      },
+      {
+        "kind": "req",
+        "id": "6",
+        "no": "6",
+        "text": "Module F - Making Scouting accessible and inclusive"
+      },
+      {
+        "kind": "req",
+        "id": "7",
+        "no": "7",
+        "text": "Module G - What is a high quality programme?"
+      },
+      {
+        "kind": "req",
+        "id": "8",
+        "no": "8",
+        "text": "Module H - Programme planning"
+      },
+      {
+        "kind": "req",
+        "id": "9",
+        "no": "9",
+        "text": "Module I - What did they say?"
+      },
+      {
+        "kind": "req",
+        "id": "10",
+        "no": "10",
+        "text": "Module J - Communicate it!"
+      },
+      {
+        "kind": "req",
+        "id": "11",
+        "no": "11",
+        "text": "Module K- First aid masterclass"
       }
     ]
   },
@@ -6342,6 +7434,22 @@
     ]
   },
   {
+    "id": "scouts-assistant-patrol-leader",
+    "badge_name": "Assistant Patrol Leader",
+    "section": "scouts",
+    "section_label": "Scouts",
+    "category": "Core Badges",
+    "type": "Leadership",
+    "description": "In their Troop, Scouts join a Patrol - a smaller group led by a Patrol Leader and Assistant Patrol Leader. These older Scouts handle leadership duties like welcoming newcomers and running activities. Some Troops also have Senior Patrol Leaders with extra responsibilities. All leaders wear distinctive stripes to show their roles.",
+    "completion_rules": "Manually awarded",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "No formal requirements - awarded by leader discretion"
+      }
+    ]
+  },
+  {
     "id": "scouts-athletics",
     "badge_name": "Athletics",
     "section": "scouts",
@@ -6516,8 +7624,8 @@
     ]
   },
   {
-    "id": "scouts-chef-indoors",
-    "badge_name": "Chef - Indoors",
+    "id": "scouts-chef",
+    "badge_name": "Chef",
     "section": "scouts",
     "section_label": "Scouts",
     "category": "Activity Badges",
@@ -6562,48 +7670,72 @@
     ]
   },
   {
-    "id": "scouts-chef-outdoors",
-    "badge_name": "Chef - Outdoors",
+    "id": "scouts-chief-scout-s-gold-award",
+    "badge_name": "Chief Scout's Gold Award",
     "section": "scouts",
     "section_label": "Scouts",
-    "category": "Activity Badges",
-    "type": "Activity",
-    "description": "Plan and produce a tasty menu for your Scout troop after they come back after a long day of activities.",
-    "completion_rules": "Complete ALL 5 requirements",
+    "category": "Challenge Awards",
+    "type": "Top Award",
+    "description": "This is the highest award a Scout can earn. To complete it, you need to complete all nine of the Challenge Awards, plus six Activity badges",
+    "completion_rules": "Complete 9 prerequisite badges + 6 activity badges",
     "requirements": [
       {
         "kind": "heading",
-        "text": "Complete ALL of the following"
+        "text": "PREREQUISITE BADGES (all required)"
       },
       {
         "kind": "req",
-        "id": "1",
+        "id": "PREREQUISITE BADGES (all required) 1",
         "no": "1",
-        "text": "Plan a menu for a weekend event for between four and six people."
+        "text": "World"
       },
       {
         "kind": "req",
-        "id": "2",
+        "id": "PREREQUISITE BADGES (all required) 2",
         "no": "2",
-        "text": "Show how and where to shop for the food and the best way to transport it."
+        "text": "Adventure"
       },
       {
         "kind": "req",
-        "id": "3",
+        "id": "PREREQUISITE BADGES (all required) 3",
         "no": "3",
-        "text": "Show how to store food properly, hygienically and in ways that prevent food poisoning."
+        "text": "Creative"
       },
       {
         "kind": "req",
-        "id": "4",
+        "id": "PREREQUISITE BADGES (all required) 4",
         "no": "4",
-        "text": "Cook and serve at least one of the meals from your menu."
+        "text": "Expedition"
       },
       {
         "kind": "req",
-        "id": "5",
+        "id": "PREREQUISITE BADGES (all required) 5",
         "no": "5",
-        "text": "Demonstrate the best way to clear up afterwards."
+        "text": "Outdoor"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 6",
+        "no": "6",
+        "text": "Personal"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 7",
+        "no": "7",
+        "text": "Skills"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 8",
+        "no": "8",
+        "text": "Team Leader"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 9",
+        "no": "9",
+        "text": "Teamwork PLUS 6 Activity or Staged Activity Badges of your choice"
       }
     ]
   },
@@ -8566,6 +9698,98 @@
     ]
   },
   {
+    "id": "scouts-media-relations-marketing",
+    "badge_name": "Media Relations & Marketing",
+    "section": "scouts",
+    "section_label": "Scouts",
+    "category": "Activity Badges",
+    "type": "Activity",
+    "description": "Develop your eye for a compelling story and generate ‘hooks’ to draw in audiences. Become a creative storyteller, and get media coverage for your story.",
+    "completion_rules": "Complete 3 of 7 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 3 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "1. Produce and give a presentation about Scouting."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "2. Write a press release about a Scout event that has taken place."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "3. Find out about local media outlets such as radio, TV, newspapers and online."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "4. Prepare and present an audio or video package about a Scouting event or activity."
+      },
+      {
+        "kind": "req",
+        "id": "5",
+        "no": "5",
+        "text": "5. Prepare a creative display about your Troop or Group that can be exhibited in your local library, information centre or public place."
+      },
+      {
+        "kind": "req",
+        "id": "6",
+        "no": "6",
+        "text": "6. Interview a local public figure or someone in the local news, such as a church leader, politician or celebrity and present the interview to your Troop."
+      },
+      {
+        "kind": "req",
+        "id": "7",
+        "no": "7",
+        "text": "7. Produce some media which can be used within Scouting, such as a district newsletter story or a piece of website content."
+      }
+    ]
+  },
+  {
+    "id": "scouts-membership-badge-scouts",
+    "badge_name": "Membership Badge - Scouts",
+    "section": "scouts",
+    "section_label": "Scouts",
+    "category": "Core Badges",
+    "type": "Activity",
+    "description": "Once you've made your Promise, you'll earn your Membership Award, featuring an image of the fleur de lis. This is the international Scout symbol, worn by Scouts all over the world.",
+    "completion_rules": "Complete ALL 3 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Know about the Scout Troop"
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Know about joining your Troop"
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Become a Scout by making the Promise"
+      }
+    ]
+  },
+  {
     "id": "scouts-meteorologist",
     "badge_name": "Meteorologist",
     "section": "scouts",
@@ -8700,6 +9924,22 @@
         "id": "4",
         "no": "4",
         "text": "4. Explore how money can affect your feelings and wellbeing."
+      }
+    ]
+  },
+  {
+    "id": "scouts-moving-on",
+    "badge_name": "Moving On",
+    "section": "scouts",
+    "section_label": "Scouts",
+    "category": "Core Badges",
+    "type": "Moving On",
+    "description": "Eventually, it'll be time to embrace your next adventure. Explorers awaits.",
+    "completion_rules": "Manually awarded",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "No formal requirements - awarded by leader discretion"
       }
     ]
   },
@@ -9012,6 +10252,22 @@
         "id": "4",
         "no": "4",
         "text": "4. Experience at least four parascending flights."
+      }
+    ]
+  },
+  {
+    "id": "scouts-patrol-leader",
+    "badge_name": "Patrol Leader",
+    "section": "scouts",
+    "section_label": "Scouts",
+    "category": "Core Badges",
+    "type": "Leadership",
+    "description": "In their Troop, Scouts join a Patrol - a smaller group led by a Patrol Leader and Assistant Patrol Leader. These older Scouts handle leadership duties like welcoming newcomers and running activities. Some Troops also have Senior Patrol Leaders with extra responsibilities. All leaders wear distinctive stripes to show their roles.",
+    "completion_rules": "Manually awarded",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "No formal requirements - awarded by leader discretion"
       }
     ]
   },
@@ -9984,6 +11240,148 @@
     ]
   },
   {
+    "id": "scouts-the-youshape-award-central-badge",
+    "badge_name": "The YouShape Award - Central Badge",
+    "section": "scouts",
+    "section_label": "Scouts",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "This badge is all about thinking about what you want to achieve, setting a goal and making it happen. Complete at least one of the following requirements.",
+    "completion_rules": "Complete ALL 1 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Choose one thing you’d like to change, improve or deliver for young people in your Troop or section, and make it happen. This could be learning or teaching a new skill, developing your current talents or interests, or changing something about Scouts."
+      }
+    ]
+  },
+  {
+    "id": "scouts-the-youshape-award-lead",
+    "badge_name": "The YouShape Award - Lead",
+    "section": "scouts",
+    "section_label": "Scouts",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "Now it's time to take the lead – think supporting others, delivering your programme and nights away. Complete at least one of the following requirements.",
+    "completion_rules": "Complete 1 of 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Lead a session that shows older Cubs the best of Scouts."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Lead a session for your Troop."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Lead a Troop Forum for your section."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Lead a one night camp with no adult volunteers. You’ll need a Nights Away Events Passport."
+      }
+    ]
+  },
+  {
+    "id": "scouts-the-youshape-award-plan",
+    "badge_name": "The YouShape Award - Plan",
+    "section": "scouts",
+    "section_label": "Scouts",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "This badge is all about thinking creatively, working together and planning some exciting activities for your programme.",
+    "completion_rules": "Complete 1 of 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Plan an event for your Scout group."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Think of an idea that’ll help your Troop achieve a badge and share it in a Troop Forum."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Plan a term of activities with your leader."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Create a series of activities that help other Scouts to achieve a badge."
+      }
+    ]
+  },
+  {
+    "id": "scouts-the-youshape-award-represent",
+    "badge_name": "The YouShape Award - Represent",
+    "section": "scouts",
+    "section_label": "Scouts",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "Think about how you’ll represent your group – you could engage your community, invite some friends to join the fun or chat to your Trustee Boards.  Complete at least one of the following requirements.",
+    "completion_rules": "Complete 1 of 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Talk with your Group or District Trustee Board about how Scouts could be improved in your group or District."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Lead a Scouts activity for young people who aren’t involved in Scouts."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Take part in a project with young people from across your group that uses skills you’ve learned at Scouts to help people in your community."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Plan and deliver a Scouts activity for a local decision maker to take part in and show them why they should support Scouts in your area."
+      }
+    ]
+  },
+  {
     "id": "scouts-water-activities",
     "badge_name": "Water Activities",
     "section": "scouts",
@@ -10408,6 +11806,46 @@
     ]
   },
   {
+    "id": "squirrels-chief-scout-s-acorn-award",
+    "badge_name": "Chief Scout’s Acorn Award",
+    "section": "squirrels",
+    "section_label": "Squirrels",
+    "category": "Challenge Awards",
+    "type": "Top Award",
+    "description": "This is the highest award a Squirrel Scout can earn. It shows that you’ve had adventures, helped your friends, and learned new things – it’s a big achievement, and you should be proud!",
+    "completion_rules": "Complete 4 prerequisite badges + 2 activity badges",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "PREREQUISITE BADGES (all required)"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 1",
+        "no": "1",
+        "text": "All About Adventure"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 2",
+        "no": "2",
+        "text": "All About Me"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 3",
+        "no": "3",
+        "text": "All Around Us"
+      },
+      {
+        "kind": "req",
+        "id": "PREREQUISITE BADGES (all required) 4",
+        "no": "4",
+        "text": "All Together PLUS 2 Activity or Staged Activity Badges of your choice"
+      }
+    ]
+  },
+  {
     "id": "squirrels-earth-tribe-award-squirrels",
     "badge_name": "Earth Tribe Award - Squirrels",
     "section": "squirrels",
@@ -10798,6 +12236,62 @@
     ]
   },
   {
+    "id": "squirrels-membership-badge-squirrels",
+    "badge_name": "Membership Badge - Squirrels",
+    "section": "squirrels",
+    "section_label": "Squirrels",
+    "category": "Core Badges",
+    "type": "Activity",
+    "description": "Once you've made your Promise, you'll earn your Membership Award, featuring an image of the fleur de lis. This is the international Scout symbol, worn by Scouts all over the world.",
+    "completion_rules": "Complete ALL 4 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "1. Go to Squirrels, get to know the leaders and the other young people, and find out what you’ll get up to."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "2. Discover the different badges you can earn and find out what happens at your Investiture (a special celebration that happens when you make your Promise)."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "3. Learn your Promise and when you’re ready, get invested."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "4. Find out about the history of Scouts and the worldwide Scout family."
+      }
+    ]
+  },
+  {
+    "id": "squirrels-moving-on",
+    "badge_name": "Moving On",
+    "section": "squirrels",
+    "section_label": "Squirrels",
+    "category": "Core Badges",
+    "type": "Moving On",
+    "description": "Between the ages of 5½ and 6½, it’s usually time for Squirrels to become Beavers. Complete this award to get to know your new leaders, make new friends and get a taste of what Beavers is really like before the big move.",
+    "completion_rules": "Manually awarded",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "No formal requirements - awarded by leader discretion"
+      }
+    ]
+  },
+  {
     "id": "squirrels-space-explorer",
     "badge_name": "Space Explorer",
     "section": "squirrels",
@@ -10896,6 +12390,166 @@
         "id": "3",
         "no": "3",
         "text": "Having fun while cooking isn’t just for grown ups. Wash your hands, follow a recipe, and make a tasty snack with your friends."
+      }
+    ]
+  },
+  {
+    "id": "squirrels-the-youshape-award-central-badge",
+    "badge_name": "The YouShape Award - Central Badge",
+    "section": "squirrels",
+    "section_label": "Squirrels",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "The Central badge is all about thinking about what you want to achieve, exploring ideas, finding a theme and making it happen.",
+    "completion_rules": "Complete ALL 1 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Each young person should choose one thing they’d like to learn more about, do or explore in Squirrels. They should then talk with a parent or carer, Young Leader or your Squirrel volunteers to make it happen."
+      }
+    ]
+  },
+  {
+    "id": "squirrels-the-youshape-award-lead",
+    "badge_name": "The YouShape Award - Lead",
+    "section": "squirrels",
+    "section_label": "Squirrels",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "The Lead badge lets you take the reins. This badge lets you think about supporting others, delivering your Squirrels programme, and stepping up during sessions or Nights Away. Complete at least one of the following requirements.",
+    "completion_rules": "Complete 1 of 5 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Help with an activity during a meeting, supported by a Young Leader or adult volunteer."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Lead part of a story."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Lead a game."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Use materials to explore your Squirrels YouShape Award themes further."
+      },
+      {
+        "kind": "req",
+        "id": "5",
+        "no": "5",
+        "text": "Welcome a new Squirrel into your Drey."
+      }
+    ]
+  },
+  {
+    "id": "squirrels-the-youshape-award-plan",
+    "badge_name": "The YouShape Award - Plan",
+    "section": "squirrels",
+    "section_label": "Squirrels",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "The Plan badge is all about thinking creatively, working together and planning some exciting activities for your programme. Complete at least one of the following requirements.",
+    "completion_rules": "Complete 1 of 5 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Think of an idea for a group activity and tell a Squirrel volunteer about it."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Share an idea during a group chat"
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "Choose something to explore in a Squirrel meeting with your volunteer"
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "As a Drey, plan a game to play."
+      },
+      {
+        "kind": "req",
+        "id": "5",
+        "no": "5",
+        "text": "Suggest somewhere that your Drey could visit in your local area."
+      }
+    ]
+  },
+  {
+    "id": "squirrels-the-youshape-award-represent",
+    "badge_name": "The YouShape Award - Represent",
+    "section": "squirrels",
+    "section_label": "Squirrels",
+    "category": "Core Badges",
+    "type": "YouShape",
+    "description": "The Represent badge lets you think about how you’ll tell others about your Squirrels YouShape Award experience. You could engage your community, invite some friends to join the fun or create a work of art. Complete at least one of the following requirements.",
+    "completion_rules": "Complete 1 of 5 requirements",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete 1 of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "Celebrate the Squirrels YouShape Award by making a song, show or work of art based on what you’ve experienced. Share it with your family, community or Scout group."
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "Create a painting, storybook or a poster based on what you’ve experienced during the Squirrels YouShape Award."
+      },
+      {
+        "kind": "req",
+        "id": "3",
+        "no": "3",
+        "text": "You could share any of the above with your local youth lead or someone from your local area’s wider volunteer team."
+      },
+      {
+        "kind": "req",
+        "id": "4",
+        "no": "4",
+        "text": "Tell an adult volunteer about something you’ve learned during the Squirrels YouShape Award that you could use to help people in your community."
+      },
+      {
+        "kind": "req",
+        "id": "5",
+        "no": "5",
+        "text": "Get in touch with a local decision maker, tell them what you like about Squirrels, and ask them to help Scouts in your area."
       }
     ]
   },
@@ -12348,6 +14002,198 @@
       {
         "kind": "heading",
         "text": "Complete 50 hikes to earn this badge."
+      }
+    ]
+  },
+  {
+    "id": "staged-joining-in-award-1",
+    "badge_name": "Joining in Award 1",
+    "section": "staged",
+    "section_label": "Staged",
+    "category": "Core Badges",
+    "type": "Joining In",
+    "description": "Joining In Awards are automatically awarded to youth members for every year they remain an active member. This badge is calculated based on the member's 'Joined Movement' date and will be completed automatically when they reach the anniversary.",
+    "completion_rules": "Automatically awarded after 1 year of membership",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Automatically awarded based on member's \"Joined Movement\" date when they reach their 1-year anniversary."
+      }
+    ]
+  },
+  {
+    "id": "staged-joining-in-award-10",
+    "badge_name": "Joining in Award 10",
+    "section": "staged",
+    "section_label": "Staged",
+    "category": "Core Badges",
+    "type": "Joining In",
+    "description": "Joining In Awards are automatically awarded to youth members for every year they remain an active member. This badge is calculated based on the member's 'Joined Movement' date and will be completed automatically when they reach the anniversary.",
+    "completion_rules": "Automatically awarded after 10 years of membership",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Automatically awarded based on member's \"Joined Movement\" date when they reach their 10-year anniversary."
+      }
+    ]
+  },
+  {
+    "id": "staged-joining-in-award-11",
+    "badge_name": "Joining in Award 11",
+    "section": "staged",
+    "section_label": "Staged",
+    "category": "Core Badges",
+    "type": "Joining In",
+    "description": "Joining In Awards are automatically awarded to youth members for every year they remain an active member. This badge is calculated based on the member's 'Joined Movement' date and will be completed automatically when they reach the anniversary.",
+    "completion_rules": "Automatically awarded after 11 years of membership",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Automatically awarded based on member's \"Joined Movement\" date when they reach their 11-year anniversary."
+      }
+    ]
+  },
+  {
+    "id": "staged-joining-in-award-12",
+    "badge_name": "Joining in Award 12",
+    "section": "staged",
+    "section_label": "Staged",
+    "category": "Core Badges",
+    "type": "Joining In",
+    "description": "Joining In Awards are automatically awarded to youth members for every year they remain an active member. This badge is calculated based on the member's 'Joined Movement' date and will be completed automatically when they reach the anniversary.",
+    "completion_rules": "Automatically awarded after 12 years of membership",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Automatically awarded based on member's \"Joined Movement\" date when they reach their 12-year anniversary."
+      }
+    ]
+  },
+  {
+    "id": "staged-joining-in-award-2",
+    "badge_name": "Joining in Award 2",
+    "section": "staged",
+    "section_label": "Staged",
+    "category": "Core Badges",
+    "type": "Joining In",
+    "description": "Joining In Awards are automatically awarded to youth members for every year they remain an active member. This badge is calculated based on the member's 'Joined Movement' date and will be completed automatically when they reach the anniversary.",
+    "completion_rules": "Automatically awarded after 2 years of membership",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Automatically awarded based on member's \"Joined Movement\" date when they reach their 2-year anniversary."
+      }
+    ]
+  },
+  {
+    "id": "staged-joining-in-award-3",
+    "badge_name": "Joining in Award 3",
+    "section": "staged",
+    "section_label": "Staged",
+    "category": "Core Badges",
+    "type": "Joining In",
+    "description": "Joining In Awards are automatically awarded to youth members for every year they remain an active member. This badge is calculated based on the member's 'Joined Movement' date and will be completed automatically when they reach the anniversary.",
+    "completion_rules": "Automatically awarded after 3 years of membership",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Automatically awarded based on member's \"Joined Movement\" date when they reach their 3-year anniversary."
+      }
+    ]
+  },
+  {
+    "id": "staged-joining-in-award-4",
+    "badge_name": "Joining in Award 4",
+    "section": "staged",
+    "section_label": "Staged",
+    "category": "Core Badges",
+    "type": "Joining In",
+    "description": "Joining In Awards are automatically awarded to youth members for every year they remain an active member. This badge is calculated based on the member's 'Joined Movement' date and will be completed automatically when they reach the anniversary.",
+    "completion_rules": "Automatically awarded after 4 years of membership",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Automatically awarded based on member's \"Joined Movement\" date when they reach their 4-year anniversary."
+      }
+    ]
+  },
+  {
+    "id": "staged-joining-in-award-5",
+    "badge_name": "Joining in Award 5",
+    "section": "staged",
+    "section_label": "Staged",
+    "category": "Core Badges",
+    "type": "Joining In",
+    "description": "Joining In Awards are automatically awarded to youth members for every year they remain an active member. This badge is calculated based on the member's 'Joined Movement' date and will be completed automatically when they reach the anniversary.",
+    "completion_rules": "Automatically awarded after 5 years of membership",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Automatically awarded based on member's \"Joined Movement\" date when they reach their 5-year anniversary."
+      }
+    ]
+  },
+  {
+    "id": "staged-joining-in-award-6",
+    "badge_name": "Joining in Award 6",
+    "section": "staged",
+    "section_label": "Staged",
+    "category": "Core Badges",
+    "type": "Joining In",
+    "description": "Joining In Awards are automatically awarded to youth members for every year they remain an active member. This badge is calculated based on the member's 'Joined Movement' date and will be completed automatically when they reach the anniversary.",
+    "completion_rules": "Automatically awarded after 6 years of membership",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Automatically awarded based on member's \"Joined Movement\" date when they reach their 6-year anniversary."
+      }
+    ]
+  },
+  {
+    "id": "staged-joining-in-award-7",
+    "badge_name": "Joining in Award 7",
+    "section": "staged",
+    "section_label": "Staged",
+    "category": "Core Badges",
+    "type": "Joining In",
+    "description": "Joining In Awards are automatically awarded to youth members for every year they remain an active member. This badge is calculated based on the member's 'Joined Movement' date and will be completed automatically when they reach the anniversary.",
+    "completion_rules": "Automatically awarded after 7 years of membership",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Automatically awarded based on member's \"Joined Movement\" date when they reach their 7-year anniversary."
+      }
+    ]
+  },
+  {
+    "id": "staged-joining-in-award-8",
+    "badge_name": "Joining in Award 8",
+    "section": "staged",
+    "section_label": "Staged",
+    "category": "Core Badges",
+    "type": "Joining In",
+    "description": "Joining In Awards are automatically awarded to youth members for every year they remain an active member. This badge is calculated based on the member's 'Joined Movement' date and will be completed automatically when they reach the anniversary.",
+    "completion_rules": "Automatically awarded after 8 years of membership",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Automatically awarded based on member's \"Joined Movement\" date when they reach their 8-year anniversary."
+      }
+    ]
+  },
+  {
+    "id": "staged-joining-in-award-9",
+    "badge_name": "Joining in Award 9",
+    "section": "staged",
+    "section_label": "Staged",
+    "category": "Core Badges",
+    "type": "Joining In",
+    "description": "Joining In Awards are automatically awarded to youth members for every year they remain an active member. This badge is calculated based on the member's 'Joined Movement' date and will be completed automatically when they reach the anniversary.",
+    "completion_rules": "Automatically awarded after 9 years of membership",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Automatically awarded based on member's \"Joined Movement\" date when they reach their 9-year anniversary."
       }
     ]
   },
