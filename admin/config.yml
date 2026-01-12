@@ -351,13 +351,6 @@ collections:
     label: Badges
     label_singular: Badge
     folder: _badges
-    nested:
-      depth: 2
-    # IMPORTANT: For nested folder collections, Decap parses existing entries
-    # using the `path` template. In Decap 3.x this template references field
-    # names directly (e.g. {{section}}), not {{fields.section}}.
-    # If this is wrong, the Badges list will show "No Entries" even though
-    # files exist in nested folders.
     create: true
     delete: true
     slug: "{{fields.id}}"
@@ -365,6 +358,13 @@ collections:
     format: frontmatter
     editor:
       preview: false
+    summary: "{{fields.section}} • {{fields.category}} • {{fields.title}}"
+    sortable_fields: [title, section, category, badge_type, status, id]
+    view_groups:
+      - { label: Section, field: section }
+      - { label: Category, field: category }
+      - { label: Badge type, field: badge_type }
+      - { label: Status, field: status }
     fields:
       - { label: Title, name: title, widget: string }
       - label: ID
