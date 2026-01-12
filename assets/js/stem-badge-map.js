@@ -221,13 +221,12 @@
         const metaBits = [b.section, b.category].filter(Boolean).map(escapeHtml).join(" · ");
 
                 const badgeId = (b && (b.id || b.badge_id || b.badgeId)) ? String(b.id || b.badge_id || b.badgeId) : "";
-        const badgeIconSrc64 = `/assets/images/badges/${encodeURIComponent(badgeId)}_64.png`;
         const badgeIconSrc = `/assets/images/badges/${encodeURIComponent(badgeId)}.png`;
 
 return `
           <details>
             <summary>
-              <img class="stem-badge-map__badge-icon" src="${badgeIconSrc64}" alt="" loading="lazy" onerror="this.onerror=function(){this.onerror=null;this.src='/assets/images/badges/_missing.png';};this.src='${badgeIconSrc}';">
+              <img class="stem-badge-map__badge-icon" src="${badgeIconSrc}" alt="" loading="lazy" onerror="this.onerror=null;this.src='/assets/images/badges/_missing.png';">
               <span class="stem-badge-map__badge-title">${escapeHtml(b.title)}</span>
               <span class="stem-badge-map__badge-meta">${metaBits}</span>
               <span class="stem-badge-map__counts">
