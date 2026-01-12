@@ -4,591 +4,407 @@ backend:
   branch: main
   base_url: https://stemscouts-oauth.scouts-makerspace.workers.dev
   auth_endpoint: auth
+
 site_url: https://scoutsmakerspace.github.io/STEM-Scouts
 display_url: https://scoutsmakerspace.github.io/STEM-Scouts
+
 publish_mode: editorial_workflow
+
+# Default media library (images etc.)
 media_folder: assets/images/uploads
 public_folder: /assets/images/uploads
+
 collections:
-- name: activities
-  label: Activities
-  label_singular: Activity
-  description: 'Workflow: Create the Risk Assessment first (in "Risk Assessments"),
-    then create/edit the Activity and select it in the "Risk Assessment" dropdown.
-    You CAN save an Activity without linking an RA (drafting), but you should link
-    one before using/publishing the activity.
+  - name: activities
+    label: Activities
+    label_singular: Activity
+    description: >
+      Workflow: Create the Risk Assessment first (in "Risk Assessments"), then create/edit the Activity and select it in the
+      "Risk Assessment" dropdown. You CAN save an Activity without linking an RA (drafting), but you should link one before
+      using/publishing the activity.
+    folder: _activities
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    editor:
+      preview: false
+    fields:
+      - { label: Layout, name: layout, widget: hidden, default: activity }
+      - { label: Card sections, name: card_sections, widget: hidden, default: true }
+      - { label: TOC, name: toc, widget: hidden, default: true }
+      - { label: TOC label, name: toc_label, widget: hidden, default: "On this page" }
+      - { label: TOC sticky, name: toc_sticky, widget: hidden, default: true }
 
-    '
-  folder: _activities
-  create: true
-  slug: '{{slug}}'
-  extension: md
-  format: frontmatter
-  editor:
-    preview: false
-  fields:
-  - label: Layout
-    name: layout
-    widget: hidden
-    default: activity
-  - label: Card sections
-    name: card_sections
-    widget: hidden
-    default: true
-  - label: TOC
-    name: toc
-    widget: hidden
-    default: true
-  - label: TOC label
-    name: toc_label
-    widget: hidden
-    default: On this page
-  - label: TOC sticky
-    name: toc_sticky
-    widget: hidden
-    default: true
-  - label: Title
-    name: title
-    widget: string
-  - label: Summary (1–2 sentences)
-    name: summary
-    widget: text
-    required: false
-  - label: Hero image (optional)
-    name: hero_image
-    widget: image
-    required: false
-  - label: Sections
-    name: sections
-    widget: select
-    multiple: true
-    options:
-    - label: Squirrels
-      value: squirrels
-    - label: Beavers
-      value: beavers
-    - label: Cubs
-      value: cubs
-    - label: Scouts
-      value: scouts
-    - label: Explorers
-      value: explorers
-  - label: Difficulty (1–5)
-    name: difficulty
-    widget: number
-    min: 1
-    max: 5
-    value_type: int
-  - label: Time (minutes)
-    name: time_minutes
-    widget: number
-    min: 5
-    max: 240
-    value_type: int
-  - label: Type
-    name: type
-    widget: select
-    options:
-    - electronics
-    - coding
-    - science
-    - outdoors
-    - craft
-    - radio
-    - other
-  - label: Location
-    name: location
-    widget: select
-    options:
-    - indoors
-    - outdoors
-    - both
-  - label: Supervision
-    name: supervision
-    widget: select
-    options:
-    - low
-    - medium
-    - high
-  - label: Recommended group size (optional)
-    name: group_size
-    widget: string
-    required: false
-    hint: 'Example: 6–12 young people (2 adults), or ''Patrols of 6''.'
-  - label: Indoor/Outdoor notes (optional)
-    name: setup_notes
-    widget: text
-    required: false
-    hint: Short practical notes (space, tables, power, noise, mess, etc.).
-  - label: Kit list
-    name: kit_list
-    widget: markdown
-    required: false
-    buttons:
-    - bulleted-list
-    - numbered-list
-    - bold
-    - italic
-    - link
-    editor_components: []
-    hint: Use a bullet list (one item per line).
-  - label: Learning goals (optional)
-    name: learning_goals
-    widget: list
-    required: false
-    collapsed: true
-    summary: '{{fields.goal}}'
-    field:
-      label: Goal
-      name: goal
-      widget: string
-  - label: Leader notes
-    name: leader
-    widget: object
-    required: false
-    fields:
-    - label: Leader prep (before the meeting)
-      name: prep
-      widget: markdown
-      required: false
-      buttons:
-      - bold
-      - italic
-      - link
-      - bulleted-list
-      - numbered-list
-      editor_components: []
-    - label: Leader briefing (what to explain first)
-      name: briefing
-      widget: markdown
-      required: false
-      buttons:
-      - bold
-      - italic
-      - link
-      - bulleted-list
-      - numbered-list
-      editor_components: []
-      hint: Short intro for young people (what they are doing and why), plus rules
-        and expectations.
-    - label: Safety briefing (key points)
-      name: safety_brief
-      widget: markdown
-      required: false
-      buttons:
-      - bold
-      - italic
-      - link
-      - bulleted-list
-      - numbered-list
-      editor_components: []
-      hint: Key safety points to say out loud. The linked Risk Assessment is still
-        required.
-  - label: Running the activity
-    name: running
-    widget: object
-    required: false
-    fields:
-    - label: How to run the activity (step-by-step)
-      name: steps
-      widget: markdown
-      required: false
-      buttons:
-      - bold
-      - italic
-      - link
-      - bulleted-list
-      - numbered-list
-      editor_components: []
-      hint: Use numbered steps. Add photos using the image button (keep images ~1–2
-        MB).
-    - label: Make it easier / harder (differentiation)
-      name: differentiation
-      widget: markdown
-      required: false
-      buttons:
-      - bold
-      - italic
-      - link
-      - bulleted-list
-      - numbered-list
-      editor_components: []
-      hint: Include easier/harder ideas and section-specific notes.
-    - label: Time plan (optional)
-      name: time_plan
-      widget: list
-      required: false
-      collapsed: true
-      summary: '{{fields.label}} — {{fields.minutes}} min'
-      fields:
-      - label: Label
-        name: label
-        widget: string
-        hint: 'Example: Intro, Build, Test, Wrap-up'
-      - label: Minutes
-        name: minutes
-        widget: number
-        min: 1
-        max: 240
-        value_type: int
-      - label: Notes (optional)
-        name: notes
-        widget: string
+      # -------------------------
+      # Core info (searchable + filterable)
+      # -------------------------
+      - { label: Title, name: title, widget: string }
+      - { label: "Summary (1–2 sentences)", name: summary, widget: text, required: false }
+
+      - label: "Hero image (optional)"
+        name: hero_image
+        widget: image
         required: false
-    - label: Reflection / questions (optional)
-      name: reflection
-      widget: markdown
-      required: false
-      buttons:
-      - bold
-      - italic
-      - link
-      - bulleted-list
-      - numbered-list
-      editor_components: []
-  - label: Resources
-    name: resources
-    widget: object
-    required: false
-    fields:
-    - name: risk_assessment
-      label: Risk Assessment (link)
-      widget: relation
-      collection: risk_assessments
-      search_fields:
-      - title
-      - activity_name_location
-      value_field: '{{slug}}'
-      display_fields:
-      - '{{slug}}'
-      - title
-      required: false
-      hint: Create the Risk Assessment first to select it here.
-    - label: Upload documents
-      name: documents
-      widget: list
-      required: false
-      collapsed: true
-      summary: '{{fields.title}}'
-      fields:
-      - label: Title
-        name: title
-        widget: string
-      - label: File
-        name: file
-        widget: file
-        media_folder: /assets/docs/activities
-        public_folder: /assets/docs/activities
-        required: true
-        accept:
-        - .pdf
-        - .doc
-        - .docx
-        - .rtf
-        hint: 'Allowed formats: PDF, Word (.doc/.docx), RTF. Keep files small.'
-    - label: External links
-      name: external_docs
-      widget: list
-      required: false
-      collapsed: true
-      summary: '{{fields.title}}'
-      fields:
-      - label: Title
-        name: title
-        widget: string
-      - label: URL
-        name: url
-        widget: string
-  - label: Badge links (structured)
-    name: badge_links
-    widget: list
-    required: false
-    collapsed: true
-    summary: '{{fields.badge_title}}'
-    hint: 'Only badges/requirements that exist in the STEM Badge Map can be selected
-      here. If you can''t find a badge, go to: STEM Badge Map → Badge mapping → Add/Remove
-      requirements → Save/Publish, then come back here and refresh the page.'
-    field:
-      label: Badge link
-      name: item
-      widget: badge_link
-      required: false
-  - label: Extra notes (optional)
-    name: body
-    widget: markdown
-    required: false
-- name: risk_assessments
-  label: Risk Assessments
-  label_singular: Risk Assessment
-  description: 'IMPORTANT: The Risk Assessment ID is the filename/slug automatically
-    created from the Title (e.g. ra_soldering-basics). After publishing, DO NOT rename
-    the RA slug/filename, or Activities linked to it may break.
 
-    '
-  folder: _risk_assessments
-  create: true
-  slug: ra_{{slug}}
-  extension: md
-  format: frontmatter
-  editor:
-    preview: false
-  fields:
-  - label: Layout
-    name: layout
-    widget: hidden
-    default: risk_assessment
-  - label: Title
-    name: title
-    widget: string
-  - label: Name of activity, event, and location
-    name: activity_name_location
-    widget: string
-  - label: Date of risk assessment
-    name: date_of_ra
-    widget: datetime
-    time_format: false
-    format: YYYY-MM-DD
-  - label: Date of next review
-    name: next_review
-    widget: datetime
-    time_format: false
-    format: YYYY-MM-DD
-    required: false
-  - label: Name of person doing this risk assessment
-    name: assessor
-    widget: string
-    required: false
-  - label: Sections
-    name: sections
-    widget: select
-    multiple: true
-    options:
-    - label: Squirrels
-      value: squirrels
-    - label: Beavers
-      value: beavers
-    - label: Cubs
-      value: cubs
-    - label: Scouts
-      value: scouts
-    - label: Explorers
-      value: explorers
-  - label: Hazards (table)
-    name: hazards
-    widget: list
-    summary: '{{fields.hazard}}'
-    allow_add: true
+      - label: Sections
+        name: sections
+        widget: select
+        multiple: true
+        options:
+          - { label: Squirrels, value: squirrels }
+          - { label: Beavers, value: beavers }
+          - { label: Cubs, value: cubs }
+          - { label: Scouts, value: scouts }
+          - { label: Explorers, value: explorers }
+
+      - { label: "Difficulty (1–5)", name: difficulty, widget: number, min: 1, max: 5, value_type: int }
+      - { label: "Time (minutes)", name: time_minutes, widget: number, min: 5, max: 240, value_type: int }
+
+      - { label: Type, name: type, widget: select, options: [electronics, coding, science, outdoors, craft, radio, other] }
+      - { label: Location, name: location, widget: select, options: [indoors, outdoors, both] }
+      - { label: Supervision, name: supervision, widget: select, options: [low, medium, high] }
+
+      - {
+          label: "Recommended group size (optional)",
+          name: group_size,
+          widget: string,
+          required: false,
+          hint: "Example: 6–12 young people (2 adults), or 'Patrols of 6'."
+        }
+      - {
+          label: "Indoor/Outdoor notes (optional)",
+          name: setup_notes,
+          widget: text,
+          required: false,
+          hint: "Short practical notes (space, tables, power, noise, mess, etc.)."
+        }
+
+      # -------------------------
+      # Kit
+      # -------------------------
+      - label: Kit list
+        name: kit_list
+        widget: markdown
+        required: false
+        buttons: [bulleted-list, numbered-list, bold, italic, link]
+        editor_components: []
+        hint: "Use a bullet list (one item per line)."
+
+      # -------------------------
+      # Learning goals
+      # -------------------------
+      - label: "Learning goals (optional)"
+        name: learning_goals
+        widget: list
+        required: false
+        collapsed: true
+        summary: "{{fields.goal}}"
+        field: { label: Goal, name: goal, widget: string }
+
+      # -------------------------
+      # Leader notes
+      # -------------------------
+      - label: Leader notes
+        name: leader
+        widget: object
+        required: false
+        fields:
+          - label: "Leader prep (before the meeting)"
+            name: prep
+            widget: markdown
+            required: false
+            buttons: [bold, italic, link, bulleted-list, numbered-list]
+            editor_components: []
+
+          - label: "Leader briefing (what to explain first)"
+            name: briefing
+            widget: markdown
+            required: false
+            buttons: [bold, italic, link, bulleted-list, numbered-list]
+            editor_components: []
+            hint: "Short intro for young people (what they are doing and why), plus rules and expectations."
+
+          - label: "Safety briefing (key points)"
+            name: safety_brief
+            widget: markdown
+            required: false
+            buttons: [bold, italic, link, bulleted-list, numbered-list]
+            editor_components: []
+            hint: "Key safety points to say out loud. The linked Risk Assessment is still required."
+
+      # -------------------------
+      # Running the activity
+      # -------------------------
+      - label: Running the activity
+        name: running
+        widget: object
+        required: false
+        fields:
+          - label: "How to run the activity (step-by-step)"
+            name: steps
+            widget: markdown
+            required: false
+            buttons: [bold, italic, link, bulleted-list, numbered-list]
+            editor_components: []
+            hint: "Use numbered steps. Add photos using the image button (keep images ~1–2 MB)."
+
+          - label: "Make it easier / harder (differentiation)"
+            name: differentiation
+            widget: markdown
+            required: false
+            buttons: [bold, italic, link, bulleted-list, numbered-list]
+            editor_components: []
+            hint: "Include easier/harder ideas and section-specific notes."
+
+          - label: "Time plan (optional)"
+            name: time_plan
+            widget: list
+            required: false
+            collapsed: true
+            summary: "{{fields.label}} — {{fields.minutes}} min"
+            fields:
+              - { label: Label, name: label, widget: string, hint: "Example: Intro, Build, Test, Wrap-up" }
+              - { label: Minutes, name: minutes, widget: number, min: 1, max: 240, value_type: int }
+              - { label: "Notes (optional)", name: notes, widget: string, required: false }
+
+          - label: "Reflection / questions (optional)"
+            name: reflection
+            widget: markdown
+            required: false
+            buttons: [bold, italic, link, bulleted-list, numbered-list]
+            editor_components: []
+
+      # -------------------------
+      # Resources
+      # -------------------------
+      - label: Resources
+        name: resources
+        widget: object
+        required: false
+        fields:
+          - name: risk_assessment
+            label: "Risk Assessment (link)"
+            widget: relation
+            collection: risk_assessments
+            search_fields: [title, activity_name_location]
+            value_field: "{{slug}}"
+            display_fields: ["{{slug}}", title]
+            required: false
+            hint: "Create the Risk Assessment first to select it here."
+
+          - label: Upload documents
+            name: documents
+            widget: list
+            required: false
+            collapsed: true
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - label: File
+                name: file
+                widget: file
+                media_folder: /assets/docs/activities
+                public_folder: /assets/docs/activities
+                required: true
+                accept: [.pdf, .doc, .docx, .rtf]
+                hint: "Allowed formats: PDF, Word (.doc/.docx), RTF. Keep files small."
+
+          - label: External links
+            name: external_docs
+            widget: list
+            required: false
+            collapsed: true
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: URL, name: url, widget: string }
+
+      # -------------------------
+      # Badges
+      # -------------------------
+      - label: "Badge links (structured)"
+        name: badge_links
+        widget: list
+        required: false
+        collapsed: true
+        summary: "{{fields.badge_title}}"
+        hint: "Only badges/requirements that exist in the STEM Badge Map can be selected here. If you can't find a badge, go to: STEM Badge Map → Badge mapping → Add/Remove requirements → Save/Publish, then come back here and refresh the page."
+        field:
+          label: "Badge link"
+          name: item
+          widget: badge_link
+          required: false
+
+      - { label: "Extra notes (optional)", name: body, widget: markdown, required: false }
+
+  - name: risk_assessments
+    label: Risk Assessments
+    label_singular: Risk Assessment
+    description: >
+      IMPORTANT: The Risk Assessment ID is the filename/slug automatically created from the Title (e.g. ra_soldering-basics).
+      After publishing, DO NOT rename the RA slug/filename, or Activities linked to it may break.
+    folder: _risk_assessments
+    create: true
+    slug: "ra_{{slug}}"
+    extension: md
+    format: frontmatter
+    editor:
+      preview: false
     fields:
-    - label: Hazard
-      name: hazard
-      widget: string
-    - label: Risk
-      name: risk
-      widget: string
-      required: false
-    - label: Who is at risk?
-      name: who
-      widget: string
-    - label: What are you going to do about it? (controls)
-      name: controls
-      widget: markdown
-      buttons:
-      - bold
-      - italic
-      - link
-      - bulleted-list
-      - numbered-list
-      editor_components: []
-    - label: Review & revise
-      name: review
-      widget: text
-      required: false
-  - label: Notes (optional)
-    name: body
-    widget: markdown
-    required: false
-    buttons:
-    - bold
-    - italic
-    - link
-    - bulleted-list
-    - numbered-list
-    editor_components: []
-- name: stem_programmes
-  label: STEM Programmes
-  label_singular: STEM Programme
-  folder: _stem_programmes
-  create: true
-  slug: '{{slug}}'
-  extension: md
-  format: frontmatter
-  editor:
-    preview: false
-  fields:
-  - label: Layout
-    name: layout
-    widget: hidden
-    default: stem_programme
-  - label: Programme name
-    name: title
-    widget: string
-  - label: Summary (1–2 sentences)
-    name: summary
-    widget: text
-  - label: Programme type
-    name: programme_type
-    widget: select
-    options:
-    - label: Scouts partnership
-      value: scouts
-    - label: Wider youth STEM programme
-      value: wider
-  - label: Category
-    name: category
-    widget: select
-    options:
-    - label: National / UK-wide programmes
-      value: national
-    - label: Radio & space
-      value: radio_space
-    - label: Digital skills & coding
-      value: digital_coding
-    - label: Environment & science
-      value: environment_science
-    - label: Other
-      value: other
-  - label: Target sections
-    name: sections
-    widget: select
-    multiple: true
-    options:
-    - label: Squirrels
-      value: squirrels
-    - label: Beavers
-      value: beavers
-    - label: Cubs
-      value: cubs
-    - label: Scouts
-      value: scouts
-    - label: Explorers
-      value: explorers
-  - label: Partner organisation (optional)
-    name: partner_name
-    widget: string
-    required: false
-  - label: Official link
-    name: url
-    widget: string
-  - label: Status (optional)
-    name: status
-    widget: select
-    required: false
-    options:
-    - active
-    - seasonal
-    - ended
-    - unknown
-  - label: Last checked (optional)
-    name: last_checked
-    widget: datetime
-    time_format: false
-    format: YYYY-MM-DD
-    required: false
-  - label: Notes (optional)
-    name: body
-    widget: markdown
-    required: false
-- name: badges
-  label: Badges
-  label_singular: Badge
-  folder: _badges
-  create: true
-  delete: true
-  slug: '{{fields.id}}'
-  extension: md
-  format: frontmatter
-  editor:
-    preview: false
-  fields:
-  - label: Title
-    name: title
-    widget: string
-  - label: ID
-    name: id
-    widget: string
-    hint: Canonical badge ID used everywhere (don’t change once published).
-  - label: Status
-    name: status
-    widget: select
-    options:
-    - active
-    - retired
-    default: active
-  - label: Icon
-    name: icon
-    widget: image
-    required: false
-    media_folder: assets/images/badges
-    public_folder: /assets/images/badges
-    hint: Optional. If empty, the site will use /assets/images/badges/<id>.png
-  - label: Section
-    name: section
-    widget: string
-  - label: Category
-    name: category
-    widget: string
-  - label: Badge type
-    name: badge_type
-    widget: string
-    required: false
-  - label: Completion rules
-    name: completion_rules
-    widget: string
-    required: false
-  - label: Requirements count
-    name: requirements_count
-    widget: number
-    value_type: int
-    required: false
-  - label: Requirements
-    name: requirements
-    widget: list
-    required: false
+      - { label: Layout, name: layout, widget: hidden, default: risk_assessment }
+      - { label: Title, name: title, widget: string }
+      - { label: "Name of activity, event, and location", name: activity_name_location, widget: string }
+      - { label: "Date of risk assessment", name: date_of_ra, widget: datetime, time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Date of next review", name: next_review, widget: datetime, time_format: false, format: "YYYY-MM-DD", required: false }
+      - { label: "Name of person doing this risk assessment", name: assessor, widget: string, required: false }
+
+      - label: Sections
+        name: sections
+        widget: select
+        multiple: true
+        options:
+          - { label: Squirrels, value: squirrels }
+          - { label: Beavers, value: beavers }
+          - { label: Cubs, value: cubs }
+          - { label: Scouts, value: scouts }
+          - { label: Explorers, value: explorers }
+
+      - label: Hazards (table)
+        name: hazards
+        widget: list
+        summary: "{{fields.hazard}}"
+        allow_add: true
+        fields:
+          - { label: Hazard, name: hazard, widget: string }
+          - { label: Risk, name: risk, widget: string, required: false }
+          - { label: "Who is at risk?", name: who, widget: string }
+          - label: "What are you going to do about it? (controls)"
+            name: controls
+            widget: markdown
+            buttons: [bold, italic, link, bulleted-list, numbered-list]
+            editor_components: []
+          - { label: "Review & revise", name: review, widget: text, required: false }
+
+      - label: "Notes (optional)"
+        name: body
+        widget: markdown
+        required: false
+        buttons: [bold, italic, link, bulleted-list, numbered-list]
+        editor_components: []
+
+  - name: stem_programmes
+    label: STEM Programmes
+    label_singular: STEM Programme
+    folder: _stem_programmes
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    editor:
+      preview: false
     fields:
-    - label: false
-      name: false
-      widget: number
-      value_type: int
-      required: false
-    - label: Text
-      name: text
-      widget: text
-  summary: '{{section}} • {{badge_type}} • {{title}}'
-  sortable_fields:
-  - title
-  - section
-  - badge_type
-  - category
-  - status
-  - id
-  view_groups:
-  - label: By Section
-    field: section
-  - label: By Badge Type
-    field: badge_type
-  - label: By Category
-    field: category
-  - label: By Status
-    field: status
-- name: stem_badge_map
-  label: STEM Badge Map
-  label_singular: STEM Badge Map
-  preview: false
-  files:
-  - file: _data/stem_badge_map.yml
-    label: Badge mapping
-    name: stem_badge_map
+      - { label: Layout, name: layout, widget: hidden, default: stem_programme }
+      - { label: "Programme name", name: title, widget: string }
+      - { label: "Summary (1–2 sentences)", name: summary, widget: text }
+      - label: Programme type
+        name: programme_type
+        widget: select
+        options:
+          - { label: "Scouts partnership", value: scouts }
+          - { label: "Wider youth STEM programme", value: wider }
+
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - { label: "National / UK-wide programmes", value: national }
+          - { label: "Radio & space", value: radio_space }
+          - { label: "Digital skills & coding", value: digital_coding }
+          - { label: "Environment & science", value: environment_science }
+          - { label: Other, value: other }
+
+      - label: Target sections
+        name: sections
+        widget: select
+        multiple: true
+        options:
+          - { label: Squirrels, value: squirrels }
+          - { label: Beavers, value: beavers }
+          - { label: Cubs, value: cubs }
+          - { label: Scouts, value: scouts }
+          - { label: Explorers, value: explorers }
+
+      - { label: "Partner organisation (optional)", name: partner_name, widget: string, required: false }
+      - { label: "Official link", name: url, widget: string }
+
+      - label: "Status (optional)"
+        name: status
+        widget: select
+        required: false
+        options: [active, seasonal, ended, unknown]
+
+      - { label: "Last checked (optional)", name: last_checked, widget: datetime, time_format: false, format: "YYYY-MM-DD", required: false }
+      - { label: "Notes (optional)", name: body, widget: markdown, required: false }
+
+  - name: badges
+    label: Badges
+    label_singular: Badge
+    folder: _badges
+    create: true
+    delete: true
+    slug: "{{fields.id}}"
+    extension: md
+    format: frontmatter
+    editor:
+      preview: false
+    summary: '{{fields.section}} • {{fields.badge_type}} • {{fields.title}}'
+    sortable_fields: [title, section, badge_type, category, status, id]
+    view_groups:
+      - { label: Section, field: section }
+      - { label: Badge type, field: badge_type }
+      - { label: Category, field: category }
+      - { label: Status, field: status }
     fields:
-    - label: STEM Badge Map Manager
-      name: badges
-      widget: stem_badge_map_manager
+      - { label: Title, name: title, widget: string }
+      - label: ID
+        name: id
+        widget: string
+        hint: "Canonical badge ID used everywhere (don’t change once published)."
+      - { label: Status, name: status, widget: select, options: ["active", "retired"], default: "active" }
+      - label: Icon
+        name: icon
+        widget: image
+        required: false
+        media_folder: "assets/images/badges"
+        public_folder: "/assets/images/badges"
+        hint: "Optional. If empty, the site will use /assets/images/badges/<id>.png"
+      - { label: Section, name: section, widget: string }
+      - { label: Category, name: category, widget: string }
+      - { label: "Badge type", name: badge_type, widget: string, required: false }
+      - { label: "Completion rules", name: completion_rules, widget: string, required: false }
+      - { label: "Requirements count", name: requirements_count, widget: number, value_type: int, required: false }
+      - label: Requirements
+        name: requirements
+        widget: list
+        required: false
+        fields:
+          - { label: No, name: no, widget: number, value_type: int, required: false }
+          - { label: Text, name: text, widget: text }
+
+  # =========================
+  # STEM badge mapping (curation layer)
+  # Single source of truth edited via a manager UI.
+  # =========================
+  - name: stem_badge_map
+    label: "STEM Badge Map"
+    label_singular: "STEM Badge Map"
+    preview: false
+    files:
+      - file: "_data/stem_badge_map.yml"
+        label: "Badge mapping"
+        name: "stem_badge_map"
+        fields:
+          - label: "STEM Badge Map Manager"
+            name: "badges"
+            widget: "stem_badge_map_manager"
