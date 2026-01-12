@@ -480,6 +480,22 @@
     ]
   },
   {
+    "id": "test-badge",
+    "badge_name": "Test badge",
+    "section": "beavers",
+    "section_label": "Beavers",
+    "category": "activity",
+    "type": "dsadas",
+    "description": "",
+    "completion_rules": "asdasda",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "asdasda."
+      }
+    ]
+  },
+  {
     "id": "cubs-animal-carer",
     "badge_name": "Animal Carer",
     "section": "cubs",
