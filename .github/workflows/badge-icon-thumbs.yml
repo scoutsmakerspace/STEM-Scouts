@@ -1,0 +1,52 @@
+name: Badge icon thumbnails
+
+on:
+  push:
+    paths:
+      - "assets/images/badges/**.png"
+      - "assets/images/badges/**.jpg"
+      - "assets/images/badges/**.jpeg"
+      - "assets/images/badges/**.webp"
+
+permissions:
+  contents: write
+
+jobs:
+  thumbs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
+      - name: Generate 64x64 thumbs
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+
+          for f in assets/images/badges/*.{png,jpg,jpeg,webp}; do
+            # Skip already-generated thumbs and the missing icon
+            [[ "$f" == *"_64."* ]] && continue
+
+            base="${f%.*}"
+            ext="${f##*.}"
+            out="${base}_64.${ext}"
+
+            # Resize to fit within 64x64, then pad/crop to exact 64x64
+            # -background none keeps transparency for png/webp
+            magick "$f" -auto-orient -resize 64x64\> -gravity center -background none -extent 64x64 "$out"
+          done
+
+      - name: Commit thumbs (if changed)
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add assets/images/badges/*_64.*
+            git commit -m "Auto-generate 64x64 badge icon thumbs"
+            git push
+          fi
