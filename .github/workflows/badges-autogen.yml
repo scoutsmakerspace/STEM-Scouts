@@ -1,4 +1,4 @@
-name: Auto-update badges index + icons
+name: Auto-generate badges index and icons
 
 on:
   push:
@@ -6,45 +6,36 @@ on:
       - "_badges/**"
       - "assets/images/badges/**"
       - "assets/images/uploads/**"
-      - "admin/config.yml"
-      - "tools/generate_badges_master.py"
-      - "tools/normalise_badge_icons.py"
-      - ".github/workflows/badges-autogen.yml"
-  workflow_dispatch:
+
+concurrency:
+  group: badges-autogen-main
+  cancel-in-progress: true
 
 permissions:
   contents: write
 
-concurrency:
-  group: badges-autogen
-  cancel-in-progress: true
-
 jobs:
-  autogen:
+  build:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout (full history for safe reset)
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Sync to latest main (avoid non-fast-forward pushes)
+      - name: Sync to latest main
         run: |
           git fetch origin main
-          git checkout main
           git reset --hard origin/main
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install deps
-        run: pip install pillow pyyaml
-
-      - name: Normalise icons (PNG + 64x64)
-        run: python tools/normalise_badge_icons.py
+      - name: Install dependencies
+        run: pip install pyyaml pillow
 
       - name: Generate badges_master.json
         run: python tools/generate_badges_master.py
@@ -54,9 +45,7 @@ jobs:
           if [[ -n "$(git status --porcelain)" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add _badges/*.md assets/images/badges/*.png admin/badges_master.json _data/badges_master.json
-            git commit -m "Auto-update badges index + icons"
+            git add admin/badges_master.json _data/badges_master.json
+            git commit -m "Auto-generate badges_master.json"
             git push
-          else
-            echo "No changes to commit."
           fi
