@@ -2,37 +2,4 @@
 layout: null
 permalink: /assets/data/badges_master.json
 ---
-[
-{% assign section_labels = "squirrels:Squirrels,beavers:Beavers,cubs:Cubs,scouts:Scouts,explorers:Explorers,staged:Staged" | split: "," %}
-{% for b in site.badges %}
-  {% assign section_label = b.section %}
-  {% for pair in section_labels %}
-    {% assign kv = pair | split: ":" %}
-    {% if kv[0] == b.section %}{% assign section_label = kv[1] %}{% endif %}
-  {% endfor %}
-  {
-    "id": {{ b.id | jsonify }},
-    "badge_name": {{ b.title | jsonify }},
-    "title": {{ b.title | jsonify }},
-    "section": {{ b.section | jsonify }},
-    "section_slug": {{ b.section | jsonify }},
-    "section_label": {{ section_label | jsonify }},
-    "category": {{ b.category | jsonify }},
-    "badge_type": {{ b.badge_type | jsonify }},
-    "status": {{ b.status | default: "active" | jsonify }},
-    "completion_rules": {{ b.completion_rules | jsonify }},
-    "requirements_count": {{ b.requirements_count | jsonify }},
-    "requirements": [
-      {% assign reqs = b.requirements | default: empty %}
-      {% for r in reqs %}
-        {
-          "kind": "req",
-          "no": {{ r.no | jsonify }},
-          "id": {{ r.no | jsonify }},
-          "text": {{ r.text | jsonify }}
-        }{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    ]
-  }{% unless forloop.last %},{% endunless %}
-{% endfor %}
-]
+{{ site.data.badges_master | jsonify }}
