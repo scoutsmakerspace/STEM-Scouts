@@ -4,11 +4,6 @@ title: "STEM Badge Mapping"
 permalink: /badges/stem-map/
 toc: false
 ---
-<style>
-.stem-badge-icon{vertical-align:middle;margin-right:8px;border-radius:6px;}
-.stem-badge-icon__title{vertical-align:middle;}
-</style>
-
 
 <link rel="stylesheet" href="{{ '/assets/css/stem-badge-map.css' | relative_url }}">
 

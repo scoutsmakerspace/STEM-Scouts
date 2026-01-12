@@ -614,7 +614,7 @@
                   h(
                     "div",
                     { style: styles.row },
-                    h("div", null, h("div", { style: styles.title }, h("img", { src: `/assets/images/badges/${b.id}.png`, alt: "", width: 24, height: 24, style: { marginRight: 8, borderRadius: 6, verticalAlign: "middle" }, onError: (e) => { try { e.target.onerror = null; e.target.src = "/assets/images/badges/_missing.png"; } catch (_) {} } }), badgeTitle), h("div", { style: styles.meta }, meta)),
+                    h("div", null, h("div", { style: styles.title }, badgeTitle), h("div", { style: styles.meta }, meta)),
                     h(
                       "div",
                       { style: { display: "flex", gap: 8, alignItems: "center" } },

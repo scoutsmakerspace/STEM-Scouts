@@ -2601,14 +2601,14 @@ badges:
         leader_prompts:
           - Ask them to estimate first, then calculate/measure, and compare the
             two.
-  - badge_id: scouts-chef
+  - badge_id: scouts-chef-indoors
     title: Chef - Indoors
     section: Scouts
     section_slug: scouts
     category: Activity Badges
     badge_type: Activity
     stem_requirements:
-      - rid: scouts-chef::1
+      - rid: scouts-chef-indoors::1
         ref: "1"
         text: Plan a menu for a weekend event for between four and six people.
         strength: strong
