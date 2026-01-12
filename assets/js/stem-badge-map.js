@@ -7,259 +7,228 @@
 
   if (!elSection || !elCategory || !elSearch || !elBorderline || !elResults) return;
 
-  const escapeHtml = (s) =>
-    String(s ?? "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#39;");
-
-  const norm = (s) => String(s ?? "").toLowerCase();
+  const toNorm = (v) => String(v || "").trim().toLowerCase();
+  const safe = (v) => String(v == null ? "" : v);
 
   const data =
     window.STEM_BADGE_MAP_DATA && Array.isArray(window.STEM_BADGE_MAP_DATA.badges)
       ? window.STEM_BADGE_MAP_DATA
       : { badges: [] };
 
-  let badges = Array.isArray(data.badges) ? data.badges : [];
+  const allBadges = data.badges || [];
 
-  // badge_id -> { title, url, ... }
-  let activitiesByBadgeId = new Map();
-
-  // badge_id -> icon_url
-  let iconMap = new Map();
-
-  async function fetchFirstOkJson(urls) {
-    let lastErr = null;
-    for (const u of urls) {
-      try {
-        const r = await fetch(u, { cache: "no-store" });
-        if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
-        const j = await r.json();
-        return { url: u, json: j };
-      } catch (e) {
-        lastErr = e;
-      }
-    }
-    throw lastErr || new Error("No URL worked");
+  function uniq(arr) {
+    return Array.from(new Set(arr.filter(Boolean)));
   }
 
-  async function loadActivitiesIndex() {
-    try {
-      // badge page is /<baseurl>/badges/ so relative paths can be tricky
-      const candidates = [
-        new URL("../assets/data/activities_index.json", window.location.href).toString(),
-        new URL("./assets/data/activities_index.json", window.location.href).toString(),
-        new URL("assets/data/activities_index.json", window.location.href).toString(),
-        new URL((window.siteBaseUrl || "") + "/assets/data/activities_index.json", window.location.origin).toString(),
-        new URL("/assets/data/activities_index.json", window.location.origin).toString(),
-      ];
-      const { json } = await fetchFirstOkJson(candidates);
-      if (!Array.isArray(json)) return;
-
-      const map = new Map();
-      for (const a of json) {
-        const title = a?.title;
-        const url = a?.url;
-        const badgeIds = Array.isArray(a?.badge_ids) ? a.badge_ids : [];
-        for (const bid of badgeIds) {
-          if (!bid) continue;
-          const key = String(bid);
-          const arr = map.get(key) || [];
-          arr.push({ title, url });
-          map.set(key, arr);
-        }
-      }
-      activitiesByBadgeId = map;
-    } catch (e) {
-      console.warn("[stem-badge-map] activities index failed to load", e);
-    }
+  function badgeIconUrl(badgeId) {
+    const id = encodeURIComponent(String(badgeId || ""));
+    return `${window.siteBaseUrl || ""}/assets/images/badges/${id}.png`;
   }
 
-  async function loadBadgesMaster() {
-    try {
-      const candidates = [
-        new URL("../admin/badges_master.json", window.location.href).toString(),
-        new URL("./admin/badges_master.json", window.location.href).toString(),
-        new URL("admin/badges_master.json", window.location.href).toString(),
-        new URL((window.siteBaseUrl || "") + "/admin/badges_master.json", window.location.origin).toString(),
-        new URL("/admin/badges_master.json", window.location.origin).toString(),
-      ];
-      const { json } = await fetchFirstOkJson(candidates);
-      const arr = Array.isArray(json) ? json : (json && Array.isArray(json.badges) ? json.badges : []);
-      const ids = new Set(arr.map((b) => String(b?.id ?? "")));
-      iconMap = new Map(
-        arr
-          .filter((b) => b && b.id)
-          .map((b) => [String(b.id), String(b.icon_url || "")])
-      );
+  function initFilters() {
+    const sections = uniq(allBadges.map((b) => b.section)).sort((a, b) => a.localeCompare(b));
+    const categories = uniq(allBadges.map((b) => b.category)).sort((a, b) => a.localeCompare(b));
 
-      // Filter the mapping list so “no keep” or removed badges don’t show
-      badges = badges.filter((b) => ids.has(String(b?.badge_id || b?.id || "")));
-    } catch (e) {
-      console.warn("[stem-badge-map] badges_master failed to load (no filtering)", e);
-    }
-  }
+    elSection.innerHTML = "";
+    elCategory.innerHTML = "";
 
-  function buildOptions() {
-    const sections = new Set(["All"]);
-    const categories = new Set(["All"]);
-
-    for (const b of badges) {
-      if (b?.section) sections.add(b.section);
-      if (b?.category) categories.add(b.category);
-    }
-
-    const setOpts = (el, values) => {
-      const cur = el.value;
-      el.innerHTML = "";
-      for (const v of Array.from(values).sort((a, b) => (a === "All" ? -1 : b === "All" ? 1 : a.localeCompare(b)))) {
-        const opt = document.createElement("option");
-        opt.value = v;
-        opt.textContent = v;
-        el.appendChild(opt);
-      }
-      if (Array.from(values).includes(cur)) el.value = cur;
-    };
-
-    setOpts(elSection, sections);
-    setOpts(elCategory, categories);
-  }
-
-  function renderBadges() {
-    const q = norm(elSearch.value).trim();
-    const sec = elSection.value;
-    const cat = elCategory.value;
-    const includeBorderline = !!elBorderline.checked;
-
-    const filtered = badges
-      .filter((b) => {
-        if (!includeBorderline && b?.borderline === true) return false;
-        if (sec && sec !== "All" && b?.section !== sec) return false;
-        if (cat && cat !== "All" && b?.category !== cat) return false;
-
-        if (!q) return true;
-
-        const hay = [
-          b?.title,
-          b?.badge_name,
-          b?.section,
-          b?.category,
-          ...(Array.isArray(b?.requirements) ? b.requirements.map((r) => `${r?.ref || ""} ${r?.text || ""} ${r?.why_stem || ""}`) : []),
-        ]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase();
-
-        return hay.includes(q);
-      })
-      .sort((a, b) => String(a?.title || "").localeCompare(String(b?.title || "")));
-
-    const out = filtered.map((b) => {
-      const badgeId = String(b?.badge_id || b?.id || "");
-      if (!badgeId) return "";
-
-      const iconUrl = iconMap.get(badgeId) || `/assets/images/badges/${encodeURIComponent(badgeId)}.png`;
-
-      const metaBits = [b?.section, b?.category].filter(Boolean).join(" · ");
-
-      const reqs = Array.isArray(b?.requirements) ? b.requirements : [];
-      const activities = activitiesByBadgeId.get(badgeId) || [];
-
-      const activitiesPill = activities.length
-        ? `<span class="stem-badge-map__count">${activities.length} activity${activities.length === 1 ? "" : "ies"}</span>`
-        : "";
-
-      const activitiesBlock = activities.length
-        ? `<div class="stem-badge-map__activities"><div class="stem-badge-map__activities-title">Used in activities</div><ul>${activities
-            .map((a) => `<li><a href="${escapeHtml(a.url)}">${escapeHtml(a.title)}</a></li>`)
-            .join("")}</ul></div>`
-        : "";
-
-      const reqHtml = reqs
-        .map((r) => {
-          const areas = Array.isArray(r?.stem_areas) ? r.stem_areas : [];
-          const strength = r?.strength ? String(r.strength) : "";
-          const strengthTag = strength ? `<span class="stem-req__tag">${escapeHtml(strength)}</span>` : "";
-          const prompts = Array.isArray(r?.prompts) ? r.prompts : [];
-          const promptsHtml = prompts.length
-            ? `<details class="stem-req__prompts"><summary>Leader prompts</summary><div class="stem-prompts-lines">${prompts
-                .map((p) => `<div class="stem-prompt-line">${escapeHtml(p)}</div>`)
-                .join("")}</div></details>`
-            : "";
-
-          return `
-            <div class="stem-req">
-              <div class="stem-req__header">
-                <span class="stem-req__ref">${escapeHtml(r?.ref || "")}.</span>
-                <span class="stem-req__text">${escapeHtml(r?.text || "")}</span>
-                ${strengthTag}
-              </div>
-              <div class="stem-req__areas">${areas.map((a) => `<span class="stem-req__chip">${escapeHtml(a)}</span>`).join("")}</div>
-              <p class="stem-req__why"><strong>Why STEM:</strong> ${escapeHtml(r?.why_stem || "").replace(/\n/g, "<br>")}</p>
-              ${promptsHtml}
-            </div>
-          `;
-        })
-        .join("");
-
-      return `
-        <details class="stem-badge-map__badge">
-          <summary>
-            <img class="stem-badge-map__badge-icon" src="${escapeHtml(iconUrl)}" alt="" loading="lazy"
-              onerror="this.onerror=null;this.src='/assets/images/badges/_missing.png';" />
-            <span class="stem-badge-map__badge-title">${escapeHtml(b?.title || b?.badge_name || badgeId)}</span>
-            <span class="stem-badge-map__badge-meta">${escapeHtml(metaBits)}</span>
-            <span class="stem-badge-map__counts">
-              <span class="stem-badge-map__count">${reqs.length} requirement${reqs.length === 1 ? "" : "s"}</span>
-              ${activitiesPill}
-            </span>
-          </summary>
-          ${activitiesBlock}
-          <div class="stem-badge-map__reqs">${reqHtml}</div>
-        </details>
-      `;
+    const optAllS = document.createElement("option");
+    optAllS.value = "all";
+    optAllS.textContent = "All";
+    elSection.appendChild(optAllS);
+    sections.forEach((s) => {
+      const opt = document.createElement("option");
+      opt.value = toNorm(s);
+      opt.textContent = s;
+      elSection.appendChild(opt);
     });
 
-    elResults.innerHTML = out.filter(Boolean).length ? out.join("") : "<p><em>No matches.</em></p>";
+    const optAllC = document.createElement("option");
+    optAllC.value = "all";
+    optAllC.textContent = "All";
+    elCategory.appendChild(optAllC);
+    categories.forEach((c) => {
+      const opt = document.createElement("option");
+      opt.value = toNorm(c);
+      opt.textContent = c;
+      elCategory.appendChild(opt);
+    });
   }
 
-  function debounce(fn, ms) {
-    let t = null;
-    return (...args) => {
-      if (t) window.clearTimeout(t);
-      t = window.setTimeout(() => fn(...args), ms);
-    };
+  function matchesSearch(badge, q) {
+    if (!q) return true;
+    const hay = [
+      badge.title,
+      badge.section,
+      badge.category,
+      ...(badge.stem_requirements || []).map((r) => r.text),
+      ...(badge.stem_requirements || []).map((r) => r.why_stem),
+      ...(badge.stem_requirements || []).map((r) => (r.areas || []).join(" ")),
+    ]
+      .map(safe)
+      .join(" ")
+      .toLowerCase();
+    return hay.includes(q);
   }
 
-  // Make <details> toggling reliable even inside CMS if an overlay steals default behaviour
-  elResults.addEventListener("click", (e) => {
-    const summary = e.target.closest("summary");
-    if (!summary) return;
-    const details = summary.closest("details");
-    if (!details) return;
+  function filterBadges() {
+    const sec = elSection.value;
+    const cat = elCategory.value;
+    const q = toNorm(elSearch.value);
+    const includeBorderline = !!elBorderline.checked;
 
-    // Allow links inside expanded content to work normally
-    if (e.target.closest("a")) return;
+    return allBadges.filter((b) => {
+      if (sec !== "all" && toNorm(b.section) !== sec) return false;
+      if (cat !== "all" && toNorm(b.category) !== cat) return false;
 
-    e.preventDefault();
-    details.open = !details.open;
-  });
+      const reqs = Array.isArray(b.stem_requirements) ? b.stem_requirements : [];
+      const eligibleReqs = includeBorderline
+        ? reqs
+        : reqs.filter((r) => String(r.strength || "").toLowerCase() !== "borderline");
 
-  const rerenderDebounced = debounce(renderBadges, 120);
+      const b2 = { ...b, stem_requirements: eligibleReqs };
+      if (!matchesSearch(b2, q)) return false;
 
-  elSearch.addEventListener("input", rerenderDebounced);
-  elSection.addEventListener("change", renderBadges);
-  elCategory.addEventListener("change", renderBadges);
-  elBorderline.addEventListener("change", renderBadges);
+      return eligibleReqs.length > 0;
+    });
+  }
 
-  // Initial render without indexes, then load indexes and re-render
-  buildOptions();
-  renderBadges();
+  function render() {
+    const list = filterBadges();
 
-  Promise.all([loadBadgesMaster(), loadActivitiesIndex()]).then(() => {
-    buildOptions();
-    renderBadges();
-  });
+    if (!list.length) {
+      elResults.innerHTML = "<p><em>No matches.</em></p>";
+      return;
+    }
+
+    elResults.innerHTML = "";
+
+    list.forEach((b) => {
+      const card = document.createElement("details");
+      card.className = "stem-badge-card";
+
+      const summary = document.createElement("summary");
+      summary.className = "stem-badge-card__summary";
+
+      const left = document.createElement("div");
+      left.className = "stem-badge-card__left";
+
+      const img = document.createElement("img");
+      img.className = "stem-badge-card__icon";
+      img.alt = safe(b.title);
+      img.loading = "lazy";
+      img.src = badgeIconUrl(b.badge_id);
+      img.onerror = () => {
+        img.src = `${window.siteBaseUrl || ""}/assets/images/badges/missing.png`;
+      };
+
+      const titleWrap = document.createElement("div");
+      titleWrap.className = "stem-badge-card__titlewrap";
+
+      const title = document.createElement("div");
+      title.className = "stem-badge-card__title";
+      title.textContent = safe(b.title);
+
+      const meta = document.createElement("div");
+      meta.className = "stem-badge-card__meta";
+      meta.textContent = `${safe(b.section)} · ${safe(b.category)}`;
+
+      titleWrap.appendChild(title);
+      titleWrap.appendChild(meta);
+
+      left.appendChild(img);
+      left.appendChild(titleWrap);
+
+      const right = document.createElement("div");
+      right.className = "stem-badge-card__right";
+      const reqCount = Array.isArray(b.stem_requirements) ? b.stem_requirements.length : 0;
+      right.textContent = `${reqCount} requirement${reqCount === 1 ? "" : "s"}`;
+
+      summary.appendChild(left);
+      summary.appendChild(right);
+      card.appendChild(summary);
+
+      const body = document.createElement("div");
+      body.className = "stem-badge-card__body";
+
+      (b.stem_requirements || []).forEach((r) => {
+        const row = document.createElement("div");
+        row.className = "stem-req";
+
+        const head = document.createElement("div");
+        head.className = "stem-req__head";
+
+        const ref = document.createElement("div");
+        ref.className = "stem-req__ref";
+        ref.textContent = safe(r.ref);
+
+        const text = document.createElement("div");
+        text.className = "stem-req__text";
+        text.textContent = safe(r.text);
+
+        head.appendChild(ref);
+        head.appendChild(text);
+
+        const chips = document.createElement("div");
+        chips.className = "stem-req__chips";
+
+        const strength = safe(r.strength);
+        if (strength) {
+          const chip = document.createElement("span");
+          chip.className = `stem-chip stem-chip--${toNorm(strength)}`;
+          chip.textContent = strength;
+          chips.appendChild(chip);
+        }
+
+        const areas = Array.isArray(r.areas) ? r.areas : [];
+        areas.forEach((a) => {
+          const chip = document.createElement("span");
+          chip.className = "stem-chip";
+          chip.textContent = safe(a);
+          chips.appendChild(chip);
+        });
+
+        const why = safe(r.why_stem);
+        if (why) {
+          const whyP = document.createElement("p");
+          whyP.className = "stem-req__why";
+          whyP.innerHTML = `<strong>Why STEM:</strong> ${why}`;
+          row.appendChild(head);
+          row.appendChild(chips);
+          row.appendChild(whyP);
+        } else {
+          row.appendChild(head);
+          row.appendChild(chips);
+        }
+
+        const lp = safe(r.leader_prompts);
+        if (lp) {
+          const lpDetails = document.createElement("details");
+          lpDetails.className = "stem-req__lp";
+          const lpSummary = document.createElement("summary");
+          lpSummary.textContent = "Leader prompts";
+          const lpBody = document.createElement("div");
+          lpBody.className = "stem-req__lpbody";
+          lpBody.textContent = lp;
+          lpDetails.appendChild(lpSummary);
+          lpDetails.appendChild(lpBody);
+          row.appendChild(lpDetails);
+        }
+
+        body.appendChild(row);
+      });
+
+      card.appendChild(body);
+      elResults.appendChild(card);
+    });
+  }
+
+  initFilters();
+  render();
+
+  elSection.addEventListener("change", render);
+  elCategory.addEventListener("change", render);
+  elSearch.addEventListener("input", render);
+  elBorderline.addEventListener("change", render);
 })();

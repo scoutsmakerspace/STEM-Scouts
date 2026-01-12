@@ -3,83 +3,25 @@
     return window.CMS && window.createClass && window.h;
   }
 
-  // ---------- Load badges master ----------
   let _badges = null;
   let _loading = null;
-
-  // ---------- Load STEM Badge Map index (allowed badges / mapped requirements) ----------
-  let _mapIndex = null;
-  let _mapLoading = null;
-
-  async function loadMapIndex() {
-    if (_mapIndex) return _mapIndex;
-    if (_mapLoading) return _mapLoading;
-
-    // In CMS we are under /admin/, so go up one level.
-    _mapLoading = fetch("../assets/data/stem_badge_map_index.json", { cache: "no-store" })
-      .then((r) => {
-        if (!r.ok) throw new Error(`stem_badge_map_index.json fetch failed: ${r.status}`);
-        return r.json();
-      })
-      .then((json) => {
-        const arr = json && Array.isArray(json.badges) ? json.badges : [];
-        // Shape: [{ badge_id, req_refs: [...] }]
-        _mapIndex = arr.map((b) => ({
-          badge_id: String(b.badge_id || ""),
-          req_refs: Array.isArray(b.req_refs) ? b.req_refs.map(String) : [],
-        })).filter((b) => b.badge_id);
-        console.log("[badge_link] loaded stem_badge_map_index:", _mapIndex.length);
-        return _mapIndex;
-      })
-      .catch((e) => {
-        console.error("[badge_link] stem_badge_map_index load failed:", e);
-        _mapIndex = [];
-        return _mapIndex;
-      });
-
-    return _mapLoading;
-  }
 
   async function loadBadges() {
     if (_badges) return _badges;
     if (_loading) return _loading;
 
-    _loading = fetch("./badges_master.json", { cache: "no-store" })
+    const url = (window.location.origin || "") + "/assets/data/badges_master.json";
+    _loading = fetch(url, { cache: "no-store" })
       .then((r) => {
         if (!r.ok) throw new Error(`badges_master.json fetch failed: ${r.status}`);
         return r.json();
       })
       .then((json) => {
-        const arr = Array.isArray(json) ? json : (Array.isArray(json.badges) ? json.badges : []);
-        // Precompute display text for searching
-        const cleanReqText = (t) => {
-          const s = String(t || '').trim();
-          // Strip leading "1." / "1)" / "1 -" etc if present
-          return s.replace(/^\s*\d+\s*[\.\)\-:]\s*/, '');
-        };
-
-        _badges = (arr || []).map((b) => ({
-          id: b.id,
-          section: b.section,
-          category: b.category,
-          title: b.badge_name || b.badge || b.title || b.id,
-          // Only keep real numbered requirements (ignore headings)
-          requirements: Array.isArray(b.requirements)
-            ? b.requirements
-                .filter((r) => r && r.kind === 'req' && (r.id != null || r.no != null) && (r.text || '').trim() !== '')
-                .map((r) => ({
-                  id: String(r.id ?? r.no).trim(),
-                  no: String(r.no ?? r.id).trim(),
-                  text: cleanReqText(r.text),
-                }))
-            : [],
-          _display: `${b.section_label || b.section || ""} — ${(b.badge_name || b.title || b.id) || ""}`.trim(),
-        }));
-        console.log("[badge_link] loaded badges:", _badges.length);
+        _badges = Array.isArray(json) ? json : (json && Array.isArray(json.badges) ? json.badges : []);
         return _badges;
       })
       .catch((e) => {
-        console.error("[badge_link] load failed:", e);
+        console.warn("[badge_link] failed to load badges:", e);
         _badges = [];
         return _badges;
       });
@@ -87,321 +29,113 @@
     return _loading;
   }
 
-  function byId(list, id) {
-    return list.find((b) => b.id === id) || null;
-  }
+  const Control = window.createClass({
+    getInitialState() {
+      return { q: "", badges: null };
+    },
+
+    componentDidMount() {
+      loadBadges().then((b) => this.setState({ badges: b }));
+    },
+
+    onBadgeChange(e) {
+      const badge_id = e.target.value || "";
+      const cur = this.props.value || {};
+      this.props.onChange({ ...cur, badge_id });
+    },
+
+    onReqChange(e) {
+      const cur = this.props.value || {};
+      const raw = e.target.value || "";
+      const requirements_met = raw
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+      this.props.onChange({ ...cur, requirements_met });
+    },
+
+    onNotesChange(e) {
+      const cur = this.props.value || {};
+      this.props.onChange({ ...cur, notes: e.target.value || "" });
+    },
+
+    render() {
+      const value = this.props.value || {};
+      const badge_id = value.badge_id || "";
+      const reqs = Array.isArray(value.requirements_met) ? value.requirements_met : [];
+      const notes = value.notes || "";
+
+      const badges = Array.isArray(this.state.badges) ? this.state.badges : [];
+      const sorted = badges
+        .map((b) => ({
+          id: b.id,
+          name: b.badge_name || b.title || b.id,
+          section: b.section || "",
+          category: b.category || "",
+        }))
+        .sort((a, b) => (a.section || "").localeCompare(b.section || "") || (a.name || "").localeCompare(b.name || ""));
+
+      return window.h(
+        "div",
+        { className: "blw" },
+        window.h("label", { className: "blw-label" }, "Badge"),
+        window.h(
+          "select",
+          { value: badge_id, onChange: this.onBadgeChange, className: "blw-select" },
+          [window.h("option", { value: "" }, "— Select —")].concat(
+            sorted.map((b) =>
+              window.h("option", { key: b.id, value: b.id }, `${b.section} — ${b.name} (${b.category})`)
+            )
+          )
+        ),
+        window.h("label", { className: "blw-label" }, "Requirements met (comma-separated refs)"),
+        window.h("input", {
+          type: "text",
+          value: reqs.join(", "),
+          onChange: this.onReqChange,
+          className: "blw-input",
+          placeholder: "e.g. 1, 3a, 7",
+        }),
+        window.h("label", { className: "blw-label" }, "Notes (optional)"),
+        window.h("input", {
+          type: "text",
+          value: notes,
+          onChange: this.onNotesChange,
+          className: "blw-input",
+          placeholder: "",
+        })
+      );
+    },
+  });
+
+  const Preview = window.createClass({
+    render() {
+      const v = this.props.value || {};
+      if (!v.badge_id) return window.h("span", { style: { color: "#6b7280" } }, "No badge linked.");
+      return window.h("span", null, `${v.badge_id}${Array.isArray(v.requirements_met) && v.requirements_met.length ? " (" + v.requirements_met.join(", ") + ")" : ""}`);
+    },
+  });
 
   function register() {
-    if (!ready()) return false;
-
-    const { CMS, createClass, h } = window;
-
-    const Control = createClass({
-      getInitialState() {
-        return {
-          loading: true,
-          badges: [],
-          mapIndex: [],
-          query: "",
-          selectedId: null,
-          notes: "",
-          reqsSelected: [],
-        };
-      },
-
-      async componentDidMount() {
-        const [badges, mapIndex] = await Promise.all([loadBadges(), loadMapIndex()]);
-        this.setState({ badges, mapIndex, loading: false });
-        this.hydrateFromValue(this.props.value);
-      },
-
-      componentDidUpdate(prevProps) {
-        if (prevProps.value !== this.props.value) {
-          this.hydrateFromValue(this.props.value);
-        }
-      },
-
-      hydrateFromValue(value) {
-        // Decap often provides Immutable.js Maps here
-        let v = value;
-      
-        // Immutable Map -> plain JS
-        if (v && typeof v.get === "function") {
-          try { v = v.toJS(); } catch (e) { v = {}; }
-        }
-      
-        // Some Decap list configs wrap the value under the field name (e.g. { item: {...} })
-        if (v && typeof v === "object" && v.item && typeof v.item === "object") {
-          v = v.item;
-        }
-      
-        v = (v && typeof v === "object") ? v : {};
-      
-        // Backwards compatibility: accept older key names too
-        const selectedId = v.badge_id || v.badge || v.id || null;
-        const notes = v.notes || "";
-        const reqsSelected = Array.isArray(v.requirements_met)
-          ? v.requirements_met.map(String)
-          : [];
-      
-        // Avoid unnecessary re-renders
-        if (
-          selectedId === this.state.selectedId &&
-          notes === this.state.notes &&
-          JSON.stringify(reqsSelected) === JSON.stringify(this.state.reqsSelected)
-        ) {
-          return;
-        }
-      
-        this.setState({ selectedId, notes, reqsSelected });
-      },
-
-      emitChange(next) {
-        // Store a compact object, plus a friendly title for list summary
-        const badges = this.state.badges;
-        const b = next.badge_id ? byId(badges, next.badge_id) : null;
-
-        const out = {
-          badge_id: next.badge_id || "",
-          badge_title: b ? b._display : "",
-          requirements_met: Array.isArray(next.requirements_met) ? next.requirements_met : [],
-          notes: next.notes || "",
-        };
-        this.props.onChange(out);
-
-      },
-
-      setBadge(id) {
-        const badge_id = id || null;
-        // reset requirements when badge changes
-        this.emitChange({ badge_id, requirements_met: [], notes: this.state.notes });
-        this.setState({ selectedId: badge_id, reqsSelected: [] });
-      },
-
-      toggleReq(reqId) {
-        const id = String(reqId);
-        const cur = this.state.reqsSelected.slice();
-        const i = cur.indexOf(id);
-        if (i >= 0) cur.splice(i, 1);
-        else cur.push(id);
-
-        // stable sort numeric-ish
-        cur.sort((a, b) => {
-          const na = parseFloat(a), nb = parseFloat(b);
-          if (!Number.isNaN(na) && !Number.isNaN(nb) && na !== nb) return na - nb;
-          return a.localeCompare(b);
-        });
-
-        this.setState({ reqsSelected: cur });
-        this.emitChange({ badge_id: this.state.selectedId, requirements_met: cur, notes: this.state.notes });
-      },
-
-      setNotes(txt) {
-        this.setState({ notes: txt });
-        this.emitChange({ badge_id: this.state.selectedId, requirements_met: this.state.reqsSelected, notes: txt });
-      },
-
-      render() {
-        if (this.state.loading) {
-          return h("div", { className: this.props.classNameWrapper }, "Loading badges…");
-        }
-
-        const badges = this.state.badges;
-        const selected = this.state.selectedId ? byId(badges, this.state.selectedId) : null;
-
-        // Allowed badges/requirements come from the curated STEM Badge Map.
-        const mapIndex = Array.isArray(this.state.mapIndex) ? this.state.mapIndex : [];
-        const allowedSet = new Set(mapIndex.map((m) => String(m.badge_id)));
-        const mapForSelected = this.state.selectedId
-          ? (mapIndex.find((m) => String(m.badge_id) === String(this.state.selectedId)) || null)
-          : null;
-        const allowedReqRefs = mapForSelected && Array.isArray(mapForSelected.req_refs)
-          ? new Set(mapForSelected.req_refs.map(String))
-          : null;
-        const selectedIsMapped = !!(this.state.selectedId && allowedSet.has(String(this.state.selectedId)));
-
-        // Simple search (client side)
-        const q = (this.state.query || "").trim().toLowerCase();
-        // Filter to only badges present in the curated map. Keep the currently-selected badge
-        // even if it's not mapped, so existing content doesn't disappear.
-        const curated = badges.filter((b) => allowedSet.has(String(b.id)));
-        const baseList = curated;
-        const filtered = q
-          ? baseList.filter((b) => (b._display || "").toLowerCase().includes(q))
-          : baseList;
-
-        // If an activity already has an unmapped badge saved, keep it visible at the top.
-        const unmappedSelected = (selected && !selectedIsMapped) ? selected : null;
-
-        return h(
-          "div",
-          { className: this.props.classNameWrapper, style: { border: "1px solid rgba(0,0,0,0.12)", borderRadius: 8, padding: 12 } },
-
-          h("div", { style: { display: "flex", gap: 8, alignItems: "center", marginBottom: 8 } },
-            h("input", {
-              type: "text",
-              placeholder: "Search badge (e.g. 'beavers builder' or 'staged')…",
-              value: this.state.query,
-              onChange: (e) => this.setState({ query: e.target.value }),
-              style: { flex: 1, padding: "8px 10px", borderRadius: 6, border: "1px solid rgba(0,0,0,0.2)" }
-            })
-          ),
-
-          h("div", { style: { marginBottom: 10 } },
-            h("select", {
-              value: this.state.selectedId || "",
-              onChange: (e) => this.setBadge(e.target.value),
-              style: { width: "100%", padding: "8px 10px", borderRadius: 6, border: "1px solid rgba(0,0,0,0.2)" }
-            },
-              h("option", { value: "" }, "Select a badge…"),
-              unmappedSelected
-                ? h("optgroup", { key: "unmapped", label: "⚠ Unmapped (add it to STEM Badge Map)" },
-                    h("option", { key: unmappedSelected.id, value: unmappedSelected.id }, unmappedSelected._display)
-                  )
-                : null,
-              (() => {
-              const groups = {};
-              for (const b of filtered) {
-                const k = (b.section || "other").toLowerCase();
-                if (!groups[k]) groups[k] = [];
-                groups[k].push(b);
-              }
-            
-              const order = ["universal", "squirrels", "beavers", "cubs", "scouts", "explorers", "other"];
-              const keys = order.filter(k => groups[k] && groups[k].length).concat(
-                Object.keys(groups).filter(k => !order.includes(k))
-              );
-            
-              return keys.map((k) =>
-                h("optgroup", { key: k, label: k.charAt(0).toUpperCase() + k.slice(1) },
-                  groups[k].map((b) => h("option", { key: b.id, value: b.id }, b._display))
-                )
-              );
-            })()
-
-            )
-          ),
-
-          selected
-            ? h(
-                "div",
-                null,
-                !selectedIsMapped
-                  ? h(
-                      "div",
-                      {
-                        style: {
-                          background: "#fff3cd",
-                          border: "1px solid #ffe69c",
-                          padding: "10px 12px",
-                          borderRadius: 8,
-                          margin: "8px 0 10px",
-                          lineHeight: 1.35,
-                        },
-                      },
-                      h("div", { style: { fontWeight: 700, marginBottom: 4 } }, "This badge isn't available yet"),
-                      h(
-                        "div",
-                        null,
-                        "This Activities picker only shows badges that exist in the STEM Badge Map. ",
-                        "Go to ‘STEM Badge Map’ in the CMS, add at least one requirement for this badge, Save, and Publish. ",
-                        "Then refresh this page and it will appear here."
-                      )
-                    )
-                  : null,
-                h("div", { style: { margin: "8px 0 6px", fontWeight: 600 } }, "Requirements (tick what this activity covers):"),
-                h(
-                  "div",
-                  {
-                    style: {
-                      border: "1px solid rgba(0,0,0,0.12)",
-                      borderRadius: 6,
-                      padding: "8px 10px",
-                      maxHeight: 260,
-                      overflow: "auto",
-                      marginBottom: 10,
-                    },
-                  },
-                  (selected.requirements || []).length
-                    ? (() => {
-                        // Only show mapped requirements for mapped badges.
-                        const allReqs = selected.requirements || [];
-                        const visibleReqs = selectedIsMapped && allowedReqRefs
-                          ? allReqs.filter((r) => allowedReqRefs.has(String(r.no || r.id)))
-                          : [];
-
-                        // If legacy data contains requirement ids that are no longer visible, warn.
-                        const visibleIds = new Set(visibleReqs.map((r) => String(r.id)));
-                        const hiddenSelectedCount = (this.state.reqsSelected || []).filter((id) => !visibleIds.has(String(id))).length;
-
-                        if (!selectedIsMapped) {
-                          return h("div", { style: { opacity: 0.85 } }, "Map this badge in STEM Badge Map to select requirements here.");
-                        }
-
-                        if (visibleReqs.length === 0) {
-                          return h("div", { style: { opacity: 0.85 } }, "This badge is mapped, but no mapped requirements were found. Add requirements in STEM Badge Map.");
-                        }
-
-                        return h(
-                          "div",
-                          null,
-                          hiddenSelectedCount > 0
-                            ? h(
-                                "div",
-                                { style: { background: "#f6f8fa", border: "1px solid rgba(0,0,0,0.08)", padding: "8px 10px", borderRadius: 6, marginBottom: 8, fontSize: 13 } },
-                                `Note: ${hiddenSelectedCount} previously-selected requirement(s) are no longer available because this picker only shows mapped requirements.`
-                              )
-                            : null,
-                          visibleReqs.map((r) =>
-                        h(
-                          "label",
-                          { key: String(r.id), style: { display: "flex", gap: 8, padding: "6px 0", alignItems: "flex-start" } },
-                          h("input", {
-                            type: "checkbox",
-                            checked: this.state.reqsSelected.includes(String(r.id)),
-                            onChange: () => this.toggleReq(r.id),
-                            style: { marginTop: 3 },
-                          }),
-                          h("div", null,
-                            h("div", { style: { fontWeight: 600 } }, `${r.no || r.id}.`),
-                            h("div", null, r.text)
-                          )
-                        )
-                          )
-                        );
-                      })()
-                    : h("div", { style: { opacity: 0.8 } }, "No numbered requirements found for this badge.")
-                )
-              )
-            : h("div", { style: { opacity: 0.8, marginBottom: 10 } }, "Pick a badge to see its requirements."),
-
-          h("div", { style: { fontWeight: 600, marginBottom: 6 } }, "Notes (optional)"),
-          h("textarea", {
-            value: this.state.notes,
-            onChange: (e) => this.setNotes(e.target.value),
-            rows: 3,
-            style: { width: "100%", padding: "8px 10px", borderRadius: 6, border: "1px solid rgba(0,0,0,0.2)" }
-          })
-        );
-      },
-    });
-
-    const Preview = createClass({
-      render() {
-        const v = this.props.value || {};
-        const title = v.badge_title || v.badge_id || "Badge link";
-        return h("div", null, title);
-      },
-    });
-
-    CMS.registerWidget("badge_link", Control, Preview);
+    window.CMS.registerWidget("badge_link", Control, Preview);
     console.log("[badge_link] widget registered");
-    return true;
   }
 
-  let tries = 0;
-  const t = setInterval(() => {
-    tries += 1;
-    if (register() || tries > 120) clearInterval(t);
-  }, 100);
+  function tick() {
+    if (ready()) return register();
+    setTimeout(tick, 50);
+  }
+
+  (function injectCss() {
+    const css = `
+      .blw { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+      .blw-label { display:block; margin:.5rem 0 .25rem; font-weight:600; }
+      .blw-select, .blw-input { width:100%; max-width:720px; padding:.55rem .7rem; border:1px solid #e5e7eb; border-radius:10px; }
+    `;
+    const style = document.createElement("style");
+    style.textContent = css;
+    document.head.appendChild(style);
+  })();
+
+  tick();
 })();

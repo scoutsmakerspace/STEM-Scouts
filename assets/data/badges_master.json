@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /assets/data/badges_master.json
+---
+{{ site.data.badges_master | jsonify }}
