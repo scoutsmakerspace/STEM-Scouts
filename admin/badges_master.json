@@ -978,6 +978,22 @@
     ]
   },
   {
+    "id": "test-badge-2",
+    "badge_name": "test badge 2",
+    "section": "beavers",
+    "section_label": "Beavers",
+    "category": "Activity Badges",
+    "type": "",
+    "description": "",
+    "completion_rules": "dasdas",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "dasdas."
+      }
+    ]
+  },
+  {
     "id": "beavers-my-adventure",
     "badge_name": "My Adventure",
     "section": "beavers",
