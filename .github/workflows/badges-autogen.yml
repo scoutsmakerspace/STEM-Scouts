@@ -1,4 +1,4 @@
-name: Auto-generate badges index and icons
+name: Auto-generate badges_master.json (safe)
 
 on:
   push:
@@ -6,6 +6,9 @@ on:
       - "_badges/**"
       - "assets/images/badges/**"
       - "assets/images/uploads/**"
+      - "tools/generate_badges_master.py"
+      - "admin/badges_master.json"
+      - "_data/badges_master.json"
 
 concurrency:
   group: badges-autogen-main
@@ -18,16 +21,10 @@ jobs:
   build:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Sync to latest main
-        run: |
-          git fetch origin main
-          git reset --hard origin/main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -35,17 +32,39 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install pyyaml pillow
+        run: pip install pyyaml
 
-      - name: Generate badges_master.json
+      - name: Generate JSON
         run: python tools/generate_badges_master.py
 
-      - name: Commit changes (if any)
+      - name: Commit changes (if any) with rebase retry
+        shell: bash
         run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add admin/badges_master.json _data/badges_master.json
-            git commit -m "Auto-generate badges_master.json"
-            git push
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "No changes to commit."
+            exit 0
           fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add admin/badges_master.json _data/badges_master.json
+
+          # Commit may fail if nothing staged (paranoia)
+          git commit -m "Auto-generate badges_master.json" || true
+
+          # Retry push up to 5 times with rebase, to avoid 'fetch first' failures
+          for i in 1 2 3 4 5; do
+            echo "Push attempt $i..."
+            git fetch origin main
+            git rebase origin/main || (git rebase --abort && git reset --hard origin/main && python tools/generate_badges_master.py && git add admin/badges_master.json _data/badges_master.json && git commit -m "Auto-generate badges_master.json" || true)
+            if git push; then
+              echo "Push succeeded."
+              exit 0
+            fi
+            echo "Push failed, retrying in 3s..."
+            sleep 3
+          done
+
+          echo "Push failed after retries."
+          exit 1
