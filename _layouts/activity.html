@@ -6,6 +6,10 @@ toc_sticky: true
 ---
 
 {% assign a = page %}
+{% comment %}Allowed badges (filtered via badges_master.json){% endcomment %}
+{% assign allowed_badge_ids = "" %}
+{% for _b in site.data.badges_master %}{% assign allowed_badge_ids = allowed_badge_ids | append: _b.id | append: "||" %}{% endfor %}
+
 
 {%- comment -%}
 IMPORTANT:
@@ -196,6 +200,7 @@ So we place the section IDs on the <h3> headings below (not on the <section> wra
   <div class="activity-badges">
     {% for bl in a.badge_links %}
       {% assign bid = bl.badge_id | default: '' %}
+{% unless allowed_badge_ids contains bid | append: "||" %}{% continue %}{% endunless %}
       {% if bid != '' %}
         {% assign badge_obj = site.data.badges_master | where: "id", bid | first %}
         {% assign badge_name = bid %}

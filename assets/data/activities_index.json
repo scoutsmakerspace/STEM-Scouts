@@ -2,6 +2,9 @@
 layout: null
 permalink: /assets/data/activities_index.json
 ---
+{% comment %}Allowed badges (filtered via badges_master.json){% endcomment %}
+{% assign allowed_badge_ids = "" %}
+{% for _b in site.data.badges_master %}{% assign allowed_badge_ids = allowed_badge_ids | append: _b.id | append: "||" %}{% endfor %}
 [
 {% for a in site.activities %}
   {%- assign ids = "" -%}
@@ -35,6 +38,22 @@ permalink: /assets/data/activities_index.json
   {
     "title": {{ a.title | jsonify }},
     "url": {{ a.url | relative_url | jsonify }},
+    {%- assign filtered_ids = "" -%}
+
+    {%- assign id_list = ids | split: "||" -%}
+
+    {%- for _id in id_list -%}
+
+      {%- if _id != "" and allowed_badge_ids contains _id | append: "||" -%}
+
+        {%- assign filtered_ids = filtered_ids | append: _id | append: "||" -%}
+
+      {%- endif -%}
+
+    {%- endfor -%}
+
+    {%- assign ids = filtered_ids -%}
+
     "badge_ids": [
       {%- assign first = true -%}
       {%- for id in id_list -%}
