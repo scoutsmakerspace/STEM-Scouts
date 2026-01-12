@@ -99,7 +99,18 @@ def _requirements_from_front_matter(fm: Dict[str, Any]) -> List[Dict[str, str]]:
     for r in reqs:
         if not isinstance(r, dict):
             continue
-        no = r.get("no")
+        # Historical badge files in this repo store requirement numbers under a
+        # YAML key that becomes the boolean False when parsed (rendered as
+        # "false" in some editors), e.g.
+        #   - false: 1
+        #     text: "1. Do something"
+        # Newer/cleaner files may use "no".
+        no = (
+            r.get("no")
+            or r.get("id")
+            or r.get(False)  # YAML `false:` key
+            or r.get("false")
+        )
         text = r.get("text")
         if no is None or text is None:
             continue
