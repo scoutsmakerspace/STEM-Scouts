@@ -353,10 +353,15 @@ collections:
     folder: _badges
     nested:
       depth: 2
-    path: "{{fields.section}}/{{fields.category}}/{{fields.id}}"
+    # IMPORTANT: For nested folder collections, Decap parses existing entries
+    # using the `path` template. In Decap 3.x this template references field
+    # names directly (e.g. {{section}}), not {{fields.section}}.
+    # If this is wrong, the Badges list will show "No Entries" even though
+    # files exist in nested folders.
+    path: "{{section}}/{{category}}/{{id}}"
     create: true
     delete: true
-    slug: "{{fields.id}}"
+    slug: "{{id}}"
     extension: md
     format: frontmatter
     editor:
