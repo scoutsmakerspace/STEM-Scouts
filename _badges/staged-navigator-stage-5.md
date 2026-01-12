@@ -1,27 +1,33 @@
 ---
 layout: badge
-title: "Navigator - Stage 5"
-id: "staged-navigator-stage-5"
-section: "staged"
-category: "Staged Activity Badges"
-badge_type: "Staged Activity"
-completion_rules: "Complete ALL 7 requirements"
+title: Navigator - Stage 5
+id: staged-navigator-stage-5
+section: staged
+category: Staged Activity Badges
+badge_type: Staged Activity
+completion_rules: Complete ALL 7 requirements
 requirements_count: 7
 requirements:
-  - no: 1
-    text: "Using a 1:25000 scale Ordnance Survey map and compass, navigate along a course of at least six \u2018legs\u2019."
-  - no: 2
-    text: "Using only a compass and pacing, successfully navigate a course of at least four \u2018legs\u2019."
-  - no: 3
-    text: "Using only a map, successfully navigate a course of at least four \u2018legs\u2019."
-  - no: 4
-    text: "Make two sketch maps \u2013 one of an urban and one of a rural setting \u2013 that would enable a stranger to travel successfully between two points."
-  - no: 5
-    text: "Complete at least three different orienteering courses in a reasonable time."
-  - no: 6
-    text: "Complete a comprehensive route plan for a 20km hill walking route, set by an appropriate adult."
-  - no: 7
-    text: "Show you know what the most appropriate clothing and equipment is for your journey."
+- false: 1
+  text: Using a 1:25000 scale Ordnance Survey map and compass, navigate along a course
+    of at least six ‘legs’.
+- false: 2
+  text: Using only a compass and pacing, successfully navigate a course of at least
+    four ‘legs’.
+- false: 3
+  text: Using only a map, successfully navigate a course of at least four ‘legs’.
+- false: 4
+  text: Make two sketch maps – one of an urban and one of a rural setting – that would
+    enable a stranger to travel successfully between two points.
+- false: 5
+  text: Complete at least three different orienteering courses in a reasonable time.
+- false: 6
+  text: Complete a comprehensive route plan for a 20km hill walking route, set by
+    an appropriate adult.
+- false: 7
+  text: Show you know what the most appropriate clothing and equipment is for your
+    journey.
+icon: /assets/images/badges/staged-navigator-stage-5.png
 ---
 
 ## Requirements

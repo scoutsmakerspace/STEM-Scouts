@@ -1,43 +1,44 @@
 ---
 layout: badge
-title: "Emergency Aid - Stage 4"
-id: "staged-emergency-aid-stage-4"
-section: "staged"
-category: "Staged Activity Badges"
-badge_type: "Staged Activity"
-completion_rules: "Complete ALL 15 requirements"
+title: Emergency Aid - Stage 4
+id: staged-emergency-aid-stage-4
+section: staged
+category: Staged Activity Badges
+badge_type: Staged Activity
+completion_rules: Complete ALL 15 requirements
 requirements_count: 15
 requirements:
-  - no: 1
-    text: "Explain to your leader or another adult about how to call 999."
-  - no: 2
-    text: "Explain is unconscious"
-  - no: 3
-    text: "Explain is unconscious and not breathing"
-  - no: 4
-    text: "Explain is bleeding"
-  - no: 5
-    text: "Explain has heat exhaustion"
-  - no: 6
-    text: "Explain has hypothermia"
-  - no: 7
-    text: "Explain is choking"
-  - no: 8
-    text: "Explain has a burn"
-  - no: 9
-    text: "Explain is having an asthma attack"
-  - no: 10
-    text: "Explain is having a heart attack"
-  - no: 11
-    text: "Explain has a head injury"
-  - no: 12
-    text: "Explain has a suspected spinal injury"
-  - no: 13
-    text: "Explain has a broken bone"
-  - no: 14
-    text: "Explain has a sprain or strain"
-  - no: 15
-    text: "Explain has meningitis"
+- false: 1
+  text: Explain to your leader or another adult about how to call 999.
+- false: 2
+  text: Explain is unconscious
+- false: 3
+  text: Explain is unconscious and not breathing
+- false: 4
+  text: Explain is bleeding
+- false: 5
+  text: Explain has heat exhaustion
+- false: 6
+  text: Explain has hypothermia
+- false: 7
+  text: Explain is choking
+- false: 8
+  text: Explain has a burn
+- false: 9
+  text: Explain is having an asthma attack
+- false: 10
+  text: Explain is having a heart attack
+- false: 11
+  text: Explain has a head injury
+- false: 12
+  text: Explain has a suspected spinal injury
+- false: 13
+  text: Explain has a broken bone
+- false: 14
+  text: Explain has a sprain or strain
+- false: 15
+  text: Explain has meningitis
+icon: /assets/images/badges/staged-emergency-aid-stage-4.png
 ---
 
 ## Requirements

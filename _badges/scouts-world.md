@@ -1,27 +1,32 @@
 ---
 layout: badge
-title: "World"
-id: "scouts-world"
-section: "scouts"
-category: "Challenge Awards"
-badge_type: "Challenge Award"
-completion_rules: "Complete ALL 7 requirements"
+title: World
+id: scouts-world
+section: scouts
+category: Challenge Awards
+badge_type: Challenge Award
+completion_rules: Complete ALL 7 requirements
 requirements_count: 7
 requirements:
-  - no: 1
-    text: "Choose an aspect of local community life and find out as much as you can about it."
-  - no: 2
-    text: "Spend a day volunteering with and finding out about a service in your local community:"
-  - no: 3
-    text: "Take part in an activity that reflects upon and explores your own beliefs, attitudes and values (this may or may not include religious beliefs)."
-  - no: 4
-    text: "Take part in an activity that explores common beliefs and attitudes towards gender or disability in different societies"
-  - no: 5
-    text: "Take an active part in an environmental project."
-  - no: 6
-    text: "Investigate and try to make contact with Scouts in another country."
-  - no: 7
-    text: "Take part in an activity that explores an international issue."
+- false: 1
+  text: Choose an aspect of local community life and find out as much as you can about
+    it.
+- false: 2
+  text: 'Spend a day volunteering with and finding out about a service in your local
+    community:'
+- false: 3
+  text: Take part in an activity that reflects upon and explores your own beliefs,
+    attitudes and values (this may or may not include religious beliefs).
+- false: 4
+  text: Take part in an activity that explores common beliefs and attitudes towards
+    gender or disability in different societies
+- false: 5
+  text: Take an active part in an environmental project.
+- false: 6
+  text: Investigate and try to make contact with Scouts in another country.
+- false: 7
+  text: Take part in an activity that explores an international issue.
+icon: /assets/images/badges/scouts-world.png
 ---
 
 ## Requirements

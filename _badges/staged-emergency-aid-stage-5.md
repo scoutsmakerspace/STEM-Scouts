@@ -1,45 +1,46 @@
 ---
 layout: badge
-title: "Emergency Aid - Stage 5"
-id: "staged-emergency-aid-stage-5"
-section: "staged"
-category: "Staged Activity Badges"
-badge_type: "Staged Activity"
-completion_rules: "Complete ALL 16 requirements"
+title: Emergency Aid - Stage 5
+id: staged-emergency-aid-stage-5
+section: staged
+category: Staged Activity Badges
+badge_type: Staged Activity
+completion_rules: Complete ALL 16 requirements
 requirements_count: 16
 requirements:
-  - no: 1
-    text: "Take part in formal training"
-  - no: 2
-    text: "Explain to your leader or another adult about how to call 999."
-  - no: 3
-    text: "Explain is unconscious"
-  - no: 4
-    text: "Explain is unconscious and not breathing"
-  - no: 5
-    text: "Explain is bleeding"
-  - no: 6
-    text: "Explain has heat exhaustion"
-  - no: 7
-    text: "Explain has hypothermia"
-  - no: 8
-    text: "Explain is choking"
-  - no: 9
-    text: "Explain has a burn"
-  - no: 10
-    text: "Explain is having an asthma attack"
-  - no: 11
-    text: "Explain is having a heart attack"
-  - no: 12
-    text: "Explain has a head injury"
-  - no: 13
-    text: "Explain has a suspected spinal injury"
-  - no: 14
-    text: "Explain has a broken bone"
-  - no: 15
-    text: "Explain has a sprain or strain"
-  - no: 16
-    text: "Explain has meningitis"
+- false: 1
+  text: Take part in formal training
+- false: 2
+  text: Explain to your leader or another adult about how to call 999.
+- false: 3
+  text: Explain is unconscious
+- false: 4
+  text: Explain is unconscious and not breathing
+- false: 5
+  text: Explain is bleeding
+- false: 6
+  text: Explain has heat exhaustion
+- false: 7
+  text: Explain has hypothermia
+- false: 8
+  text: Explain is choking
+- false: 9
+  text: Explain has a burn
+- false: 10
+  text: Explain is having an asthma attack
+- false: 11
+  text: Explain is having a heart attack
+- false: 12
+  text: Explain has a head injury
+- false: 13
+  text: Explain has a suspected spinal injury
+- false: 14
+  text: Explain has a broken bone
+- false: 15
+  text: Explain has a sprain or strain
+- false: 16
+  text: Explain has meningitis
+icon: /assets/images/badges/staged-emergency-aid-stage-5.png
 ---
 
 ## Requirements

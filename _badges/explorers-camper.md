@@ -1,51 +1,56 @@
 ---
 layout: badge
-title: "Camper"
-id: "explorers-camper"
-section: "explorers"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "1 from Camp + 4 from Demonstrate + 14 from Camp Leader"
+title: Camper
+id: explorers-camper
+section: explorers
+category: Activity Badges
+badge_type: Activity
+completion_rules: 1 from Camp + 4 from Demonstrate + 14 from Camp Leader
 requirements_count: 19
 requirements:
-  - no: 1
-    text: "Camp under canvas for a total of 20 nights or more."
-  - no: 1
-    text: "Are, simple repair and storage of your tent and cordage, including whipping, splicing, hanking, coiling and safety inspections."
-  - no: 2
-    text: "Safe storage and handling of fuels such as methylated spirits, paraffin, petrol and gas."
-  - no: 3
-    text: "Care of cooking stoves and utensils, including simple repairs, cleaning and general maintenance."
-  - no: 4
-    text: "Storage of a section\u2019s training and games equipment."
-  - no: 1
-    text: "discuss all aspects of the camp with an adult leader"
-  - no: 2
-    text: "manage the budget for the camp"
-  - no: 3
-    text: "choose the campsite, carrying out a risk assessment of the camp and activities"
-  - no: 4
-    text: "make sure all necessary equipment is organised"
-  - no: 5
-    text: "plan a menu and organise the shopping."
-  - no: 6
-    text: "organise the pitching of the campsite"
-  - no: 7
-    text: "make sure that camp hygiene standards are met"
-  - no: 8
-    text: "make sure that all equipment is stored correctly"
-  - no: 9
-    text: "build a pioneering project, for example a flagpole or a gateway"
-  - no: 10
-    text: "demonstrate safe knife and axe use"
-  - no: 11
-    text: "plan a cooking and cleaning rota and cook at least one of the meals yourself"
-  - no: 12
-    text: "organise the striking of camp and make sure the site is left as you would wish to find it."
-  - no: 13
-    text: "make sure that all equipment is stored correctly"
-  - no: 14
-    text: "evaluate how the camp went by discussing it with the other participants."
+- false: 1
+  text: Camp under canvas for a total of 20 nights or more.
+- false: 1
+  text: Are, simple repair and storage of your tent and cordage, including whipping,
+    splicing, hanking, coiling and safety inspections.
+- false: 2
+  text: Safe storage and handling of fuels such as methylated spirits, paraffin, petrol
+    and gas.
+- false: 3
+  text: Care of cooking stoves and utensils, including simple repairs, cleaning and
+    general maintenance.
+- false: 4
+  text: Storage of a section’s training and games equipment.
+- false: 1
+  text: discuss all aspects of the camp with an adult leader
+- false: 2
+  text: manage the budget for the camp
+- false: 3
+  text: choose the campsite, carrying out a risk assessment of the camp and activities
+- false: 4
+  text: make sure all necessary equipment is organised
+- false: 5
+  text: plan a menu and organise the shopping.
+- false: 6
+  text: organise the pitching of the campsite
+- false: 7
+  text: make sure that camp hygiene standards are met
+- false: 8
+  text: make sure that all equipment is stored correctly
+- false: 9
+  text: build a pioneering project, for example a flagpole or a gateway
+- false: 10
+  text: demonstrate safe knife and axe use
+- false: 11
+  text: plan a cooking and cleaning rota and cook at least one of the meals yourself
+- false: 12
+  text: organise the striking of camp and make sure the site is left as you would
+    wish to find it.
+- false: 13
+  text: make sure that all equipment is stored correctly
+- false: 14
+  text: evaluate how the camp went by discussing it with the other participants.
+icon: /assets/images/badges/explorers-camper.png
 ---
 
 ## Requirements

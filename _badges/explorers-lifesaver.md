@@ -1,19 +1,20 @@
 ---
 layout: badge
-title: "Lifesaver"
-id: "explorers-lifesaver"
-section: "explorers"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Complete ALL 3 requirements"
+title: Lifesaver
+id: explorers-lifesaver
+section: explorers
+category: Activity Badges
+badge_type: Activity
+completion_rules: Complete ALL 3 requirements
 requirements_count: 3
 requirements:
-  - no: 1
-    text: "Demonstrate and explain how you would perform a rescue"
-  - no: 2
-    text: "Reach the a recongised standard"
-  - no: 3
-    text: "Explain and, where possible, demonstrate methods of rescue"
+- false: 1
+  text: Demonstrate and explain how you would perform a rescue
+- false: 2
+  text: Reach the a recongised standard
+- false: 3
+  text: Explain and, where possible, demonstrate methods of rescue
+icon: /assets/images/badges/explorers-lifesaver.png
 ---
 
 ## Requirements

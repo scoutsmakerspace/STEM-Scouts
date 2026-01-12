@@ -1,21 +1,22 @@
 ---
 layout: badge
-title: "Cook"
-id: "beavers-cook"
-section: "beavers"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Complete ALL 4 requirements"
+title: Cook
+id: beavers-cook
+section: beavers
+category: Activity Badges
+badge_type: Activity
+completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-  - no: 1
-    text: "Find out what makes a balanced diet."
-  - no: 2
-    text: "Find out about why being clean in the kitchen is important."
-  - no: 3
-    text: "Learn about being safe in the kitchen."
-  - no: 4
-    text: "Choose three dishes to prepare and cook."
+- false: 1
+  text: Find out what makes a balanced diet.
+- false: 2
+  text: Find out about why being clean in the kitchen is important.
+- false: 3
+  text: Learn about being safe in the kitchen.
+- false: 4
+  text: Choose three dishes to prepare and cook.
+icon: /assets/images/badges/beavers-cook.png
 ---
 
 ## Requirements

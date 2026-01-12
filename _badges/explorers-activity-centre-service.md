@@ -1,33 +1,37 @@
 ---
 layout: badge
-title: "Activity Centre Service"
-id: "explorers-activity-centre-service"
-section: "explorers"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Complete ALL 2 mandatory + 1 of 8 optional"
+title: Activity Centre Service
+id: explorers-activity-centre-service
+section: explorers
+category: Activity Badges
+badge_type: Activity
+completion_rules: Complete ALL 2 mandatory + 1 of 8 optional
 requirements_count: 10
 requirements:
-  - no: 1
-    text: "Work for at least five days (on at least two different occasions) at a  Group, District, County, Area or National Scout Activity Centre or campsite, helping the warden or manager however they need you."
-  - no: 2
-    text: "Explain the maintenance needed for essential campsite equipment"
-  - no: 1
-    text: "Make a booking for someone wanting to use the site"
-  - no: 2
-    text: "Show how to restore a camping area after use, including sowing grass"
-  - no: 3
-    text: "Show how you prevent pipes freezing during the winter and what steps to take when pipes burst"
-  - no: 4
-    text: "The importance of having clean toilets"
-  - no: 5
-    text: "Chemicals \u2013 what to use and how to use them safely"
-  - no: 6
-    text: "How to unblock a drain and prevent further blockages"
-  - no: 7
-    text: "The need for good site drainage and keeping ditches clear"
-  - no: 8
-    text: "How to dispose of refuse and use an effective recycling system"
+- false: 1
+  text: Work for at least five days (on at least two different occasions) at a  Group,
+    District, County, Area or National Scout Activity Centre or campsite, helping
+    the warden or manager however they need you.
+- false: 2
+  text: Explain the maintenance needed for essential campsite equipment
+- false: 1
+  text: Make a booking for someone wanting to use the site
+- false: 2
+  text: Show how to restore a camping area after use, including sowing grass
+- false: 3
+  text: Show how you prevent pipes freezing during the winter and what steps to take
+    when pipes burst
+- false: 4
+  text: The importance of having clean toilets
+- false: 5
+  text: Chemicals – what to use and how to use them safely
+- false: 6
+  text: How to unblock a drain and prevent further blockages
+- false: 7
+  text: The need for good site drainage and keeping ditches clear
+- false: 8
+  text: How to dispose of refuse and use an effective recycling system
+icon: /assets/images/badges/explorers-activity-centre-service.png
 ---
 
 ## Requirements

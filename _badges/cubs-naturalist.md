@@ -1,29 +1,31 @@
 ---
 layout: badge
-title: "Naturalist"
-id: "cubs-naturalist"
-section: "cubs"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Complete ALL 3 mandatory + 1 of 5 optional"
+title: Naturalist
+id: cubs-naturalist
+section: cubs
+category: Activity Badges
+badge_type: Activity
+completion_rules: Complete ALL 3 mandatory + 1 of 5 optional
 requirements_count: 8
 requirements:
-  - no: 1
-    text: "1. Learn how to identify six different living things"
-  - no: 2
-    text: "2. Over three months, visit the same natural area at least four times."
-  - no: 3
-    text: "3. Learn the countryside code and how to follow it."
-  - no: 1
-    text: "Make a hedgehog, ladybird or bee house."
-  - no: 2
-    text: "Create a piece of art using natural material. You could do a bark or leaf rubbing, dried flower picture or maybe a collage."
-  - no: 3
-    text: "With an adult pick wild edible berries, leaves or fruit. Use them in a recipe."
-  - no: 4
-    text: "Use a dye that uses natural ingredients to colour a piece of material."
-  - no: 5
-    text: "Make a feeding station for birds. Get permission to hang it in a good position."
+- false: 1
+  text: 1. Learn how to identify six different living things
+- false: 2
+  text: 2. Over three months, visit the same natural area at least four times.
+- false: 3
+  text: 3. Learn the countryside code and how to follow it.
+- false: 1
+  text: Make a hedgehog, ladybird or bee house.
+- false: 2
+  text: Create a piece of art using natural material. You could do a bark or leaf
+    rubbing, dried flower picture or maybe a collage.
+- false: 3
+  text: With an adult pick wild edible berries, leaves or fruit. Use them in a recipe.
+- false: 4
+  text: Use a dye that uses natural ingredients to colour a piece of material.
+- false: 5
+  text: Make a feeding station for birds. Get permission to hang it in a good position.
+icon: /assets/images/badges/cubs-naturalist.png
 ---
 
 ## Requirements

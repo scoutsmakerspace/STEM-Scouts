@@ -1,21 +1,22 @@
 ---
 layout: badge
-title: "Environmental Conservation"
-id: "cubs-environmental-conservation"
-section: "cubs"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Complete ALL 4 requirements"
+title: Environmental Conservation
+id: cubs-environmental-conservation
+section: cubs
+category: Activity Badges
+badge_type: Activity
+completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-  - no: 1
-    text: "Learn how to separate recyclable and non-recyclable rubbish ready for collection"
-  - no: 2
-    text: "Find out how to reduce the energy and water you use in your home."
-  - no: 3
-    text: "Find out about one type of renewable energy."
-  - no: 4
-    text: "Take part in two projects with a group of other people"
+- false: 1
+  text: Learn how to separate recyclable and non-recyclable rubbish ready for collection
+- false: 2
+  text: Find out how to reduce the energy and water you use in your home.
+- false: 3
+  text: Find out about one type of renewable energy.
+- false: 4
+  text: Take part in two projects with a group of other people
+icon: /assets/images/badges/cubs-environmental-conservation.png
 ---
 
 ## Requirements

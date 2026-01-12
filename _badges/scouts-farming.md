@@ -1,27 +1,35 @@
 ---
 layout: badge
-title: "Farming"
-id: "scouts-farming"
-section: "scouts"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Choose 1 of 3 options"
+title: Farming
+id: scouts-farming
+section: scouts
+category: Activity Badges
+badge_type: Activity
+completion_rules: Choose 1 of 3 options
 requirements_count: 7
 requirements:
-  - no: 1
-    text: "Learn about farming practices in your area"
-  - no: 2
-    text: "Find out about the organisation, as well as the daily and seasonal operations, of a farm of your choice. Make a note of practices relating to livestock, crops, cultivation, rotation, machinery and labour force."
-  - no: 3
-    text: "Find photos to demonstrate the changes in farming practices that have taken place over a number of years. Explain the reasons for these."
-  - no: 1
-    text: "Cultivate an area of garden or an allotment for a specific length of time. Agree this beforehand with your leadership team."
-  - no: 2
-    text: "Show you're successful in growing: three kinds of hardy annual flower, three kinds of vegetable and two kinds of bulbs, herbaceous plants, flowering shrubs or rose"
-  - no: 3
-    text: "Keep a record of the work you've done and the results you've achieved. This could include height records of the flowers, for example."
-  - no: 1
-    text: "Keep any kind of livestock for at least three months."
+- false: 1
+  text: Learn about farming practices in your area
+- false: 2
+  text: Find out about the organisation, as well as the daily and seasonal operations,
+    of a farm of your choice. Make a note of practices relating to livestock, crops,
+    cultivation, rotation, machinery and labour force.
+- false: 3
+  text: Find photos to demonstrate the changes in farming practices that have taken
+    place over a number of years. Explain the reasons for these.
+- false: 1
+  text: Cultivate an area of garden or an allotment for a specific length of time.
+    Agree this beforehand with your leadership team.
+- false: 2
+  text: 'Show you''re successful in growing: three kinds of hardy annual flower, three
+    kinds of vegetable and two kinds of bulbs, herbaceous plants, flowering shrubs
+    or rose'
+- false: 3
+  text: Keep a record of the work you've done and the results you've achieved. This
+    could include height records of the flowers, for example.
+- false: 1
+  text: Keep any kind of livestock for at least three months.
+icon: /assets/images/badges/scouts-farming.png
 ---
 
 ## Requirements

@@ -1,21 +1,22 @@
 ---
 layout: badge
-title: "Musician - Stage 3"
-id: "staged-musician-stage-3"
-section: "staged"
-category: "Staged Activity Badges"
-badge_type: "Staged Activity"
-completion_rules: "Complete ALL 4 requirements"
+title: Musician - Stage 3
+id: staged-musician-stage-3
+section: staged
+category: Staged Activity Badges
+badge_type: Staged Activity
+completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-  - no: 1
-    text: "Skill"
-  - no: 2
-    text: "Performance"
-  - no: 3
-    text: "Knowledge"
-  - no: 4
-    text: "Interest"
+- false: 1
+  text: Skill
+- false: 2
+  text: Performance
+- false: 3
+  text: Knowledge
+- false: 4
+  text: Interest
+icon: /assets/images/badges/staged-musician-stage-3.png
 ---
 
 ## Requirements

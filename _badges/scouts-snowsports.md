@@ -22,6 +22,7 @@ requirements:
   text: 'Take part in a taster session that covers: naming equipment used; how to
     get in and out of your skis or snowboard; balancing; and moving around including
     moving in a straight line, controlling your speed and stopping.'
+icon: /assets/images/badges/scouts-snowsports.png
 ---
 
 ## Requirements

@@ -31,6 +31,7 @@ requirements:
     cakes (20cm+) with different icings/decorations; a sweet or savoury tart (e.g.,
     quiche or tarte tatin); 12 iced and filled cupcakes; 12 biscuits iced using the
     flooding method; 12 scones; a loaf of yeast bread; and 12 flatbreads.'
+icon: /assets/images/badges/explorers-chef.png
 ---
 
 ## Requirements

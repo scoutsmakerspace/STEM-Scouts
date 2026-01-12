@@ -1,35 +1,42 @@
 ---
 layout: badge
-title: "Electronics"
-id: "scouts-electronics"
-section: "scouts"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Complete ALL 11 requirements"
+title: Electronics
+id: scouts-electronics
+section: scouts
+category: Activity Badges
+badge_type: Activity
+completion_rules: Complete ALL 11 requirements
 requirements_count: 11
 requirements:
-  - no: 1
-    text: "1. Identify a number of common electronic components that are shown to you."
-  - no: 2
-    text: "2. Describe the systems used for marking components with their values."
-  - no: 3
-    text: "3. Show that you know the symbols used to represent common components in circuit diagrams."
-  - no: 4
-    text: "4. Show that you\u2019re aware of the safe working practices to be followed when handling electronic components, circuit boards and when soldering."
-  - no: 5
-    text: "5. Use a multimeter to measure voltage, current and resistance in a simple circuit."
-  - no: 6
-    text: "6. Talk about the main differences in the operation of digital and analogue circuits."
-  - no: 7
-    text: "7. Construct three simple circuits."
-  - no: 8
-    text: "Show how to identify the polarity of a diode and a specific PIN on an integrated circuit."
-  - no: 9
-    text: "8. Explain the principles behind the operation of each circuit and the typical values of voltage and current found in each."
-  - no: 10
-    text: "9. Explain the possible uses of the three circuits you built."
-  - no: 11
-    text: "10. Talk about the uses and benefits of electronics in everyday life."
+- false: 1
+  text: 1. Identify a number of common electronic components that are shown to you.
+- false: 2
+  text: 2. Describe the systems used for marking components with their values.
+- false: 3
+  text: 3. Show that you know the symbols used to represent common components in circuit
+    diagrams.
+- false: 4
+  text: 4. Show that you’re aware of the safe working practices to be followed when
+    handling electronic components, circuit boards and when soldering.
+- false: 5
+  text: 5. Use a multimeter to measure voltage, current and resistance in a simple
+    circuit.
+- false: 6
+  text: 6. Talk about the main differences in the operation of digital and analogue
+    circuits.
+- false: 7
+  text: 7. Construct three simple circuits.
+- false: 8
+  text: Show how to identify the polarity of a diode and a specific PIN on an integrated
+    circuit.
+- false: 9
+  text: 8. Explain the principles behind the operation of each circuit and the typical
+    values of voltage and current found in each.
+- false: 10
+  text: 9. Explain the possible uses of the three circuits you built.
+- false: 11
+  text: 10. Talk about the uses and benefits of electronics in everyday life.
+icon: /assets/images/badges/scouts-electronics.png
 ---
 
 ## Requirements

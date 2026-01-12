@@ -1,33 +1,42 @@
 ---
 layout: badge
-title: "Air Activities - Stage 4"
-id: "staged-air-activities-stage-4"
-section: "staged"
-category: "Staged Activity Badges"
-badge_type: "Staged Activity"
-completion_rules: "Complete ALL 3 mandatory + 4 of 7 optional"
+title: Air Activities - Stage 4
+id: staged-air-activities-stage-4
+section: staged
+category: Staged Activity Badges
+badge_type: Staged Activity
+completion_rules: Complete ALL 3 mandatory + 4 of 7 optional
 requirements_count: 10
 requirements:
-  - no: 1
-    text: "Trim a paper aeroplane or model glider to glide, stall and turn, then find out how an aircraft\u2019s trimming, weight and balance can affect its flight."
-  - no: 2
-    text: "Draw a runway and the circuit pattern that planes follow, then explain how air traffic control uses this circuit to keep planes safe and communicate with pilots."
-  - no: 3
-    text: "Learn how the wind\u2019s speed and direction are measured, then find out why they\u2019re important during take-off and landing."
-  - no: 1
-    text: "Try an air-based activity and share what you learned."
-  - no: 2
-    text: "Find out about the roles and responsibilities of flight crew members, such as pilots, co-pilots, engineers or cabin crew."
-  - no: 3
-    text: "Simulate a take-off and landing using a flight simulator."
-  - no: 4
-    text: "Explain why pilot's (and other flight crew) use a pre-flight checklist."
-  - no: 5
-    text: "Explore the different types of emergency radio calls used in aviation, such as mayday and pan-pan"
-  - no: 6
-    text: "Follow the flight path of an aircraft using maps and satellite images and see how landmarks help pilots find their way."
-  - no: 7
-    text: "Learn why Morse code is still used by navigational beacons and recognise six three-letter sequences."
+- false: 1
+  text: Trim a paper aeroplane or model glider to glide, stall and turn, then find
+    out how an aircraft’s trimming, weight and balance can affect its flight.
+- false: 2
+  text: Draw a runway and the circuit pattern that planes follow, then explain how
+    air traffic control uses this circuit to keep planes safe and communicate with
+    pilots.
+- false: 3
+  text: Learn how the wind’s speed and direction are measured, then find out why they’re
+    important during take-off and landing.
+- false: 1
+  text: Try an air-based activity and share what you learned.
+- false: 2
+  text: Find out about the roles and responsibilities of flight crew members, such
+    as pilots, co-pilots, engineers or cabin crew.
+- false: 3
+  text: Simulate a take-off and landing using a flight simulator.
+- false: 4
+  text: Explain why pilot's (and other flight crew) use a pre-flight checklist.
+- false: 5
+  text: Explore the different types of emergency radio calls used in aviation, such
+    as mayday and pan-pan
+- false: 6
+  text: Follow the flight path of an aircraft using maps and satellite images and
+    see how landmarks help pilots find their way.
+- false: 7
+  text: Learn why Morse code is still used by navigational beacons and recognise six
+    three-letter sequences.
+icon: /assets/images/badges/staged-air-activities-stage-4.png
 ---
 
 ## Requirements

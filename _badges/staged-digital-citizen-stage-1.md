@@ -1,21 +1,24 @@
 ---
 layout: badge
-title: "Digital Citizen - Stage 1"
-id: "staged-digital-citizen-stage-1"
-section: "staged"
-category: "Staged Activity Badges"
-badge_type: "Staged Activity"
-completion_rules: "Complete ALL 4 requirements"
+title: Digital Citizen - Stage 1
+id: staged-digital-citizen-stage-1
+section: staged
+category: Staged Activity Badges
+badge_type: Staged Activity
+completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-  - no: 1
-    text: "In a creative way of your choice, map out your regular digital actions, such as searches, clicks or posts."
-  - no: 2
-    text: "Learn how to create a secure password and make one of your own."
-  - no: 3
-    text: "Share three ways young people can respond positively when someone\u2019s being unkind or dishonest, including telling an adult if someone\u2019s making you feel uncomfortable."
-  - no: 4
-    text: "Use an online service to learn a new skill and show others what you\u2019ve learnt."
+- false: 1
+  text: In a creative way of your choice, map out your regular digital actions, such
+    as searches, clicks or posts.
+- false: 2
+  text: Learn how to create a secure password and make one of your own.
+- false: 3
+  text: Share three ways young people can respond positively when someone’s being
+    unkind or dishonest, including telling an adult if someone’s making you feel uncomfortable.
+- false: 4
+  text: Use an online service to learn a new skill and show others what you’ve learnt.
+icon: /assets/images/badges/staged-digital-citizen-stage-1.png
 ---
 
 ## Requirements

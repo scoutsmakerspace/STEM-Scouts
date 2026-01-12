@@ -1,23 +1,26 @@
 ---
 layout: badge
-title: "Dragon Boating"
-id: "scouts-dragon-boating"
-section: "scouts"
-category: "Activity Badges"
-badge_type: "Activity"
-completion_rules: "Complete ALL 5 requirements"
+title: Dragon Boating
+id: scouts-dragon-boating
+section: scouts
+category: Activity Badges
+badge_type: Activity
+completion_rules: Complete ALL 5 requirements
 requirements_count: 5
 requirements:
-  - no: 1
-    text: "1. Learn the safety rules, the capsize drills, the water buddy system"
-  - no: 2
-    text: "2. Learn the procedures for loading, numbering off, stopping, bracing the boat, forward and backward paddling."
-  - no: 3
-    text: "3. Learn the instructions and commands issued by The Dragon Boat Racing Association."
-  - no: 4
-    text: "4. Carry out practice training sessions for a minimum of two hours."
-  - no: 5
-    text: "5. Take part in a competitive or timed dragon boat event over a course of at least 250 metres."
+- false: 1
+  text: 1. Learn the safety rules, the capsize drills, the water buddy system
+- false: 2
+  text: 2. Learn the procedures for loading, numbering off, stopping, bracing the
+    boat, forward and backward paddling.
+- false: 3
+  text: 3. Learn the instructions and commands issued by The Dragon Boat Racing Association.
+- false: 4
+  text: 4. Carry out practice training sessions for a minimum of two hours.
+- false: 5
+  text: 5. Take part in a competitive or timed dragon boat event over a course of
+    at least 250 metres.
+icon: /assets/images/badges/scouts-dragon-boating.png
 ---
 
 ## Requirements

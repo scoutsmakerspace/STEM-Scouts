@@ -1,21 +1,26 @@
 ---
 layout: badge
-title: "All About Adventure"
-id: "squirrels-all-about-adventure"
-section: "squirrels"
-category: "Challenge Awards"
-badge_type: "Challenge Award"
-completion_rules: "Complete ALL 4 requirements"
+title: All About Adventure
+id: squirrels-all-about-adventure
+section: squirrels
+category: Challenge Awards
+badge_type: Challenge Award
+completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-  - no: 1
-    text: "Adventures are more fun when you\u2019re prepared. Choose your activities, think about what you\u2019ll need, and pack your bag \u2013 just don\u2019t forget the snacks!"
-  - no: 2
-    text: "Having fun outside is good for your mind and your body. Take part in some outdoor activities and try something new."
-  - no: 3
-    text: "Take a deep breath and go for it. It\u2019s time to go on some adventures."
-  - no: 4
-    text: "No adventure is complete without a campfire. Gather around a roaring fire (or a fire-free indoor model), spend some time with your friends, and reflect on your adventures."
+- false: 1
+  text: Adventures are more fun when you’re prepared. Choose your activities, think
+    about what you’ll need, and pack your bag – just don’t forget the snacks!
+- false: 2
+  text: Having fun outside is good for your mind and your body. Take part in some
+    outdoor activities and try something new.
+- false: 3
+  text: Take a deep breath and go for it. It’s time to go on some adventures.
+- false: 4
+  text: No adventure is complete without a campfire. Gather around a roaring fire
+    (or a fire-free indoor model), spend some time with your friends, and reflect
+    on your adventures.
+icon: /assets/images/badges/squirrels-all-about-adventure.png
 ---
 
 ## Requirements
