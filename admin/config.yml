@@ -372,6 +372,10 @@ collections:
         widget: string
         hint: "Canonical badge ID used everywhere. Use lowercase letters, numbers and hyphens (e.g. test-badge). Don’t change once published."
         pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and single hyphens only (e.g. test-badge).']
+      - label: keep
+        name: keep
+        widget: hidden
+        default: "yes"
       - { label: Status, name: status, widget: select, options: ["active", "retired"], default: "active" }
       - label: Icon
         name: icon
@@ -379,10 +383,10 @@ collections:
         required: false
         media_folder: "assets/images/badges"
         public_folder: "/assets/images/badges"
-        hint: "Optional. Upload any image; it will be normalised to PNG and a 64×64 version will be generated automatically. If left empty, the site will use /assets/images/badges/<id>.png"
-      - { label: Section, name: section, widget: string }
-      - { label: Category, name: category, widget: string }
-      - { label: "Badge type", name: badge_type, widget: string, required: false }
+        hint: "Optional. If empty, the site will use /assets/images/badges/<id>.png"
+      - { label: Section, name: section, widget: select, options: ["squirrels","beavers","cubs","scouts","explorers","staged"] }
+      - { label: Category, name: category, widget: select, options: ["Activity Badges","Core Badges","Staged Activity Badges","Challenge Awards"] }
+      - { label: "Badge type", name: badge_type, widget: select, required: false, options: ["Activity","Staged Activity","Challenge Award","Leadership","Earth Tribe"] }
       - { label: "Completion rules", name: completion_rules, widget: string, required: false }
       - { label: "Requirements count", name: requirements_count, widget: number, value_type: int, required: false }
       - label: Requirements
