@@ -16,13 +16,6 @@
       .replaceAll("'", "&#39;");
 
   const norm = (s) => String(s || "").toLowerCase();
-  const badgeIconUrl = (id) => `/assets/images/badges/${encodeURIComponent(String(id || "").trim())}.png`;
-  const badgeIconImg = (id, alt) => {
-    const src = badgeIconUrl(id);
-    const a = escapeHtml(alt || "");
-    return `<img class="stem-badge-icon" src="${src}" alt="${a}" width="32" height="32" loading="lazy" onerror="this.onerror=null;this.src=\'/assets/images/badges/_missing.png\';" />`;
-  };
-
 
   const data =
     window.STEM_BADGE_MAP_DATA && Array.isArray(window.STEM_BADGE_MAP_DATA.badges)
@@ -205,7 +198,9 @@
             const prompts = Array.isArray(r.leader_prompts) ? r.leader_prompts : [];
             const promptHtml =
               prompts.length > 0
-                ? `<details><summary>Leader prompts</summary><div class="stem-prompts-lines">${prompts
+                ? `<details><summary>
+              <img class="stem-badge-map__badge-icon" src="/assets/images/badges/${encodeURIComponent(b.id)}.png" alt="" loading="lazy" onerror="this.onerror=null;this.src='/assets/images/badges/_/assets/images/badges/_missing.png';">
+              Leader prompts</summary><div class="stem-prompts-lines">${prompts
                     .map((p) => `<div class="stem-prompt-line">${escapeHtml(p)}</div>`)
                     .join("")}</div></details>`
                 : "";
@@ -230,7 +225,7 @@
         return `
           <details>
             <summary>
-              <span class="stem-badge-map__badge-title">${badgeIconImg(b.id, b.title)}<span class="stem-badge-icon__title">${escapeHtml(b.title)}</span></span>
+              <span class="stem-badge-map__badge-title">${escapeHtml(b.title)}</span>
               <span class="stem-badge-map__badge-meta">${metaBits}</span>
               <span class="stem-badge-map__counts">
                 <span class="stem-badge-map__count">${reqs.length} requirement${reqs.length === 1 ? "" : "s"}</span>
