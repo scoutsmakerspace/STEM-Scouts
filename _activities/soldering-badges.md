@@ -18,11 +18,8 @@ sections:
 difficulty: 4
 time_minutes: 60
 type: electronics
-supervision: high
-external_docs:
-  - title: Soldering basic
-    url: https://www.ifixit.com/News/6864/how-to-solder
 location: indoors
+supervision: high
 kit:
   - Soldering iron (60W or more)
   - Soldering iron stand (spring type recommended)
@@ -39,9 +36,7 @@ documents:
     title: Rocket - Instructions
   - file: /assets/docs/activities/camp-fire-badge-instructions-v2.pdf
     title: Camp Fire - Instructions
-badge_links:
-  - badge_id: test-badge
-    badge_title: Beavers — Test badge
-    requirements_met: []
-    notes: ""
+external_docs:
+  - title: Soldering basic
+    url: https://www.ifixit.com/News/6864/how-to-solder
 ---
