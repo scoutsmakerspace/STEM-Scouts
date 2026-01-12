@@ -351,6 +351,9 @@ collections:
     label: Badges
     label_singular: Badge
     folder: _badges
+    nested:
+      depth: 2
+    path: "{{fields.section}}/{{fields.badge_type}}/{{slug}}"
     create: true
     delete: true
     slug: "{{fields.id}}"
@@ -358,13 +361,6 @@ collections:
     format: frontmatter
     editor:
       preview: false
-    summary: '{{fields.section}} • {{fields.badge_type}} • {{fields.title}}'
-    sortable_fields: [title, section, badge_type, category, status, id]
-    view_groups:
-      - { label: Section, field: section }
-      - { label: Badge type, field: badge_type }
-      - { label: Category, field: category }
-      - { label: Status, field: status }
     fields:
       - { label: Title, name: title, widget: string }
       - label: ID
