@@ -4232,3 +4232,31 @@ badges:
         leader_prompts:
           - asdasdasd
           - dsadasda
+  - badge_id: test-badge
+    title: Test badge
+    section: Beavers
+    section_slug: beavers
+    category: Activity Badges
+    badge_type: Activity
+    stem_requirements:
+      - rid: test-badge::1
+        ref: "1"
+        text: 1. asdas
+        strength: strong
+        areas:
+          - Coding
+          - Design
+        why_stem: xz\x\z
+        leader_prompts:
+          - zxsdasd
+      - rid: test-badge::3
+        ref: "3"
+        text: 3. asdas
+        strength: strong
+        areas:
+          - Science
+          - Digital making
+        why_stem: dasdasd
+        leader_prompts:
+          - vdsdv
+          - vdvdsvd
