@@ -370,7 +370,8 @@ collections:
       - label: ID
         name: id
         widget: string
-        hint: "Canonical badge ID used everywhere (don’t change once published)."
+        hint: "Canonical badge ID used everywhere. Use lowercase letters, numbers and hyphens (e.g. test-badge). Don’t change once published."
+        pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and single hyphens only (e.g. test-badge).']
       - { label: Status, name: status, widget: select, options: ["active", "retired"], default: "active" }
       - label: Icon
         name: icon
@@ -378,7 +379,7 @@ collections:
         required: false
         media_folder: "assets/images/badges"
         public_folder: "/assets/images/badges"
-        hint: "Upload the badge icon here. Tip: name the file exactly <id>.png so the site + mapping can find it automatically. A 64x64 thumbnail will be generated on push."
+        hint: "Optional. Upload any image; it will be normalised to PNG and a 64×64 version will be generated automatically. If left empty, the site will use /assets/images/badges/<id>.png"
       - { label: Section, name: section, widget: string }
       - { label: Category, name: category, widget: string }
       - { label: "Badge type", name: badge_type, widget: string, required: false }
