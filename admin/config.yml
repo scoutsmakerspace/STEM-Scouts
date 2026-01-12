@@ -356,10 +356,6 @@ collections:
     # Make the list easier to browse in the CMS
     summary: "{{section}} • {{category}} • {{title}}"
     sortable_fields: [title, section, category, status, id]
-    view_filters:
-      - { label: Section, field: section }
-      - { label: Category, field: category }
-      - { label: Status, field: status }
     view_groups:
       - { label: By section, field: section }
       - { label: By category, field: category }
