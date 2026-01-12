@@ -42,5 +42,4 @@
 .stem-prompt-line { margin: 0.15rem 0; }
 
 
-.stem-badge-map__results summary { align-items: center; }
-.stem-badge-map__badge-icon { width: 32px; height: 32px; flex: 0 0 32px; object-fit: contain; border-radius: 4px; }
+.stem-badge-map__badge-icon{width:32px;height:32px;flex:0 0 32px;object-fit:contain;margin-right:8px;border-radius:4px;}

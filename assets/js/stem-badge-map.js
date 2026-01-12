@@ -198,9 +198,7 @@
             const prompts = Array.isArray(r.leader_prompts) ? r.leader_prompts : [];
             const promptHtml =
               prompts.length > 0
-                ? `<details><summary>
-              <img class="stem-badge-map__badge-icon" src="/assets/images/badges/${encodeURIComponent(b.id)}.png" alt="" loading="lazy" onerror="this.onerror=null;this.src='/assets/images/badges/_/assets/images/badges/_missing.png';">
-              Leader prompts</summary><div class="stem-prompts-lines">${prompts
+                ? `<details><summary>Leader prompts</summary><div class="stem-prompts-lines">${prompts
                     .map((p) => `<div class="stem-prompt-line">${escapeHtml(p)}</div>`)
                     .join("")}</div></details>`
                 : "";
@@ -222,9 +220,13 @@
 
         const metaBits = [b.section, b.category].filter(Boolean).map(escapeHtml).join(" · ");
 
-        return `
+                const badgeId = (b && (b.id || b.badge_id || b.badgeId)) ? String(b.id || b.badge_id || b.badgeId) : "";
+        const badgeIconSrc = `/assets/images/badges/${encodeURIComponent(badgeId)}.png`;
+
+return `
           <details>
             <summary>
+              <img class="stem-badge-map__badge-icon" src="${badgeIconSrc}" alt="" loading="lazy" onerror="this.onerror=null;this.src='/assets/images/badges/_missing.png';">
               <span class="stem-badge-map__badge-title">${escapeHtml(b.title)}</span>
               <span class="stem-badge-map__badge-meta">${metaBits}</span>
               <span class="stem-badge-map__counts">
