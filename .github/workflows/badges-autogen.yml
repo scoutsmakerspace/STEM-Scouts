@@ -5,6 +5,7 @@ on:
     paths:
       - "_badges/**"
       - "assets/images/badges/**"
+      - "assets/images/uploads/**"
       - "admin/config.yml"
       - "tools/generate_badges_master.py"
       - "tools/normalise_badge_icons.py"
