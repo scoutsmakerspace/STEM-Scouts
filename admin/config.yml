@@ -353,7 +353,7 @@ collections:
     folder: _badges
     nested:
       depth: 2
-    path: "{{fields.section}}/{{fields.badge_type}}/{{slug}}"
+    path: "{{fields.section}}/{{fields.category}}/{{fields.id}}"
     create: true
     delete: true
     slug: "{{fields.id}}"
