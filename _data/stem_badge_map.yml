@@ -2424,8 +2424,8 @@ badges:
       or data handling), which are foundational STEM skills.
     leader_prompts:
     - Ask them to estimate first, then calculate/measure, and compare the two.
-- badge_id: scouts-chef
-  title: Chef
+- badge_id: scouts-chef-indoors
+  title: Chef - Indoors
   section: Scouts
   section_slug: scouts
   category: Activity Badges

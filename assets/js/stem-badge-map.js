@@ -221,7 +221,7 @@
         const metaBits = [b.section, b.category].filter(Boolean).map(escapeHtml).join(" · ");
 
                 const badgeId = (b && (b.id || b.badge_id || b.badgeId)) ? String(b.id || b.badge_id || b.badgeId) : "";
-        const badgeIconSrc = `/assets/images/badges/${encodeURIComponent(badgeId)}.png`;
+        const badgeIconSrc = (typeof iconMap !== 'undefined' && iconMap.get(badgeId)) ? iconMap.get(badgeId) : `/assets/images/badges/${encodeURIComponent(badgeId)}.png`;
 
 return `
           <details>

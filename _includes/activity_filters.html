@@ -24,7 +24,7 @@
       <span>Badge</span>
       <select id="actBadge">
         <option value="">Any</option>
-        {%- assign badges_sorted = site.data.badges_master | sort: "badge_name" -%}
+        {%- assign badges_sorted = site.badges | sort: "badge_name" -%}
         {%- assign badge_groups = badges_sorted | group_by: "section" -%}
         {%- for grp in badge_groups -%}
           {%- assign section_label = grp.name | capitalize -%}
