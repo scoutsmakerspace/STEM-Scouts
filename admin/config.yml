@@ -351,16 +351,27 @@ collections:
     label: Badges
     label_singular: Badge
     folder: _badges
-    create: false
-    delete: false
-    slug: "{{slug}}"
+    create: true
+    delete: true
+    slug: "{{fields.id}}"
     extension: md
     format: frontmatter
     editor:
       preview: false
     fields:
       - { label: Title, name: title, widget: string }
-      - { label: ID, name: id, widget: string }
+      - label: ID
+        name: id
+        widget: string
+        hint: "Canonical badge ID used everywhere (don’t change once published)."
+      - { label: Status, name: status, widget: select, options: ["active", "retired"], default: "active" }
+      - label: Icon
+        name: icon
+        widget: image
+        required: false
+        media_folder: "assets/images/badges"
+        public_folder: "/assets/images/badges"
+        hint: "Optional. If empty, the site will use /assets/images/badges/<id>.png"
       - { label: Section, name: section, widget: string }
       - { label: Category, name: category, widget: string }
       - { label: "Badge type", name: badge_type, widget: string, required: false }
