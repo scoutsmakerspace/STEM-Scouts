@@ -8170,19 +8170,5 @@
     "badge_id": "staged-time-on-water-50",
     "req_no": "1",
     "text": "Complete the requirements for this badge."
-  },
-  {
-    "kind": "badge",
-    "badge_id": "test-badge-2",
-    "title": "test badge 2",
-    "section": "beavers",
-    "category": "Activity Badges",
-    "icon": "/assets/images/badges/test-badge-2.png"
-  },
-  {
-    "kind": "req",
-    "badge_id": "test-badge-2",
-    "req_no": "1",
-    "text": "Complete the requirements for this badge."
   }
 ]
