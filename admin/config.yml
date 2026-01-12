@@ -353,6 +353,16 @@ collections:
     folder: _badges
     create: true
     delete: true
+    # Make the list easier to browse in the CMS
+    summary: "{{section}} • {{category}} • {{title}}"
+    sortable_fields: [title, section, category, status, id]
+    view_filters:
+      - { label: Section, field: section }
+      - { label: Category, field: category }
+      - { label: Status, field: status }
+    view_groups:
+      - { label: By section, field: section }
+      - { label: By category, field: category }
     slug: "{{fields.id}}"
     extension: md
     format: frontmatter
@@ -372,9 +382,37 @@ collections:
         media_folder: "assets/images/badges"
         public_folder: "/assets/images/badges"
         hint: "Optional. If empty, the site will use /assets/images/badges/<id>.png"
-      - { label: Section, name: section, widget: string }
-      - { label: Category, name: category, widget: string }
-      - { label: "Badge type", name: badge_type, widget: string, required: false }
+      - label: Section
+        name: section
+        widget: select
+        options:
+          - { label: Squirrels, value: squirrels }
+          - { label: Beavers, value: beavers }
+          - { label: Cubs, value: cubs }
+          - { label: Scouts, value: scouts }
+          - { label: Explorers, value: explorers }
+          - { label: Staged, value: staged }
+
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - "Activity Badges"
+          - "Staged Activity Badges"
+          - "Challenge Awards"
+          - "Core Badges"
+
+      - label: "Badge type"
+        name: badge_type
+        widget: select
+        required: false
+        options:
+          - "Activity"
+          - "Staged Activity"
+          - "Challenge Award"
+          - "Core"
+          - "Leadership"
+          - "Earth Tribe"
       - { label: "Completion rules", name: completion_rules, widget: string, required: false }
       - { label: "Requirements count", name: requirements_count, widget: number, value_type: int, required: false }
       - label: Requirements

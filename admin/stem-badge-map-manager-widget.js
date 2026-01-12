@@ -62,62 +62,81 @@
     if (_badges) return _badges;
     if (_badgesLoading) return _badgesLoading;
 
-    _badgesLoading = fetch("./badges_master.json", { cache: "no-store" })
-      .then((r) => {
-        if (!r.ok) throw new Error(`badges_master.json fetch failed: ${r.status}`);
-        return r.json();
-      })
-      .then((json) => {
-        const arr = Array.isArray(json)
-          ? json
-          : Array.isArray(json.badges)
-          ? json.badges
+    // Prefer the build-generated data file (keeps CMS Badges as the single source of truth).
+    // Fallback to the legacy admin-local copy for safety.
+    const urls = [
+      "../assets/data/badges_master.json",
+      "../assets/data/badges_master.json?cachebust=" + Date.now(),
+      "./badges_master.json",
+      "./badges_master.json?cachebust=" + Date.now(),
+    ];
+
+    _badgesLoading = (async () => {
+      let json = null;
+      let lastErr = null;
+
+      for (const u of urls) {
+        try {
+          const r = await fetch(u, { cache: "no-store" });
+          if (!r.ok) throw new Error(`badges_master.json fetch failed: ${r.status}`);
+          json = await r.json();
+          break;
+        } catch (e) {
+          lastErr = e;
+        }
+      }
+
+      if (!json) throw lastErr || new Error("badges_master.json fetch failed");
+
+      const arr = Array.isArray(json)
+        ? json
+        : Array.isArray(json.badges)
+        ? json.badges
+        : [];
+
+      _badges = (arr || []).map((b) => {
+        const title = b.badge_name || b.badge || b.title || b.id;
+        const section = titleCaseIfNeeded(b.section_label || b.section || "");
+        const section_slug = b.section_slug || slugify(section);
+        const category = b.category || "";
+        const badge_type = b.badge_type || b.type || "";
+
+        const requirements = Array.isArray(b.requirements)
+          ? b.requirements
+              .filter(
+                (r) =>
+                  r &&
+                  r.kind === "req" &&
+                  (r.id != null || r.no != null) &&
+                  String(r.text || "").trim() !== ""
+              )
+              .map((r) => {
+                const no = String(r.no ?? r.id).trim();
+                return { no, text: cleanReqText(r.text) };
+              })
           : [];
 
-        _badges = (arr || []).map((b) => {
-          const title = b.badge_name || b.badge || b.title || b.id;
-          const section = titleCaseIfNeeded(b.section_label || b.section || "");
-          const section_slug = b.section_slug || slugify(section);
-          const category = b.category || "";
-          const badge_type = b.badge_type || b.type || "";
+        const display = `${section} — ${title}`.trim();
 
-          const requirements = Array.isArray(b.requirements)
-            ? b.requirements
-                .filter(
-                  (r) =>
-                    r &&
-                    r.kind === "req" &&
-                    (r.id != null || r.no != null) &&
-                    String(r.text || "").trim() !== ""
-                )
-                .map((r) => {
-                  const no = String(r.no ?? r.id).trim();
-                  return { no, text: cleanReqText(r.text) };
-                })
-            : [];
-
-          const display = `${section} — ${title}`.trim();
-
-          return {
-            id: b.id,
-            title,
-            section,
-            section_slug,
-            category,
-            badge_type,
-            requirements,
-            _display: display.toLowerCase(),
-          };
-        });
-
-        console.log("[stem_badge_map_manager] loaded badges:", _badges.length);
-        return _badges;
-      })
-      .catch((e) => {
-        console.error("[stem_badge_map_manager] load failed:", e);
-        _badges = [];
-        return _badges;
+        return {
+          id: b.id,
+          title,
+          section,
+          section_slug,
+          category,
+          badge_type,
+          requirements,
+          _display: display.toLowerCase(),
+        };
       });
+
+      console.log("[stem_badge_map_manager] loaded badges:", _badges.length);
+      return _badges;
+    })().catch((e) => {
+      console.error("[stem_badge_map_manager] load failed:", e);
+      _badges = [];
+      return _badges;
+    });
 
     return _badgesLoading;
   }
