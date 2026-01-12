@@ -358,10 +358,9 @@ collections:
     # names directly (e.g. {{section}}), not {{fields.section}}.
     # If this is wrong, the Badges list will show "No Entries" even though
     # files exist in nested folders.
-    path: "{{section}}/{{category}}/{{id}}"
     create: true
     delete: true
-    slug: "{{id}}"
+    slug: "{{fields.id}}"
     extension: md
     format: frontmatter
     editor:
