@@ -17,7 +17,7 @@ Add badge metadata for filtering and search.
           {%- assign badge_ids = badge_ids | append: bid -%}
           {%- unless forloop.last -%}{%- assign badge_ids = badge_ids | append: "|" -%}{%- endunless -%}
 
-          {%- assign badge_obj = site.badges | where: "id", bid | first -%}
+          {%- assign badge_obj = site.data.badges_master | where: "id", bid | first -%}
           {%- assign badge_name = "" -%}
           {%- if badge_obj and badge_obj.badge_name -%}
             {%- assign badge_name = badge_obj.badge_name -%}

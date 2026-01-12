@@ -351,8 +351,8 @@ collections:
     label: Badges
     label_singular: Badge
     folder: _badges
-    create: true
-    delete: true
+    create: false
+    delete: false
     slug: "{{slug}}"
     extension: md
     format: frontmatter
@@ -361,7 +361,6 @@ collections:
     fields:
       - { label: Title, name: title, widget: string }
       - { label: ID, name: id, widget: string }
-      - { label: Icon, name: icon, widget: image, required: false, hint: "Upload/select icon. If empty, site uses /assets/images/badges/<id>.png" }
       - { label: Section, name: section, widget: string }
       - { label: Category, name: category, widget: string }
       - { label: "Badge type", name: badge_type, widget: string, required: false }

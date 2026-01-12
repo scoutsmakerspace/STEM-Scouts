@@ -251,35 +251,6 @@ badges:
     leader_prompts:
     - Ask what can cause a message to be misunderstood and how protocols reduce errors.
     - 'For older sections: discuss frequency, interference, and why antennas matter.'
-- badge_id: beavers-the-youshape-award-central-badge
-  title: The YouShape Award - Central Badge
-  section: Beavers
-  section_slug: beavers
-  category: Core Badges
-  badge_type: YouShape
-  stem_requirements:
-  - rid: beavers-the-youshape-award-central-badge::1
-    ref: '1'
-    text: Choose one thing you’d like to improve at Beavers. Work with a parent or
-      carer, Young Leader, or leader to make it happen. This could be learning a new
-      skill, developing your current talents or interests, or changing something about
-      Beavers.
-    strength: strong
-    areas:
-    - Electronics & circuits
-    - Engineering & design
-    - Science & investigation
-    why_stem: Working with circuits builds understanding of electrical systems, measurement
-      and fault-finding—core STEM skills in electronics and engineering. Engineering
-      is about designing, building and improving solutions under constraints; this
-      requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - Ask them to predict what will happen before they connect a component, then test
-      and explain the result.
-    - 'Simplify for younger sections: focus on ''what completes the circuit'' and
-      safe handling.'
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
 - badge_id: cubs-animal-carer
   title: Animal Carer
   section: Cubs
@@ -984,63 +955,6 @@ badges:
     leader_prompts:
     - Ask what can cause a message to be misunderstood and how protocols reduce errors.
     - 'For older sections: discuss frequency, interference, and why antennas matter.'
-- badge_id: cubs-the-youshape-award-central-badge
-  title: The YouShape Award - Central Badge
-  section: Cubs
-  section_slug: cubs
-  category: Core Badges
-  badge_type: YouShape
-  stem_requirements:
-  - rid: cubs-the-youshape-award-central-badge::1
-    ref: '1'
-    text: Choose one thing you’d like to improve at Cubs. Work with a parent or carer,
-      Young Leader, or leader to make it happen. This could be learning a new skill,
-      developing your current talents or interests, or changing something about Cubs.
-    strength: strong
-    areas:
-    - Electronics & circuits
-    - Engineering & design
-    - Science & investigation
-    why_stem: Working with circuits builds understanding of electrical systems, measurement
-      and fault-finding—core STEM skills in electronics and engineering. Engineering
-      is about designing, building and improving solutions under constraints; this
-      requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - Ask them to predict what will happen before they connect a component, then test
-      and explain the result.
-    - 'Simplify for younger sections: focus on ''what completes the circuit'' and
-      safe handling.'
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
-- badge_id: cubs-the-youshape-award-plan
-  title: The YouShape Award - Plan
-  section: Cubs
-  section_slug: cubs
-  category: Core Badges
-  badge_type: YouShape
-  stem_requirements:
-  - rid: cubs-the-youshape-award-plan::1
-    ref: '1'
-    text: Plan an idea for a camp or trip and present it to your Pack.
-    strength: strong
-    areas:
-    - Engineering & design
-    why_stem: Engineering is about designing, building and improving solutions under
-      constraints; this requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
-  - rid: cubs-the-youshape-award-plan::3
-    ref: '3'
-    text: Plan a Cubs meeting with your leader.
-    strength: strong
-    areas:
-    - Engineering & design
-    why_stem: Engineering is about designing, building and improving solutions under
-      constraints; this requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
 - badge_id: explorers-camper
   title: Camper
   section: Explorers
@@ -1914,123 +1828,6 @@ badges:
     leader_prompts:
     - Ask them to explain how they know they're heading the right way (what evidence
       are they using?).
-- badge_id: explorers-the-youshape-award-central-badge
-  title: The YouShape Award - Central Badge
-  section: Explorers
-  section_slug: explorers
-  category: Core Badges
-  badge_type: YouShape
-  stem_requirements:
-  - rid: explorers-the-youshape-award-central-badge::1
-    ref: '1'
-    text: Choose one thing you’d like to change, improve or deliver for Explorer Scouts
-      in your District, and make it happen. This could be learning or teaching a new
-      skill, developing your current talents or interests, or changing something about
-      Explorers.
-    strength: strong
-    areas:
-    - Electronics & circuits
-    - Engineering & design
-    - Science & investigation
-    why_stem: Working with circuits builds understanding of electrical systems, measurement
-      and fault-finding—core STEM skills in electronics and engineering. Engineering
-      is about designing, building and improving solutions under constraints; this
-      requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - Ask them to predict what will happen before they connect a component, then test
-      and explain the result.
-    - 'Simplify for younger sections: focus on ''what completes the circuit'' and
-      safe handling.'
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
-- badge_id: explorers-the-youshape-award-plan
-  title: The YouShape Award - Plan
-  section: Explorers
-  section_slug: explorers
-  category: Core Badges
-  badge_type: YouShape
-  stem_requirements:
-  - rid: explorers-the-youshape-award-plan::1
-    ref: '1'
-    text: Plan a district event.
-    strength: strong
-    areas:
-    - Engineering & design
-    why_stem: Engineering is about designing, building and improving solutions under
-      constraints; this requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
-  - rid: explorers-the-youshape-award-plan::3
-    ref: '3'
-    text: Plan an entire programme to help other Explorers achieve a specific skill,
-      goal, or badge.
-    strength: strong
-    areas:
-    - Engineering & design
-    why_stem: Engineering is about designing, building and improving solutions under
-      constraints; this requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
-- badge_id: explorers-the-youshape-award-represent
-  title: The YouShape Award - Represent
-  section: Explorers
-  section_slug: explorers
-  category: Core Badges
-  badge_type: YouShape
-  stem_requirements:
-  - rid: explorers-the-youshape-award-represent::1
-    ref: '1'
-    text: 1. Work with a member of your District or County/Area/Region Trustee Board
-      to research and propose something to improve Explorer Scouts in your District
-      or County.
-    strength: strong
-    areas:
-    - Engineering & design
-    why_stem: Engineering is about designing, building and improving solutions under
-      constraints; this requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
-- badge_id: explorers-young-leader-award-mission-one
-  title: Young Leader Award - Mission One
-  section: Explorers
-  section_slug: explorers
-  category: Challenge Awards
-  badge_type: Leadership
-  stem_requirements:
-  - rid: explorers-young-leader-award-mission-one::1
-    ref: '1'
-    text: Plan and run a minimum of three games with the section you are volunteering
-      with. At least one game should take place indoors and one outdoors.
-    strength: strong
-    areas:
-    - Engineering & design
-    why_stem: Engineering is about designing, building and improving solutions under
-      constraints; this requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
-- badge_id: explorers-young-leader-award-mission-two
-  title: Young Leader Award - Mission Two
-  section: Explorers
-  section_slug: explorers
-  category: Challenge Awards
-  badge_type: Leadership
-  stem_requirements:
-  - rid: explorers-young-leader-award-mission-two::1
-    ref: '1'
-    text: Plan and run an activity (not a game) with the section you are volunteering
-      with.
-    strength: strong
-    areas:
-    - Engineering & design
-    why_stem: Engineering is about designing, building and improving solutions under
-      constraints; this requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
 - badge_id: scouts-activity-centre-service
   title: Activity Centre Service
   section: Scouts
@@ -2432,6 +2229,24 @@ badges:
   badge_type: Activity
   stem_requirements:
   - rid: scouts-chef-indoors::1
+    ref: '1'
+    text: Plan a menu for a weekend event for between four and six people.
+    strength: strong
+    areas:
+    - Engineering & design
+    why_stem: Engineering is about designing, building and improving solutions under
+      constraints; this requirement builds iterative problem-solving and evaluation.
+    leader_prompts:
+    - 'Ask: What was your constraint? What did you change to improve it? What would
+      you try next?'
+- badge_id: scouts-chef-outdoors
+  title: Chef - Outdoors
+  section: Scouts
+  section_slug: scouts
+  category: Activity Badges
+  badge_type: Activity
+  stem_requirements:
+  - rid: scouts-chef-outdoors::1
     ref: '1'
     text: Plan a menu for a weekend event for between four and six people.
     strength: strong
@@ -3795,83 +3610,6 @@ badges:
     leader_prompts:
     - 'Ask: What was your constraint? What did you change to improve it? What would
       you try next?'
-- badge_id: scouts-the-youshape-award-central-badge
-  title: The YouShape Award - Central Badge
-  section: Scouts
-  section_slug: scouts
-  category: Core Badges
-  badge_type: YouShape
-  stem_requirements:
-  - rid: scouts-the-youshape-award-central-badge::1
-    ref: '1'
-    text: Choose one thing you’d like to change, improve or deliver for young people
-      in your Troop or section, and make it happen. This could be learning or teaching
-      a new skill, developing your current talents or interests, or changing something
-      about Scouts.
-    strength: strong
-    areas:
-    - Electronics & circuits
-    - Engineering & design
-    - Science & investigation
-    why_stem: Working with circuits builds understanding of electrical systems, measurement
-      and fault-finding—core STEM skills in electronics and engineering. Engineering
-      is about designing, building and improving solutions under constraints; this
-      requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - Ask them to predict what will happen before they connect a component, then test
-      and explain the result.
-    - 'Simplify for younger sections: focus on ''what completes the circuit'' and
-      safe handling.'
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
-- badge_id: scouts-the-youshape-award-plan
-  title: The YouShape Award - Plan
-  section: Scouts
-  section_slug: scouts
-  category: Core Badges
-  badge_type: YouShape
-  stem_requirements:
-  - rid: scouts-the-youshape-award-plan::1
-    ref: '1'
-    text: Plan an event for your Scout group.
-    strength: strong
-    areas:
-    - Engineering & design
-    why_stem: Engineering is about designing, building and improving solutions under
-      constraints; this requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
-  - rid: scouts-the-youshape-award-plan::3
-    ref: '3'
-    text: Plan a term of activities with your leader.
-    strength: strong
-    areas:
-    - Engineering & design
-    why_stem: Engineering is about designing, building and improving solutions under
-      constraints; this requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
-- badge_id: scouts-the-youshape-award-represent
-  title: The YouShape Award - Represent
-  section: Scouts
-  section_slug: scouts
-  category: Core Badges
-  badge_type: YouShape
-  stem_requirements:
-  - rid: scouts-the-youshape-award-represent::4
-    ref: '4'
-    text: Plan and deliver a Scouts activity for a local decision maker to take part
-      in and show them why they should support Scouts in your area.
-    strength: strong
-    areas:
-    - Engineering & design
-    why_stem: Engineering is about designing, building and improving solutions under
-      constraints; this requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
 - badge_id: scouts-writer
   title: Writer
   section: Scouts
@@ -4170,24 +3908,6 @@ badges:
     leader_prompts:
     - Ask what can cause a message to be misunderstood and how protocols reduce errors.
     - 'For older sections: discuss frequency, interference, and why antennas matter.'
-- badge_id: squirrels-the-youshape-award-plan
-  title: The YouShape Award - Plan
-  section: Squirrels
-  section_slug: squirrels
-  category: Core Badges
-  badge_type: YouShape
-  stem_requirements:
-  - rid: squirrels-the-youshape-award-plan::4
-    ref: '4'
-    text: As a Drey, plan a game to play.
-    strength: strong
-    areas:
-    - Engineering & design
-    why_stem: Engineering is about designing, building and improving solutions under
-      constraints; this requirement builds iterative problem-solving and evaluation.
-    leader_prompts:
-    - 'Ask: What was your constraint? What did you change to improve it? What would
-      you try next?'
 - badge_id: beavers-collector
   title: Collector
   section: Beavers

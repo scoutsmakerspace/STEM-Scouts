@@ -6,6 +6,10 @@ toc_sticky: true
 ---
 
 {% assign a = page %}
+{% comment %}Allowed badges (filtered via badges_master.json){% endcomment %}
+{% assign allowed_badge_ids = "" %}
+{% for _b in site.data.badges_master %}{% assign allowed_badge_ids = allowed_badge_ids | append: _b.id | append: "||" %}{% endfor %}
+
 
 {%- comment -%}
 IMPORTANT:
@@ -196,8 +200,9 @@ So we place the section IDs on the <h3> headings below (not on the <section> wra
   <div class="activity-badges">
     {% for bl in a.badge_links %}
       {% assign bid = bl.badge_id | default: '' %}
+{% unless allowed_badge_ids contains bid | append: "||" %}{% continue %}{% endunless %}
       {% if bid != '' %}
-        {% assign badge_obj = site.badges | where: "id", bid | first %}
+        {% assign badge_obj = site.data.badges_master | where: "id", bid | first %}
         {% assign badge_name = bid %}
         {% assign badge_section = '' %}
         {% assign badge_category = '' %}
@@ -211,7 +216,7 @@ So we place the section IDs on the <h3> headings below (not on the <section> wra
 
         <div class="activity-badge" style="margin: 0 0 1rem 0;">
           <div class="activity-badge__header" style="font-weight:700; display:flex; align-items:center; gap:8px;">
-            <img class="activity-badge__icon" src="{% if badge_obj and badge_obj.icon and badge_obj.icon != '' %}{{ badge_obj.icon | relative_url }}{% else %}{{ '/assets/images/badges/' | append: bid | append: '.png' | relative_url }}{% endif %}" alt="" loading="lazy" onerror="this.onerror=null;this.src='{{ '/assets/images/badges/_missing.png' | relative_url }}';">
+            <img class="activity-badge__icon" src="{{ '/assets/images/badges/' | append: bid | append: '.png' | relative_url }}" alt="" loading="lazy" onerror="this.onerror=null;this.src='{{ '/assets/images/badges/_missing.png' | relative_url }}';">
             <span>{% if badge_section != '' %}{{ badge_section | capitalize }} — {% endif %}{{ badge_name }}
             {% if badge_category != '' %}<span style="font-weight:400; opacity:.85;"> — {{ badge_category }}</span>{% endif %}</span>
           </div>
