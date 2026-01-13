@@ -1,462 +1,809 @@
 (function () {
   function ready() {
-    return window.CMS && window.createClass && window.h;
-  }
-
-  // Simple, safe badges manager. Stores ONLY override/new badges in a single YAML file.
-  // A separate script converts these overrides into _badges/*.md and regenerates badges_master.json.
-
-  const ID_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-
-  function slugify(s) {
-    return String(s || "")
-      .toLowerCase()
-      .trim()
-      .replace(/[’']/g, "")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-  }
-
-  function toPlain(v) {
-    let out = v;
-    if (out && typeof out.get === "function") {
-      try { out = out.toJS(); } catch (e) { out = null; }
-    }
-    return out;
-  }
-
-  function clone(o) {
-    return JSON.parse(JSON.stringify(o || {}));
-  }
-
-  function uniqById(arr) {
-    const seen = new Set();
-    const out = [];
-    (arr || []).forEach((b) => {
-      if (!b) return;
-      const id = String(b.id || "").trim();
-      if (!id || seen.has(id)) return;
-      seen.add(id);
-      out.push(b);
-    });
-    return out;
-  }
-
-  // Load current published badge list for context/search
-  let _master = null;
-  let _masterLoading = null;
-
-  async function loadMaster() {
-    if (_master) return _master;
-    if (_masterLoading) return _masterLoading;
-    _masterLoading = fetch("./badges_master.json", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : []))
-      .then((json) => {
-        _master = Array.isArray(json) ? json : [];
-        return _master;
-      })
-      .catch((e) => {
-        console.warn("[badges_manager] badges_master.json not available", e);
-        _master = [];
-        return _master;
-      });
-    return _masterLoading;
+    return typeof window !== "undefined" && window.CMS && window.createClass && window.h;
   }
 
   const SECTION_OPTIONS = [
-    { value: "squirrels", label: "Squirrels" },
-    { value: "beavers", label: "Beavers" },
-    { value: "cubs", label: "Cubs" },
-    { value: "scouts", label: "Scouts" },
-    { value: "explorers", label: "Explorers" },
-    { value: "staged", label: "Staged" },
+    "squirrels",
+    "beavers",
+    "cubs",
+    "scouts",
+    "explorers",
   ];
 
   const CATEGORY_OPTIONS = [
     "Activity Badges",
-    "Core Badges",
     "Staged Activity Badges",
     "Challenge Awards",
   ];
 
-  const BADGE_TYPE_OPTIONS = [
-    "Activity",
-    "Staged Activity",
-    "Challenge Award",
-    "Leadership",
-    "Earth Tribe",
-  ];
+  const STATUS_OPTIONS = ["active", "retired"];
+
+  function badgeTypeFromCategory(category) {
+    const c = String(category || "").toLowerCase();
+    if (c.includes("challenge")) return "Challenge";
+    if (c.includes("staged")) return "Staged";
+    return "Activity";
+  }
+
+  function slugifyId(value) {
+    return String(value || "")
+      .trim()
+      .toLowerCase()
+      .replace(/['’]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  function safeJsonFetch(url) {
+    return fetch(url, { cache: "no-store" }).then((r) => {
+      if (!r.ok) throw new Error(`Failed to load ${url} (${r.status})`);
+      return r.json();
+    });
+  }
+
+  function getBaseUrl() {
+    // Works for both /admin/ and /STEM-Scouts/admin/
+    const p = window.location.pathname;
+    const idx = p.toLowerCase().indexOf("/admin");
+    if (idx === -1) return "";
+    return p.slice(0, idx);
+  }
+
+  function normalizeOverride(o) {
+    const id = slugifyId(o && o.id);
+    if (!id) return null;
+    const title = String((o && o.title) || "").trim();
+    const section = String((o && o.section) || "").trim();
+    const category = String((o && o.category) || "").trim();
+    const status = String((o && o.status) || "active").trim();
+    const badge_type = badgeTypeFromCategory(category);
+    return {
+      id,
+      title,
+      section,
+      category,
+      badge_type,
+      status: STATUS_OPTIONS.includes(status) ? status : "active",
+    };
+  }
+
+  function mergeMasterAndOverrides(masterBadges, overrides) {
+    const map = new Map();
+
+    (masterBadges || []).forEach((b) => {
+      if (!b || !b.id) return;
+      map.set(String(b.id), {
+        id: String(b.id),
+        title: b.title || "",
+        section: b.section || "",
+        category: b.category || "",
+        badge_type: b.badge_type || badgeTypeFromCategory(b.category),
+        status: b.status || "active",
+        _source: "master",
+      });
+    });
+
+    (overrides || []).forEach((o) => {
+      const n = normalizeOverride(o);
+      if (!n) return;
+      const existing = map.get(n.id);
+      if (existing) {
+        map.set(n.id, {
+          ...existing,
+          ...n,
+          _source: "override",
+        });
+      } else {
+        map.set(n.id, {
+          ...n,
+          _source: "override",
+        });
+      }
+    });
+
+    return Array.from(map.values());
+  }
+
+  const STYLES = {
+    wrap: {
+      fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+      maxWidth: "1200px",
+      padding: "12px 8px",
+    },
+    header: {
+      marginBottom: "10px",
+    },
+    subtitle: {
+      marginTop: "4px",
+      opacity: 0.8,
+      fontSize: "13px",
+      lineHeight: 1.35,
+    },
+    toolbar: {
+      display: "flex",
+      gap: "10px",
+      flexWrap: "wrap",
+      alignItems: "center",
+      margin: "14px 0 12px",
+    },
+    input: {
+      minWidth: "240px",
+      padding: "8px 10px",
+      border: "1px solid #d0d7de",
+      borderRadius: "8px",
+      fontSize: "14px",
+    },
+    select: {
+      padding: "8px 10px",
+      border: "1px solid #d0d7de",
+      borderRadius: "8px",
+      fontSize: "14px",
+      background: "white",
+    },
+    btn: {
+      padding: "8px 12px",
+      borderRadius: "10px",
+      border: "1px solid #d0d7de",
+      background: "#ffffff",
+      cursor: "pointer",
+      fontSize: "14px",
+    },
+    btnPrimary: {
+      padding: "8px 12px",
+      borderRadius: "10px",
+      border: "1px solid #1f2328",
+      background: "#1f2328",
+      color: "#fff",
+      cursor: "pointer",
+      fontSize: "14px",
+    },
+    badge: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "8px",
+      padding: "4px 10px",
+      borderRadius: "999px",
+      border: "1px solid #d0d7de",
+      background: "#f6f8fa",
+      fontSize: "12px",
+    },
+    table: {
+      border: "1px solid #d0d7de",
+      borderRadius: "12px",
+      overflow: "hidden",
+    },
+    row: {
+      display: "grid",
+      gridTemplateColumns: "220px 1.2fr 140px 200px 120px 160px",
+      columnGap: "0px",
+      alignItems: "center",
+    },
+    cell: {
+      padding: "10px 12px",
+      borderBottom: "1px solid #eaeef2",
+      fontSize: "14px",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+    },
+    headCell: {
+      padding: "10px 12px",
+      borderBottom: "1px solid #d0d7de",
+      fontWeight: 600,
+      fontSize: "13px",
+      background: "#f6f8fa",
+    },
+    link: {
+      color: "#0969da",
+      textDecoration: "none",
+      fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+      fontSize: "12px",
+    },
+    sectionHeader: {
+      padding: "10px 12px",
+      background: "#fff",
+      borderBottom: "1px solid #eaeef2",
+      fontWeight: 700,
+      fontSize: "13px",
+    },
+    actions: {
+      display: "flex",
+      gap: "8px",
+      justifyContent: "flex-end",
+      flexWrap: "wrap",
+    },
+    modalBackdrop: {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: "rgba(0,0,0,0.35)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 99999,
+      padding: "16px",
+    },
+    modal: {
+      width: "min(720px, 100%)",
+      background: "#fff",
+      borderRadius: "14px",
+      border: "1px solid #d0d7de",
+      boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
+      overflow: "hidden",
+    },
+    modalHead: {
+      padding: "12px 14px",
+      borderBottom: "1px solid #eaeef2",
+      fontWeight: 700,
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: "12px",
+    },
+    modalBody: {
+      padding: "14px",
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "12px",
+    },
+    field: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "6px",
+    },
+    label: {
+      fontSize: "12px",
+      fontWeight: 600,
+      opacity: 0.9,
+    },
+    hint: {
+      fontSize: "12px",
+      opacity: 0.75,
+      lineHeight: 1.3,
+    },
+    modalFoot: {
+      padding: "12px 14px",
+      borderTop: "1px solid #eaeef2",
+      display: "flex",
+      justifyContent: "flex-end",
+      gap: "10px",
+      flexWrap: "wrap",
+    },
+    err: {
+      padding: "10px 12px",
+      border: "1px solid #ffcecc",
+      background: "#fff5f5",
+      borderRadius: "12px",
+      color: "#cf222e",
+      marginTop: "10px",
+      whiteSpace: "pre-wrap",
+      fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+      fontSize: "12px",
+    },
+  };
 
   const Control = window.createClass({
     getInitialState() {
       return {
-        master: [],
         loading: true,
+        error: null,
+        master: [],
         q: "",
-        editing: null,
-        err: "",
+        filterSection: "all",
+        filterCategory: "all",
+        filterStatus: "all",
+        groupBySection: true,
+        editing: null, // {mode:'new'|'edit', badge, idTouched}
       };
     },
 
-    async componentDidMount() {
-      const master = await loadMaster();
-      this.setState({ master: master || [], loading: false });
+    componentDidMount() {
+      this.loadMaster();
     },
 
-    getValueObj() {
-      const v = toPlain(this.props.value);
-      if (v && typeof v === "object") return v;
-      return { badges: [] };
+    loadMaster() {
+      const base = getBaseUrl();
+      const url = `${base}/admin/badges_master.json`;
+      safeJsonFetch(url)
+        .then((data) => {
+          const badges = Array.isArray(data && data.badges) ? data.badges : [];
+          this.setState({ master: badges, loading: false, error: null });
+        })
+        .catch((e) => {
+          this.setState({ loading: false, error: String(e && e.message ? e.message : e) });
+        });
     },
 
     getOverrides() {
-      const obj = this.getValueObj();
-      const arr = Array.isArray(obj.badges) ? obj.badges : [];
-      return uniqById(
-        arr.map((b) => {
-          const bb = b || {};
-          return {
-            id: String(bb.id || "").trim(),
-            title: String(bb.title || "").trim(),
-            status: (String(bb.status || "active").trim() || "active").toLowerCase(),
-            section: String(bb.section || "").trim(),
-            category: String(bb.category || "").trim(),
-            badge_type: String(bb.badge_type || "").trim(),
-            icon: String(bb.icon || "").trim(),
-            requirements: Array.isArray(bb.requirements) ? bb.requirements : [],
-          };
-        })
-      );
-    },
-
-    setOverrides(next) {
-      this.props.onChange({ badges: uniqById(next || []) });
-    },
-
-    addNew() {
-      const overrides = this.getOverrides();
-      const used = new Set([
-        ...overrides.map((o) => o.id),
-        ...(this.state.master || []).map((b) => b.id),
-      ]);
-
-      let id = "new-badge";
-      let n = 1;
-      while (used.has(id)) {
-        n += 1;
-        id = `new-badge-${n}`;
+      const v = this.props.value;
+      if (!v) return [];
+      if (Array.isArray(v)) return v;
+      if (typeof v === "string") {
+        try {
+          const parsed = JSON.parse(v);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (_) {
+          return [];
+        }
       }
+      return [];
+    },
 
+    setOverrides(nextOverrides) {
+      // Keep the stored data small + consistent.
+      const cleaned = (nextOverrides || [])
+        .map(normalizeOverride)
+        .filter(Boolean)
+        .sort((a, b) => a.id.localeCompare(b.id));
+      this.props.onChange(cleaned);
+    },
+
+    openNew() {
       this.setState({
         editing: {
-          id,
-          title: "",
-          status: "active",
-          section: "",
-          category: "",
-          badge_type: "",
-          icon: "",
-          requirements: [],
-          _id_touched: false,
+          mode: "new",
+          idTouched: false,
+          badge: {
+            id: "",
+            title: "",
+            section: "beavers",
+            category: "Activity Badges",
+            status: "active",
+          },
         },
-        err: "",
       });
     },
 
-    startEdit(row) {
-      const base = row.ovr || {
-        id: row.id,
-        title: row.title,
-        status: row.status,
-        section: row.section,
-        category: row.category,
-        badge_type: row.badge_type,
-        icon: "",
-        requirements: [],
-            // Editing an existing badge: treat ID as "touched" so title edits don't auto-regenerate the canonical id.
-            _id_touched: true,
-      };
-      // NOTE: the _id_touched trick above avoids older JS minifier oddities; will be overwritten below
-      base._id_touched = true;
-      this.setState({ editing: clone(base), err: "" });
+    openEdit(badge) {
+      this.setState({
+        editing: {
+          mode: "edit",
+          idTouched: true, // don’t auto overwrite IDs on existing
+          badge: {
+            id: badge.id,
+            title: badge.title || "",
+            section: badge.section || "",
+            category: badge.category || "",
+            status: badge.status || "active",
+          },
+        },
+      });
     },
 
-    cancelEdit() {
-      this.setState({ editing: null, err: "" });
+    closeEdit() {
+      this.setState({ editing: null });
     },
 
     saveEdit() {
-      const ed = this.state.editing || {};
-      const id = String(ed.id || "").trim();
-      const title = String(ed.title || "").trim();
-      const status = (String(ed.status || "active").trim() || "active").toLowerCase();
+      const ed = this.state.editing;
+      if (!ed) return;
 
-      if (!id || !ID_RE.test(id)) {
-        this.setState({ err: "ID must be kebab-case (lowercase letters, numbers, hyphens)." });
+      const raw = ed.badge || {};
+      const id = slugifyId(raw.id || raw.title);
+      const title = String(raw.title || "").trim();
+      const section = String(raw.section || "").trim();
+      const category = String(raw.category || "").trim();
+      const status = String(raw.status || "active").trim();
+
+      if (!id) {
+        this.setState({ error: "Badge ID is required." });
         return;
       }
       if (!title) {
-        this.setState({ err: "Title is required." });
+        this.setState({ error: "Badge title is required." });
         return;
       }
-      if (status !== "active" && status != "retired") {
-        pass;}
-      if (status !== "active" && status !== "retired") {
-        this.setState({ err: "Status must be active or retired." });
+      if (!SECTION_OPTIONS.includes(section)) {
+        this.setState({ error: "Please choose a valid section." });
+        return;
+      }
+      if (!CATEGORY_OPTIONS.includes(category)) {
+        this.setState({ error: "Please choose a valid category." });
+        return;
+      }
+      if (!STATUS_OPTIONS.includes(status)) {
+        this.setState({ error: "Please choose a valid status." });
         return;
       }
 
       const overrides = this.getOverrides();
-      const idx = overrides.findIndex((x) => x.id === id);
       const next = overrides.slice();
-      const cleaned = {
+      const idx = next.findIndex((o) => String(o.id) === id);
+
+      const payload = {
         id,
         title,
+        section,
+        category,
         status,
-        section: String(ed.section || "").trim(),
-        category: String(ed.category || "").trim(),
-        badge_type: String(ed.badge_type || "").trim(),
-        icon: String(ed.icon || "").trim(),
-        requirements: Array.isArray(ed.requirements) ? ed.requirements : [],
+        badge_type: badgeTypeFromCategory(category),
       };
 
-      if (idx >= 0) next[idx] = cleaned;
-      else next.push(cleaned);
+      if (idx >= 0) next[idx] = payload;
+      else next.push(payload);
 
       this.setOverrides(next);
-      this.setState({ editing: null, err: "" });
+      this.setState({ editing: null, error: null });
     },
 
-    retire(row) {
-      const id = String(row.id || "").trim();
-      if (!id) return;
+    setStatus(badge, nextStatus) {
       const overrides = this.getOverrides();
-      const idx = overrides.findIndex((x) => x.id === id);
       const next = overrides.slice();
-      if (idx >= 0) next[idx] = { ...next[idx], status: "retired" };
-      else {
-        next.push({
-          id,
-          title: row.title || id,
-          status: "retired",
-          section: row.section || "",
-          category: row.category || "",
-          badge_type: row.badge_type || "",
-          icon: "",
-          requirements: [],
+      const idx = next.findIndex((o) => String(o.id) === String(badge.id));
+
+      const payload = {
+        id: badge.id,
+        title: badge.title,
+        section: badge.section,
+        category: badge.category,
+        status: nextStatus,
+        badge_type: badgeTypeFromCategory(badge.category),
+      };
+
+      if (idx >= 0) next[idx] = payload;
+      else next.push(payload);
+
+      this.setOverrides(next);
+    },
+
+    getFilteredBadges() {
+      const merged = mergeMasterAndOverrides(this.state.master, this.getOverrides());
+
+      const q = String(this.state.q || "").trim().toLowerCase();
+      const fSection = this.state.filterSection;
+      const fCategory = this.state.filterCategory;
+      const fStatus = this.state.filterStatus;
+
+      return merged
+        .filter((b) => {
+          if (fSection !== "all" && String(b.section) !== fSection) return false;
+          if (fCategory !== "all" && String(b.category) !== fCategory) return false;
+          if (fStatus !== "all" && String(b.status) !== fStatus) return false;
+          if (!q) return true;
+          const hay = `${b.id} ${b.title} ${b.section} ${b.category}`.toLowerCase();
+          return hay.includes(q);
+        })
+        .sort((a, b) => {
+          const as = String(a.section || "");
+          const bs = String(b.section || "");
+          if (as !== bs) return as.localeCompare(bs);
+          return String(a.title || a.id).localeCompare(String(b.title || b.id));
         });
-      }
-      this.setOverrides(next);
     },
 
-    unretire(row) {
-      const id = String(row.id || "").trim();
-      const overrides = this.getOverrides();
-      const idx = overrides.findIndex((x) => x.id === id);
-      if (idx < 0) return;
-      const next = overrides.slice();
-      next[idx] = { ...next[idx], status: "active" };
-      this.setOverrides(next);
+    renderTableRows(items) {
+      const rows = [];
+      const bySection = new Map();
+      items.forEach((b) => {
+        const s = String(b.section || "other");
+        if (!bySection.has(s)) bySection.set(s, []);
+        bySection.get(s).push(b);
+      });
+
+      const sections = Array.from(bySection.keys()).sort((a, b) => a.localeCompare(b));
+
+      sections.forEach((sec) => {
+        if (this.state.groupBySection) {
+          rows.push(
+            window.h(
+              "div",
+              { key: `sec-${sec}`, style: STYLES.sectionHeader },
+              sec
+            )
+          );
+        }
+
+        (bySection.get(sec) || []).forEach((b) => {
+          rows.push(this.renderRow(b));
+        });
+      });
+
+      return rows;
     },
 
-    removeOverride(row) {
-      const id = String(row.id || "").trim();
-      const overrides = this.getOverrides().filter((x) => x.id !== id);
-      this.setOverrides(overrides);
+    renderRow(b) {
+      const isRetired = String(b.status) === "retired";
+      const rowStyle = {
+        ...STYLES.row,
+        background: isRetired ? "#fafbfc" : "#fff",
+        opacity: isRetired ? 0.7 : 1,
+      };
+
+      const base = getBaseUrl();
+      const link = `${base}/badges/#${encodeURIComponent(b.id)}`;
+
+      return window.h(
+        "div",
+        { key: b.id, style: rowStyle },
+        window.h(
+          "div",
+          { style: STYLES.cell },
+          window.h(
+            "a",
+            { href: link, target: "_blank", rel: "noopener", style: STYLES.link },
+            b.id
+          )
+        ),
+        window.h("div", { style: STYLES.cell, title: b.title }, b.title || "—"),
+        window.h("div", { style: STYLES.cell }, b.section || "—"),
+        window.h("div", { style: STYLES.cell }, b.category || "—"),
+        window.h("div", { style: STYLES.cell }, b.status || "active"),
+        window.h(
+          "div",
+          { style: { ...STYLES.cell, borderBottom: "1px solid #eaeef2" } },
+          window.h(
+            "div",
+            { style: STYLES.actions },
+            window.h(
+              "button",
+              { style: STYLES.btn, onClick: () => this.openEdit(b) },
+              "Edit"
+            ),
+            window.h(
+              "button",
+              {
+                style: STYLES.btn,
+                onClick: () => this.setStatus(b, isRetired ? "active" : "retired"),
+              },
+              isRetired ? "Restore" : "Retire"
+            )
+          )
+        )
+      );
     },
 
-    renderSelect(value, options, onChange) {
-      const h = window.h;
-      return h(
-        "select",
-        { value: value || "", onChange: (e) => onChange(e.target.value), style: { padding: "6px", minWidth: "220px" } },
-        [h("option", { value: "" }, "—")].concat(
-          options.map((opt) => {
-            const v = typeof opt === "string" ? opt : opt.value;
-            const label = typeof opt === "string" ? opt : opt.label;
-            return h("option", { value: v }, label);
-          })
+    renderModal() {
+      const ed = this.state.editing;
+      if (!ed) return null;
+
+      const b = ed.badge;
+
+      const update = (key, value) => {
+        const next = { ...b, [key]: value };
+
+        // Auto-generate ID from title until the user touches the ID field.
+        if (key === "title" && !ed.idTouched) {
+          next.id = slugifyId(value);
+        }
+
+        this.setState({ editing: { ...ed, badge: next } });
+      };
+
+      const onIdChange = (value) => {
+        const next = { ...b, id: slugifyId(value) };
+        this.setState({ editing: { ...ed, idTouched: true, badge: next } });
+      };
+
+      return window.h(
+        "div",
+        { style: STYLES.modalBackdrop, onClick: () => this.closeEdit() },
+        window.h(
+          "div",
+          { style: STYLES.modal, onClick: (e) => e.stopPropagation() },
+          window.h(
+            "div",
+            { style: STYLES.modalHead },
+            window.h(
+              "div",
+              null,
+              ed.mode === "new" ? "Add new badge" : `Edit badge: ${b.id}`
+            ),
+            window.h(
+              "button",
+              { style: STYLES.btn, onClick: () => this.closeEdit() },
+              "Close"
+            )
+          ),
+          window.h(
+            "div",
+            { style: STYLES.modalBody },
+            window.h(
+              "div",
+              { style: { ...STYLES.field, gridColumn: "1 / span 2" } },
+              window.h("div", { style: STYLES.label }, "Title"),
+              window.h("input", {
+                style: STYLES.input,
+                value: b.title,
+                onChange: (e) => update("title", e.target.value),
+                placeholder: "e.g. My new badge",
+              })
+            ),
+            window.h(
+              "div",
+              { style: STYLES.field },
+              window.h("div", { style: STYLES.label }, "Canonical ID"),
+              window.h("input", {
+                style: STYLES.input,
+                value: b.id,
+                onChange: (e) => onIdChange(e.target.value),
+                placeholder: "e.g. beavers-my-new-badge",
+              }),
+              window.h(
+                "div",
+                { style: STYLES.hint },
+                "Lowercase, hyphenated. Don’t change after publishing."
+              )
+            ),
+            window.h(
+              "div",
+              { style: STYLES.field },
+              window.h("div", { style: STYLES.label }, "Status"),
+              window.h(
+                "select",
+                {
+                  style: STYLES.select,
+                  value: b.status,
+                  onChange: (e) => update("status", e.target.value),
+                },
+                STATUS_OPTIONS.map((s) => window.h("option", { key: s, value: s }, s))
+              )
+            ),
+            window.h(
+              "div",
+              { style: STYLES.field },
+              window.h("div", { style: STYLES.label }, "Section"),
+              window.h(
+                "select",
+                {
+                  style: STYLES.select,
+                  value: b.section,
+                  onChange: (e) => update("section", e.target.value),
+                },
+                SECTION_OPTIONS.map((s) => window.h("option", { key: s, value: s }, s))
+              )
+            ),
+            window.h(
+              "div",
+              { style: STYLES.field },
+              window.h("div", { style: STYLES.label }, "Category"),
+              window.h(
+                "select",
+                {
+                  style: STYLES.select,
+                  value: b.category,
+                  onChange: (e) => update("category", e.target.value),
+                },
+                CATEGORY_OPTIONS.map((c) => window.h("option", { key: c, value: c }, c))
+              ),
+              window.h(
+                "div",
+                { style: STYLES.hint },
+                `Badge type is auto-set to “${badgeTypeFromCategory(b.category)}”.`
+              )
+            )
+          ),
+          window.h(
+            "div",
+            { style: STYLES.modalFoot },
+            window.h(
+              "button",
+              { style: STYLES.btn, onClick: () => this.closeEdit() },
+              "Cancel"
+            ),
+            window.h(
+              "button",
+              { style: STYLES.btnPrimary, onClick: () => this.saveEdit() },
+              "Save"
+            )
+          )
         )
       );
     },
 
     render() {
-      const h = window.h;
       const overrides = this.getOverrides();
-      const byId = {};
-      overrides.forEach((o) => (byId[o.id] = o));
+      const filtered = this.getFilteredBadges();
 
-      const q = String(this.state.q || "").toLowerCase().trim();
-      const master = (this.state.master || []).slice();
+      return window.h(
+        "div",
+        { style: STYLES.wrap },
+        window.h(
+          "div",
+          { style: STYLES.header },
+          window.h("h2", { style: { margin: 0 } }, "Badges Manager"),
+          window.h(
+            "div",
+            { style: STYLES.subtitle },
+            "Add new badges and retire badges safely. Deletion is not supported. Retired badges will be pruned from mapping and activities by the site’s generation scripts/workflows."
+          )
+        ),
 
-      const rows = [];
-      master.forEach((b) => {
-        const ovr = byId[b.id] || null;
-        const title = (ovr && ovr.title) || b.badge_name || b.title || b.id;
-        const section = (ovr && ovr.section) || b.section || "";
-        const category = (ovr && ovr.category) || b.category || "";
-        const badge_type = (ovr && ovr.badge_type) || b.type || "";
-        const status = (ovr && ovr.status) || "active";
-        const hay = `${b.id} ${title} ${section} ${category} ${badge_type} ${status}`.toLowerCase();
-        if (q && !hay.includes(q)) return;
-        rows.push({ id: b.id, title, section, category, badge_type, status, ovr });
-      });
-
-      // Include overrides that are not yet in master (brand new badges)
-      overrides.forEach((o) => {
-        if (master.find((b) => b.id === o.id)) return;
-        const hay = `${o.id} ${o.title} ${o.section} ${o.category} ${o.badge_type} ${o.status}`.toLowerCase();
-        if (q && !hay.includes(q)) return;
-        rows.push({ id: o.id, title: o.title || o.id, section: o.section, category: o.category, badge_type: o.badge_type, status: o.status, ovr: o });
-      });
-
-      rows.sort((a, b) => a.id.localeCompare(b.id));
-
-      const editing = this.state.editing;
-
-      return h("div", { style: { fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" } }, [
-        h("div", { style: { marginBottom: "12px" } }, [
-          h("strong", null, "Badges Manager"),
-          h("div", { style: { color: "#666", fontSize: "12px" } }, "Use this page to add new badges and retire badges safely. Deletion is not supported."),
-        ]),
-
-        h("div", { style: { display: "flex", gap: "10px", alignItems: "center", marginBottom: "12px", flexWrap: "wrap" } }, [
-          h("input", { type: "text", placeholder: "Search…", value: this.state.q, onChange: (e) => this.setState({ q: e.target.value }), style: { padding: "8px", minWidth: "320px" } }),
-          h("button", { type: "button", onClick: () => this.addNew(), style: { padding: "8px 10px" } }, "Add new badge"),
-          h("span", { style: { color: "#666" } }, `Overrides: ${overrides.length}`),
-        ]),
-
-        h("div", { style: { border: "1px solid #ddd", borderRadius: "8px", overflow: "hidden" } }, [
-          h("div", { style: { display: "grid", gridTemplateColumns: "180px 1fr 120px 220px 180px 90px 240px", background: "#f7f7f7", padding: "8px", fontWeight: 600 } }, [
-            h("div", null, "ID"),
-            h("div", null, "Title"),
-            h("div", null, "Section"),
-            h("div", null, "Category"),
-            h("div", null, "Badge type"),
-            h("div", null, "Status"),
-            h("div", null, "Actions"),
-          ]),
-
-          rows.slice(0, 400).map((r) =>
-            h("div", { key: r.id, style: { display: "grid", gridTemplateColumns: "180px 1fr 120px 220px 180px 90px 240px", padding: "8px", borderTop: "1px solid #eee", alignItems: "center", background: r.status === "retired" ? "#fff5f5" : "white" } }, [
-              h("div", { style: { fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace", fontSize: "12px" } }, r.id),
-              h("div", null, r.title),
-              h("div", null, r.section),
-              h("div", null, r.category),
-              h("div", null, r.badge_type),
-              h("div", null, r.status),
-              h("div", { style: { display: "flex", gap: "6px", flexWrap: "wrap" } }, [
-                h("button", { type: "button", onClick: () => this.startEdit(r), style: { padding: "6px 8px" } }, "Edit"),
-                r.status !== "retired"
-                  ? h("button", { type: "button", onClick: () => this.retire(r), style: { padding: "6px 8px" } }, "Retire")
-                  : h("button", { type: "button", onClick: () => this.unretire(r), style: { padding: "6px 8px" } }, "Unretire"),
-                r.ovr ? h("button", { type: "button", onClick: () => this.removeOverride(r), style: { padding: "6px 8px" } }, "Remove override") : null,
-              ]),
-            ])
+        window.h(
+          "div",
+          { style: STYLES.toolbar },
+          window.h("input", {
+            style: STYLES.input,
+            value: this.state.q,
+            onChange: (e) => this.setState({ q: e.target.value }),
+            placeholder: "Search by ID, title, section…",
+          }),
+          window.h(
+            "select",
+            {
+              style: STYLES.select,
+              value: this.state.filterSection,
+              onChange: (e) => this.setState({ filterSection: e.target.value }),
+            },
+            window.h("option", { value: "all" }, "All sections"),
+            SECTION_OPTIONS.map((s) => window.h("option", { key: s, value: s }, s))
           ),
+          window.h(
+            "select",
+            {
+              style: STYLES.select,
+              value: this.state.filterCategory,
+              onChange: (e) => this.setState({ filterCategory: e.target.value }),
+            },
+            window.h("option", { value: "all" }, "All categories"),
+            CATEGORY_OPTIONS.map((c) => window.h("option", { key: c, value: c }, c))
+          ),
+          window.h(
+            "select",
+            {
+              style: STYLES.select,
+              value: this.state.filterStatus,
+              onChange: (e) => this.setState({ filterStatus: e.target.value }),
+            },
+            window.h("option", { value: "all" }, "All statuses"),
+            STATUS_OPTIONS.map((s) => window.h("option", { key: s, value: s }, s))
+          ),
+          window.h(
+            "button",
+            {
+              style: STYLES.btn,
+              onClick: () => this.setState({ groupBySection: !this.state.groupBySection }),
+            },
+            this.state.groupBySection ? "Ungroup" : "Group by section"
+          ),
+          window.h(
+            "button",
+            { style: STYLES.btnPrimary, onClick: () => this.openNew() },
+            "Add new badge"
+          ),
+          window.h(
+            "span",
+            { style: STYLES.badge },
+            `Overrides: ${overrides.length}`
+          )
+        ),
 
-          rows.length > 400 ? h("div", { style: { padding: "10px", color: "#666" } }, `Showing first 400 of ${rows.length} matches.`) : null,
-        ]),
+        this.state.loading
+          ? window.h("div", null, "Loading badges…")
+          : window.h(
+              "div",
+              { style: STYLES.table },
+              window.h(
+                "div",
+                { style: STYLES.row },
+                window.h("div", { style: STYLES.headCell }, "ID"),
+                window.h("div", { style: STYLES.headCell }, "Title"),
+                window.h("div", { style: STYLES.headCell }, "Section"),
+                window.h("div", { style: STYLES.headCell }, "Category"),
+                window.h("div", { style: STYLES.headCell }, "Status"),
+                window.h("div", { style: STYLES.headCell }, "Actions")
+              ),
+              this.renderTableRows(filtered)
+            ),
 
-        editing
-          ? h("div", { style: { marginTop: "16px", padding: "12px", border: "1px solid #ddd", borderRadius: "8px", background: "#fafafa" } }, [
-              h("h3", { style: { margin: "0 0 10px 0" } }, "Edit badge"),
-              this.state.err ? h("div", { style: { color: "#b00020", marginBottom: "10px" } }, this.state.err) : null,
-
-              h("div", { style: { display: "grid", gridTemplateColumns: "160px 1fr", gap: "10px", alignItems: "center", marginBottom: "8px" } }, [
-                h("div", null, "Title"),
-                h("input", {
-                  type: "text",
-                  value: editing.title || "",
-                  onChange: (e) => {
-                    const title = e.target.value;
-                    const next = { ...editing, title };
-                    if (!editing._id_touched && (editing.id || "").startswith?.(undefined)) {
-                      // do nothing
-                    }
-                    if (!editing._id_touched && (editing.id || "").startsWith("new-badge")) {
-                      const s = slugify(title);
-                      if (s) next.id = s;
-                    }
-                    this.setState({ editing: next });
-                  },
-                  style: { padding: "8px" },
-                }),
-              ]),
-
-              h("div", { style: { display: "grid", gridTemplateColumns: "160px 1fr", gap: "10px", alignItems: "center", marginBottom: "8px" } }, [
-                h("div", null, "ID"),
-                h("input", {
-                  type: "text",
-                  value: editing.id || "",
-                  onChange: (e) => this.setState({ editing: { ...editing, id: e.target.value, _id_touched: true } }),
-                  style: { padding: "8px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" },
-                }),
-              ]),
-
-              h("div", { style: { display: "grid", gridTemplateColumns: "160px 1fr", gap: "10px", alignItems: "center", marginBottom: "8px" } }, [
-                h("div", null, "Status"),
-                this.renderSelect(editing.status || "active", ["active", "retired"], (v) => this.setState({ editing: { ...editing, status: v } })),
-              ]),
-
-              h("div", { style: { display: "grid", gridTemplateColumns: "160px 1fr", gap: "10px", alignItems: "center", marginBottom: "8px" } }, [
-                h("div", null, "Section"),
-                this.renderSelect(editing.section || "", SECTION_OPTIONS, (v) => this.setState({ editing: { ...editing, section: v } })),
-              ]),
-
-              h("div", { style: { display: "grid", gridTemplateColumns: "160px 1fr", gap: "10px", alignItems: "center", marginBottom: "8px" } }, [
-                h("div", null, "Category"),
-                this.renderSelect(editing.category || "", CATEGORY_OPTIONS, (v) => this.setState({ editing: { ...editing, category: v } })),
-              ]),
-
-              h("div", { style: { display: "grid", gridTemplateColumns: "160px 1fr", gap: "10px", alignItems: "center", marginBottom: "8px" } }, [
-                h("div", null, "Badge type"),
-                this.renderSelect(editing.badge_type || "", BADGE_TYPE_OPTIONS, (v) => this.setState({ editing: { ...editing, badge_type: v } })),
-              ]),
-
-              h("div", { style: { display: "grid", gridTemplateColumns: "160px 1fr", gap: "10px", alignItems: "center", marginBottom: "8px" } }, [
-                h("div", null, "Icon path (optional)"),
-                h("input", {
-                  type: "text",
-                  placeholder: "/assets/images/badges/<id>.png",
-                  value: editing.icon || "",
-                  onChange: (e) => this.setState({ editing: { ...editing, icon: e.target.value } }),
-                  style: { padding: "8px" },
-                }),
-              ]),
-
-              h("div", { style: { display: "flex", gap: "8px", marginTop: "12px" } }, [
-                h("button", { type: "button", onClick: () => this.saveEdit(), style: { padding: "8px 10px" } }, "Save"),
-                h("button", { type: "button", onClick: () => this.cancelEdit(), style: { padding: "8px 10px" } }, "Cancel"),
-              ]),
-
-              h("div", { style: { color: "#666", fontSize: "12px", marginTop: "10px" } },
-                "Icon upload: use the Media Library (top-right) to upload PNGs into /assets/images/badges/, named <id>.png. The automation will create <id>_64.png.")
-            ])
-          : null,
-      ]);
-    },
-  });
-
-  const Preview = window.createClass({
-    render() {
-      return window.h("div", null, "");
+        this.state.error ? window.h("div", { style: STYLES.err }, this.state.error) : null,
+        this.renderModal()
+      );
     },
   });
 
   function register() {
-    if (!ready()) return;
-    try {
-      window.CMS.registerWidget("badges_manager", Control, Preview);
-      console.log("[badges_manager] registered");
-    } catch (e) {
-      console.error("[badges_manager] register failed", e);
-    }
+    window.CMS.registerWidget("badges_manager", Control);
   }
 
-  const t = setInterval(function () {
-    if (!ready()) return;
-    clearInterval(t);
-    register();
-  }, 50);
+  if (ready()) register();
+  else {
+    const t = setInterval(() => {
+      if (!ready()) return;
+      clearInterval(t);
+      register();
+    }, 50);
+  }
 })();
