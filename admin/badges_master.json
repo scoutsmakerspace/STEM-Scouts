@@ -996,34 +996,6 @@
     ]
   },
   {
-    "id": "test-badge-4",
-    "badge_name": "Test badge 4",
-    "section": "beavers",
-    "section_label": "Beavers",
-    "category": "Activity Badges",
-    "type": "",
-    "description": "",
-    "completion_rules": "",
-    "requirements": [
-      {
-        "kind": "heading",
-        "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "asdadadasdad"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "asdasdasdad"
-      }
-    ]
-  },
-  {
     "id": "test-badge-5",
     "badge_name": "Test badge 5",
     "section": "beavers",
