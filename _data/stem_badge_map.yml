@@ -4285,17 +4285,3 @@ badges:
         why_stem: adasdasd
         leader_prompts:
           - asdasda
-  - badge_id: test-badge-3
-    title: Test badge 3
-    section: Beavers
-    section_slug: beavers
-    category: Activity Badges
-    badge_type: ""
-    stem_requirements:
-      - rid: test-badge-3::1
-        ref: "1"
-        text: 1. ,jhvfjmvmjv
-        strength: strong
-        areas: []
-        why_stem: ""
-        leader_prompts: []
