@@ -8,41 +8,24 @@ badge_type: Staged Activity
 completion_rules: Complete ALL 16 requirements
 requirements_count: 16
 requirements:
-- false: 1
-  text: Take part in formal training
-- false: 2
-  text: Explain to your leader or another adult about how to call 999.
-- false: 3
-  text: Explain is unconscious
-- false: 4
-  text: Explain is unconscious and not breathing
-- false: 5
-  text: Explain is bleeding
-- false: 6
-  text: Explain has heat exhaustion
-- false: 7
-  text: Explain has hypothermia
-- false: 8
-  text: Explain is choking
-- false: 9
-  text: Explain has a burn
-- false: 10
-  text: Explain is having an asthma attack
-- false: 11
-  text: Explain is having a heart attack
-- false: 12
-  text: Explain has a head injury
-- false: 13
-  text: Explain has a suspected spinal injury
-- false: 14
-  text: Explain has a broken bone
-- false: 15
-  text: Explain has a sprain or strain
-- false: 16
-  text: Explain has meningitis
+- Take part in formal training
+- Explain to your leader or another adult about how to call 999.
+- Explain is unconscious
+- Explain is unconscious and not breathing
+- Explain is bleeding
+- Explain has heat exhaustion
+- Explain has hypothermia
+- Explain is choking
+- Explain has a burn
+- Explain is having an asthma attack
+- Explain is having a heart attack
+- Explain has a head injury
+- Explain has a suspected spinal injury
+- Explain has a broken bone
+- Explain has a sprain or strain
+- Explain has meningitis
 icon: /assets/images/badges/staged-emergency-aid-stage-5.png
 ---
-
 ## Requirements
 
 - **1.** Take part in formal training

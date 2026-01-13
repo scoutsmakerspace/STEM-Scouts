@@ -8,20 +8,13 @@ badge_type: Staged Activity
 completion_rules: Complete ALL 5 requirements
 requirements_count: 5
 requirements:
-- false: 1
-  text: Make an aircraft out of paper and see how well it flies.
-- false: 2
-  text: Identify four different types of aircraft.
-- false: 3
-  text: Describe any aircraft (including fictional) you’d like to fly in and explain
-    why.
-- false: 4
-  text: Talk to someone who's flown in an aircraft.
-- false: 5
-  text: Learn about the different jobs an aircraft can do.
+- Make an aircraft out of paper and see how well it flies.
+- Identify four different types of aircraft.
+- Describe any aircraft (including fictional) you’d like to fly in and explain why.
+- Talk to someone who's flown in an aircraft.
+- Learn about the different jobs an aircraft can do.
 icon: /assets/images/badges/staged-air-activities-stage-1.png
 ---
-
 ## Requirements
 
 - **1.** Make an aircraft out of paper and see how well it flies.

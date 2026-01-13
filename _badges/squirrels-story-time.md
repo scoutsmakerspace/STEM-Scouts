@@ -8,19 +8,15 @@ badge_type: Activity
 completion_rules: Complete ALL 3 requirements
 requirements_count: 3
 requirements:
-- false: 1
-  text: When we hear stories, we can imagine going to different places and getting
-    involved in lots of adventures. Choose a story to listen to with your friends
-    and talk about it afterwards.
-- false: 2
-  text: 'Stories can be about almost anything: people, animals, or magical creatures.
-    What sort of stories do you like the most? Tell someone about your favourite story.'
-- false: 3
-  text: Anyone can be a storyteller. Now it’s your turn to be in charge! Make up your
-    own story and tell someone about it.
+- When we hear stories, we can imagine going to different places and getting involved
+  in lots of adventures. Choose a story to listen to with your friends and talk about
+  it afterwards.
+- 'Stories can be about almost anything: people, animals, or magical creatures. What
+  sort of stories do you like the most? Tell someone about your favourite story.'
+- Anyone can be a storyteller. Now it’s your turn to be in charge! Make up your own
+  story and tell someone about it.
 icon: /assets/images/badges/squirrels-story-time.png
 ---
-
 ## Requirements
 
 - **1.** When we hear stories, we can imagine going to different places and getting involved in lots of adventures. Choose a story to listen to with your friends and talk about it afterwards.

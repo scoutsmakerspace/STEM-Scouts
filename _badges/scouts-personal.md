@@ -8,13 +8,10 @@ badge_type: Challenge Award
 completion_rules: Complete ALL 2 requirements
 requirements_count: 2
 requirements:
-- false: 1
-  text: Challenge 1
-- false: 2
-  text: Challenge 2
+- Challenge 1
+- Challenge 2
 icon: /assets/images/badges/scouts-personal.png
 ---
-
 ## Requirements
 
 - **1.** Challenge 1

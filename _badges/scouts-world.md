@@ -8,27 +8,17 @@ badge_type: Challenge Award
 completion_rules: Complete ALL 7 requirements
 requirements_count: 7
 requirements:
-- false: 1
-  text: Choose an aspect of local community life and find out as much as you can about
-    it.
-- false: 2
-  text: 'Spend a day volunteering with and finding out about a service in your local
-    community:'
-- false: 3
-  text: Take part in an activity that reflects upon and explores your own beliefs,
-    attitudes and values (this may or may not include religious beliefs).
-- false: 4
-  text: Take part in an activity that explores common beliefs and attitudes towards
-    gender or disability in different societies
-- false: 5
-  text: Take an active part in an environmental project.
-- false: 6
-  text: Investigate and try to make contact with Scouts in another country.
-- false: 7
-  text: Take part in an activity that explores an international issue.
+- Choose an aspect of local community life and find out as much as you can about it.
+- 'Spend a day volunteering with and finding out about a service in your local community:'
+- Take part in an activity that reflects upon and explores your own beliefs, attitudes
+  and values (this may or may not include religious beliefs).
+- Take part in an activity that explores common beliefs and attitudes towards gender
+  or disability in different societies
+- Take an active part in an environmental project.
+- Investigate and try to make contact with Scouts in another country.
+- Take part in an activity that explores an international issue.
 icon: /assets/images/badges/scouts-world.png
 ---
-
 ## Requirements
 
 - **1.** Choose an aspect of local community life and find out as much as you can about it.

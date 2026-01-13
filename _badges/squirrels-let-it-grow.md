@@ -8,23 +8,17 @@ badge_type: Activity
 completion_rules: Complete ALL 3 requirements
 requirements_count: 3
 requirements:
-- false: 1
-  text: There are lots of different plants – you may have seen prickly cacti, tall
-    trees, or brightly coloured flowers. Some plants even eat bugs! Have a go at growing
-    a plant of your own.
-- false: 2
-  text: Plants change a lot as they grow. Look after your plant, give it water and
-    sunlight, and watch what happens; it might grow taller, change colour or make
-    flowers or fruit. Tell some other Squirrels what happened to your plant and how
-    it changed.
-- false: 3
-  text: Fruit and vegetables come in different shapes, sizes, and colours and grow
-    in lots of different ways. Find out where some of the fruit and vegetables you
-    eat come from and how they’re grown. Do the plants look different to the foods
-    on your plate?
+- There are lots of different plants – you may have seen prickly cacti, tall trees,
+  or brightly coloured flowers. Some plants even eat bugs! Have a go at growing a
+  plant of your own.
+- Plants change a lot as they grow. Look after your plant, give it water and sunlight,
+  and watch what happens; it might grow taller, change colour or make flowers or fruit.
+  Tell some other Squirrels what happened to your plant and how it changed.
+- Fruit and vegetables come in different shapes, sizes, and colours and grow in lots
+  of different ways. Find out where some of the fruit and vegetables you eat come
+  from and how they’re grown. Do the plants look different to the foods on your plate?
 icon: /assets/images/badges/squirrels-let-it-grow.png
 ---
-
 ## Requirements
 
 - **1.** There are lots of different plants – you may have seen prickly cacti, tall trees, or brightly coloured flowers. Some plants even eat bugs! Have a go at growing a plant of your own.

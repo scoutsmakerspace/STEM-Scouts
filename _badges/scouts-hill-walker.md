@@ -8,41 +8,30 @@ badge_type: Activity
 completion_rules: Complete ALL 9 requirements
 requirements_count: 9
 requirements:
-- false: 1
-  text: 1. With others, plan at least five one-day journeys of at least 14km in hilly
-    country.
-- false: 2
-  text: 2. Using Ordnance Survey maps, complete all the information you need to plan
-    the route for each journey.
-- false: 3
-  text: 3. Learn how to summon help in an emergency.
-- false: 4
-  text: 4. Make sure you know the different types of  hazards you might come across.
-- false: 5
-  text: 5. Before setting out, list the equipment that should be taken and explain
-    how to use them correctly.
-- false: 6
-  text: 6. During the journey, show how you use the map and compass.
-- false: 7
-  text: 7. Show you're aware of ways to preserve the natural environment, such as
-    avoiding erosion and conserving wildlife habitats.
-- false: 8
-  text: 8. Show that you're aware of developments in technology, such as the Global
-    Positioning System (GPS), digital mapping or waterproof maps.
-- false: 9
-  text: 9. Show that you know the publication Safety on Mountains, published by the
-    British Mountaineering Council
+- With others, plan at least five one-day journeys of at least 14km in hilly country.
+- Using Ordnance Survey maps, complete all the information you need to plan the route
+  for each journey.
+- Learn how to summon help in an emergency.
+- Make sure you know the different types of  hazards you might come across.
+- Before setting out, list the equipment that should be taken and explain how to use
+  them correctly.
+- During the journey, show how you use the map and compass.
+- Show you're aware of ways to preserve the natural environment, such as avoiding
+  erosion and conserving wildlife habitats.
+- Show that you're aware of developments in technology, such as the Global Positioning
+  System (GPS), digital mapping or waterproof maps.
+- Show that you know the publication Safety on Mountains, published by the British
+  Mountaineering Council
 icon: /assets/images/badges/scouts-hill-walker.png
 ---
-
 ## Requirements
 
-- **1.** 1. With others, plan at least five one-day journeys of at least 14km in hilly country.
-- **2.** 2. Using Ordnance Survey maps, complete all the information you need to plan the route for each journey.
-- **3.** 3. Learn how to summon help in an emergency.
-- **4.** 4. Make sure you know the different types of  hazards you might come across.
-- **5.** 5. Before setting out, list the equipment that should be taken and explain how to use them correctly.
-- **6.** 6. During the journey, show how you use the map and compass.
-- **7.** 7. Show you're aware of ways to preserve the natural environment, such as avoiding erosion and conserving wildlife habitats.
-- **8.** 8. Show that you're aware of developments in technology, such as the Global Positioning System (GPS), digital mapping or waterproof maps.
-- **9.** 9. Show that you know the publication Safety on Mountains, published by the British Mountaineering Council
+- **1.** With others, plan at least five one-day journeys of at least 14km in hilly country.
+- **2.** Using Ordnance Survey maps, complete all the information you need to plan the route for each journey.
+- **3.** Learn how to summon help in an emergency.
+- **4.** Make sure you know the different types of  hazards you might come across.
+- **5.** Before setting out, list the equipment that should be taken and explain how to use them correctly.
+- **6.** During the journey, show how you use the map and compass.
+- **7.** Show you're aware of ways to preserve the natural environment, such as avoiding erosion and conserving wildlife habitats.
+- **8.** Show that you're aware of developments in technology, such as the Global Positioning System (GPS), digital mapping or waterproof maps.
+- **9.** Show that you know the publication Safety on Mountains, published by the British Mountaineering Council

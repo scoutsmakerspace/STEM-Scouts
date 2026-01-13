@@ -8,23 +8,15 @@ badge_type: Staged Activity
 completion_rules: Complete ALL 7 requirements
 requirements_count: 7
 requirements:
-- false: 1
-  text: Explain the importance of getting help
-- false: 2
-  text: Explain what to say when you call 999
-- false: 3
-  text: Explain reassuring someone at the scene of an emergency.
-- false: 4
-  text: Explain is unconscious
-- false: 5
-  text: Explain is bleeding
-- false: 6
-  text: Explain has a burn
-- false: 7
-  text: Explain is having an asthma attack.
+- Explain the importance of getting help
+- Explain what to say when you call 999
+- Explain reassuring someone at the scene of an emergency.
+- Explain is unconscious
+- Explain is bleeding
+- Explain has a burn
+- Explain is having an asthma attack.
 icon: /assets/images/badges/staged-emergency-aid-stage-2.png
 ---
-
 ## Requirements
 
 - **1.** Explain the importance of getting help

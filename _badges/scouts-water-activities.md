@@ -8,11 +8,9 @@ badge_type: Activity
 completion_rules: Complete ALL 1 requirements
 requirements_count: 1
 requirements:
-- false: 1
-  text: Reach one of the required standards
+- Reach one of the required standards
 icon: /assets/images/badges/scouts-water-activities.png
 ---
-
 ## Requirements
 
 - **1.** Reach one of the required standards

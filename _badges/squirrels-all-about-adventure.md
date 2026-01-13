@@ -8,21 +8,16 @@ badge_type: Challenge Award
 completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-- false: 1
-  text: Adventures are more fun when you’re prepared. Choose your activities, think
-    about what you’ll need, and pack your bag – just don’t forget the snacks!
-- false: 2
-  text: Having fun outside is good for your mind and your body. Take part in some
-    outdoor activities and try something new.
-- false: 3
-  text: Take a deep breath and go for it. It’s time to go on some adventures.
-- false: 4
-  text: No adventure is complete without a campfire. Gather around a roaring fire
-    (or a fire-free indoor model), spend some time with your friends, and reflect
-    on your adventures.
+- Adventures are more fun when you’re prepared. Choose your activities, think about
+  what you’ll need, and pack your bag – just don’t forget the snacks!
+- Having fun outside is good for your mind and your body. Take part in some outdoor
+  activities and try something new.
+- Take a deep breath and go for it. It’s time to go on some adventures.
+- No adventure is complete without a campfire. Gather around a roaring fire (or a
+  fire-free indoor model), spend some time with your friends, and reflect on your
+  adventures.
 icon: /assets/images/badges/squirrels-all-about-adventure.png
 ---
-
 ## Requirements
 
 - **1.** Adventures are more fun when you’re prepared. Choose your activities, think about what you’ll need, and pack your bag – just don’t forget the snacks!

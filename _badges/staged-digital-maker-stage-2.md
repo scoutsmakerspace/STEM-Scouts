@@ -8,18 +8,13 @@ badge_type: Staged Activity
 completion_rules: Complete ALL 3 requirements
 requirements_count: 3
 requirements:
-- false: 1
-  text: Create a piece of interactive or animated digital art using software.
-- false: 2
-  text: Create a simple computer program to help with a scouting activity, and try
-    it out.
-- false: 3
-  text: Make a simple digital creation that uses code to interact with the wider world
-    through inputs (such as buttons or typing on a keyboard) and outputs (such as
-    a computer screen, sound, or lights).
+- Create a piece of interactive or animated digital art using software.
+- Create a simple computer program to help with a scouting activity, and try it out.
+- Make a simple digital creation that uses code to interact with the wider world through
+  inputs (such as buttons or typing on a keyboard) and outputs (such as a computer
+  screen, sound, or lights).
 icon: /assets/images/badges/staged-digital-maker-stage-2.png
 ---
-
 ## Requirements
 
 - **1.** Create a piece of interactive or animated digital art using software.

@@ -8,33 +8,22 @@ badge_type: Activity
 completion_rules: Complete 4 of 10 requirements
 requirements_count: 10
 requirements:
-- false: 1
-  text: Compose a poem of at least eight lines. Discuss its meaning and construction.
-- false: 2
-  text: Create a short story of around 600 words.
-- false: 3
-  text: Write a descriptive passage of around 600 words on a subject, agreed with
-    an appropriate adult beforehand.
-- false: 4
-  text: Write a 600-word review of a favourite book, play or other work of literature
-    and talk about it with an appropriate adult.
-- false: 5
-  text: Produce a published article of around 600 words in length.
-- false: 6
-  text: You could contribute to a school, faith, community or Scout magazine or write
-    a letter to a local paper.
-- false: 7
-  text: Keep a diary on a subject, for a length of time agreed with an appropriate
-    adult beforehand.
-- false: 8
-  text: Write a play or dramatic sketch lasting at least 10 minutes.
-- false: 9
-  text: Interview a local celebrity, or other notable person.
-- false: 10
-  text: Write a letter to a pen pal (real or imaginary) of at least 600 words.
+- Compose a poem of at least eight lines. Discuss its meaning and construction.
+- Create a short story of around 600 words.
+- Write a descriptive passage of around 600 words on a subject, agreed with an appropriate
+  adult beforehand.
+- Write a 600-word review of a favourite book, play or other work of literature and
+  talk about it with an appropriate adult.
+- Produce a published article of around 600 words in length.
+- You could contribute to a school, faith, community or Scout magazine or write a
+  letter to a local paper.
+- Keep a diary on a subject, for a length of time agreed with an appropriate adult
+  beforehand.
+- Write a play or dramatic sketch lasting at least 10 minutes.
+- Interview a local celebrity, or other notable person.
+- Write a letter to a pen pal (real or imaginary) of at least 600 words.
 icon: /assets/images/badges/scouts-writer.png
 ---
-
 ## Requirements
 
 - **1.** Compose a poem of at least eight lines. Discuss its meaning and construction.

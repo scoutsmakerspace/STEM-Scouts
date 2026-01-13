@@ -8,32 +8,21 @@ badge_type: Activity
 completion_rules: Complete ALL 9 requirements
 requirements_count: 9
 requirements:
-- false: 1
-  text: Show that you know how to give first aid treatment you may need to use while
-    on a survival event, considering you may have limited resources available
-- false: 2
-  text: Show how to construct different kinds of shelter
-- false: 3
-  text: Show how to build a fire and use basic lighting techniques. You should not
-    use man-made materials such as paper or firelighters.
-- false: 4
-  text: Show how to maintain hygiene in a survival situation
-- false: 5
-  text: Show basic knife or multi-tool skills, including safety and sharpening and
-    maintenance
-- false: 6
-  text: Show the correct use of international distress signals, using a whistle, torch,
-    mirror or markers
-- false: 7
-  text: Show some basic actions to take while waiting rescue that will both keep you
-    (and your group) safe and will assist your rescuers in locating you
-- false: 8
-  text: Put together a personal survival kit.
-- false: 9
-  text: With a group of at least three Scouts, take part in a survival exercise
+- Show that you know how to give first aid treatment you may need to use while on
+  a survival event, considering you may have limited resources available
+- Show how to construct different kinds of shelter
+- Show how to build a fire and use basic lighting techniques. You should not use man-made
+  materials such as paper or firelighters.
+- Show how to maintain hygiene in a survival situation
+- Show basic knife or multi-tool skills, including safety and sharpening and maintenance
+- Show the correct use of international distress signals, using a whistle, torch,
+  mirror or markers
+- Show some basic actions to take while waiting rescue that will both keep you (and
+  your group) safe and will assist your rescuers in locating you
+- Put together a personal survival kit.
+- With a group of at least three Scouts, take part in a survival exercise
 icon: /assets/images/badges/scouts-survival-skills.png
 ---
-
 ## Requirements
 
 - **1.** Show that you know how to give first aid treatment you may need to use while on a survival event, considering you may have limited resources available

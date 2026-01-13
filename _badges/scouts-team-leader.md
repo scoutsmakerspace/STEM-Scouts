@@ -8,18 +8,13 @@ badge_type: Leadership
 completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-- false: 1
-  text: Successfully lead a Scout team at a camp or all day event.
-- false: 2
-  text: Help a new Scout to be part of the Troop with an understanding of what is
-    expected of them.
-- false: 3
-  text: Help another Scout to develop a Scouting skill.
-- false: 4
-  text: Represent the views of other Scouts.
+- Successfully lead a Scout team at a camp or all day event.
+- Help a new Scout to be part of the Troop with an understanding of what is expected
+  of them.
+- Help another Scout to develop a Scouting skill.
+- Represent the views of other Scouts.
 icon: /assets/images/badges/scouts-team-leader.png
 ---
-
 ## Requirements
 
 - **1.** Successfully lead a Scout team at a camp or all day event.

@@ -8,20 +8,15 @@ badge_type: Activity
 completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-- false: 1
-  text: 1. Learn about how money is used online.
-- false: 2
-  text: 2. Learn how to budget and make smart choices with your money.
-- false: 3
-  text: 3. Find out how saving and borrowing money works.
-- false: 4
-  text: 4. Explore how money can affect your feelings and wellbeing.
+- Learn about how money is used online.
+- Learn how to budget and make smart choices with your money.
+- Find out how saving and borrowing money works.
+- Explore how money can affect your feelings and wellbeing.
 icon: /assets/images/badges/scouts-money-skills.png
 ---
-
 ## Requirements
 
-- **1.** 1. Learn about how money is used online.
-- **2.** 2. Learn how to budget and make smart choices with your money.
-- **3.** 3. Find out how saving and borrowing money works.
-- **4.** 4. Explore how money can affect your feelings and wellbeing.
+- **1.** Learn about how money is used online.
+- **2.** Learn how to budget and make smart choices with your money.
+- **3.** Find out how saving and borrowing money works.
+- **4.** Explore how money can affect your feelings and wellbeing.
