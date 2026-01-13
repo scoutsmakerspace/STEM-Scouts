@@ -2,12 +2,15 @@ name: Auto-update badges index + icons
 
 on:
   push:
+    branches: ["main"]
     paths:
       - "_badges/**"
       - "assets/images/badges/**"
+      - "_data/badges_catalog.yml"
       - "admin/config.yml"
       - "tools/generate_badges_master.py"
       - "tools/normalise_badge_icons.py"
+      - "tools/sync_badges_from_catalog.py"
       - ".github/workflows/badges-autogen.yml"
   workflow_dispatch:
 
@@ -23,16 +26,10 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout (full history for safe reset)
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Sync to latest main (avoid non-fast-forward pushes)
-        run: |
-          git fetch origin main
-          git checkout main
-          git reset --hard origin/main
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -41,6 +38,9 @@ jobs:
 
       - name: Install deps
         run: pip install pillow pyyaml
+
+      - name: Sync badges from catalog (Badges Manager)
+        run: python tools/sync_badges_from_catalog.py
 
       - name: Normalise icons (PNG + 64x64)
         run: python tools/normalise_badge_icons.py
