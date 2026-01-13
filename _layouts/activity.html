@@ -216,7 +216,7 @@ So we place the section IDs on the <h3> headings below (not on the <section> wra
 
         <div class="activity-badge" style="margin: 0 0 1rem 0;">
           <div class="activity-badge__header" style="font-weight:700; display:flex; align-items:center; gap:8px;">
-            <img class="activity-badge__icon" src="{{ '/assets/images/badges/' | append: bid | append: '.png' | relative_url }}" alt="" loading="lazy" onerror="this.onerror=null;this.src='{{ '/assets/images/badges/_missing.png' | relative_url }}';">
+            <img class="activity-badge__icon" src="{{ '/assets/images/badges/' | append: bid | append: '_64.png' | relative_url }}" alt="" loading="lazy" onerror="this.onerror=null;this.src='{{ '/assets/images/badges/' | append: bid | append: '.png' | relative_url }}'; this.onerror=function(){this.onerror=null;this.src='{{ '/assets/images/badges/_missing.png' | relative_url }}';};">
             <span>{% if badge_section != '' %}{{ badge_section | capitalize }} — {% endif %}{{ badge_name }}
             {% if badge_category != '' %}<span style="font-weight:400; opacity:.85;"> — {{ badge_category }}</span>{% endif %}</span>
           </div>

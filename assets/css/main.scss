@@ -689,3 +689,13 @@ body { font-size: 0.95rem; line-height: 1.55; }
   box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 }
 
+
+
+/* Badge icons (activities) */
+.activity-badge__icon{
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  object-fit: contain;
+  border-radius: 8px;
+}
