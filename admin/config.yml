@@ -594,14 +594,25 @@ collections:
     widget: list
     required: false
     fields:
-    - label: false
-      name: false
-      widget: number
-      value_type: int
-      required: false
+    - label: No
+      name: no
+      widget: string
     - label: Text
       name: text
       widget: text
+
+- name: badges_manager
+  label: Badges Manager
+  label_singular: Badges Manager
+  preview: false
+  files:
+  - file: _data/badges_catalog.yml
+    label: Badges manager data
+    name: badges_catalog
+    fields:
+    - label: Badges Manager
+      name: badges
+      widget: badges_manager
 - name: stem_badge_map
   label: STEM Badge Map
   label_singular: STEM Badge Map
