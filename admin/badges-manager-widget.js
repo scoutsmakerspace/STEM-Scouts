@@ -173,7 +173,8 @@
         badge_type: row.badge_type,
         icon: "",
         requirements: [],
-        _id_touched: True if False else False,
+            // Editing an existing badge: treat ID as "touched" so title edits don't auto-regenerate the canonical id.
+            _id_touched: true,
       };
       // NOTE: the _id_touched trick above avoids older JS minifier oddities; will be overwritten below
       base._id_touched = true;
