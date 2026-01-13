@@ -652,30 +652,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Show how to use and take care of tools safely"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Talk to your leader about how to work safely on your projects, especially when you're using electric tools."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Learn what the difference is between hard wood, soft wood, chipboard, plywood and MDF."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Help design and make something useful"
       }
     ]
   },
@@ -692,30 +668,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Find out about two different disabilities that you could learn more about"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Find out more about a piece of equipment, assistive technology or adaptation for disabled people that can be used at school or work."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Find out about the best ways to communicate with different disabled people."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Choose your favourite activity, hobby or sport and think of ways it could be made more accessible"
       }
     ]
   },
@@ -731,61 +683,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "Complete 2 of 9 requirements"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Help to plan and perform some recorded entertainment, like a video or audio story."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Take part in a show, concert or band performance"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Make up and perform a dance to a piece of music of your choice"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Help plan and perform a series of magic tricks."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Help to make up a mime or play, then perform it"
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Perform a puppet play or shadowgraph using puppets that you have made."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Sing two songs"
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "Perform some folk or traditional dance"
-      },
-      {
-        "kind": "req",
-        "id": "9",
-        "no": "9",
-        "text": "Make a selection of simple rhythm instruments"
+        "text": "Complete 2 of 9 requirements to earn this badge."
       }
     ]
   },
@@ -802,30 +700,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Learn how to separate recyclable and non-recyclable rubbish ready for collection"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Find out how to reduce the energy and water you use in your home."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Find out about one type of renewable energy."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Take part in two projects with a group of other people"
       }
     ]
   },
@@ -842,60 +716,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Show that you know how to dress safely for riding."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Point out the main body parts of a pony or horse"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Point out the main parts of a saddle and bridle."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Learn how to approach a pony or horse correctl"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Learn how to mount and dismount a horse safely"
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Show the correct way to sit in the saddle."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Show how to hold the reins correctly."
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "Show how to walk and trot safely in an enclosed area, without a leading rein."
-      },
-      {
-        "kind": "req",
-        "id": "9",
-        "no": "9",
-        "text": "Show two skills"
       }
     ]
   },
@@ -912,48 +732,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Visit a fire station or invite a firefighter to your meeting place or Llarn about some of the other things that firefighters do"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Take part in a fire drill at your meeting place."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Make an emergency escape plan for your home."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Find out why it’s important to use smoke and heat detectors"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Point out three possible dangers at home or your meeting place that could start a fire."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Find out how to keep a campfire safe for everyone."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Explain how you should behave around a bonfire and fireworks."
       }
     ]
   },
@@ -970,36 +748,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Find out what seasons are best to grow a selection of six fruits and vegetables."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Learn what tools you need to garden (a minimum of three) and show that you know how to use them safely."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Help to look after and grow at least one item in a garden or allotment for two months"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Design plant labels for the plants you are looking after or growing"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Understand what mini beasts are and why they are good for our gardens and outdoor spaces."
       }
     ]
   },
@@ -1016,36 +764,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Find out about an international charity; what do they do and why is it important?"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Monitor the waste you produce as a Cub Pack and make a plan to reduce, reuse and recycle your Pack's waste."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Take part in an international awareness day or week."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Think about what you would need to survive if you became homeless because of a disaster, like flooding or an earthquake."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Identify five belongings of yours that have come from other countries."
       }
     ]
   },
@@ -1062,30 +780,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Over three months, be actively involved in a hobby of your choice"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Show and explain to your leader or Explorer Scout Young Leader what equipment, materials and background information you have used to take part in your hobby including any safety rules."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Talk about your hobby including why you have chosen it and what you enjoy about it."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Talk to your leader about how you plan to develop your hobby, interest or skill in the future."
       }
     ]
   },
@@ -1102,54 +796,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Plan, cook and serve a simple one-course meal."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Wash up afterwards."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Help sort out the washing. Load and unload the washing machine."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Iron at least two items."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Sew on a button."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "6. Help to clean and tidy a living room."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "7. Clean at least two items in your home."
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "8. Take sheets, pillow covers and the duvet cover off a bed and help to put clean ones on. Make your own bed for a week."
       }
     ]
   },
@@ -1166,36 +812,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Find out what to do about a burst water pipe, gas leak or electricity power failure in your home."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Identify the common causes of accidents in the home."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Find out how to protect your home from crime."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Find out where the nearest public telephone box is to your house."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Make a list of useful emergency numbers."
       }
     ]
   },
@@ -1212,30 +828,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Draw or create the World Scout Badge."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Make, build or draw something to represent a country."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Explore another country’s traditions and culture around food and eating."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Take part in the activities of a celebration or festival that usually takes place in another country."
       }
     ]
   },
@@ -1251,37 +843,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "Complete 3 of 5 requirements"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Find out about a famous person who lived in or near your area."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Collect pictures of your county, borough, district, town or village coat of arms."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Talk to someone who has lived in your local area for a long time."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Draw a map of your area."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Design a poster, leaflet or web page to advertise your area to a visitor."
+        "text": "Complete 3 of 5 requirements to earn this badge."
       }
     ]
   },
@@ -1298,24 +860,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Regularly take part in a martial arts activity for at least three  months."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Discuss with a leader the skills needed and the rules to be observed."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Take part in one exhibition or competition."
       }
     ]
   },
@@ -1332,36 +876,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Show you know about foreign currency by explaining how a Scout from another country would exchange their money if they came to a camp in the UK."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Show how you’d create a budget for a Scouts activity."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Learn about the things that can influence different people’s spending decisions (from religious beliefs to adverts and peer pressure) and create a list of things that might influence your spending decisions."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Talk with your group about how people from different cultures can gain, save, and give away money, and choose a way of gaining, saving, or giving away money that you’d like to try."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Create a guide for how young people can recognise and protect themselves from online scams and fake, counterfeit money."
       }
     ]
   },
@@ -1378,24 +892,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Find out about your place of worship and something about:"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Choose a favourite prayer or reading."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Choose your favourite festival."
       }
     ]
   },
@@ -1412,54 +908,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Learn how to identify six different living things"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Over three months, visit the same natural area at least four times."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Learn the countryside code and how to follow it."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Make a hedgehog, ladybird or bee house."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Create a piece of art using natural material. You could do a bark or leaf rubbing, dried flower picture or maybe a collage."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "With an adult pick wild edible berries, leaves or fruit. Use them in a recipe."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Use a dye that uses natural ingredients to colour a piece of material."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Make a feeding station for birds. Get permission to hang it in a good position."
       }
     ]
   },
@@ -1476,48 +924,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Explain the dangers of playing on or near two of these:"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Show you can use at least one of these codes:"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Make up a safety code of your own choice."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Explain what you must do if a stranger starts to talk to you."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Find out how and why you might contact a helpline like ChildLine, for example."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "6. Explain the best ways to stay safe while online."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "7. Memorise your address and your home telephone number or a parent’s mobile phone number."
       }
     ]
   },
@@ -1534,48 +940,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Show that you know how to use and look after a digital camera or smartphone camera."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Take at least five photos of your local area that could be used on a tourist leaflet or website."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Take photos while you’re on a trip, camp or another event."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Create two photos of the same thing, one in colour and one in black and white. Compare how the effects change the way the final picture looks."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Edit a photo using a smartphone or editing software. Explain what you have changed and why."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Make a short film on a subject of your choice."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Using a series of photos, make a short animation sequence."
       }
     ]
   },
@@ -1592,36 +956,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "2. Tell your leader about the sports you take part in."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "3. Show that you’re fairly skilled in your sports."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "4. Bring the clothing and equipment for the sport you’ve chosen along to a meeting."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Find out as much as you can about your sports, especially the rules."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Tell a leader about the training and preparation you take part in for your chosen sport."
       }
     ]
   },
@@ -1638,36 +972,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Make your own rope, perhaps using a rope machine or working with a friend."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Tie a simple lashing."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Show how you would: a. Tie three different knots, such as a reef, figure of eight, sheet bend or bowline. b. Make one hitch, such as a clove hitch, round turn and two half-hitches or a cow hitch"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Take part in a knot game."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Build an indoor pioneering project using simple knots and lashings."
       }
     ]
   },
@@ -1684,30 +988,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Draw or take photos of 10 different traffic signs."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Show how to use the Green Cross Code."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Tell a leader why it’s important to have different types of pedestrian crossing."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Show that you know how to behave safely as a car passenger."
       }
     ]
   },
@@ -1723,109 +1003,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "2 from  + 2 from  + 2 from"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Find out what happens when you add salt to water."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Show how vinegar reacts with different items and explain what happens. The different items could be steel wool, sodium bicarbonate or old dirty coins."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Compare the density of water to the density of other liquids. Show how these liquids react to each other."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Make a pH indicator solution. Use it to test the acidity or alkalinity of other liquids."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Grow crystals."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Another activity agreed with your leader"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Find a way to show that hot air rises."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Create a basic electrical circuit that includes a switch. Show how it could be used to control a lightbulb powered by a battery."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Make an air-powered balloon rocket or a water rocket. Investigate ways of improving how far it can travel."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Make a simple compass. Show the effects of metallic and magnetic materials upon it."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Use marshmallows and spaghetti to build the strongest tower you can. Explain how you improved your design."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Another activity agreed with your leader."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Set up a wormery or ant colony. Record what happens over three or four weeks."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Investigate what happens to your pulse rate before, during and after exercise."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Grow cress, beans, peas or a similar plant. Investigate what happens when the plant has no access to light. What happens when it has light, but no water?"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Find a way to show that plants take water up through their stems."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Make some yoghurt and find out how living organisms are involved in the process."
+        "text": "2 from  + 2 from  + 2 from."
       }
     ]
   },
@@ -1842,36 +1020,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Use a skateboard, scooter, or in-line, quad or ice skates, on at least three occasions."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Learn some safety rules about skating on the road and in other public places."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Show how to start, stop and turn safely."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Show how to fall safely and regain balance."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Show how you do three different manoeuvres."
       }
     ]
   },
@@ -1888,42 +1036,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Find out about how the Earth moves round the Sun."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Astronauts have lots of different tasks to do while they’re in space."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Think about what space travel might look like in the future and share your idea with someone else."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Learn what a satellite is and how they help us to study and protect our planet."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Find out about stars and constellations, and how we can view them from Earth."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "6. Discover what asteroids and comets are, and how they have affected planets in our solar system."
       }
     ]
   },
@@ -1940,42 +1052,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Follow your chosen sport for at least three months."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Find out the rules of the sport. Explain them to an adult."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Show you have a good knowledge of the teams and/or personalities in your chosen sport."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Explain what equipment is needed for the sport."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. List some major events for the sport of your choice."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "6. Describe events that you have attended for your chosen sport."
       }
     ]
   },
@@ -1992,24 +1068,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Explain the safety rules for all water activities."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Reach one of the specified standards"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Take part in two activities"
       }
     ]
   },
@@ -2026,30 +1084,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Visit a place of worship which is important to one of the World religions."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Meet someone who belongs to one of the World religions, or has a set of beliefs which are different to your own."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Find out about the places of religious significance for a World religion."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Find out about the religious festivals and customs linked to a World religion."
       }
     ]
   },
@@ -2066,30 +1100,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Take part in two different adventurous activities. At least one of them should be new to you."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Take part in six other outdoor activities. At least two of them should be new to you."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Go on a hike or follow a trail."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Prepare for your activities and hikes."
       }
     ]
   },
@@ -2105,103 +1115,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "1 from Camping Experience + 9 from Core Camp Skills + 2 from Additional Camp Activities"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Take an active part in at least three nights away, on camps or Pack holidays."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Cook a meal with your Six"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Learn and follow the Countryside Code"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Help to pitch and strike your tent"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Show that you know how to look after yourself and be safe at camp"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Show that you know how to keep your tent and kit safe, tidy and secure,"
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Show you know what things you need to do to, look after your campsite, and that you can put them into practise,"
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Build a shelter big enough for two Cubs"
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "Using bamboo canes, rubber bands or simple lashings complete a simple pioneering project or make a camp gadget,"
-      },
-      {
-        "kind": "req",
-        "id": "9",
-        "no": "9",
-        "text": "Show that you know how to treat mild burns, scalds, cuts or grazes and make a call to the emergency services"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Take part in a wide game"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Cook a backwoods meal"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Using knots that you've learned, make a simple camp gadget, like a flagpole"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Take part in a campfire sing-along or other entertainment"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Care for your personal equipment while at camp"
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Build a bivouac and sleep in it"
+        "text": "1 from Camping Experience + 9 from Core Camp Skills + 2 from Additional Camp Activities."
       }
     ]
   },
@@ -2218,36 +1132,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Try two new sports or physical activities at least once."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Take part in three activities to help you be healthy."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Pick two creative things to try, and show your leader what you've done."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Learn and use at least four skills"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Take part in at least two problem-solving activities that you haven't done before"
       }
     ]
   },
@@ -2264,54 +1148,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Create a community map. What services are there? Where are they? Who are they for? Try and visit one of these services if possible."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Celebrate a festival from another country or culture."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "As a Pack, identify and complete an activity that benefits your local community."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Take part in an act of worship, reflection or celebration."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Find out about a faith or culture you are not familiar with."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Talk about a time when you did your best."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Take part in an activity about the environment."
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "Play a game that Cubs play in another country and learn their Promise."
       }
     ]
   },
@@ -2328,18 +1164,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Challenge 1"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Challenge 2"
       }
     ]
   },
@@ -2356,30 +1180,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Lead your Six in an activity or captain a team."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Help a new Cub to join in with the Pack meeting."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Teach another Cub a new skill."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Ask your Six or team what they want to do in Cubs, tell your leaders and help to make sure that it happens."
       }
     ]
   },
@@ -2396,36 +1196,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Take part in at least six different team games with other Cubs."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Show your leaders what you did to help your team, and how you were a good team player."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Give examples of two different types of teams, and roles in those teams."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Complete at least two team building activities with other Cubs."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Take part in at least two Pack forums or something similar, and make a contribution that will be positive for your Pack."
       }
     ]
   },
@@ -2442,96 +1212,6 @@
       {
         "kind": "heading",
         "text": "Choose 1 of the following options"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Identify the need"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Plan action"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Take action"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Learn and make more change"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Tell the world"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Identify the need"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Plan action"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Take action"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Learn and make more change"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Tell the world"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Identify the need"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Plan action"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Take action"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Learn and make more change"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Tell the world"
       }
     ]
   },
@@ -2582,66 +1262,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Work for at least five days (on at least two different occasions) at a  Group, District, County, Area or National Scout Activity Centre or campsite, helping the warden or manager however they need you."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Explain the maintenance needed for essential campsite equipment"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Make a booking for someone wanting to use the site"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Show how to restore a camping area after use, including sowing grass"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Show how you prevent pipes freezing during the winter and what steps to take when pipes burst"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "The importance of having clean toilets"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Chemicals – what to use and how to use them safely"
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "How to unblock a drain and prevent further blockages"
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "The need for good site drainage and keeping ditches clear"
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "How to dispose of refuse and use an effective recycling system"
       }
     ]
   },
@@ -2658,30 +1278,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Run through an appropriate warm-up routine that involves gentle stretching and loosening exercises, using all the main muscle groups."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Discuss the safety rules for athletics, particularly the throwing and jumping events."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Demonstrate an athletic discipline to other Explorers and encourage them to try it out."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Take part in at least two competitions or demonstrations."
       }
     ]
   },
@@ -2697,121 +1293,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "1 from Camp + 4 from Demonstrate + 14 from Camp Leader"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Camp under canvas for a total of 20 nights or more."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Are, simple repair and storage of your tent and cordage, including whipping, splicing, hanking, coiling and safety inspections."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Safe storage and handling of fuels such as methylated spirits, paraffin, petrol and gas."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Care of cooking stoves and utensils, including simple repairs, cleaning and general maintenance."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Storage of a section’s training and games equipment."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "discuss all aspects of the camp with an adult leader"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "manage the budget for the camp"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "choose the campsite, carrying out a risk assessment of the camp and activities"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "make sure all necessary equipment is organised"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "plan a menu and organise the shopping."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "organise the pitching of the campsite"
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "make sure that camp hygiene standards are met"
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "make sure that all equipment is stored correctly"
-      },
-      {
-        "kind": "req",
-        "id": "9",
-        "no": "9",
-        "text": "build a pioneering project, for example a flagpole or a gateway"
-      },
-      {
-        "kind": "req",
-        "id": "10",
-        "no": "10",
-        "text": "demonstrate safe knife and axe use"
-      },
-      {
-        "kind": "req",
-        "id": "11",
-        "no": "11",
-        "text": "plan a cooking and cleaning rota and cook at least one of the meals yourself"
-      },
-      {
-        "kind": "req",
-        "id": "12",
-        "no": "12",
-        "text": "organise the striking of camp and make sure the site is left as you would wish to find it."
-      },
-      {
-        "kind": "req",
-        "id": "13",
-        "no": "13",
-        "text": "make sure that all equipment is stored correctly"
-      },
-      {
-        "kind": "req",
-        "id": "14",
-        "no": "14",
-        "text": "evaluate how the camp went by discussing it with the other participants."
+        "text": "1 from Camp + 4 from Demonstrate + 14 from Camp Leader."
       }
     ]
   },
@@ -2828,42 +1310,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Make at least four trips underground, with a properly authorised party, to two different cave systems and kept a log. If you hold the Scout Caver Activity Badge you don’t need to complete these four trips."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Explain how caves are formed."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Rig and use ladder pitch under supervision."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Take two additional caving trips as part of a properly authorised party."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Know the cave conservation code and talk about measures that can be taken to promote conservation of formations and the cave environment."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Study an aspect of speleology and discuss the findings."
       }
     ]
   },
@@ -2880,48 +1326,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Complete at least four different climbs, each of which should be listed  in a climbing guidebook."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Know how to put on a harness and helmet, and the calls used in climbing."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Understand and demonstrate the proper use of a belay device."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Experience at least one session (two hours) of single-pitch climbing on a man-made climbing wall, either indoors or outdoors."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Be able to use information given in a climbing guidebook. Explain the grading systems for climbs."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "7. Abseil down a face of not less than 15 metres using a safety rope."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "8. Demonstrate how to care for the equipment used and explain what you should look out for when equipment is nearing the end of its life."
       }
     ]
   },
@@ -2938,18 +1342,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Demonstrate involvement and improvement in a creative activity of your choice. Show evidence of your work."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Perform or exhibit the work you have completed"
       }
     ]
   },
@@ -2966,42 +1358,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Identify and organise a fundraising initiative for either another UK registered charity of your choice or the Scout Association, to help promote and grow your local Scout group, Scouting nationally or both."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Find a compelling  message – a short reason you can communicate to potential donors about your chosen cause. It must be inspiring and clear in order to raise the most money."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Use social media to promote your fundraising initiative."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Set a fundraising target and a date to raise it by. We suggest a minimum of £500."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Call on others to help you and form a fundraising team. Motivate and inspire them to encourage others to donate."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "6. Prepare a short presentation about your fundraising challenge and submit it to the members of your local Trustee Board or your leader"
       }
     ]
   },
@@ -3017,37 +1373,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "Complete 3 of 5 requirements"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Spend three days living on food that costs no more than £2 a day. Share with others about how it went including a top tip for cooking meals with so little money. This could be a discussion, blog, video diary."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Individually or as a group compare youth issues in the UK with the same issues in another country, such as voting age, access to education or youth services. Discuss with your Unit."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Visit a homeless shelter, food bank or other social enterprise in your local community and consider the challenges faced by homeless people and what factors lead to homelessness."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Explore various media sources to find information about migration and immigration. Review what you find and discuss your thoughts and feelings about the information and how this issue is perceived at a local and global level with your Unit."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Deliver a game or activity to others about a global issue that you feel passionate about and explore what small action you could take to have a positive impact on that issue (sign a petition, write to your MP, raise awareness)."
+        "text": "Complete 3 of 5 requirements to earn this badge."
       }
     ]
   },
@@ -3064,24 +1390,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Hold the Scout section Hill Walker Activity Badge or have completed at least five one-day journeys in the hills, each one at least 14 kilometres’ distance."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Take a major part in planning and successfully managing at least four one-day journeys, two of which must be in terrain two areas."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Play a major part in the planning, preparation and leadership of at least one two-day expedition, involving overnight camping in wild country"
       }
     ]
   },
@@ -3098,30 +1406,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Hold the activity badge in your chosen activity"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Know what a young person in your section has to do to achieve the activity badge, so that you can instruct them in that subject."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Attend a training course covering the technical skills involved in the activity badge and the use of appropriate training methods."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Assist with the training of other young people in your section in the subject, over a period of at least three months."
       }
     ]
   },
@@ -3137,43 +1421,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "Complete 4 of 6 requirements"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Choose a country and explore their traditions and culture around food and dining. Recreate a dining experience relating to your chosen country for your leaders, parents or another section."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Organise an activity for your Unit or a younger section that explores another country's national celebration, festival or event (eg. Mela, Republic Day India, Chinese New Year)"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Explore aspects of another country's culture such as their greetings, religion and approach to gender. You could play a cultural simulation game or discuss the similarities and differences with culture in the UK."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Take part in an international Scouting experience such as an international jamboree, setting up an international link, or a Jamboree on the Air (JOTA)-Jamboree on the Internet (JOTI) event."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Showcase a form of art or culture from another country. You could create a display of art you have researched or created yourself, or put on a cultural performance."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Participate in an event with an international theme. Discuss your experience with your Unit."
+        "text": "Complete 4 of 6 requirements to earn this badge."
       }
     ]
   },
@@ -3189,61 +1437,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "1 from Leadership + 1 from  + 1 from  + 1 from Task"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Lead a team of Explorers by running an activity on a camp"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Lead a team of Explorers on an expedition"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Represent the views of Explorers at a forum or event"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Lead a team of explorers to deliver a project with them"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Take an active role in running or delivering an activity in a new setting."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Reflect on the leadership behaviours and abilities you’ve displayed."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "In a setting of your choice, lead an activity or event and put your chosen actions into practice from your reflection in requirement 3."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Visit someone in a leadership role to see what behaviours they’re displaying. Compare their actions and how they lead to the results of your own reflection in requirement 3 to support your development as a leader."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Conduct your own research into a leader of your choice. Look at the leadership skills and behaviours they display at different times and why these might be appropriate."
+        "text": "1 from Leadership + 1 from  + 1 from  + 1 from Task."
       }
     ]
   },
@@ -3260,24 +1454,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Demonstrate and explain how you would perform a rescue"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Reach the a recongised standard"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Explain and, where possible, demonstrate methods of rescue"
       }
     ]
   },
@@ -3293,91 +1469,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "1 from  + 1 from  + 1 from List A + 1 from List B"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Understand and show how to use the Scout brand, using resources available from UK HQ"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Arrange a visit for a group of Explorers to find out about a media outlet and how they create their content."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Get approval from your local Media Development Manager to secure media coverage for a Scouting event, expedition or activity. Prepare a press release and include a photograph."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Create some media content for the Group, District or County newsletter, Scouting Magazine or online."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Help to manage and maintain the social media pages for your local Scout Group for a period of time agreed by your Unit leader."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Take part in or produce a package about Scouting for local TV or radio."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Produce an audio, visual or written report about an issue affecting young people or your local Scout Group. Include different contributors such as members of the public, local personalities or public figures."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Give a 15-minute presentation, with images, about Scouts to another organisation, such as a local Lions or Rotary Club."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Assist the District or County with a promotional event or activity."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "As a team, produce at least four editions of a paper or e-newsletter for Explorers in your Unit or District or for members of another section."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Plan, develop and carry out a local recruitment campaign to get more adults and young people to join Scouting."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Create a display or exhibition for Scouts and parents to promote Explorer Scouting."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Conduct a survey to find out young people’s views on Scouting. Share your results with the leadership team and discuss them with others in the Unit."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Represent Explorers at a local government youth council or collective organisation youth forum."
+        "text": "1 from  + 1 from  + 1 from List A + 1 from List B."
       }
     ]
   },
@@ -3394,36 +1486,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Understand how money works and what affects the way we use it."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Build your money skills by trying activities such as trading, budgeting and finding ways to grow your money."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Take action and find out how to help people with money."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Take on a challenge that’ll improve your money skills and help you plan for the future."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Get creative and make something that helps others learn about money in a fun way."
       }
     ]
   },
@@ -3440,36 +1502,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Take part in your chosen motor sport, once you’ve agreed the activity  with your leadership team. Show how you’ve improved over a period of  time."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Talk to a group of young people about the skills and techniques you have used."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Explain the safety rules, and how to responsibly use the skills you have learned, to an appropriate adult."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Take part in at least two competitions or demonstrations.  Talk about your performance and ways to improve with the examiner or instructor."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Take up an organisational role on at least two occasions."
       }
     ]
   },
@@ -3486,72 +1518,6 @@
       {
         "kind": "heading",
         "text": "Choose 1 of the following options"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Regularly participate in a mountain biking discipline such as downhill, dirt jump, four cross (4X) or any other mountain bike sport as agreed by the leadership team. Show how you’ve improved over time and show evidence of this."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Talk to a group of young people about the skills and techniques of your chosen discipline."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Talk to an appropriate adult about the safety rules in mountain biking and how to use the skills you’ve learned responsibly."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Take part in at least two competitions or demonstrations. Talk about your performance and ways you could improve with the examiner or instructor."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Plan and carry out a two-day ride with at least four hours’ riding each day. At least 75 per cent of the ride must be off-road, with a minimum of 50 per cent on unsurfaced tracks."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Read a map well and orientate it using map features or a compass."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Explain what to do in case of an accident. Ensure you have a basic knowledge of first aid, including how to treat hypothermia."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Give reasonable estimates of times of transit, over distances in different terrains."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Show that you are able to control your bike over different types of terrain."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Show that you understand the Mountain Bike Code of Conduct."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Be able to perform emergency repairs in the field as listed for a T1 Mountain Bike Permit."
       }
     ]
   },
@@ -3568,30 +1534,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Demonstrate your interest in the natural world by regularly taking part in relevant activities and using a variety of study and conservation  techniques over a period of time."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Share skills in recording and observing the natural world with a group of young people."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Take an in-depth look at how human activity is affecting the natural world, particularly pollution, deforestation and new farming techniques."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Demonstrate a good knowledge of natural history terminology, particularly local animal and plant species along with other specialist words."
       }
     ]
   },
@@ -3608,18 +1550,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Demonstrate involvement and improvement in a creative activity of your choice."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Perform or exhibit the activity to an audience."
       }
     ]
   },
@@ -3636,174 +1566,6 @@
       {
         "kind": "heading",
         "text": "Choose 1 of the following options"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Demonstrate skills in a horse riding activity to a group of young people and encourage them to try it out."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "You’re not expected to have skills in instructing and your leader should organise supervision for all of you."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Take part in an equestrian activity over a period of time and show improvement."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Discuss the safety rules to an appropriate adult and explain how you’ve used the skills you learned responsibly."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Demonstrate how to care for your equipment and how to look after the animal."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Take part in at least two competitions or demonstrations. Discuss your performance and ways you can improve with the examiner or instructor."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Discuss the safety rules of your chosen activity. Show the examiner or instructor how you use the skills you’ve learned responsibly."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Take part in at least two competitions or demonstrations. Discuss your performance and how to improve with the examiner or instructor."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Demonstrate your skills to a group of young people and encourage them to try it out."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "You’re not expected to have skills in instructing and your leader should organise appropriate supervision."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Take part in a martial arts activity recognised by UK Sport. You should take part regularly over a period of time and show improvement."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Take part in an activity such as fencing, shooting or archery. Take part in your chosen activity regularly over a period of time and work on your improvement."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Demonstrate your skills to a group of young people and encourage them to try it out."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "You’re not expected to have skills in instructing and your leader should organise appropriate supervision."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Talk about any safety rules or laws involved in your chosen activity and how to abide by them."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Show how to care for and regularly maintain your equipment."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Take part in at least two competitions or demonstrations. After each one, discuss your performance with the examiner or instructor and identify ways to improve."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Take part in angling (inland, beach or sea) regularly over a period of time and work on your improvement."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Demonstrate your skills to a group of young people and encourage them to try it out."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "You’re not expected to have skills in instructing and your leader should organise appropriate supervision."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Talk about the safety rules in angling and how to fish in a responsible manner."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Take part in at least two competitions or demonstrations. Discuss your performance with the examiner or instructor and identify ways to improve."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Take part in a physical activity regularly over a period of time and work on your improvement."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "You can use this option if you want to improve and share knowledge about an activity that isn’t covered by options 1 to 4."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Demonstrate your skills to a group of young people and encourage them to try it out."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "You’re not expected to have skills in instructing and your leader should organise appropriate supervision."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Talk about the safety rules or laws of your chosen activity and how to abide by them."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Take part in at least two competitions or demonstrations. Discuss your performance and how you can improve."
       }
     ]
   },
@@ -3820,30 +1582,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Build a scale pioneering model."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Take a lead role in building an outside pioneering project, such as an aerial runway or an hourglass tower."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. During your project, demonstrate your ability in: 10 knots, bends or hitches, four lashings, the use of simple blocks and tackle, anchorages for firm and soft ground, understanding the need for supervision in pioneering projects"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Demonstrate two whippings and two splices."
       }
     ]
   },
@@ -3860,30 +1598,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Regularly participate in a racquet sport over a period of three months.  Demonstrate an improvement in your level of skill."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Demonstrate your skills with your Unit and play your chosen sport with them."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Talk about any safety procedures and rules in your chosen sport, and how to abide by them."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Take part in at least two competitions or demonstrations."
       }
     ]
   },
@@ -3900,120 +1614,6 @@
       {
         "kind": "heading",
         "text": "Choose 1 of the following options"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Regularly record weather observations and measurements over a period of time. You can break up the time if you like – you don’t have to keep continuous records."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Demonstrate your skills in meteorological recording and observation to a group of young people."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Give a detailed explanation of the formation of clouds and the weather associated with different clouds and fronts."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Find out detailed information about how weather maps are produced. Show how you interpret them for use in Scouting activities."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Regularly maintain a mechanical machine over a period of time. You should use the time to learn a variety of techniques."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Demonstrate your mechanical knowledge. Explain the principles of operating an engine, gearbox and differential axle."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Talk about the safety rules for machine maintenance and how you use the skills you’ve learned responsibly."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Regularly take part in an activity involving in a method of radio communication. You should use the time to learn a variety of techniques and recording activity and develop your skills."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Demonstrate a radio communication method to a group of young people."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Talk about the rules or codes of practice for radio communication and how to use equipment responsibly."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Share your knowledge of radio communication alphabets and internationally recognised call signs and signals."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Regularly take part in an activity involving electronics. Use the time to learn a variety of techniques and equipment and improve your skills."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Show and explain your project work in electronics to a group of young people. You’re not expected to play the role of an instructor and an appropriate adult should supervise your group."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Demonstrate a detailed knowledge of circuits, components and the symbols used in electronics."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Discuss the safe working practices of electronics and how to use equipment responsibly."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Learn the meaning of technical astronomical terms. Give a detailed description of our galaxy and solar system, including planets and other bodies."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Demonstrate your skills in astronomy, including recording and observation, to a group of young people."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Regularly take part in an astronomy activity. Use a variety of instruments, record your observations over a period of time and show improvement in your skills."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Demonstrate a good knowledge of the history of space exploration since 1969."
       }
     ]
   },
@@ -4030,36 +1630,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Explore first-hand accounts from people who have been involved in the space industry or witnessed its impact."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Grow a plant without using soil."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Find out about light pollution and how this can affect our exploration of space."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Find out about satellites and space rovers, you could practice controlling something from a distance and learn why this is useful."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Using a medium of your choice showcase something about space that interests you"
       }
     ]
   },
@@ -4076,30 +1646,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Regularly take part in a street sport activity such as rollerskating, skateboarding, BMX, Parkour or any other street sport you agree with your leadership team."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Demonstrate skills in your chosen sport to your Unit and undertake a street sport together."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Explain the safety procedures and rules in your chosen sport, and how to abide by them, including where to undertake street sports safely and responsibly."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Show how to care for your equipment and explain what you should look out for when it’s nearing the end of its life."
       }
     ]
   },
@@ -4116,78 +1662,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Learn how to prevent and treat the effects of extreme heat (sunstroke and dehydration) and cold (hypothermia)."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Demonstrate different techniques to light a fire."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Show how to build several different types of fire."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Demonstrate the correct use of international distress signals using a whistle, torch, mirror or markers."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Describe some basic actions you can take while waiting to be rescued that will keep you and your group safe, and assist your rescuers in locating you."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "6. Learn the techniques involved in catching your food, such as fishing or snares."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "7. Learn to identify and source local, edible plants and fruit and the risks involved in eating those incorrectly identified."
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "8. Prepare meat such as rabbit or fish to cook over an open fire and eat."
-      },
-      {
-        "kind": "req",
-        "id": "9",
-        "no": "9",
-        "text": "9. Make an item of equipment that will be of use to you on a survival exercise."
-      },
-      {
-        "kind": "req",
-        "id": "10",
-        "no": "10",
-        "text": "10. Demonstrate methods of filtering and purifying water."
-      },
-      {
-        "kind": "req",
-        "id": "11",
-        "no": "11",
-        "text": "11. Demonstrate methods of finding direction by day or night without a compass."
-      },
-      {
-        "kind": "req",
-        "id": "12",
-        "no": "12",
-        "text": "12. With a group of at least three other Explorers, take part in a survival exercise lasting two nights. The group should:"
       }
     ]
   },
@@ -4203,31 +1677,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "Complete 1 of 4 requirements"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Hold The Scout Association’s Adventurous Activity Personal Permit for Power Boating and meet the requirements for the Royal Yachting Association’s National Powerboat Certificate 2."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Hold The Scout Association’s Adventurous Activity Leadership Permit for Narrow Boating and meet the requirements for the Royal Yachting Association’s Inland Water Helmsman Certificate or the Certificate of Community Boat Management."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Hold The Scout Association’s Adventurous Activity Personal Permit for Kite Surfing and meet the requirements for the BKSA (British Kite Surfing Association) Level 2."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Hold The Scout Association’s Adventurous Activity Personal Permit for Windsurfing and meet the requirements for the RYA (Royal Yachting Association) Youth Windsurfing Scheme Stage Two."
+        "text": "Complete 1 of 4 requirements to earn this badge."
       }
     ]
   },
@@ -4244,42 +1694,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Registration"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Membership. Be an Explorer Scout aged 16 or over, a Scout Network member*, or a member of Girlguiding aged 16 to 25."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Expedition. Undertake a 10-day expedition as part of a team* outside the UK with a minimum travelling time of 50 hours over the 10 days, by foot, cycle, horse, canoe, boat or dinghy."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Debrief"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Presentation"
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Assessment"
       }
     ]
   },
@@ -4296,96 +1710,6 @@
       {
         "kind": "heading",
         "text": "Choose 1 of the following options"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Identify the need"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Plan action"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Take action"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Learn and make more change"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Tell the world"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Identify the need"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Plan action"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Take action"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Learn and make more change"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Tell the world"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Identify the need"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Plan action"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Take action"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Learn and make more change"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Tell the world"
       }
     ]
   },
@@ -4401,79 +1725,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "3 from Core Requirements + 4 from Activity Centre Skills"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Help the warden or manager and work for at least five days at a  permanent District, County or National Scout campsite."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Explain and show how to use three items of equipment that you've used in your work with the activity centre."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Talk about developments and improvements you would like to see at a permanent campsite."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Explain & demonstrate the use of computers in campsite management"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Explain & demonstrate how to take care of campers' needs while respecting wildlife"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Explain & demonstrate how to prevent frozen pipes and what to do if an overground pipe bursts or leaks"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Explain & demonstrate the need for good site drainage and clear ditches"
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Explain & demonstrate rubbish disposal and how to recycle materials wherever possible"
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Explain the reasons for having clean toilets"
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Explain & demonstrate how to unblock a drain"
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "Explain & demonstrate how to use and maintain equipment for an activity you have become familiar with"
-      },
-      {
-        "kind": "req",
-        "id": "9",
-        "no": "9",
-        "text": "Explain other important tasks that the warden or manager has pointed out"
+        "text": "3 from Core Requirements + 4 from Activity Centre Skills."
       }
     ]
   },
@@ -4490,24 +1742,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Research one historical aspect of flight, and share what you find out with the Troop."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. While you’re doing your research, visit at least one place of interest that relates to your chosen subject."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Present what you have found out."
       }
     ]
   },
@@ -4523,49 +1757,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "1 from  + 1 from  + 1 from Category A + 1 from Category B"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Learn to recognise 38 out of the 50 aircraft listed in The Scout Association's Aircraft Recognition List"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Describe the main features you would use to recognise six aircraft, which have been chosen by an appropriate adult."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "By yourself or with another Scout, take photographs or collect pictures of at least 10 different aircraft types."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Visit an airfield or airport viewing area, for at least an hour."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Recognise and name the national aircraft markings, both service and civil, of at least six countries including the United Kingdom."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Learn the RAF and NATO system of letter designation according to aircraft function."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Name three basic training aircraft used in private flying."
+        "text": "1 from  + 1 from  + 1 from Category A + 1 from Category B."
       }
     ]
   },
@@ -4582,108 +1774,6 @@
       {
         "kind": "heading",
         "text": "Choose 1 of the following options"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Using simple diagrams, illustrate latitude and longitude."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Using a compass, show how an aircraft can be turned on to various compass headings."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Show that you understand how a compass works, including the difference between magnetic, true and grid north."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Explain what magnetic deviation is and how it applies to air navigation."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Show that you know about the latest developments in electronic navigation aids."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Headings and corresponding tracks."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Topographical air map"
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "Draw the track between any two places at least 100 nautical miles apart."
-      },
-      {
-        "kind": "req",
-        "id": "9",
-        "no": "9",
-        "text": "Show that you can calculate overhead flight times"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Gain a good working knowledge of charts, chart datum and symbols used."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Complete two positioning tasks"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Show your skills in compass work by completing three tasks"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Learn how to use tide tables and tidal stream atlases."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Learn how to use the marine log to obtain distance run and speed."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Show you understand the buoyage system for United Kingdom coastal waters and other methods of marking dangers and channels."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Show that you’re aware of the latest developments in electronic technology, like the Global Positioning System and electronic charts."
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "Go on a coastal voyage of between four and six hours and act as the navigator."
       }
     ]
   },
@@ -4700,60 +1790,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Learn the water safety rules and the proper precautions to take when fishing from the bank, shore line, or from a boat."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Understand how the Countryside code should be followed by anglers, and where and how to fish legally."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Explain how different species of fish have different habitats."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Learn about invasive species and make sure to check, clean, and dry your equipment to stop them spreading."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Learn the basic hygiene precautions to take when fishing."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "6. Go fishing at least four times in two different places."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "7. Choose the correct equipment and method for where you plan to fish."
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "8. Show you can cast correctly and accurately into a target area a suitable distance away, depending on the equipment you are using."
-      },
-      {
-        "kind": "req",
-        "id": "9",
-        "no": "9",
-        "text": "9. Show how to correctly handle a fish, unhook it and return it into the water."
       }
     ]
   },
@@ -4769,55 +1805,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "3 from Group 1 + 1 from Group 2 + 4 from Group 3 (Required)"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Paint, draw or illustrate a scene from a story"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Paint, draw or illustrate a person or object"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Paint, draw or illustrate a landscape"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Show a selection of your own recent work."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Choose a favourite art form or artist to take an active interest in."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Describe two visits you have made that are connected to your interest."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Show that you know a lot about an aspect of your interest."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Make a list of major events, exhibitions or venues connected with your chosen subject."
+        "text": "3 from Group 1 + 1 from Group 2 + 4 from Group 3 (Required)."
       }
     ]
   },
@@ -4834,30 +1822,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Run through an appropriate warm-up and warm-down routine using all the main muscle groups. Explain why both routines are important."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Talk about the safety rules in athletics, particularly throwing and jumping events."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Take part in six athletics events."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Find out and explain to your leader how to take part in athletics in your local area."
       }
     ]
   },
@@ -4874,24 +1838,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Run through an appropriate warm-up and cool-down routine using all the main muscle groups. Explain why both routines are important."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Talk about the safety rules for athletics, particularly throwing and jumping events."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Compete in any three events (two track and one field, or vice versa) and gain the points set out as indicated on the score chart below."
       }
     ]
   },
@@ -4908,60 +1854,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Camp as a Scout for at least 15 nights"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Lead a group of Scouts in the pitching, striking and packing of a four to six-person tent."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Find out what to look for when choosing a campsite and in deciding the best position to pitch tents."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Show that you understand and act on the reasons for hygiene and the importance of being safe and tidy in camp."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Show how you store food hygienically at camp."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "6. Learn how to dispose of your rubbish safely and responsibly."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "7. Construct two useful camp gadgets."
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "8. Plan a full menu for a weekend camp. Cook a least one full meal over an open fire."
-      },
-      {
-        "kind": "req",
-        "id": "9",
-        "no": "9",
-        "text": "9. With others in your Troop, plan and carry out a programme of activities for a weekend camp."
       }
     ]
   },
@@ -4977,25 +1869,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "Complete requirements"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Take part in at least four trips to at least two different cave systems."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Keep a record of your trips and the routes you followed"
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Develop a good knowledge of the caving and cave conservation codes"
+        "text": "Complete requirements to earn this badge."
       }
     ]
   },
@@ -5012,36 +1886,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Plan a menu for a weekend event for between four and six people."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Show how and where to shop for the food and the best way to transport it."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Show how to store food properly, hygienically and in ways that prevent food poisoning."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Cook and serve at least one of the meals from your menu."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Demonstrate the best way to clear up afterwards."
       }
     ]
   },
@@ -5104,36 +1948,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Take part in two circus skills"
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Carry on putting effort into your two selected skills and show some  achievement."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Demonstrate your two selected skills in front of an audience."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Find out things about circus life and talk about these with an adult."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Watch at least two circus or street performance events."
       }
     ]
   },
@@ -5150,54 +1964,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "1. Show that you know the rope types used for rock climbing."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "2. Show that you know how to fit a climbing helmet and harness and how to tie in correctly."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "3. Show you understand the calls used in climbing."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "4. Show that you know how to abseil down a face. It should usually be at least 10 metres high."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "5. Take part in four or more separate climbs."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "6. Explain the safety rules for climbing on both natural and artificial rock faces."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "7. Show that you’re aware of environmental  issues around climbing on natural rock faces."
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "8. Explain how to care for the equipment you used."
       }
     ]
   },
@@ -5214,198 +1980,6 @@
       {
         "kind": "heading",
         "text": "Choose 1 of the following options"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Radio Amateur Licence (Foundation, Intermediate or Full)"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Learn the regulations governing the use of amateur radio equipment."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Visit an amateur radio station."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Log 25 different amateur radio stations. Note the date, time, call sign, frequency, readability and location. You may include some broadcast stations."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Show how to tune a simple communications receiver."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Give an example of a typical greetings message."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Explain in simple terms how radio waves travel around the world."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Learn the more commonly used HF and VHF amateur frequency bands."
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "Learn the phonetic alphabet and define at least eight international Q code signals."
-      },
-      {
-        "kind": "req",
-        "id": "9",
-        "no": "9",
-        "text": "Show that you can recognise call signs from the UK and near continent."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Send and receive a short message by Morse code or semaphore at a rate of five words per minute."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Show that you know the proper procedure for sending and receiving a message."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Learn the International Phonetic Alphabet and define at least eight international Q code signals."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Construct a simple Morse code oscillator and send a short message."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Show you know how to use your mobile safely and how to keep it safe."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Learn the meaning of these terms: SMS, MMS, 3G, 4G, WAP and Bluetooth."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Send a creative text, multimedia or video message to invite a friend to a Scouts event."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Manage a mobile phone address book and set up groups of contacts."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Show you can text accurately at a rate of 50 characters per minute."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Show you know the meaning of some popular chat abbreviations."
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Share photos and videos of a Scouting activity you’ve been involved with, using available technology."
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "Manage an email address book and set up groups of contacts."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Carry on a simple conversation for about 10 minutes."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Act as an interpreter for a visitor who does not speak your native language."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Write a letter of around 150 words."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "After a few minutes of study, translate a paragraph of basic text."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Communicate with a person who does not speak your native language."
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Carry out a simple conversation for about 10 minutes."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Use sign language to describe a Scouting experience to another person."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Act as a translator for a short conversation between a sign language user and someone with no sign language experience."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Invite a sign language user to talk to your Troop about what it’s like to have impaired hearing or speech."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Help by translating for them during their visit."
       }
     ]
   },
@@ -5422,12 +1996,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Make or decorate one or more articles using, whenever possible, original design ideas."
       }
     ]
   },
@@ -5443,103 +2011,7 @@
     "requirements": [
       {
         "kind": "heading",
-        "text": "ALL mandatory + groups"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Use a bicycle that is properly equipped. Keep it in good working order for at least six months."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Show that you can carry out essential maintenance and repairs"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Bikeability Level 2 or 3"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Explain what extra precautions you should take when cycling in the dark or in wet weather. Show you understand why motor vehicles take longer to stop in the wet."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Learn the basics of first aid and what to do if an accident happens."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Develop a working knowledge of map reading. Orientate a map using a compass or conspicuous features. Estimate distances and times taken to travel."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Plan and carry out an all-day cycle ride of at least 40 kilometres (25 miles)."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Complete one of these: a. Show you can control a cycle along a slalom course b.Show you understand the Highway Code, including road signs and helmet use"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Show you understand the Mountain Bike Code of Conduct."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Show you can control your cycle over different types of terrain."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Show you're aware of the damage that may be caused to the environment through careless cycling across the countryside"
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Learn the basics of first aid, including the treatment of hypothermia and find out what to do in the case of an accident."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Gain a working knowledge of map reading. Orientate a map using a compass or conspicuous features. Estimate distances and times taken to travel"
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Plan and carry out an all-day ride of at least 30 kilometres (20 miles)"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "The Gold Trix Award of the British Schools Cycling Association"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Level 3 Go-MTB Award from Cycling Scotland, Sustrans, CTC or Scottish Cycling MBLA"
+        "text": "ALL mandatory + groups."
       }
     ]
   },
@@ -6244,30 +2716,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Take part in four different adventurous activities."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Show how you have developed your skill and expertise in one of these activities."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Learn about any environmental issues caused by your activity."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Research other ways you can take part, or develop your skills, in your chosen activities."
       }
     ]
   },
@@ -6284,42 +2732,6 @@
       {
         "kind": "heading",
         "text": "Complete ALL of the following"
-      },
-      {
-        "kind": "req",
-        "id": "1",
-        "no": "1",
-        "text": "Over a period of time, take part in at least four creative activities."
-      },
-      {
-        "kind": "req",
-        "id": "2",
-        "no": "2",
-        "text": "Show that you have developed your skills in one of these activities."
-      },
-      {
-        "kind": "req",
-        "id": "3",
-        "no": "3",
-        "text": "Use your creative ability to produce something that promotes a Scouting activity or an event."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Construct a model using materials like a plastic kit or recycled items."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Show how to use social media or the internet in a creative and safe way."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Take part in a performance."
       }
     ]
   },
