@@ -2,270 +2,208 @@
   const elSection = document.getElementById("stemSectionSelect");
   const elCategory = document.getElementById("stemCategorySelect");
   const elSearch = document.getElementById("stemSearchInput");
-  const elBorderline = document.getElementById("stemIncludeBorderline");
+  const elIncludeBorderline = document.getElementById("stemIncludeBorderline");
   const elResults = document.getElementById("stemBadgeMapResults");
 
-  if (!elSection || !elCategory || !elSearch || !elBorderline || !elResults) return;
+  if (!elSection || !elCategory || !elSearch || !elIncludeBorderline || !elResults) return;
 
-  const escapeHtml = (s) =>
-    String(s ?? "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#39;");
+  const baseUrl = String(window.siteBaseUrl || "").replace(/\/$/, "");
+  const DATA = (window.STEM_BADGE_MAP_DATA && Array.isArray(window.STEM_BADGE_MAP_DATA.badges))
+    ? window.STEM_BADGE_MAP_DATA.badges
+    : [];
 
-  const norm = (s) => String(s || "").toLowerCase();
+  // ---------- helpers ----------
+  const escapeHtml = (s) => String(s ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
-  const data =
-    window.STEM_BADGE_MAP_DATA && Array.isArray(window.STEM_BADGE_MAP_DATA.badges)
-      ? window.STEM_BADGE_MAP_DATA
-      : { badges: [] };
+  const norm = (s) => String(s ?? "").toLowerCase().trim();
 
-  const badges = data.badges;
-
-  // ----------------------------
-  // Activities index: badge_id -> [{title,url}]
-  // ----------------------------
-  let activitiesByBadgeId = new Map();
-  let activitiesLoaded = false;
-
-  function buildActivitiesIndex(items) {
-    const map = new Map();
-    (items || []).forEach((a) => {
-      const ids = Array.isArray(a.badge_ids) ? a.badge_ids : [];
-      ids.forEach((raw) => {
-        const id = String(raw || "").trim();
-        if (!id) return;
-        if (!map.has(id)) map.set(id, []);
-        map.get(id).push({ title: a.title || "Activity", url: a.url || "#" });
-      });
-    });
-
-    for (const [k, arr] of map.entries()) {
-      arr.sort((x, y) => String(x.title || "").localeCompare(String(y.title || "")));
-      map.set(k, arr);
-    }
-    return map;
+  function uniqSorted(arr) {
+    return Array.from(new Set(arr.filter(Boolean))).sort((a, b) => a.localeCompare(b));
   }
 
-  async function fetchFirstOkJson(urls) {
-    let lastErr = null;
-    for (const u of urls) {
-      try {
-        const r = await fetch(u, { cache: "no-store" });
-        if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
-        const j = await r.json();
-        return { url: u, json: j };
-      } catch (e) {
-        lastErr = e;
-      }
-    }
-    throw lastErr || new Error("No URL worked");
-  }
-
-  async function loadActivitiesIndex() {
-    try {
-      // IMPORTANT: badge page is /STEM-Scouts/badges/ so "assets/..." is wrong.
-      // Try multiple base-safe paths and use the first that works.
-      const candidates = [
-        new URL("../assets/data/activities_index.json", window.location.href).toString(),
-        new URL("./assets/data/activities_index.json", window.location.href).toString(),
-        new URL("assets/data/activities_index.json", window.location.href).toString(),
-        // last resort: root-relative (works if no baseurl, harmless if it 404s)
-        new URL("/assets/data/activities_index.json", window.location.origin).toString(),
-      ];
-
-      const { url, json } = await fetchFirstOkJson(candidates);
-
-      activitiesByBadgeId = buildActivitiesIndex(Array.isArray(json) ? json : []);
-      activitiesLoaded = true;
-
-      console.log("[stem-badge-map] activities loaded from:", url, "badgeIds:", activitiesByBadgeId.size);
-    } catch (e) {
-      console.warn("[stem-badge-map] activities index load failed:", e);
-      activitiesByBadgeId = new Map();
-      activitiesLoaded = true; // still render, just with 0 activities
-    }
-  }
-
-  function getBadgeKey(b) {
-    // Your mapping data usually has badge_id. Some builds may use id.
-    if (b && b.badge_id) return String(b.badge_id).trim();
-    if (b && b.id) return String(b.id).trim();
-    return "";
-  }
-
-  function getActivityListForBadge(badge) {
-    const key = getBadgeKey(badge);
-    if (!key) return [];
-    return activitiesByBadgeId.get(key) || [];
-  }
-
-  // ----------------------------
-  // Filters
-  // ----------------------------
-  function buildSections(items) {
-    const set = new Set(items.map((b) => b.section).filter(Boolean));
-    const sections = Array.from(set).sort((a, b) => a.localeCompare(b));
-    return ["All", ...sections];
-  }
-
-  function buildCategories(items) {
-    const set = new Set(items.map((b) => b.category).filter(Boolean));
-    const cats = Array.from(set).sort((a, b) => a.localeCompare(b));
-    return ["All", ...cats];
-  }
-
-  function populateSelect(el, values) {
-    el.innerHTML = "";
-    for (const v of values) {
+  function setOptions(selectEl, options, allLabel) {
+    selectEl.innerHTML = "";
+    const optAll = document.createElement("option");
+    optAll.value = "";
+    optAll.textContent = allLabel;
+    selectEl.appendChild(optAll);
+    options.forEach((o) => {
       const opt = document.createElement("option");
-      opt.value = v;
-      opt.textContent = v;
-      el.appendChild(opt);
-    }
+      opt.value = o.value;
+      opt.textContent = o.label;
+      selectEl.appendChild(opt);
+    });
   }
 
-  function requirementMatches(req, q) {
-    if (!q) return true;
-    return (
-      norm(req.text).includes(q) ||
-      norm(req.why_stem).includes(q) ||
-      norm((req.areas || []).join(" ")).includes(q) ||
-      norm(req.ref).includes(q)
-    );
+  function iconUrlsForBadgeId(badgeId) {
+    const safe = encodeURIComponent(String(badgeId || ""));
+    return {
+      first: `${baseUrl}/assets/images/badges/${safe}_64.png`,
+      second: `${baseUrl}/assets/images/badges/${safe}.png`,
+      missing: `${baseUrl}/assets/images/badges/_missing.png`,
+    };
   }
 
-  function badgeMatches(badge, q) {
-    if (!q) return true;
-    if (norm(badge.title).includes(q)) return true;
-    return (badge.stem_requirements || []).some((r) => requirementMatches(r, q));
+  function buildBadgeMeta(b) {
+    // display section/category in the compact "beavers · Activity Badges" style if available
+    const bits = [];
+    if (b.section_slug) bits.push(b.section_slug);
+    else if (b.section) bits.push(b.section);
+
+    const cat = b.badge_type || b.category;
+    if (cat) bits.push(cat);
+
+    return bits.filter(Boolean).join(" · ");
   }
 
-  function renderBadges(items, q, section, category, includeBorderline) {
-    const qn = norm(q).trim();
+  function requirementPassesBorderline(r, includeBorderline) {
+    if (includeBorderline) return true;
+    return String(r?.strength || "").toLowerCase() !== "borderline";
+  }
 
-    const out = items
-      .filter((b) => (section === "All" ? true : b.section === section))
-      .filter((b) => (category === "All" ? true : b.category === category))
-      .filter((b) => badgeMatches(b, qn))
-      .map((b) => {
-        const reqsAll = Array.isArray(b.stem_requirements) ? b.stem_requirements : [];
-        const reqs = reqsAll
-          .filter((r) => (includeBorderline ? true : r.strength !== "borderline"))
-          .filter((r) => requirementMatches(r, qn));
+  // ---------- build controls ----------
+  // sections: keep label pretty (use b.section if present) but value should be section_slug (stable)
+  const sectionPairs = {};
+  DATA.forEach((b) => {
+    const key = b.section_slug || b.section || "";
+    if (!key) return;
+    sectionPairs[key] = b.section || b.section_slug || key;
+  });
+  const sectionOptions = uniqSorted(Object.keys(sectionPairs)).map((k) => ({ value: k, label: sectionPairs[k] }));
 
-        if (reqs.length === 0) return null;
+  setOptions(elSection, sectionOptions, "All sections");
 
-        const acts = activitiesLoaded ? getActivityListForBadge(b) : [];
-        const actCount = acts.length;
+  function updateCategoryOptions() {
+    const selectedSection = elSection.value;
+    const cats = [];
+    DATA.forEach((b) => {
+      const key = b.section_slug || b.section || "";
+      if (selectedSection && key !== selectedSection) return;
+      const c = b.category || b.badge_type || "";
+      if (c) cats.push(c);
+    });
+    const catOptions = uniqSorted(cats).map((c) => ({ value: c, label: c }));
+    const current = elCategory.value;
+    setOptions(elCategory, catOptions, "All categories");
+    // try to preserve selection
+    if (current && catOptions.some((o) => o.value === current)) elCategory.value = current;
+  }
 
-        const activitiesPill =
-          activitiesLoaded && actCount > 0
-            ? `<span class="stem-badge-map__actcount">${actCount} activit${
-                actCount === 1 ? "y" : "ies"
-              }</span>`
-            : "";
+  // ---------- render ----------
+  function render() {
+    const selectedSection = elSection.value;
+    const selectedCategory = elCategory.value;
+    const q = norm(elSearch.value);
+    const includeBorderline = !!elIncludeBorderline.checked;
 
-        const activitiesBlock =
-          activitiesLoaded && actCount > 0
-            ? `
-              <div class="stem-badge-map__activities">
-                <div class="stem-badge-map__activities-title">Used in activities</div>
-                <div class="stem-badge-map__activities-links">
-                  ${acts
-                    .map((a) => {
-                      const t = escapeHtml(a.title || "Activity");
-                      const u = escapeHtml(a.url || "#");
-                      return `<a class="stem-badge-map__activity-link" href="${u}">${t}</a>`;
-                    })
-                    .join("")}
-                </div>
-              </div>
-            `
-            : "";
+    const out = [];
 
-        const reqHtml = reqs
-          .map((r) => {
-            const strengthTag =
-              r.strength === "borderline"
-                ? '<span class="stem-tag stem-tag--borderline">Borderline</span>'
-                : '<span class="stem-tag stem-tag--strong">Strong</span>';
+    DATA.forEach((b) => {
+      const sectionKey = b.section_slug || b.section || "";
+      if (selectedSection && sectionKey !== selectedSection) return;
 
-            const areas = (r.areas || []).map((a) => `<span class="stem-tag">${escapeHtml(a)}</span>`).join("");
+      const cat = b.category || b.badge_type || "";
+      if (selectedCategory && cat !== selectedCategory) return;
 
-            const prompts = Array.isArray(r.leader_prompts) ? r.leader_prompts : [];
-            const promptHtml =
-              prompts.length > 0
-                ? `<details><summary>Leader prompts</summary><div class="stem-prompts-lines">${prompts
-                    .map((p) => `<div class="stem-prompt-line">${escapeHtml(p)}</div>`)
-                    .join("")}</div></details>`
-                : "";
+      const reqsAll = Array.isArray(b.stem_requirements) ? b.stem_requirements : [];
+      const reqs = reqsAll.filter((r) => requirementPassesBorderline(r, includeBorderline));
 
-            return `
-              <div class="stem-req">
-                <div class="stem-req__header">
-                  <span class="stem-req__ref">${escapeHtml(r.ref)}.</span>
-                  <span class="stem-req__text">${escapeHtml(r.text)}</span>
-                  ${strengthTag}
-                </div>
-                <div class="stem-req__areas">${areas}</div>
-                <p class="stem-req__why"><strong>Why STEM:</strong> ${escapeHtml(r.why_stem || "").replace(/\n/g, "<br>")}</p>
-                <div class="stem-req__prompt">${promptHtml}</div>
-              </div>
-            `;
-          })
-          .join("");
+      if (!reqs.length) return;
 
-        const metaBits = [b.section, b.category].filter(Boolean).map(escapeHtml).join(" · ");
+      // Search filter: badge title OR any requirement text/why/prompt
+      if (q) {
+        const hitBadge = norm(b.title).includes(q);
+        const hitReq = reqs.some((r) => {
+          const t = norm(r.text);
+          const why = norm(r.why_stem);
+          const prompts = Array.isArray(r.leader_prompts) ? norm(r.leader_prompts.join(" ")) : "";
+          return t.includes(q) || why.includes(q) || prompts.includes(q) || norm(r.ref).includes(q);
+        });
+        if (!hitBadge && !hitReq) return;
+      }
 
-                const badgeId = (b && (b.id || b.badge_id || b.badgeId)) ? String(b.id || b.badge_id || b.badgeId) : "";
-        const badgeIconSrc = `/assets/images/badges/${encodeURIComponent(badgeId)}_64.png`;
+      const badgeId = b.badge_id || b.id || "";
+      const urls = iconUrlsForBadgeId(badgeId);
 
-return `
-          <details>
-            <summary>
-              <img class="stem-badge-map__badge-icon" src="${badgeIconSrc}" alt="" loading="lazy" onerror="this.onerror=null;this.src=`/assets/images/badges/${encodeURIComponent(badgeId)}.png`; this.onerror=function(){this.onerror=null;this.src='/assets/images/badges/_missing.png';};">
-              <span class="stem-badge-map__badge-title">${escapeHtml(b.title)}</span>
-              <span class="stem-badge-map__badge-meta">${metaBits}</span>
-              <span class="stem-badge-map__counts">
-                <span class="stem-badge-map__count">${reqs.length} requirement${reqs.length === 1 ? "" : "s"}</span>
-                ${activitiesPill}
-              </span>
-            </summary>
-            ${activitiesBlock}
-            ${reqHtml}
-          </details>
+      const meta = buildBadgeMeta(b);
+      const metaHtml = meta ? `<span class="stem-badge-map__badge-meta">${escapeHtml(meta)}</span>` : "";
+
+      const reqHtml = reqs.map((r) => {
+        const strength = String(r.strength || "").toLowerCase();
+        const strengthTag = strength
+          ? `<span class="stem-req__strength stem-req__strength--${escapeHtml(strength)}">${escapeHtml(strength)}</span>`
+          : "";
+
+        const areas = Array.isArray(r.areas) && r.areas.length
+          ? `<div class="stem-req__areas">${r.areas.map(escapeHtml).join(", ")}</div>`
+          : "";
+
+        const prompts = Array.isArray(r.leader_prompts) ? r.leader_prompts.filter(Boolean) : [];
+        const promptHtml = prompts.length
+          ? `<details><summary>Leader prompts</summary><div class="stem-prompts-lines">${prompts
+              .map((p) => `<div class="stem-prompt-line">${escapeHtml(p)}</div>`)
+              .join("")}</div></details>`
+          : "";
+
+        const why = String(r.why_stem || "").replace(/\n/g, "<br>");
+
+        return `
+          <div class="stem-req">
+            <div class="stem-req__header">
+              <span class="stem-req__ref">${escapeHtml(r.ref)}.</span>
+              <span class="stem-req__text">${escapeHtml(r.text)}</span>
+              ${strengthTag}
+            </div>
+            ${areas}
+            <p class="stem-req__why"><strong>Why STEM:</strong> ${escapeHtml(why)}</p>
+            <div class="stem-req__prompt">${promptHtml}</div>
+          </div>
         `;
-      })
-      .filter(Boolean);
+      }).join("");
+
+      out.push(`
+        <details class="stem-badge-map__badge">
+          <summary>
+            <img class="stem-badge-map__badge-icon"
+                 src="${urls.first}"
+                 data-src2="${urls.second}"
+                 data-missing="${urls.missing}"
+                 alt="${escapeHtml(b.title)} badge icon"
+                 onerror="if(!this.dataset.tried2){this.dataset.tried2='1';this.src=this.dataset.src2;}else{this.onerror=null;this.src=this.dataset.missing;}" />
+            <span class="stem-badge-map__badge-title">${escapeHtml(b.title)}</span>
+            ${metaHtml}
+            <span class="stem-badge-map__counts">
+              <span class="stem-badge-map__count">${reqs.length} requirement${reqs.length === 1 ? "" : "s"}</span>
+            </span>
+          </summary>
+          <div class="stem-badge-map__reqs">
+            ${reqHtml}
+          </div>
+        </details>
+      `);
+    });
 
     elResults.innerHTML = out.length ? out.join("") : "<p><em>No matches.</em></p>";
   }
 
-  function debounce(fn, ms) {
-    let t = null;
-    return (...args) => {
-      if (t) window.clearTimeout(t);
-      t = window.setTimeout(() => fn(...args), ms);
-    };
-  }
+  // wire up
+  updateCategoryOptions();
+  render();
 
-  populateSelect(elSection, buildSections(badges));
-  populateSelect(elCategory, buildCategories(badges));
-
-  const rerender = () =>
-    renderBadges(badges, elSearch.value, elSection.value, elCategory.value, !!elBorderline.checked);
-
-  const rerenderDebounced = debounce(rerender, 120);
-
-  elSearch.addEventListener("input", rerenderDebounced);
-  elSection.addEventListener("change", rerender);
-  elCategory.addEventListener("change", rerender);
-  elBorderline.addEventListener("change", rerender);
-
-  // Render immediately, then load activities and render again
-  rerender();
-  loadActivitiesIndex().then(rerender);
+  elSection.addEventListener("change", () => {
+    updateCategoryOptions();
+    render();
+  });
+  elCategory.addEventListener("change", render);
+  elIncludeBorderline.addEventListener("change", render);
+  elSearch.addEventListener("input", () => {
+    // simple debounce
+    window.clearTimeout(render._t);
+    render._t = window.setTimeout(render, 120);
+  });
 })();
