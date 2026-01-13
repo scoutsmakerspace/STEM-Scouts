@@ -2,12 +2,12 @@
 title: Test badge 4
 id: test-badge-4
 status: active
-icon: /assets/images/badges/test-badge-2.png
+icon: /assets/images/badges/test-badge-4.png
 section: beavers
 category: Activity Badges
 requirements:
-  - no: 1
-    text: asdadadasdad
-  - no: 2
-    text: asdasdasdad
+- false: 1
+  text: asdadadasdad
+- false: 2
+  text: asdasdasdad
 ---
