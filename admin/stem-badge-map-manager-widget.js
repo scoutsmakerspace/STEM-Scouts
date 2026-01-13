@@ -224,7 +224,36 @@
     return idx;
   }
 
-  function findReqEntry(badgeEntry, reqNo) {
+  
+  function pruneMappingAgainstMaster(arr, masterBadges) {
+    const out = [];
+    const masterById = new Map();
+    (masterBadges || []).forEach((b) => masterById.set(String(b.id), b));
+
+    (arr || []).forEach((entry) => {
+      if (!entry || !entry.badge_id) return;
+      const bid = String(entry.badge_id);
+      const master = masterById.get(bid);
+      if (!master) return; // deleted/retired -> drop
+
+      // Prune stem_requirements to only those that still exist in master requirements
+      const allowed = new Set((master.requirements || []).map((r) => String(r.no)));
+      const sr = Array.isArray(entry.stem_requirements) ? entry.stem_requirements : [];
+      const kept = sr.filter((r) => {
+        const ref = r && (r.ref ?? null);
+        const rid = r && (r.rid ?? "");
+        const no = ref != null ? String(ref) : (String(rid).includes("::") ? String(rid).split("::").pop() : "");
+        return no && allowed.has(String(no));
+      });
+
+      const next = Object.assign({}, entry, { stem_requirements: kept });
+      out.push(next);
+    });
+
+    return out;
+  }
+
+function findReqEntry(badgeEntry, reqNo) {
     const list = (badgeEntry && badgeEntry.stem_requirements) || [];
     const no = String(reqNo);
     return (
@@ -337,7 +366,11 @@
       },
 
       hydrateFromValue(value) {
-        const arr = normaliseValueToArray(value);
+        let arr = normaliseValueToArray(value);
+        // Drop mappings for badges that no longer exist in the master list (deleted/retired)
+        if (this.state && Array.isArray(this.state.badges) && this.state.badges.length) {
+          arr = pruneMappingAgainstMaster(arr, this.state.badges);
+        }
         const hash = JSON.stringify(arr);
 
         if (hash === this.state.valueHash) return;
