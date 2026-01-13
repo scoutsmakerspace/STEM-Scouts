@@ -8,20 +8,15 @@ badge_type: Activity
 completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-- false: 1
-  text: 1. Design a cover for your favourite book.
-- false: 2
-  text: 2. Read at least six books.
-- false: 3
-  text: 3. Show that you know how to look after a book.
-- false: 4
-  text: 4. Make a bookmark and explain what bookmarks are for.
+- Design a cover for your favourite book.
+- Read at least six books.
+- Show that you know how to look after a book.
+- Make a bookmark and explain what bookmarks are for.
 icon: /assets/images/badges/beavers-book-reader.png
 ---
-
 ## Requirements
 
-- **1.** 1. Design a cover for your favourite book.
-- **2.** 2. Read at least six books.
-- **3.** 3. Show that you know how to look after a book.
-- **4.** 4. Make a bookmark and explain what bookmarks are for.
+- **1.** Design a cover for your favourite book.
+- **2.** Read at least six books.
+- **3.** Show that you know how to look after a book.
+- **4.** Make a bookmark and explain what bookmarks are for.

@@ -8,17 +8,13 @@ badge_type: Activity
 completion_rules: Complete ALL 3 requirements
 requirements_count: 3
 requirements:
-- false: 1
-  text: 1. Show how to use a camera to take a good photograph.
-- false: 2
-  text: 2. Take 10 or more photos and show these to your Lodge or an adult.
-- false: 3
-  text: 3. Make something using photos you have taken.
+- Show how to use a camera to take a good photograph.
+- Take 10 or more photos and show these to your Lodge or an adult.
+- Make something using photos you have taken.
 icon: /assets/images/badges/beavers-photographer.png
 ---
-
 ## Requirements
 
-- **1.** 1. Show how to use a camera to take a good photograph.
-- **2.** 2. Take 10 or more photos and show these to your Lodge or an adult.
-- **3.** 3. Make something using photos you have taken.
+- **1.** Show how to use a camera to take a good photograph.
+- **2.** Take 10 or more photos and show these to your Lodge or an adult.
+- **3.** Make something using photos you have taken.

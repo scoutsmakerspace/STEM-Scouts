@@ -8,28 +8,19 @@ badge_type: Staged Activity
 completion_rules: Complete ALL 7 requirements
 requirements_count: 7
 requirements:
-- false: 1
-  text: Using a 1:25000 scale Ordnance Survey map and compass, navigate along a course
-    of at least six ‘legs’.
-- false: 2
-  text: Using only a compass and pacing, successfully navigate a course of at least
-    four ‘legs’.
-- false: 3
-  text: Using only a map, successfully navigate a course of at least four ‘legs’.
-- false: 4
-  text: Make two sketch maps – one of an urban and one of a rural setting – that would
-    enable a stranger to travel successfully between two points.
-- false: 5
-  text: Complete at least three different orienteering courses in a reasonable time.
-- false: 6
-  text: Complete a comprehensive route plan for a 20km hill walking route, set by
-    an appropriate adult.
-- false: 7
-  text: Show you know what the most appropriate clothing and equipment is for your
-    journey.
+- Using a 1:25000 scale Ordnance Survey map and compass, navigate along a course of
+  at least six ‘legs’.
+- Using only a compass and pacing, successfully navigate a course of at least four
+  ‘legs’.
+- Using only a map, successfully navigate a course of at least four ‘legs’.
+- Make two sketch maps – one of an urban and one of a rural setting – that would enable
+  a stranger to travel successfully between two points.
+- Complete at least three different orienteering courses in a reasonable time.
+- Complete a comprehensive route plan for a 20km hill walking route, set by an appropriate
+  adult.
+- Show you know what the most appropriate clothing and equipment is for your journey.
 icon: /assets/images/badges/staged-navigator-stage-5.png
 ---
-
 ## Requirements
 
 - **1.** Using a 1:25000 scale Ordnance Survey map and compass, navigate along a course of at least six ‘legs’.

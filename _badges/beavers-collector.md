@@ -8,17 +8,13 @@ badge_type: Activity
 completion_rules: Complete ALL 3 requirements
 requirements_count: 3
 requirements:
-- false: 1
-  text: 1. Spend at least six weeks making a collection.
-- false: 2
-  text: 2. Show your Colony or Lodge a sample of things from your collection.
-- false: 3
-  text: 3. Tell others in your Colony or Lodge about your collection.
+- Spend at least six weeks making a collection.
+- Show your Colony or Lodge a sample of things from your collection.
+- Tell others in your Colony or Lodge about your collection.
 icon: /assets/images/badges/beavers-collector.png
 ---
-
 ## Requirements
 
-- **1.** 1. Spend at least six weeks making a collection.
-- **2.** 2. Show your Colony or Lodge a sample of things from your collection.
-- **3.** 3. Tell others in your Colony or Lodge about your collection.
+- **1.** Spend at least six weeks making a collection.
+- **2.** Show your Colony or Lodge a sample of things from your collection.
+- **3.** Tell others in your Colony or Lodge about your collection.

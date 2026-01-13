@@ -8,34 +8,21 @@ badge_type: Staged Activity
 completion_rules: Complete ALL 11 requirements
 requirements_count: 11
 requirements:
-- false: 1
-  text: Learn about where to swim safely in different locations and find out about
-    rescue equipment.
-- false: 2
-  text: Take part in a warm up before getting in the pool.
-- false: 3
-  text: Demonstrate how to get in and out of the water safely using two different
-    methods of entry.
-- false: 4
-  text: Swim confidently on your front for 25 metres without stopping.
-- false: 5
-  text: Swim confidently on your back for 25 metres without stopping.
-- false: 6
-  text: Swim 25 metres using either the breaststroke or butterfly swimming techniques.
-- false: 7
-  text: Demonstrate the breaststroke leg movements whilst holding onto the side of
-    the pool.
-- false: 8
-  text: Swim 100 metres in a stroke of your choice.
-- false: 9
-  text: Tread water for 30 seconds.
-- false: 10
-  text: Swim in clothes for 10 metres.
-- false: 11
-  text: Scull for 5 metres on your front or your back.
+- Learn about where to swim safely in different locations and find out about rescue
+  equipment.
+- Take part in a warm up before getting in the pool.
+- Demonstrate how to get in and out of the water safely using two different methods
+  of entry.
+- Swim confidently on your front for 25 metres without stopping.
+- Swim confidently on your back for 25 metres without stopping.
+- Swim 25 metres using either the breaststroke or butterfly swimming techniques.
+- Demonstrate the breaststroke leg movements whilst holding onto the side of the pool.
+- Swim 100 metres in a stroke of your choice.
+- Tread water for 30 seconds.
+- Swim in clothes for 10 metres.
+- Scull for 5 metres on your front or your back.
 icon: /assets/images/badges/staged-swimmer-stage-4.png
 ---
-
 ## Requirements
 
 - **1.** Learn about where to swim safely in different locations and find out about rescue equipment.

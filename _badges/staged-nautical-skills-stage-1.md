@@ -8,15 +8,11 @@ badge_type: Staged Activity
 completion_rules: Complete ALL 3 requirements
 requirements_count: 3
 requirements:
-- false: 1
-  text: Take part in a water activity taster session.
-- false: 2
-  text: Correctly identify the different equipment used for the activity you chose.
-- false: 3
-  text: Gain an understanding of the safety equipment used.
+- Take part in a water activity taster session.
+- Correctly identify the different equipment used for the activity you chose.
+- Gain an understanding of the safety equipment used.
 icon: /assets/images/badges/staged-nautical-skills-stage-1.png
 ---
-
 ## Requirements
 
 - **1.** Take part in a water activity taster session.

@@ -8,24 +8,17 @@ badge_type: Staged Activity
 completion_rules: Complete ALL 6 requirements
 requirements_count: 6
 requirements:
-- false: 1
-  text: Take part in a water activity taster session for at least one hour.
-- false: 2
-  text: Show that you understand what to do in the event of a capsize or man overboard
-    situation in your chosen activity.
-- false: 3
-  text: Demonstrate that you can tie either a figure of eight or a reef knot. Describe
-    how you use them in water activities.
-- false: 4
-  text: Name the basic equipment you used during your chosen activity.
-- false: 5
-  text: List some clothing that is not suitable for your chosen activity, and explain
-    the reasons why.
-- false: 6
-  text: Show that you know the safety equipment you used and why it’s needed.
+- Take part in a water activity taster session for at least one hour.
+- Show that you understand what to do in the event of a capsize or man overboard situation
+  in your chosen activity.
+- Demonstrate that you can tie either a figure of eight or a reef knot. Describe how
+  you use them in water activities.
+- Name the basic equipment you used during your chosen activity.
+- List some clothing that is not suitable for your chosen activity, and explain the
+  reasons why.
+- Show that you know the safety equipment you used and why it’s needed.
 icon: /assets/images/badges/staged-nautical-skills-stage-2.png
 ---
-
 ## Requirements
 
 - **1.** Take part in a water activity taster session for at least one hour.

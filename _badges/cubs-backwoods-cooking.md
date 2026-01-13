@@ -8,22 +8,15 @@ badge_type: Activity
 completion_rules: Complete ALL 6 requirements
 requirements_count: 6
 requirements:
-- false: 1
-  text: Show how to light a fire
-- false: 2
-  text: Help someone prepare a fire for cooking on
-- false: 3
-  text: Cook something using a billy can
-- false: 4
-  text: Cook something in the embers of a fire
-- false: 5
-  text: Cook something on a stick
-- false: 6
-  text: Show how to make the fire safe when you have finished with it. Extinguish
-    the fire and make the area safe
+- Show how to light a fire
+- Help someone prepare a fire for cooking on
+- Cook something using a billy can
+- Cook something in the embers of a fire
+- Cook something on a stick
+- Show how to make the fire safe when you have finished with it. Extinguish the fire
+  and make the area safe
 icon: /assets/images/badges/cubs-backwoods-cooking.png
 ---
-
 ## Requirements
 
 - **1.** Show how to light a fire

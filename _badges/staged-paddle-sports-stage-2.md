@@ -8,23 +8,15 @@ badge_type: Staged Activity
 completion_rules: Choose 1 of 2 options
 requirements_count: 7
 requirements:
-- false: 1
-  text: Lift, carry and launch a boat.
-- false: 2
-  text: Paddle forward in a straight line.
-- false: 3
-  text: Show you can steer around a course.
-- false: 4
-  text: Show you can stop the boat safely.
-- false: 5
-  text: Show you can exit the boat onto the shore safely.
-- false: 6
-  text: Capsize, swim to the shore and empty the boat of water.
-- false: 1
-  text: Gain the British Canoeing Paddle Discover Award.
+- Lift, carry and launch a boat.
+- Paddle forward in a straight line.
+- Show you can steer around a course.
+- Show you can stop the boat safely.
+- Show you can exit the boat onto the shore safely.
+- Capsize, swim to the shore and empty the boat of water.
+- Gain the British Canoeing Paddle Discover Award.
 icon: /assets/images/badges/staged-paddle-sports-stage-2.png
 ---
-
 ## Requirements
 
 - **1.** Lift, carry and launch a boat.
@@ -33,4 +25,4 @@ icon: /assets/images/badges/staged-paddle-sports-stage-2.png
 - **4.** Show you can stop the boat safely.
 - **5.** Show you can exit the boat onto the shore safely.
 - **6.** Capsize, swim to the shore and empty the boat of water.
-- **1.** Gain the British Canoeing Paddle Discover Award.
+- **7.** Gain the British Canoeing Paddle Discover Award.

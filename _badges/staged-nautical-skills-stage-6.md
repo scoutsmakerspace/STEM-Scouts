@@ -8,23 +8,16 @@ badge_type: Staged Activity
 completion_rules: Complete ALL 6 requirements
 requirements_count: 6
 requirements:
-- false: 1
-  text: Develop your skills in one water based activity to a level where you can operate
-    the watercraft safely.
-- false: 2
-  text: Learn about flares, distress signals and marine VHF radio, and when it is
-    appropriate to use them.
-- false: 3
-  text: Learn about and explain the access and mooring issues in your chosen activity.
-- false: 4
-  text: Learn about and explain the ‘nautical rules of the road’.
-- false: 5
-  text: Show an understanding of the maintenance your watercraft needs.
-- false: 6
-  text: Plan and take part in an overnight expedition by water with others.
+- Develop your skills in one water based activity to a level where you can operate
+  the watercraft safely.
+- Learn about flares, distress signals and marine VHF radio, and when it is appropriate
+  to use them.
+- Learn about and explain the access and mooring issues in your chosen activity.
+- Learn about and explain the ‘nautical rules of the road’.
+- Show an understanding of the maintenance your watercraft needs.
+- Plan and take part in an overnight expedition by water with others.
 icon: /assets/images/badges/staged-nautical-skills-stage-6.png
 ---
-
 ## Requirements
 
 - **1.** Develop your skills in one water based activity to a level where you can operate the watercraft safely.

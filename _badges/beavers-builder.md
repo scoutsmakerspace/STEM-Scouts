@@ -8,25 +8,19 @@ badge_type: Activity
 completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-- false: 1
-  text: 1. Design a model of something you would like to build. The design can be
-    on paper or a computer.
-- false: 2
-  text: 2. Make a list of all the things you are going to need to build your idea.
-- false: 3
-  text: 3. Build your idea using the things you need. Your model could be made using
-    building blocks, gears or recycled items such as toilet roll tubes or cardboard
-    boxes.
-- false: 4
-  text: 4. Explain to your Lodge Leader, Explorer Scout Young Leader or Beaver Leader
-    how long your build took to finish, if anything went wrong and what you would
-    change if you built it again.
+- Design a model of something you would like to build. The design can be on paper
+  or a computer.
+- Make a list of all the things you are going to need to build your idea.
+- Build your idea using the things you need. Your model could be made using building
+  blocks, gears or recycled items such as toilet roll tubes or cardboard boxes.
+- Explain to your Lodge Leader, Explorer Scout Young Leader or Beaver Leader how long
+  your build took to finish, if anything went wrong and what you would change if you
+  built it again.
 icon: /assets/images/badges/beavers-builder.png
 ---
-
 ## Requirements
 
-- **1.** 1. Design a model of something you would like to build. The design can be on paper or a computer.
-- **2.** 2. Make a list of all the things you are going to need to build your idea.
-- **3.** 3. Build your idea using the things you need. Your model could be made using building blocks, gears or recycled items such as toilet roll tubes or cardboard boxes.
-- **4.** 4. Explain to your Lodge Leader, Explorer Scout Young Leader or Beaver Leader how long your build took to finish, if anything went wrong and what you would change if you built it again.
+- **1.** Design a model of something you would like to build. The design can be on paper or a computer.
+- **2.** Make a list of all the things you are going to need to build your idea.
+- **3.** Build your idea using the things you need. Your model could be made using building blocks, gears or recycled items such as toilet roll tubes or cardboard boxes.
+- **4.** Explain to your Lodge Leader, Explorer Scout Young Leader or Beaver Leader how long your build took to finish, if anything went wrong and what you would change if you built it again.

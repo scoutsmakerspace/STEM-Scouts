@@ -8,17 +8,12 @@ badge_type: Staged Activity
 completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-- false: 1
-  text: Skill
-- false: 2
-  text: Performance
-- false: 3
-  text: Knowledge
-- false: 4
-  text: Interest
+- Skill
+- Performance
+- Knowledge
+- Interest
 icon: /assets/images/badges/staged-musician-stage-2.png
 ---
-
 ## Requirements
 
 - **1.** Skill

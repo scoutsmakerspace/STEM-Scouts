@@ -8,22 +8,15 @@ badge_type: Staged Activity
 completion_rules: Complete ALL 5 requirements
 requirements_count: 5
 requirements:
-- false: 1
-  text: Learn how to read a six figure grid reference.
-- false: 2
-  text: Understand contour lines on an Ordnance Survey map.
-- false: 3
-  text: Using 1:50000 and 1:25000 scale Ordnance Survey maps show that you understand
-    the meaning of scale.
-- false: 4
-  text: Follow and walk a route of at least 5km, using a map to navigate for at least
-    part of the journey.
-- false: 5
-  text: Show you know how to dress appropriately and what kit you and your group will
-    need.
+- Learn how to read a six figure grid reference.
+- Understand contour lines on an Ordnance Survey map.
+- Using 1:50000 and 1:25000 scale Ordnance Survey maps show that you understand the
+  meaning of scale.
+- Follow and walk a route of at least 5km, using a map to navigate for at least part
+  of the journey.
+- Show you know how to dress appropriately and what kit you and your group will need.
 icon: /assets/images/badges/staged-navigator-stage-3.png
 ---
-
 ## Requirements
 
 - **1.** Learn how to read a six figure grid reference.
