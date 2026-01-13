@@ -1,0 +1,701 @@
+---
+---
+
+@import "minimal-mistakes";
+
+
+/* =========================
+   Risk Assessment styling
+   ========================= */
+
+.ra-titleblock { margin-bottom: 1rem; }
+.ra-subtle { opacity: .85; }
+
+.ra-card{
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: #fff;
+  margin: 1rem 0;
+}
+
+.ra-header-table{
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.ra-header-table th{
+  background: rgba(0,0,0,.05);
+  font-weight: 700;
+  padding: .6rem .7rem;
+  border: 1px solid rgba(0,0,0,.12);
+  vertical-align: top;
+}
+.ra-header-table td{
+  padding: .6rem .7rem;
+  border: 1px solid rgba(0,0,0,.12);
+  vertical-align: top;
+}
+
+.ra-main-table{
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.ra-main-table th{
+  background: rgba(0,0,0,.05);
+  padding: .65rem .75rem;
+  border: 1px solid rgba(0,0,0,.12);
+  vertical-align: top;
+}
+.ra-headnote{
+  margin-top: .35rem;
+  font-weight: 400;
+  opacity: .8;
+  font-size: .92em;
+}
+.ra-main-table td{
+  padding: .65rem .75rem;
+  border: 1px solid rgba(0,0,0,.12);
+  vertical-align: top;
+}
+.ra-main-table tbody tr:nth-child(even) td{
+  background: rgba(0,0,0,.015);
+}
+
+/* Print-friendly */
+@media print{
+  .masthead, .page__footer, .page__meta, .toc { display: none !important; }
+  .ra-card{ break-inside: avoid; }
+}
+
+/* =========================
+   Site typography tweaks
+   (make it feel like a handbook, not a blog)
+   ========================= */
+
+/* Reduce base size slightly */
+html { font-size: 16px; } /* keep standard browser default */
+body { font-size: 0.95rem; line-height: 1.55; }
+
+/* Tone down headings */
+.page__content h1 { font-size: 1.9rem; margin-top: 0.8em; }
+.page__content h2 { font-size: 1.45rem; margin-top: 1.2em; }
+.page__content h3 { font-size: 1.15rem; margin-top: 1.0em; }
+
+/* Reduce the big divider look under headings */
+.page__content h2 {
+  padding-bottom: 0.25rem;
+  border-bottom-width: 1px;
+  margin-bottom: 0.6rem;
+}
+
+/* Lists a bit tighter (your kit list / steps) */
+.page__content ul,
+.page__content ol { margin: 0.4rem 0 0.9rem 1.2rem; }
+.page__content li { margin: 0.25rem 0; }
+
+/* =========================
+   Card sections (opt-in per page)
+   ========================= */
+
+.section-card{
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 12px;
+  background: #fff;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.section-card__header{
+  padding: .65rem .9rem;
+  font-weight: 800;
+  background: rgba(0,0,0,.04);
+  border-bottom: 1px solid rgba(0,0,0,.10);
+}
+
+.section-card__body{
+  padding: .75rem .9rem;
+}
+
+/* Tidy lists inside cards */
+.section-card__body ul,
+.section-card__body ol{
+  margin: .4rem 0 .2rem 1.1rem;
+}
+
+.section-card__body li{
+  margin: .2rem 0;
+}
+
+/* =========================
+   Activity template styling
+   ========================= */
+
+.activity-card{
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: #fff;
+  margin: 1rem 0;
+}
+
+.activity-card__title{
+  margin: 0 0 .6rem 0;
+  font-size: 1.15rem;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.activity-glance{
+  margin: .2rem 0 .8rem 1.1rem;
+}
+
+.activity-ra{
+  margin-top: .25rem;
+}
+
+.activity-muted{
+  opacity: .75;
+}
+
+/* Tighten typography site-wide */
+.page__content {
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* Reduce heading sizes + spacing */
+.page__content h1 { font-size: 1.85rem; margin: 0.7em 0 0.45em; }
+.page__content h2 { font-size: 1.35rem; margin: 1.0em 0 0.5em; }
+.page__content h3 { font-size: 1.10rem; margin: 0.9em 0 0.4em; }
+
+/* Make the h2 underline/divider subtle */
+.page__content h2 {
+  padding-bottom: 0.2rem;
+  border-bottom-width: 1px;
+}
+
+/* Tighter lists */
+.page__content ul,
+.page__content ol { margin: 0.35rem 0 0.85rem 1.15rem; }
+.page__content li { margin: 0.2rem 0; }
+
+.activity-warning {
+  display: inline-block;
+  padding: 0.4em 0.7em;
+  margin-left: 0.3em;
+  font-weight: 600;
+  color: #7a1f1f;
+  background-color: #fdeaea;
+  border: 1px solid #f5bcbc;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.activity-warning::before {
+  content: "⚠ ";
+}
+
+/* =========================
+   Risk Assessment index cards
+   ========================= */
+
+.ra-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.ra-card {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.ra-card__title {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.1rem;
+}
+
+.ra-card__title a {
+  text-decoration: none;
+}
+
+.ra-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ra-chip {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid #e6e6e6;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: #555;
+  background: #fafafa;
+}
+
+/* Two columns on larger screens */
+@media (min-width: 900px) {
+  .ra-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* =========================
+   RA index search box
+   ========================= */
+
+.ra-search {
+  margin: 1rem 0 1.25rem 0;
+}
+
+.ra-search__label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.ra-search__input {
+  width: 100%;
+  max-width: 46rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.ra-search__count {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* =========================
+   RA index page header
+   ========================= */
+
+.ra-index-intro {
+  margin: 0.5rem 0 1rem 0;
+}
+
+.ra-index-warning {
+  padding: 0.9rem 1rem;
+  border: 1px solid #f5bcbc;
+  background: #fdeaea;
+  border-radius: 10px;
+  margin: 0;
+}
+
+/* =========================
+   Full-width RA index page
+   ========================= */
+
+/* Remove the article-style width constraint */
+.ra-index .page__content,
+.ra-index .page__inner-wrap,
+.ra-index .page__main {
+  max-width: none;
+}
+
+/* Let content span almost full viewport */
+.ra-index .page__content {
+  width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* On very large screens, add a gentle cap so it doesn't feel ridiculous */
+@media (min-width: 1600px) {
+  .ra-index .page__content {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* =========================
+   Force full-width RA index page (Minimal Mistakes)
+   Works whether 'ra-index' is on the same element or a parent.
+   ========================= */
+
+.page__content.ra-index,
+.ra-index .page__content {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.page__inner-wrap.ra-index,
+.ra-index .page__inner-wrap {
+  max-width: none !important;
+}
+
+.page__main.ra-index,
+.ra-index .page__main {
+  max-width: none !important;
+}
+
+/* Give it proper breathing room edge-to-edge */
+.page__content.ra-index,
+.ra-index .page__content {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+/* Extra space on huge screens */
+@media (min-width: 1600px) {
+  .page__content.ra-index,
+  .ra-index .page__content {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+}
+
+/* =========================
+   Activities index intro
+   ========================= */
+
+.activities-intro {
+  max-width: 60rem;
+  margin: 0.5rem auto 1.5rem auto;
+  font-size: 1.05rem;
+  color: #555;
+}
+
+/* =========================
+   Splash layout spacing fix (Activities index)
+   ========================= */
+
+.activities-index .initial-content {
+  margin-top: 2.5rem;
+}
+
+/* =========================
+   Full-width intro text (Activities index)
+   ========================= */
+
+.activities-index .activities-intro p {
+  max-width: none;
+}
+
+/* =========================
+   Activities index (directory style)
+   ========================= */
+
+.section-quicklinks{
+  margin-top: .75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+}
+
+.section-quicklinks__label{
+  font-weight: 700;
+  margin-right: .25rem;
+}
+
+.section-chip{
+  display: inline-block;
+  padding: .35rem .65rem;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 999px;
+  background: #fff;
+  text-decoration: none;
+  font-size: .92rem;
+}
+
+.section-chip:hover{
+  text-decoration: none;
+  background: rgba(0,0,0,.03);
+}
+
+.activity-index{
+  margin-top: 1rem;
+}
+
+.activity-index__item{
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.activity-index__title{
+  margin: 0 0 .35rem 0;
+  font-size: 1.15rem;
+}
+
+.activity-index__meta{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin-bottom: .35rem;
+}
+
+.meta-chip{
+  display: inline-block;
+  padding: .22rem .55rem;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 999px;
+  background: rgba(0,0,0,.02);
+  font-size: .85rem;
+  color: rgba(0,0,0,.72);
+}
+
+.activity-index__summary{
+  margin: 0;
+  color: rgba(0,0,0,.75);
+  max-width: 70rem;
+}
+
+/* =========================
+   Activities header + filters (polished)
+   ========================= */
+
+.activities-header {
+  max-width: 70rem;
+  margin: 0 auto 1.25rem auto;
+}
+
+.activities-intro {
+  margin-bottom: .75rem;
+}
+
+/* Filters: make it lighter and tighter */
+.filters-bar {
+  margin: 1rem 0 1rem 0;
+  padding: .85rem 0;
+  border-top: 1px solid rgba(0,0,0,.10);
+  border-bottom: 1px solid rgba(0,0,0,.10);
+  background: transparent;
+}
+
+.filters-bar__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  align-items: flex-end;
+}
+
+.filters-bar__label {
+  flex: 1 1 320px;
+}
+
+.filters-bar__label span {
+  display: block;
+  font-weight: 700;
+  margin-bottom: .25rem;
+  font-size: .95rem;
+}
+
+.filters-bar__input {
+  width: 100%;
+  padding: .55rem .7rem;
+  border: 1px solid rgba(0,0,0,.18);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.filters-bar__btn {
+  padding: .55rem .85rem;
+  border: 1px solid rgba(0,0,0,.18);
+  border-radius: 10px;
+  background: #fff;
+  white-space: nowrap;
+}
+
+.filters-bar__count {
+  margin-left: auto;
+  color: rgba(0,0,0,.55);
+  font-weight: 700;
+  align-self: center;
+}
+
+/* Advanced: only when open, it becomes a subtle panel */
+.filters-advanced {
+  margin-top: .85rem;
+  padding: .85rem;
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 12px;
+  background: rgba(0,0,0,.02);
+
+  display: grid;
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
+  gap: .75rem;
+}
+
+@media (max-width: 1100px) {
+  .filters-advanced { grid-template-columns: repeat(2, minmax(150px, 1fr)); }
+}
+@media (max-width: 600px) {
+  .filters-advanced { grid-template-columns: 1fr; }
+}
+
+.filters-advanced label span {
+  display: block;
+  font-weight: 700;
+  margin-bottom: .25rem;
+  font-size: .92rem;
+  color: rgba(0,0,0,.75);
+}
+
+.filters-advanced select {
+  width: 100%;
+  padding: .55rem .7rem;
+  border: 1px solid rgba(0,0,0,.18);
+  border-radius: 10px;
+  background: #fff;
+}
+
+/* Ensure hidden really hides even if something overrides [hidden] */
+.filters-advanced[hidden] {
+  display: none !important;
+}
+
+
+.activities-header {
+  max-width: 70rem;
+  margin: 0 auto 1rem auto;
+}
+
+.activities-intro {
+  margin-bottom: .75rem;
+}
+
+.activity-index {
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+/* Layout: stack controls nicely */
+.filters-bar__row{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .6rem;
+  align-items: start;
+}
+
+.filters-bar__label{
+  width: 100%;
+}
+
+/* Button row under search */
+.filters-bar__actions{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+}
+
+/* Inputs + buttons: same height and width */
+.filters-bar__input,
+.filters-bar__btn{
+  height: 44px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Buttons: match theme (use link color, not black) */
+.filters-bar__btn{
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.18);
+  color: inherit;          /* <- key: matches your site font colour */
+  font-weight: 600;
+}
+
+.filters-bar__btn:hover{
+  background: rgba(0,0,0,.03);
+}
+
+.filters-bar__btn{
+  color: $link-color;
+}
+
+/* =========================
+   Activities page header polish
+   ========================= */
+
+.activities-intro__lead{
+  margin: 0 0 .75rem 0;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: rgba(0,0,0,.72);
+  max-width: 62rem; /* stops it feeling like a huge paragraph */
+}
+
+.section-quicklinks{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+}
+
+.section-quicklinks__label{
+  font-weight: 800;
+  margin-right: .25rem;
+  color: rgba(0,0,0,.78);
+}
+
+.section-chip{
+  display: inline-block;
+  padding: .35rem .65rem;
+  border: 1px solid rgba(0,0,0,.14);
+  border-radius: 999px;
+  background: #fff;
+  text-decoration: none;
+  font-size: .92rem;
+}
+
+.section-chip:hover{
+  background: rgba(0,0,0,.03);
+  text-decoration: none;
+}
+
+.section-chip--active{
+  background: rgba(0,0,0,.07);
+  border-color: rgba(0,0,0,.25);
+  font-weight: 700;
+  cursor: default;
+}
+
+.activities-intro{
+  padding-bottom: .75rem;
+}
+
+.activities-header {
+  margin-top: 2.5rem;   /* ← this is the key line */
+}
+
+.activities-index .initial-content { padding-top: 2.75rem; }
+
+/* =========================
+   Activity step images (size-limited)
+   ========================= */
+
+.activity-steps img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+
+  /* Hard cap so huge photos don’t take over the page */
+  max-height: 420px;
+  object-fit: contain;
+
+  display: block;
+  margin: 0.75rem 0;
+
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+
+
+/* Badge icons (activities) */
+.activity-badge__icon{
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  object-fit: contain;
+  border-radius: 8px;
+}
