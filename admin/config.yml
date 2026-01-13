@@ -352,7 +352,9 @@ collections:
     label_singular: Badge
     folder: _badges
     create: true
-    delete: true
+    # Don't delete badges – retire them.
+    # This keeps mapping & activity references safe.
+    delete: false
     slug: "{{fields.id}}"
     extension: md
     format: frontmatter
@@ -372,10 +374,6 @@ collections:
         widget: string
         hint: "Canonical badge ID used everywhere. Use lowercase letters, numbers and hyphens (e.g. test-badge). Don’t change once published."
         pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and single hyphens only (e.g. test-badge).']
-      - label: keep
-        name: keep
-        widget: hidden
-        default: "yes"
       - { label: Status, name: status, widget: select, options: ["active", "retired"], default: "active" }
       - label: Icon
         name: icon
