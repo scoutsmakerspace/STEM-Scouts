@@ -8,18 +8,13 @@ badge_type: Leadership
 completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-- false: 1
-  text: Lead your Six in an activity or captain a team.
-- false: 2
-  text: Help a new Cub to join in with the Pack meeting.
-- false: 3
-  text: Teach another Cub a new skill.
-- false: 4
-  text: Ask your Six or team what they want to do in Cubs, tell your leaders and help
-    to make sure that it happens.
+- Lead your Six in an activity or captain a team.
+- Help a new Cub to join in with the Pack meeting.
+- Teach another Cub a new skill.
+- Ask your Six or team what they want to do in Cubs, tell your leaders and help to
+  make sure that it happens.
 icon: /assets/images/badges/cubs-team-leader.png
 ---
-
 ## Requirements
 
 - **1.** Lead your Six in an activity or captain a team.

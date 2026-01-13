@@ -8,28 +8,17 @@ badge_type: Activity
 completion_rules: Complete 2 of 9 requirements
 requirements_count: 9
 requirements:
-- false: 1
-  text: Help to plan and perform some recorded entertainment, like a video or audio
-    story.
-- false: 2
-  text: Take part in a show, concert or band performance
-- false: 3
-  text: Make up and perform a dance to a piece of music of your choice
-- false: 4
-  text: Help plan and perform a series of magic tricks.
-- false: 5
-  text: Help to make up a mime or play, then perform it
-- false: 6
-  text: Perform a puppet play or shadowgraph using puppets that you have made.
-- false: 7
-  text: Sing two songs
-- false: 8
-  text: Perform some folk or traditional dance
-- false: 9
-  text: Make a selection of simple rhythm instruments
+- Help to plan and perform some recorded entertainment, like a video or audio story.
+- Take part in a show, concert or band performance
+- Make up and perform a dance to a piece of music of your choice
+- Help plan and perform a series of magic tricks.
+- Help to make up a mime or play, then perform it
+- Perform a puppet play or shadowgraph using puppets that you have made.
+- Sing two songs
+- Perform some folk or traditional dance
+- Make a selection of simple rhythm instruments
 icon: /assets/images/badges/cubs-entertainer.png
 ---
-
 ## Requirements
 
 - **1.** Help to plan and perform some recorded entertainment, like a video or audio story.

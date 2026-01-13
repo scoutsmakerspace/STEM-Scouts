@@ -8,25 +8,20 @@ badge_type: Activity
 completion_rules: Complete 1 of 4 requirements
 requirements_count: 4
 requirements:
-- false: 1
-  text: Hold The Scout Association’s Adventurous Activity Personal Permit for Power
-    Boating and meet the requirements for the Royal Yachting Association’s National
-    Powerboat Certificate 2.
-- false: 2
-  text: Hold The Scout Association’s Adventurous Activity Leadership Permit for Narrow
-    Boating and meet the requirements for the Royal Yachting Association’s Inland
-    Water Helmsman Certificate or the Certificate of Community Boat Management.
-- false: 3
-  text: Hold The Scout Association’s Adventurous Activity Personal Permit for Kite
-    Surfing and meet the requirements for the BKSA (British Kite Surfing Association)
-    Level 2.
-- false: 4
-  text: Hold The Scout Association’s Adventurous Activity Personal Permit for Windsurfing
-    and meet the requirements for the RYA (Royal Yachting Association) Youth Windsurfing
-    Scheme Stage Two.
+- Hold The Scout Association’s Adventurous Activity Personal Permit for Power Boating
+  and meet the requirements for the Royal Yachting Association’s National Powerboat
+  Certificate 2.
+- Hold The Scout Association’s Adventurous Activity Leadership Permit for Narrow Boating
+  and meet the requirements for the Royal Yachting Association’s Inland Water Helmsman
+  Certificate or the Certificate of Community Boat Management.
+- Hold The Scout Association’s Adventurous Activity Personal Permit for Kite Surfing
+  and meet the requirements for the BKSA (British Kite Surfing Association) Level
+  2.
+- Hold The Scout Association’s Adventurous Activity Personal Permit for Windsurfing
+  and meet the requirements for the RYA (Royal Yachting Association) Youth Windsurfing
+  Scheme Stage Two.
 icon: /assets/images/badges/explorers-water-activities.png
 ---
-
 ## Requirements
 
 - **1.** Hold The Scout Association’s Adventurous Activity Personal Permit for Power Boating and meet the requirements for the Royal Yachting Association’s National Powerboat Certificate 2.

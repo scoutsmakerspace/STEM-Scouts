@@ -8,24 +8,17 @@ badge_type: Activity
 completion_rules: Complete ALL 6 requirements
 requirements_count: 6
 requirements:
-- false: 1
-  text: Make at least four trips underground, with a properly authorised party, to
-    two different cave systems and kept a log. If you hold the Scout Caver Activity
-    Badge you don’t need to complete these four trips.
-- false: 2
-  text: Explain how caves are formed.
-- false: 3
-  text: Rig and use ladder pitch under supervision.
-- false: 4
-  text: Take two additional caving trips as part of a properly authorised party.
-- false: 5
-  text: Know the cave conservation code and talk about measures that can be taken
-    to promote conservation of formations and the cave environment.
-- false: 6
-  text: Study an aspect of speleology and discuss the findings.
+- Make at least four trips underground, with a properly authorised party, to two different
+  cave systems and kept a log. If you hold the Scout Caver Activity Badge you don’t
+  need to complete these four trips.
+- Explain how caves are formed.
+- Rig and use ladder pitch under supervision.
+- Take two additional caving trips as part of a properly authorised party.
+- Know the cave conservation code and talk about measures that can be taken to promote
+  conservation of formations and the cave environment.
+- Study an aspect of speleology and discuss the findings.
 icon: /assets/images/badges/explorers-caving.png
 ---
-
 ## Requirements
 
 - **1.** Make at least four trips underground, with a properly authorised party, to two different cave systems and kept a log. If you hold the Scout Caver Activity Badge you don’t need to complete these four trips.

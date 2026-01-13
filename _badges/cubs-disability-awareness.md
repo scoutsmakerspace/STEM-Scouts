@@ -8,19 +8,14 @@ badge_type: Activity
 completion_rules: Complete ALL 4 requirements
 requirements_count: 4
 requirements:
-- false: 1
-  text: Find out about two different disabilities that you could learn more about
-- false: 2
-  text: Find out more about a piece of equipment, assistive technology or adaptation
-    for disabled people that can be used at school or work.
-- false: 3
-  text: Find out about the best ways to communicate with different disabled people.
-- false: 4
-  text: Choose your favourite activity, hobby or sport and think of ways it could
-    be made more accessible
+- Find out about two different disabilities that you could learn more about
+- Find out more about a piece of equipment, assistive technology or adaptation for
+  disabled people that can be used at school or work.
+- Find out about the best ways to communicate with different disabled people.
+- Choose your favourite activity, hobby or sport and think of ways it could be made
+  more accessible
 icon: /assets/images/badges/cubs-disability-awareness.png
 ---
-
 ## Requirements
 
 - **1.** Find out about two different disabilities that you could learn more about

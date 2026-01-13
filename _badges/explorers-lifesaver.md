@@ -8,15 +8,11 @@ badge_type: Activity
 completion_rules: Complete ALL 3 requirements
 requirements_count: 3
 requirements:
-- false: 1
-  text: Demonstrate and explain how you would perform a rescue
-- false: 2
-  text: Reach the a recongised standard
-- false: 3
-  text: Explain and, where possible, demonstrate methods of rescue
+- Demonstrate and explain how you would perform a rescue
+- Reach the a recongised standard
+- Explain and, where possible, demonstrate methods of rescue
 icon: /assets/images/badges/explorers-lifesaver.png
 ---
-
 ## Requirements
 
 - **1.** Demonstrate and explain how you would perform a rescue
