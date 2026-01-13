@@ -92,9 +92,29 @@ def _heading_from_completion(completion_rules: str, has_reqs: bool) -> str:
 
 
 def _requirements_from_front_matter(fm: Dict[str, Any]) -> List[Dict[str, str]]:
+    """Return requirements as [{'no': '1', 'text': '...'}, ...].
+
+    Badge files may store requirements as either:
+      1) A list of dicts with keys like {no/text} (legacy)
+      2) A list of strings (new Badges Manager format)
+
+    We keep numbering *intrinsic* (derived from list order) for the string format.
+    """
     reqs = fm.get("requirements")
     if not isinstance(reqs, list):
         return []
+
+    # New format: list of strings
+    if reqs and all(isinstance(r, str) for r in reqs):
+        out: List[Dict[str, str]] = []
+        for i, s in enumerate(reqs, start=1):
+            t = str(s).strip()
+            if not t:
+                continue
+            out.append({"no": str(i), "text": t})
+        return out
+
+    # Legacy format: list of dicts
     out: List[Dict[str, str]] = []
     for r in reqs:
         if not isinstance(r, dict):
