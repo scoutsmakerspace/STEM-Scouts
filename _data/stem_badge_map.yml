@@ -4260,3 +4260,28 @@ badges:
         leader_prompts:
           - vdsdv
           - vdvdsvd
+  - badge_id: test-badge-2
+    title: Test badge 2
+    section: Beavers
+    section_slug: beavers
+    category: Activity Badges
+    badge_type: ""
+    stem_requirements:
+      - rid: test-badge-2::1
+        ref: "1"
+        text: 1. ADWDA
+        strength: strong
+        areas:
+          - Engineering
+        why_stem: dadasd
+        leader_prompts:
+          - asdada
+      - rid: test-badge-2::2
+        ref: "2"
+        text: 2. DFSDFSF
+        strength: strong
+        areas:
+          - Craft & build
+        why_stem: adasdasd
+        leader_prompts:
+          - asdasda
