@@ -1,4 +1,4 @@
-name: Badges: generate master + normalise icons (safe)
+name: Create Badge master index (safe)
 
 on:
   push:
@@ -6,9 +6,7 @@ on:
       - "_badges/**"
       - "assets/images/badges/**"
       - "assets/images/uploads/**"
-      - "admin/config.yml"
       - "tools/generate_badges_master.py"
-      - "_data/stem_badge_map.yml"
 
 concurrency:
   group: badges-autogen-main
@@ -19,10 +17,11 @@ permissions:
 
 jobs:
   build:
-    if: github.actor != 'github-actions[bot]'
+    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -31,56 +30,36 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install deps
+      - name: Install dependencies
         run: pip install pyyaml pillow
 
-      - name: Generate badges master + icons
+      - name: Generate JSON + icons
         run: python tools/generate_badges_master.py
 
-      - name: Prune deleted badges from mapping data
-        run: |
-          python - <<'PY'
-          import json, yaml
-          from pathlib import Path
-          master = json.loads(Path('_data/badges_master.json').read_text(encoding='utf-8'))
-          ids = set(b['id'] for b in master if isinstance(b, dict) and b.get('id'))
-          p = Path('_data/stem_badge_map.yml')
-          if p.exists():
-            data = yaml.safe_load(p.read_text(encoding='utf-8')) or {}
-            badges = data.get('badges') or []
-            before = len(badges)
-            badges = [b for b in badges if (b.get('badge_id') in ids)]
-            if len(badges) != before:
-              data['badges'] = badges
-              p.write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True), encoding='utf-8')
-              print(f'Pruned {before-len(badges)} deleted badge mappings')
-            else:
-              print('No mapping prune needed')
-          PY
-
-      - name: Commit & push (rebase retry)
+      - name: Commit and push (rebase + retry)
         shell: bash
         run: |
           if [[ -z "$(git status --porcelain)" ]]; then
-            echo "No changes."
+            echo "No changes to commit."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add admin/badges_master.json _data/badges_master.json _data/stem_badge_map.yml assets/images/badges/*.png || true
+          git add admin/badges_master.json _data/badges_master.json assets/images/badges
 
-          git commit -m "Auto-generate badges master + icons" || true
+          git commit -m "Auto-update badges master + icons" || true
 
           for i in 1 2 3 4 5; do
             echo "Push attempt $i..."
             git fetch origin main
-            git rebase origin/main || (git rebase --abort && git reset --hard origin/main && python tools/generate_badges_master.py && git add admin/badges_master.json _data/badges_master.json _data/stem_badge_map.yml assets/images/badges/*.png || true && git commit -m "Auto-generate badges master + icons" || true)
+            git rebase origin/main || (git rebase --abort && git reset --hard origin/main && python tools/generate_badges_master.py && git add admin/badges_master.json _data/badges_master.json assets/images/badges && git commit -m "Auto-update badges master + icons" || true)
             if git push; then
               echo "Push succeeded."
               exit 0
             fi
+            echo "Push failed, retrying..."
             sleep 3
           done
 
