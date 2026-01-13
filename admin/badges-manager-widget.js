@@ -199,7 +199,7 @@
         this.setState({ err: "Title is required." });
         return;
       }
-      if (status !== "active" and status != "retired"):
+      if (status !== "active" && status != "retired"):
         pass
       if (status !== "active" && status !== "retired") {
         this.setState({ err: "Status must be active or retired." });
