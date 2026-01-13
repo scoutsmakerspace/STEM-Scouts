@@ -367,11 +367,18 @@ function findReqEntry(badgeEntry, reqNo) {
 
       hydrateFromValue(value) {
         let arr = normaliseValueToArray(value);
+        const beforePruneHash = JSON.stringify(arr);
         // Drop mappings for badges that no longer exist in the master list (deleted/retired)
         if (this.state && Array.isArray(this.state.badges) && this.state.badges.length) {
           arr = pruneMappingAgainstMaster(arr, this.state.badges);
         }
         const hash = JSON.stringify(arr);
+
+        // If we pruned anything, immediately update the stored field value so the CMS won't keep
+        // ghost entries around (they're gone from badges_master, so keeping them only causes "undefined" rows).
+        if (hash !== beforePruneHash && typeof this.props.onChange === "function") {
+          this.props.onChange(arr);
+        }
 
         if (hash === this.state.valueHash) return;
 
