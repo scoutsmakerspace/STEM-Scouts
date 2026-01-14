@@ -1,1 +1,10 @@
-badges: []
+badges:
+  - id: test-badge
+    title: Test badge
+    section: beavers
+    category: Activity Badges
+    badge_type: Activity
+    status: active
+    requirements:
+      - dasdasdas
+      - adasdasdas
