@@ -146,7 +146,15 @@ function getBaseUrl() {
     return Array.from(map.values());
   }
 
-  const STYLES = {
+  function resolveIconUrlFromId(id, stage) {
+  // stage 0: 64, stage 1: full, stage 2: _missing
+  if (!id) return "";
+  if (stage === 0) return `/assets/images/badges/${id}_64.png`;
+  if (stage === 1) return `/assets/images/badges/${id}.png`;
+  return `/assets/images/badges/_missing.png`;
+}
+
+const STYLES = {
     wrap: {
       fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
       maxWidth: "1200px",
@@ -216,7 +224,7 @@ function getBaseUrl() {
     },
     row: {
       display: "grid",
-      gridTemplateColumns: "28px 1.2fr 140px 200px 120px 90px 160px",
+      gridTemplateColumns: "28px 1.6fr 140px 240px 120px",
       columnGap: "0px",
       alignItems: "center",
     },
@@ -396,6 +404,7 @@ expanderCell: {
         groupBySection: true,
         editing: null, // {mode:'new'|'edit', badge, idTouched}
         expandedId: null,
+        iconStage: {}, // id -> 0/1/2 for icon preview fallback
       };
     },
 
@@ -616,38 +625,69 @@ toggleExpand(id) {
 },
 
 renderExpanded(b) {
-  const icon = String(b.icon || "").trim();
+  const id = String(b.id || "").trim();
+  const iconExplicit = String(b.icon || "").trim();
+  const stage = (this.state.iconStage && typeof this.state.iconStage[id] === "number") ? this.state.iconStage[id] : 0;
+
+  // If iconExplicit is set, try its _64 variant first; otherwise use canonical id-based paths.
+  let iconUrl = "";
+  if (iconExplicit) {
+    iconUrl = stage === 0
+      ? iconExplicit.replace(/\.png$/i, "_64.png")
+      : (stage === 1 ? iconExplicit : "/assets/images/badges/_missing.png");
+  } else {
+    iconUrl = resolveIconUrlFromId(id, stage);
+  }
+
   const reqs = Array.isArray(b.requirements) ? b.requirements : [];
+  const isRetired = String(b.status) === "retired";
+
+  const bumpIconStage = () => {
+    const cur = (this.state.iconStage && typeof this.state.iconStage[id] === "number") ? this.state.iconStage[id] : 0;
+    const next = Math.min(cur + 1, 2);
+    this.setState({ iconStage: { ...this.state.iconStage, [id]: next } });
+  };
+
   return window.h(
     "div",
     { style: STYLES.expandWrap },
-    window.h("div", { style: STYLES.expandGrid },
-      [
-        window.h("div", {}, [
-          window.h("div", { style: STYLES.expandLabel }, "ID"),
-          window.h("code", { style: STYLES.expandCode }, b.id || "—"),
+    window.h("div", { style: STYLES.expandGrid }, [
+      window.h("div", {}, [
+        window.h("div", { style: STYLES.expandLabel }, "ID"),
+        window.h("code", { style: STYLES.expandCode }, id || "—"),
+      ]),
+      window.h("div", {}, [
+        window.h("div", { style: STYLES.expandLabel }, "Icon"),
+        window.h("img", {
+          src: iconUrl,
+          style: STYLES.iconPreview,
+          onError: bumpIconStage,
+        }),
+        window.h("div", { style: STYLES.miniPath }, iconExplicit ? iconExplicit : `/assets/images/badges/${id}.png (auto)`),
+      ]),
+
+      window.h("div", { style: { gridColumn: "1 / -1" } }, [
+        window.h("div", { style: STYLES.expandLabel }, "Requirements"),
+        reqs.length
+          ? window.h("ol", { style: STYLES.reqList }, reqs.map((t, i) => window.h("li", { key: i, style: STYLES.reqItem }, t && t.text ? t.text : t)))
+          : window.h("em", { style: STYLES.muted }, "No requirements"),
+      ]),
+
+      window.h("div", { style: { gridColumn: "1 / -1", display: "flex", justifyContent: "flex-end" } }, [
+        window.h("div", { style: STYLES.actions }, [
+          window.h("button", { style: STYLES.btn, onClick: () => this.openEdit(b) }, "Edit"),
+          window.h(
+            "button",
+            { style: STYLES.btn, onClick: () => this.setStatus(b, isRetired ? "active" : "retired") },
+            isRetired ? "Restore" : "Retire"
+          ),
         ]),
-        window.h("div", {}, [
-          window.h("div", { style: STYLES.expandLabel }, "Icon"),
-          icon
-            ? window.h("img", { src: icon, style: STYLES.iconPreview })
-            : window.h("em", { style: STYLES.muted }, "No icon set"),
-          icon ? window.h("div", { style: STYLES.miniPath }, icon) : null,
-        ]),
-        window.h("div", { style: { gridColumn: "1 / -1" } }, [
-          window.h("div", { style: STYLES.expandLabel }, "Requirements"),
-          reqs.length
-            ? window.h(
-                "ol",
-                { style: STYLES.reqList },
-                reqs.map((t) => window.h("li", { style: STYLES.reqItem }, t))
-              )
-            : window.h("em", { style: STYLES.muted }, "No requirements"),
-        ]),
-      ]
-    )
+      ]),
+    ])
   );
 },
+
+
 
 renderTableRows(items) {
       const rows = [];
@@ -680,50 +720,54 @@ renderTableRows(items) {
     },
 
     renderRow(b) {
-      const isRetired = String(b.status) === "retired";
-      const rowStyle = {
-        ...STYLES.row,
-        background: isRetired ? "#fafbfc" : "#fff",
-        opacity: isRetired ? 0.7 : 1,
-      };
+  const isRetired = String(b.status) === "retired";
+  const isExpanded = this.state.expandedId === b.id;
 
-      const base = getBaseUrl();
-      const link = `${base}/badges/#${encodeURIComponent(b.id)}`;
+  const rowStyle = {
+    ...STYLES.row,
+    background: isRetired ? "#fafbfc" : "#fff",
+    opacity: isRetired ? 0.75 : 1,
+  };
 
-      return window.h(
-        "div",
-        { key: b.id, style: rowStyle },
-        window.h(
-          "div",
-          { style: STYLES.cell },
-          window.h(
-            "a",
-            { href: link, target: "_blank", rel: "noopener", style: STYLES.link },
-            b.id
-          )
-        ),
-        window.h("div", { style: STYLES.cell, title: b.title }, b.title || "—"),
-        window.h("div", { style: STYLES.cell }, b.section || "—"),
-        window.h("div", { style: STYLES.cell }, b.category || "—"),
-        window.h("div", { style: STYLES.cell }, b.status || "active"),
-        window.h("div", { style: STYLES.cell }, String((b.requirements || []).length)),
-        window.h(
-          "div",
-          { style: { ...STYLES.cell, borderBottom: "1px solid #eaeef2" } },
-          window.h(
-            "div",
-            { style: STYLES.actions },
-            window.h(
-              "button",
-              { style: STYLES.btn, onClick: () => this.openEdit(b) },
-              "Edit"
-            ),
-            window.h(
-              "button",
-              {
-                style: STYLES.btn,
-                onClick: () => this.setStatus(b, isRetired ? "active" : "retired"),
-              },
+  const onToggle = (e) => {
+    // Prevent row clicks from opening the badge page link, etc.
+    if (e && e.preventDefault) e.preventDefault();
+    if (e && e.stopPropagation) e.stopPropagation();
+    this.toggleExpand(b.id);
+  };
+
+  const row = window.h(
+    "div",
+    {
+      key: `row-${b.id}`,
+      style: rowStyle,
+      onClick: () => this.toggleExpand(b.id),
+      role: "button",
+      tabIndex: 0,
+      onKeyDown: (e) => {
+        if (e.key === "Enter" || e.key === " ") this.toggleExpand(b.id);
+      },
+    },
+    window.h(
+      "div",
+      { style: { ...STYLES.cell, ...STYLES.expanderCell }, onClick: onToggle },
+      isExpanded ? "▾" : "▸"
+    ),
+    window.h("div", { style: STYLES.cell, title: b.title }, b.title || "—"),
+    window.h("div", { style: STYLES.cell }, b.section || "—"),
+    window.h("div", { style: STYLES.cell }, b.category || "—"),
+    window.h("div", { style: STYLES.cell }, b.status || "active")
+  );
+
+  return window.h(
+    "div",
+    { key: b.id },
+    row,
+    isExpanded ? this.renderExpanded(b) : null
+  );
+},
+
+
               isRetired ? "Restore" : "Retire"
             )
           )
@@ -1035,18 +1079,17 @@ renderTableRows(items) {
           : window.h(
               "div",
               { style: STYLES.table },
-              window.h(
-                "div",
-                { style: STYLES.row },
-                window.h("div", { style: STYLES.headCell }, ""),
-                window.h("div", { style: STYLES.headCell }, "Title"),
-                window.h("div", { style: STYLES.headCell }, "Section"),
-                window.h("div", { style: STYLES.headCell }, "Category"),
-                window.h("div", { style: STYLES.headCell }, "Status"),
-                window.h("div", { style: STYLES.headCell }, "Reqs"),
-                window.h("div", { style: STYLES.headCell }, "Actions")
-              ),
-              this.renderTableRows(filtered)
+              
+window.h(
+  "div",
+  { style: STYLES.row },
+  window.h("div", { style: STYLES.headCell }, ""),
+  window.h("div", { style: STYLES.headCell }, "Title"),
+  window.h("div", { style: STYLES.headCell }, "Section"),
+  window.h("div", { style: STYLES.headCell }, "Category"),
+  window.h("div", { style: STYLES.headCell }, "Status")
+),
+this.renderTableRows(filtered)(filtered)
             ),
 
         this.state.error ? window.h("div", { style: STYLES.err }, this.state.error) : null,
