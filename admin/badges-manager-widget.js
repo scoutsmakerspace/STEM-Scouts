@@ -34,28 +34,6 @@
       .replace(/^-+|-+$/g, "");
   }
 
-
-function openMediaLibraryForIcon(onSelect) {
-  try {
-    if (window.CMS && typeof window.CMS.openMediaLibrary === "function") {
-      window.CMS.openMediaLibrary({
-        path: "assets/images/badges",
-        callback: function (files) {
-          try {
-            if (!files) return;
-            var f = (files && files.length) ? files[0] : files;
-            if (!f) return;
-            onSelect(f);
-          } catch (_) {}
-        }
-      });
-      return true;
-    }
-  } catch (e) {}
-  return false;
-}
-
-
   function safeJsonFetch(url) {
     return fetch(url, { cache: "no-store" }).then(function (r) {
       if (!r.ok) throw new Error("Failed to load " + url + " (" + r.status + ")");
@@ -236,11 +214,9 @@ function normalizeOverride(o) {
   };
 
   var Control = window.createClass({
-    getInitialState: function () { return {
-        iconSelectedName: "",
-        iconNote: "",
-        iconError: "",
-loading: true,
+    getInitialState: function () {
+      return {
+        loading: true,
         error: null,
         master: [],
         q: "",
@@ -603,104 +579,27 @@ loading: true,
             window.h("div", { style: assign({}, STYLES.field, { gridColumn: "1 / span 2" }) }, [
               window.h("div", { style: STYLES.label }, "Icon (optional)"),
               window.h("input", { style: STYLES.input, value: b.icon || "", onChange: function (e) { update("icon", e.target.value); }, placeholder: "/assets/images/badges/<id>.png" }),
-              window.h("div", { style: STYLES.hint }, "Preview uses /assets/images/badges/<id>_64.png first, then full, then _missing.png.")
-,
-              window.h("div", { style: { display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" } }, [
-                window.h("button", {
-                  style: STYLES.btn,
-                  disabled: self.state.uploadingIcon,
-                  onClick: function () {
-                    var ed2 = self.state.editing;
-                    if (!ed2 || !ed2.badge) return;
-                    var id2 = slugifyId(ed2.badge.id || ed2.badge.title);
-                    if (!id2) {
-                      self.setState({ error: "Set Title or ID before uploading an icon." });
-                      return;
-                    }
-                    self.setState({ iconNote: "Opening media library…", iconError: "", iconSelectedName: "" });
-var opened = openMediaLibraryForIcon(function (f) {
-  var url = "";
-  var path = "";
-  try { url = f && (f.url || f.path) ? String(f.url || f.path) : ""; } catch (_) {}
-  try { path = f && f.path ? String(f.path) : url; } catch (_) {}
-  var chosen = url || path;
-  if (chosen && chosen.charAt(0) !== "/") chosen = "/" + chosen;
-
-  var fn = "";
-  try { fn = chosen ? chosen.split("/").pop() : ""; } catch (_) {}
-  var expected = id2 + ".png";
-
-  // update badge.icon to the chosen path (or expected canonical path)
-  var ed4 = self.state.editing;
-  if (!ed4 || !ed4.badge) return;
-  var iconPath = chosen || ("/assets/images/badges/" + expected);
-
-  var note = "Selected: " + (fn || iconPath) + ".";
-  if (fn && fn !== expected) {
-    note += " IMPORTANT: rename to " + expected + " in assets/images/badges so the site can find <id>_64.png.";
-  } else {
-    note += " File selected.";
-  }
-
-  self.setState({
-    editing: assign({}, ed4, { badge: assign({}, ed4.badge, { icon: iconPath }) }),
-    iconSelectedName: fn || "",
-    iconNote: note,
-    iconError: ""
-  });
-});
-
-if (!opened) {
-  // Fallback to file input if media library is unavailable
-  var input = document.getElementById("badge-icon-upload-input");
-  if (input) input.click();
-  self.setState({ iconNote: "Media library unavailable. Using file picker…", iconError: "" });
-}
-                  }
-                }, self.state.uploadingIcon ? "Uploading…" : "Upload icon (.png)"),
-                window.h("span", { style: STYLES.hint }, "Saves as /assets/images/badges/<id>.png. GitHub Action generates <id>_64.png.")
+              window.h("div", { style: STYLES.hint }, "Preview uses /assets/images/badges/<id>_64.png first, then full, then _missing.png."),
+              window.h("div", { style: STYLES.hint }, [
+                "This CMS backend cannot upload images from custom widgets. ",
+                "Upload icons via the CMS Media area (or GitHub) into ",
+                window.h("code", null, "assets/images/uploads"),
+                ", then paste the uploaded path here (e.g. ",
+                window.h("code", null, "/assets/images/uploads/my-file.png"),
+                "). A GitHub Action will auto-copy/rename it to ",
+                window.h("code", null, "/assets/images/badges/<id>.png"),
+                " and generate ",
+                window.h("code", null, "<id>_64.png"),
+                " for you."
               ]),
-              window.h("input", {
-                id: "badge-icon-upload-input",
-                type: "file",
-                accept: "image/png",
-                style: { display: "none" },
-                onChange: function (e) {
-                  var ed3 = self.state.editing;
-                  if (!ed3 || !ed3.badge) return;
-                  var file = e.target && e.target.files && e.target.files[0];
-                  if (file) { self.setState({ iconSelectedName: file.name, iconNote: "Selected: " + file.name + ". File selected.", iconError: "" }); }
-                  if (!file) return;
-
-                  var id3 = slugifyId(ed3.badge.id || ed3.badge.title);
-                  if (!id3) {
-                    self.setState({ error: "Set Title or ID before uploading an icon." });
-                    return;
-                  }
-
-                  self.setState({ uploadingIcon: true, error: null });
-
-                  persistBadgeIconPng(file, id3)
-                    .then(function () {
-                      // Set canonical icon path
-                      var nextBadge = assign({}, ed3.badge, { id: id3, icon: "/assets/images/badges/" + id3 + ".png" });
-                      self.setState({ editing: assign({}, ed3, { badge: nextBadge }), uploadingIcon: false });
-
-                      // Reset icon preview stage so drawer tries _64 first again
-                      var map = assign({}, self.state.iconStage);
-                      map[id3] = 0;
-                      self.setState({ iconStage: map });
-                    })
-                    .catch(function (err) {
-                      var msg = String(err && err.message ? err.message : err);
-                    self.setState({ uploadingIcon: false, error: msg, iconError: msg, iconNote: "Upload failed." });
-                    try { window.alert("Icon upload failed: " + msg); } catch (_) {}
-                    })
-                    .finally(function () {
-                      try { e.target.value = ""; } catch (_) {}
-                    });
-                }
-              })
+              window.h("div", { style: { display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" } }, [
+                window.h("a", {
+                  href: "#/media",
+                  target: "_self",
+                  style: assign({}, STYLES.btn, { textDecoration: "none", display: "inline-block" })
+                }, "Open Media (upload icon)"),
+                window.h("span", { style: STYLES.hint }, "Expected final: /assets/images/badges/<id>.png (+ <id>_64.png).")
+              ])
             ]),
             window.h("div", { style: assign({}, STYLES.field, { gridColumn: "1 / span 2" }) }, [
               window.h("div", { style: STYLES.label }, "Requirements"),
