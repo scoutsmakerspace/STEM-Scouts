@@ -203,10 +203,10 @@ function normalizeOverride(o) {
     err: { padding: "10px 12px", border: "1px solid #ffcecc", background: "#fff5f5", borderRadius: "12px", color: "#cf222e", marginTop: "10px", whiteSpace: "pre-wrap", fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace", fontSize: "12px" },
 
     // Simple modal
-    modalBackdrop: { position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.35)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 99999, padding: "16px" },
-    modal: { width: "min(720px, 100%)", background: "#fff", borderRadius: "14px", border: "1px solid #d0d7de", boxShadow: "0 8px 24px rgba(0,0,0,0.2)", overflow: "hidden" },
+    modalBackdrop: { position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.35)", display: "flex", alignItems: "flex-start", justifyContent: "center", zIndex: 99999, padding: "16px", overflowY: "auto" },
+    modal: { width: "min(720px, 100%)", maxHeight: "calc(100vh - 32px)", background: "#fff", borderRadius: "14px", border: "1px solid #d0d7de", boxShadow: "0 8px 24px rgba(0,0,0,0.2)", overflow: "hidden", display: "flex", flexDirection: "column" },
     modalHead: { padding: "12px 14px", borderBottom: "1px solid #eaeef2", fontWeight: 700, display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" },
-    modalBody: { padding: "14px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" },
+    modalBody: { padding: "14px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", overflowY: "auto" },
     field: { display: "flex", flexDirection: "column", gap: "6px" },
     label: { fontSize: "12px", fontWeight: 600, opacity: 0.9 },
     hint: { fontSize: "12px", opacity: 0.75, lineHeight: 1.3 },
