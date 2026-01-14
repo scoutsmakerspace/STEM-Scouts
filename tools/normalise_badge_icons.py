@@ -26,6 +26,8 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 BADGES_DIR = ROOT / "_badges"
 BADGE_IMG_DIR = ROOT / "assets" / "images" / "badges"
+UPLOADS_DIR = ROOT / "assets" / "images" / "uploads"
+UPLOADS_PROCESSED_DIR = UPLOADS_DIR / "_processed"
 
 ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
@@ -75,6 +77,47 @@ def _resolve_icon_source(fm: Dict[str, Any], badge_id: str) -> Optional[Path]:
     if p2.exists() and p2.is_file():
         return p2
     return None
+
+
+def _maybe_archive_source(src: Path) -> None:
+    """Move raw uploaded sources out of the way so the repo stays tidy.
+
+    We *only* archive files that live in assets/images/uploads (Decap's media folder).
+    Canonical badge icons under assets/images/badges are never moved.
+
+    If the file is already under uploads/_processed, we leave it.
+    """
+    try:
+        src_rel = src.resolve().relative_to(ROOT)
+    except Exception:
+        return
+
+    # Only touch uploads
+    if not str(src_rel).startswith(str(UPLOADS_DIR.relative_to(ROOT)).replace("\\", "/")):
+        return
+
+    # Leave already processed files
+    if str(src_rel).startswith(str(UPLOADS_PROCESSED_DIR.relative_to(ROOT)).replace("\\", "/")):
+        return
+
+    try:
+        UPLOADS_PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+        target = UPLOADS_PROCESSED_DIR / src.name
+        # Avoid collisions
+        if target.exists():
+            stem = target.stem
+            suffix = target.suffix
+            i = 2
+            while True:
+                cand = UPLOADS_PROCESSED_DIR / f"{stem}__{i}{suffix}"
+                if not cand.exists():
+                    target = cand
+                    break
+                i += 1
+        src.rename(target)
+    except Exception:
+        # If we can't move it (permissions, etc), don't fail the whole pipeline.
+        return
 
 
 def _open_image(path: Path) -> Image.Image:
@@ -135,6 +178,9 @@ def main() -> None:
 
         _save_png(im, out_main)
         _save_png(_make_64(im), out_64)
+
+        # If the icon came from the generic uploads folder, archive it to keep things clean.
+        _maybe_archive_source(src)
 
         # rewrite frontmatter icon to canonical path
         fm["icon"] = CANON_ICON_PUBLIC.format(id=badge_id)
