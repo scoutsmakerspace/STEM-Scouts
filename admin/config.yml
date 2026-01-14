@@ -600,6 +600,10 @@ collections:
       widget: text
 
 - name: badges_manager
+
+  media_folder: "/assets/images/badges"
+
+  public_folder: "/assets/images/badges"
   label: Badges Manager
   label_singular: Badges Manager
   preview: false
