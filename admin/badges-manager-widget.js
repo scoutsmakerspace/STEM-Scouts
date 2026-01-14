@@ -53,23 +53,7 @@ function getBackend() {
   try { return window.CMS && window.CMS.getBackend && window.CMS.getBackend(); } catch (_) { return null; }
 }
 
-function persistBadgeIconPng(file, badgeId) {
-  return new Promise(function (resolve, reject) {
-    try {
-      var backend = getBackend();
-      if (!backend || !backend.persistMedia) return reject(new Error("CMS backend does not support media uploads here."));
-      if (!file) return reject(new Error("No file selected."));
-
-      // Force canonical filename: <id>.png
-      var renamed;
-      try {
-        renamed = new File([file], badgeId + ".png", { type: "image/png" });
-      } catch (e) {
-        // Fallback: if File constructor is blocked, just use original file name (best effort)
-        renamed = file;
-      }
-
-      var opts = { path: "assets/images/badges" };
+      var opts = { path: "/assets/images/badges" };
       Promise.resolve(backend.persistMedia(renamed, opts))
         .then(function (res) {
           // Different backends return different shapes
@@ -85,6 +69,28 @@ function persistBadgeIconPng(file, badgeId) {
       reject(err2);
     }
   });
+}
+
+
+function openMediaLibraryForIcon(onSelect) {
+  try {
+    if (window.CMS && typeof window.CMS.openMediaLibrary === "function") {
+      // openMediaLibrary({ path, callback })
+      window.CMS.openMediaLibrary({
+        path: "assets/images/badges",
+        callback: function (files) {
+          try {
+            if (!files || !files.length) return;
+            // Decap can return a single file object or array
+            var f = files[0] || files;
+            onSelect(f);
+          } catch (_) {}
+        }
+      });
+      return true;
+    }
+  } catch (e) {}
+  return false;
 }
 
 function normalizeOverride(o) {
@@ -210,6 +216,8 @@ function normalizeOverride(o) {
     field: { display: "flex", flexDirection: "column", gap: "6px" },
     label: { fontSize: "12px", fontWeight: 600, opacity: 0.9 },
     hint: { fontSize: "12px", opacity: 0.75, lineHeight: 1.3 },
+    okText: { fontSize: "12px", color: "#1a7f37", lineHeight: 1.3 },
+    errText: { fontSize: "12px", color: "#cf222e", lineHeight: 1.3, whiteSpace: "pre-wrap" },
     modalFoot: { padding: "12px 14px", borderTop: "1px solid #eaeef2", display: "flex", justifyContent: "flex-end", gap: "10px", flexWrap: "wrap" }
   };
 
@@ -227,10 +235,7 @@ function normalizeOverride(o) {
         expandedId: null,
         iconStage: {}, // id -> 0/1/2
         editing: null, // {mode, idTouched, badge}
-        uploadingIcon: false,
-        iconSelectedName: "",
-        iconUploadNote: "",
-        iconUploadError: ""
+        uploadingIcon: false
       };
     },
 
@@ -466,249 +471,59 @@ function normalizeOverride(o) {
           ]),
           window.h("div", { key: "actions", style: { gridColumn: "1 / -1", display: "flex", justifyContent: "flex-end" } }, [
             window.h("div", { style: STYLES.actions }, [
-              window.h("button", { style: STYLES.btn, onClick: function (e) { e.preventDefault(); e.stopPropagation(); self.openEdit(b); } }, "Edit"),
-              window.h("button", { style: STYLES.btn, onClick: function (e) { e.preventDefault(); e.stopPropagation(); self.setStatus(b, isRetired ? "active" : "retired"); } }, isRetired ? "Restore" : "Retire")
-            ])
-          ])
-        ])
-      );
-    },
-
-    renderRow: function (b) {
-      var isRetired = String(b.status) === "retired";
-      var isExpanded = this.state.expandedId === b.id;
-      var self = this;
-
-      var rowStyle = assign({}, STYLES.row, {
-        background: isRetired ? "#fafbfc" : "#fff",
-        opacity: isRetired ? 0.75 : 1,
-        cursor: "pointer"
-      });
-
-      var row = window.h(
-        "div",
-        {
-          key: "row-" + b.id,
-          style: rowStyle,
-          onClick: function () { self.toggleExpand(b.id); },
-          role: "button",
-          tabIndex: 0,
-          onKeyDown: function (e) {
-            if (e.key === "Enter" || e.key === " ") self.toggleExpand(b.id);
-          }
-        },
-        window.h("div", { style: assign({}, STYLES.cell, STYLES.expanderCell), onClick: function (e) { e.preventDefault(); e.stopPropagation(); self.toggleExpand(b.id); } }, isExpanded ? "▾" : "▸"),
-        window.h("div", { style: STYLES.cell, title: b.title }, b.title || "—"),
-        window.h("div", { style: STYLES.cell }, b.section || "—"),
-        window.h("div", { style: STYLES.cell }, b.category || "—"),
-        window.h("div", { style: STYLES.cell }, b.status || "active")
-      );
-
-      return window.h("div", { key: b.id }, row, isExpanded ? this.renderExpanded(b) : null);
-    },
-
-    renderTableRows: function (items) {
-      var rows = [];
-      var bySection = {};
-      for (var i = 0; i < items.length; i++) {
-        var b = items[i];
-        var s = String(b.section || "other");
-        if (!bySection[s]) bySection[s] = [];
-        bySection[s].push(b);
-      }
-
-      var sections = Object.keys(bySection).sort(function (a, b) { return a.localeCompare(b); });
-      for (i = 0; i < sections.length; i++) {
-        var sec = sections[i];
-        if (this.state.groupBySection) rows.push(window.h("div", { key: "sec-" + sec, style: STYLES.sectionHeader }, sec));
-        var list = bySection[sec] || [];
-        for (var j = 0; j < list.length; j++) rows.push(this.renderRow(list[j]));
-      }
-      return rows;
-    },
-
-    renderModal: function () {
-      var ed = this.state.editing;
-      if (!ed) return null;
-      var b = ed.badge;
-      var self = this;
-
-      function update(key, value) {
-        var next = assign({}, b);
-        next[key] = value;
-        if (key === "title" && !ed.idTouched) next.id = slugifyId(value);
-        self.setState({ editing: assign({}, ed, { badge: next }) });
-      }
-
-      function onIdChange(value) {
-        var next = assign({}, b);
-        next.id = slugifyId(value);
-        self.setState({ editing: assign({}, ed, { idTouched: true, badge: next }) });
-      }
-
-      return window.h(
-        "div",
-        { style: STYLES.modalBackdrop, onClick: function () { self.closeEdit(); } },
-        window.h(
-          "div",
-          { style: STYLES.modal, onClick: function (e) { e.stopPropagation(); } },
-          window.h("div", { style: STYLES.modalHead }, [
-            window.h("div", null, ed.mode === "new" ? "Add new badge" : ("Edit badge: " + b.id)),
-            window.h("button", { style: STYLES.btn, onClick: function () { self.closeEdit(); } }, "Close")
-          ]),
-          window.h("div", { style: STYLES.modalBody }, [
-            window.h("div", { style: assign({}, STYLES.field, { gridColumn: "1 / span 2" }) }, [
-              window.h("div", { style: STYLES.label }, "Title"),
-              window.h("input", { style: STYLES.input, value: b.title, onChange: function (e) { update("title", e.target.value); }, placeholder: "e.g. My new badge" })
-            ]),
-            window.h("div", { style: STYLES.field }, [
-              window.h("div", { style: STYLES.label }, "Canonical ID"),
-              window.h("input", { style: STYLES.input, value: b.id, onChange: function (e) { onIdChange(e.target.value); }, placeholder: "e.g. beavers-my-new-badge" }),
-              window.h("div", { style: STYLES.hint }, "Lowercase, hyphenated. Don’t change after publishing.")
-            ]),
-            window.h("div", { style: STYLES.field }, [
-              window.h("div", { style: STYLES.label }, "Status"),
-              window.h("select", { style: STYLES.select, value: b.status, onChange: function (e) { update("status", e.target.value); } }, STATUS_OPTIONS.map(function (s) { return window.h("option", { key: s, value: s }, s); }))
-            ]),
-            window.h("div", { style: STYLES.field }, [
-              window.h("div", { style: STYLES.label }, "Section"),
-              window.h("select", { style: STYLES.select, value: b.section, onChange: function (e) { update("section", e.target.value); } }, SECTION_OPTIONS.map(function (s) { return window.h("option", { key: s, value: s }, s); }))
-            ]),
-            window.h("div", { style: STYLES.field }, [
-              window.h("div", { style: STYLES.label }, "Category"),
-              window.h("select", { style: STYLES.select, value: b.category, onChange: function (e) { update("category", e.target.value); } }, CATEGORY_OPTIONS.map(function (c) { return window.h("option", { key: c, value: c }, c); })),
-              window.h("div", { style: STYLES.hint }, "Badge type is auto-set to " + badgeTypeFromCategory(b.category) + ".")
-            ]),
-            window.h("div", { style: assign({}, STYLES.field, { gridColumn: "1 / span 2" }) }, [
-              window.h("div", { style: STYLES.label }, "Icon (optional)"),
-              window.h("input", { style: STYLES.input, value: b.icon || "", onChange: function (e) { update("icon", e.target.value); }, placeholder: "/assets/images/badges/<id>.png" }),
-              window.h("div", { style: STYLES.hint }, "Preview uses /assets/images/badges/<id>_64.png first, then full, then _missing.png.")
-,
-              window.h("div", { style: { display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" } }, [
-                window.h("button", {
+              window.h("button", {
                   style: STYLES.btn,
-                  disabled: self.state.uploadingIcon,
                   onClick: function () {
                     var ed2 = self.state.editing;
                     if (!ed2 || !ed2.badge) return;
                     var id2 = slugifyId(ed2.badge.id || ed2.badge.title);
                     if (!id2) {
-                      self.setState({ error: "Set Title or ID before uploading an icon." });
+                      self.setState({ error: "Set Title or ID before choosing an icon." });
                       return;
                     }
-                    var input = document.getElementById("badge-icon-upload-input");
-                    if (input) input.click();
-                  }
-                }, self.state.uploadingIcon ? "Uploading…" : "Upload icon (.png)"),
-                window.h("span", { style: STYLES.hint }, "Saves as /assets/images/badges/<id>.png. GitHub Action generates <id>_64.png."),
-                window.h("div", { style: STYLES.hint }, (self.state.iconSelectedName ? ("Selected: " + self.state.iconSelectedName + ". ") : "") + (self.state.iconUploadNote || ""))
-              ]),
-              window.h("input", {
-                id: "badge-icon-upload-input",
-                type: "file",
-                accept: "image/png",
-                style: { display: "none" },
-                onChange: function (e) {
-                  var ed3 = self.state.editing;
-                  if (!ed3 || !ed3.badge) return;
-                  var file = e.target && e.target.files && e.target.files[0];
-                  if (!file) return;
 
-                  var id3 = slugifyId(ed3.badge.id || ed3.badge.title);
-                  if (!id3) {
-                    self.setState({ error: "Set Title or ID before uploading an icon." });
-                    return;
-                  }
+                    self.setState({ iconUploadError: "", iconUploadNote: "Opening media library…" });
 
-                  self.setState({ uploadingIcon: true, error: null });
+                    var opened = openMediaLibraryForIcon(function (f) {
+                      // f might be: { path, url, name, ... }
+                      var url = "";
+                      var path = "";
+                      try { url = (f && (f.url || f.path)) ? String(f.url || f.path) : ""; } catch (_) {}
+                      try { path = (f && f.path) ? String(f.path) : url; } catch (_) {}
 
-                  persistBadgeIconPng(file, id3)
-                    .then(function () {
-                      // Set canonical icon path
-                      var nextBadge = assign({}, ed3.badge, { id: id3, icon: "/assets/images/badges/" + id3 + ".png" });
-                      self.setState({ editing: assign({}, ed3, { badge: nextBadge }), uploadingIcon: false,
-        iconSelectedName: "",
-        iconUploadNote: "",
-        iconUploadError: "" });
+                      // Ensure we store a public path (should start with /assets/...)
+                      var chosen = url || path;
+                      if (chosen && chosen.charAt(0) !== "/") chosen = "/" + chosen;
 
-                      // Reset icon preview stage so drawer tries _64 first again
+                      // Set icon path on badge
+                      var ed3 = self.state.editing;
+                      if (!ed3 || !ed3.badge) return;
+
+                      var nextBadge = assign({}, ed3.badge, { id: id2, icon: chosen || ("/assets/images/badges/" + id2 + ".png") });
+                      self.setState({ editing: assign({}, ed3, { badge: nextBadge }), iconSelectedName: chosen ? chosen.split("/").pop() : "", iconUploadNote: "Selected via media library.", iconUploadError: "" });
+
+                      // Reset icon preview stage
                       var map = assign({}, self.state.iconStage);
-                      map[id3] = 0;
+                      map[id2] = 0;
                       self.setState({ iconStage: map });
-                    })
-                    .catch(function (err) {
-                      self.setState({ uploadingIcon: false,
-        iconSelectedName: "",
-        iconUploadNote: "",
-        iconUploadError: "", error: String(err && err.message ? err.message : err) });
-                    })
-                    .then(function () {
-                      try { e.target.value = ""; } catch (_) {}
-                    });
-                }
-              })
-            ]),
-            window.h("div", { style: assign({}, STYLES.field, { gridColumn: "1 / span 2" }) }, [
-              window.h("div", { style: STYLES.label }, "Requirements"),
-              window.h(
-                "div",
-                { style: { display: "grid", gap: "8px" } },
-                (Array.isArray(b.requirements) ? b.requirements : []).map(function (t, idx) {
-                  return window.h("div", { key: idx, style: { display: "flex", gap: "8px", alignItems: "flex-start" } }, [
-                    window.h("textarea", {
-                      style: assign({}, STYLES.input, { minHeight: "60px", width: "100%" }),
-                      value: t,
-                      onChange: function (e) {
-                        var next = (Array.isArray(b.requirements) ? b.requirements.slice() : []);
-                        next[idx] = e.target.value;
-                        update("requirements", next);
-                      },
-                      placeholder: "Requirement " + (idx + 1) + " text..."
-                    }),
-                    window.h("button", {
-                      style: STYLES.btn,
-                      onClick: function () {
-                        var next2 = (Array.isArray(b.requirements) ? b.requirements.slice() : []);
-                        next2.splice(idx, 1);
-                        update("requirements", next2);
+
+                      // Warn if filename not canonical
+                      if (chosen) {
+                        var fn = chosen.split("/").pop();
+                        if (fn !== (id2 + ".png")) {
+                          self.setState({ iconUploadNote: "Selected: " + fn + ". NOTE: for auto _64 generation, rename to " + id2 + ".png in assets/images/badges." });
+                        }
                       }
-                    }, "Remove")
-                  ]);
-                })
-              ),
-              window.h("div", { style: { marginTop: "8px", display: "flex", gap: "8px", flexWrap: "wrap" } }, [
-                window.h("button", { style: STYLES.btn, onClick: function () {
-                  var next3 = (Array.isArray(b.requirements) ? b.requirements.slice() : []);
-                  next3.push("");
-                  update("requirements", next3);
-                } }, "Add requirement"),
-                window.h("button", { style: STYLES.btn, onClick: function () { update("requirements", []); } }, "Clear")
-              ]),
-              window.h("div", { style: STYLES.hint }, "Numbering is automatic. Just add one requirement per box.")
-            ])
-          ]),
-          window.h("div", { style: STYLES.modalFoot }, [
-            window.h("button", { style: STYLES.btn, onClick: function () { self.closeEdit(); } }, "Cancel"),
-            window.h("button", { style: STYLES.btnPrimary, onClick: function () { self.saveEdit(); } }, "Save")
-          ])
-        )
-      );
-    },
+                    });
 
-    render: function () {
-      var overrides = this.getOverrides();
-      var filtered = this.getFilteredBadges();
-
-      return window.h(
-        "div",
-        { style: STYLES.wrap },
-        window.h("div", { style: STYLES.header }, [
-          window.h("h2", { style: { margin: 0 } }, "Badges Manager"),
-          window.h("div", { style: STYLES.subtitle }, "Add new badges and retire badges safely. Deletion is not supported. Retired badges will be pruned from mapping and activities by the site’s generation scripts/workflows.")
-        ]),
-        window.h("div", { style: STYLES.toolbar }, [
-          window.h("input", { style: STYLES.input, value: this.state.q, onChange: function (e) { this.setState({ q: e.target.value }); }.bind(this), placeholder: "Search by ID, title, section…" }),
-          window.h("select", { style: STYLES.select, value: this.state.filterSection, onChange: function (e) { this.setState({ filterSection: e.target.value }); }.bind(this) }, [window.h("option", { value: "all" }, "All sections")].concat(SECTION_OPTIONS.map(function (s) { return window.h("option", { key: s, value: s }, s); }))),
+                    if (!opened) {
+                      self.setState({ iconUploadNote: "", iconUploadError: "Media library API is not available. Ensure Decap is loaded and media is enabled." });
+                    }
+                  }
+                }, "Choose/upload icon"),
+                window.h("span", { style: STYLES.hint }, "This uses Decap’s Media Library (upload + select). For auto 64px generation, filename should be <id>.png in assets/images/badges."),
+                window.h("div", { style: STYLES.okText }, (self.state.iconSelectedName ? ("Selected: " + self.state.iconSelectedName + ". ") : "") + (self.state.iconUploadNote || "")),
+                (self.state.iconUploadError ? window.h("div", { style: STYLES.errText }, self.state.iconUploadError) : null),
           window.h("select", { style: STYLES.select, value: this.state.filterCategory, onChange: function (e) { this.setState({ filterCategory: e.target.value }); }.bind(this) }, [window.h("option", { value: "all" }, "All categories")].concat(CATEGORY_OPTIONS.map(function (c) { return window.h("option", { key: c, value: c }, c); }))),
           window.h("select", { style: STYLES.select, value: this.state.filterStatus, onChange: function (e) { this.setState({ filterStatus: e.target.value }); }.bind(this) }, [window.h("option", { value: "all" }, "All statuses")].concat(STATUS_OPTIONS.map(function (s) { return window.h("option", { key: s, value: s }, s); }))),
           window.h("button", { style: STYLES.btn, onClick: function () { this.setState({ groupBySection: !this.state.groupBySection }); }.bind(this) }, this.state.groupBySection ? "Ungroup" : "Group by section"),
