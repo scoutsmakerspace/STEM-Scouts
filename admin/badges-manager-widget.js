@@ -69,7 +69,9 @@ function persistBadgeIconPng(file, badgeId) {
         renamed = file;
       }
 
-      var opts = { path: "assets/images/badges" };
+      var folder = "assets/images/badges";
+      try { if (backend && backend.config && backend.config.media_folder) folder = backend.config.media_folder; } catch (_) {}
+      var opts = { path: folder };
       Promise.resolve(backend.persistMedia(renamed, opts))
         .then(function (res) {
           // Different backends return different shapes
@@ -210,6 +212,8 @@ function normalizeOverride(o) {
     field: { display: "flex", flexDirection: "column", gap: "6px" },
     label: { fontSize: "12px", fontWeight: 600, opacity: 0.9 },
     hint: { fontSize: "12px", opacity: 0.75, lineHeight: 1.3 },
+    okText: { fontSize: "12px", color: "#1a7f37", lineHeight: 1.3 },
+    modalInlineError: { marginTop: "8px", padding: "8px 10px", border: "1px solid #ffcecc", background: "#fff5f5", borderRadius: "10px", color: "#cf222e", whiteSpace: "pre-wrap", fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace", fontSize: "12px" },
     modalFoot: { padding: "12px 14px", borderTop: "1px solid #eaeef2", display: "flex", justifyContent: "flex-end", gap: "10px", flexWrap: "wrap" }
   };
 
@@ -227,6 +231,7 @@ function normalizeOverride(o) {
         expandedId: null,
         iconStage: {}, // id -> 0/1/2
         editing: null, // {mode, idTouched, badge}
+        localOverrides: null,
         uploadingIcon: false,
         iconSelectedName: "",
         iconUploadNote: ""
@@ -235,6 +240,8 @@ function normalizeOverride(o) {
 
     componentDidMount: function () {
       this.loadMaster();
+      // Cache overrides locally so the table updates immediately after Save (Decap can delay props.value refresh)
+      this.setState({ localOverrides: this._parseOverrides(this.props.value) });
     },
 
     loadMaster: function () {
@@ -251,19 +258,18 @@ function normalizeOverride(o) {
         });
     },
 
-    getOverrides: function () {
-      var v = this.props.value;
+    _parseOverrides: function (v) {
       if (!v) return [];
       if (Array.isArray(v)) return v;
       if (typeof v === "string") {
-        try {
-          var parsed = JSON.parse(v);
-          return Array.isArray(parsed) ? parsed : [];
-        } catch (_) {
-          return [];
-        }
+        try { var parsed = JSON.parse(v); return Array.isArray(parsed) ? parsed : []; } catch (_) { return []; }
       }
       return [];
+    },
+
+    getOverrides: function () {
+      if (this.state.localOverrides) return this.state.localOverrides;
+      return this._parseOverrides(this.props.value);
     },
 
     setOverrides: function (nextOverrides) {
@@ -275,6 +281,7 @@ function normalizeOverride(o) {
         if (n) cleaned.push(n);
       }
       cleaned.sort(function (a, b) { return a.id.localeCompare(b.id); });
+      this.setState({ localOverrides: cleaned });
       this.props.onChange(cleaned);
     },
 
@@ -305,7 +312,7 @@ function normalizeOverride(o) {
     },
 
     openNew: function () {
-      this.setState({
+      this.setState({ iconSelectedName: "", iconUploadNote: "", uploadingIcon: false, error: null,
         editing: {
           mode: "new",
           idTouched: false,
@@ -315,7 +322,7 @@ function normalizeOverride(o) {
     },
 
     openEdit: function (badge) {
-      this.setState({
+      this.setState({ iconSelectedName: "", iconUploadNote: "", uploadingIcon: false, error: null,
         editing: {
           mode: "edit",
           idTouched: true,
@@ -600,7 +607,7 @@ function normalizeOverride(o) {
                   }
                 }, self.state.uploadingIcon ? "Uploading…" : "Upload icon (.png)"),
                 window.h("span", { style: STYLES.hint }, "Saves as /assets/images/badges/<id>.png. GitHub Action generates <id>_64.png."),
-                window.h("div", { style: STYLES.hint }, (self.state.iconSelectedName ? ("Selected: " + self.state.iconSelectedName + ". ") : "") + (self.state.iconUploadNote || ""))
+                window.h("div", { style: STYLES.okText }, (self.state.iconSelectedName ? ("Selected: " + self.state.iconSelectedName + ". ") : "") + (self.state.iconUploadNote || ""))
               ]),
               window.h("input", {
                 id: "badge-icon-upload-input",
@@ -613,21 +620,22 @@ function normalizeOverride(o) {
                   var file = e.target && e.target.files && e.target.files[0];
                   if (!file) return;
 
+                  // Immediate confirmation for the user
+                  self.setState({ iconSelectedName: file.name, iconUploadNote: "File selected." });
+
                   var id3 = slugifyId(ed3.badge.id || ed3.badge.title);
                   if (!id3) {
                     self.setState({ error: "Set Title or ID before uploading an icon." });
                     return;
                   }
 
-                  self.setState({ uploadingIcon: true, error: null });
+                  self.setState({ uploadingIcon: true, error: null, iconUploadNote: "Uploading…" });
 
                   persistBadgeIconPng(file, id3)
                     .then(function () {
                       // Set canonical icon path
                       var nextBadge = assign({}, ed3.badge, { id: id3, icon: "/assets/images/badges/" + id3 + ".png" });
-                      self.setState({ editing: assign({}, ed3, { badge: nextBadge }), uploadingIcon: false,
-        iconSelectedName: "",
-        iconUploadNote: "" });
+                      self.setState({ editing: assign({}, ed3, { badge: nextBadge }), uploadingIcon: false, iconUploadNote: "Uploaded as /assets/images/badges/" + id3 + ".png" });
 
                       // Reset icon preview stage so drawer tries _64 first again
                       var map = assign({}, self.state.iconStage);
@@ -635,9 +643,7 @@ function normalizeOverride(o) {
                       self.setState({ iconStage: map });
                     })
                     .catch(function (err) {
-                      self.setState({ uploadingIcon: false,
-        iconSelectedName: "",
-        iconUploadNote: "", error: String(err && err.message ? err.message : err) });
+                      self.setState({ uploadingIcon: false, iconUploadNote: "Upload failed. See error below.", error: String(err && err.message ? err.message : err) });
                     })
                     .then(function () {
                       try { e.target.value = ""; } catch (_) {}
