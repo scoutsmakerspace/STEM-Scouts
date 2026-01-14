@@ -69,7 +69,7 @@ function persistBadgeIconPng(file, badgeId) {
         renamed = file;
       }
 
-      var opts = { path: "/assets/images/badges" };
+      var opts = { path: "assets/images/badges" };
       Promise.resolve(backend.persistMedia(renamed, opts))
         .then(function (res) {
           // Different backends return different shapes
@@ -227,7 +227,9 @@ function normalizeOverride(o) {
         expandedId: null,
         iconStage: {}, // id -> 0/1/2
         editing: null, // {mode, idTouched, badge}
-        uploadingIcon: false
+        uploadingIcon: false,
+        iconSelectedName: "",
+        iconUploadNote: ""
       };
     },
 
@@ -597,7 +599,8 @@ function normalizeOverride(o) {
                     if (input) input.click();
                   }
                 }, self.state.uploadingIcon ? "Uploading…" : "Upload icon (.png)"),
-                window.h("span", { style: STYLES.hint }, "Saves as /assets/images/badges/<id>.png. GitHub Action generates <id>_64.png.")
+                window.h("span", { style: STYLES.hint }, "Saves as /assets/images/badges/<id>.png. GitHub Action generates <id>_64.png."),
+                window.h("div", { style: STYLES.hint }, (self.state.iconSelectedName ? ("Selected: " + self.state.iconSelectedName + ". ") : "") + (self.state.iconUploadNote || ""))
               ]),
               window.h("input", {
                 id: "badge-icon-upload-input",
@@ -622,7 +625,9 @@ function normalizeOverride(o) {
                     .then(function () {
                       // Set canonical icon path
                       var nextBadge = assign({}, ed3.badge, { id: id3, icon: "/assets/images/badges/" + id3 + ".png" });
-                      self.setState({ editing: assign({}, ed3, { badge: nextBadge }), uploadingIcon: false });
+                      self.setState({ editing: assign({}, ed3, { badge: nextBadge }), uploadingIcon: false,
+        iconSelectedName: "",
+        iconUploadNote: "" });
 
                       // Reset icon preview stage so drawer tries _64 first again
                       var map = assign({}, self.state.iconStage);
@@ -630,9 +635,11 @@ function normalizeOverride(o) {
                       self.setState({ iconStage: map });
                     })
                     .catch(function (err) {
-                      self.setState({ uploadingIcon: false, error: String(err && err.message ? err.message : err) });
+                      self.setState({ uploadingIcon: false,
+        iconSelectedName: "",
+        iconUploadNote: "", error: String(err && err.message ? err.message : err) });
                     })
-                    .finally(function () {
+                    .then(function () {
                       try { e.target.value = ""; } catch (_) {}
                     });
                 }
