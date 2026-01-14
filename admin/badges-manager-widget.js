@@ -3,25 +3,26 @@
     return typeof window !== "undefined" && window.CMS && window.createClass && window.h;
   }
 
-  var SECTION_OPTIONS = ["squirrels", "beavers", "cubs", "scouts", "explorers"];
-  var CATEGORY_OPTIONS = ["Activity Badges", "Staged Activity Badges", "Challenge Awards"];
-  var STATUS_OPTIONS = ["active", "retired"];
+  const SECTION_OPTIONS = [
+    "squirrels",
+    "beavers",
+    "cubs",
+    "scouts",
+    "explorers",
+  ];
 
-  function assign(target) {
-    target = target || {};
-    for (var i = 1; i < arguments.length; i++) {
-      var src = arguments[i] || {};
-      for (var k in src) {
-        if (Object.prototype.hasOwnProperty.call(src, k)) target[k] = src[k];
-      }
-    }
-    return target;
-  }
+  const CATEGORY_OPTIONS = [
+    "Activity Badges",
+    "Staged Activity Badges",
+    "Challenge Awards",
+  ];
+
+  const STATUS_OPTIONS = ["active", "retired"];
 
   function badgeTypeFromCategory(category) {
-    var c = String(category || "").toLowerCase();
-    if (c.indexOf("challenge") !== -1) return "Challenge";
-    if (c.indexOf("staged") !== -1) return "Staged";
+    const c = String(category || "").toLowerCase();
+    if (c.includes("challenge")) return "Challenge";
+    if (c.includes("staged")) return "Staged";
     return "Activity";
   }
 
@@ -35,194 +36,337 @@
   }
 
   function safeJsonFetch(url) {
-    return fetch(url, { cache: "no-store" }).then(function (r) {
-      if (!r.ok) throw new Error("Failed to load " + url + " (" + r.status + ")");
+    return fetch(url, { cache: "no-store" }).then((r) => {
+      if (!r.ok) throw new Error(`Failed to load ${url} (${r.status})`);
       return r.json();
     });
   }
 
   function getBaseUrl() {
-    var p = window.location.pathname;
-    var idx = p.toLowerCase().indexOf("/admin");
+    // Works for both /admin/ and /STEM-Scouts/admin/
+    const p = window.location.pathname;
+    const idx = p.toLowerCase().indexOf("/admin");
     if (idx === -1) return "";
     return p.slice(0, idx);
   }
 
-  
-function getBackend() {
-  try { return window.CMS && window.CMS.getBackend && window.CMS.getBackend(); } catch (_) { return null; }
-}
+  function extractReqTexts(badge) {
+    // badges_master.json stores requirements as a list of objects, including headings.
+    // For editing, we only keep the actual requirement lines.
+    const reqs = badge && badge.requirements;
+    if (!Array.isArray(reqs)) return [];
+    return reqs
+      .filter((r) => r && (r.kind === "req" || r.no || r.text))
+      .map((r) => String((r && r.text) || "").trim())
+      .filter((t) => t.length > 0);
+  }
 
-      var opts = { path: "/assets/images/badges" };
-      Promise.resolve(backend.persistMedia(renamed, opts))
-        .then(function (res) {
-          // Different backends return different shapes
-          var url = "";
-          if (res && typeof res === "object") {
-            url = res.url || res.path || "";
-            if (!url && res[0]) url = res[0].url || res[0].path || "";
-          }
-          resolve(url || ("/assets/images/badges/" + badgeId + ".png"));
-        })
-        .catch(function (err) { reject(err); });
-    } catch (err2) {
-      reject(err2);
-    }
-  });
-}
-
-
-function openMediaLibraryForIcon(onSelect) {
-  try {
-    if (window.CMS && typeof window.CMS.openMediaLibrary === "function") {
-      // openMediaLibrary({ path, callback })
-      window.CMS.openMediaLibrary({
-        path: "assets/images/badges",
-        callback: function (files) {
-          try {
-            if (!files || !files.length) return;
-            // Decap can return a single file object or array
-            var f = files[0] || files;
-            onSelect(f);
-          } catch (_) {}
-        }
-      });
-      return true;
-    }
-  } catch (e) {}
-  return false;
-}
-
-function normalizeOverride(o) {
-    var id = slugifyId(o && o.id);
+  function normalizeOverride(o) {
+    const id = slugifyId(o && o.id);
     if (!id) return null;
-
-    var title = String((o && o.title) || "").trim();
-    var section = String((o && o.section) || "").trim();
-    var category = String((o && o.category) || "").trim();
-    var status = String((o && o.status) || "active").trim();
-    var icon = String((o && o.icon) || "").trim();
-
-    var requirements_in = o && o.requirements;
-    var requirements = [];
-    if (Array.isArray(requirements_in)) {
-      for (var i = 0; i < requirements_in.length; i++) {
-        var t = String(requirements_in[i] || "").trim();
-        if (t) requirements.push(t);
-      }
-    }
-
-    var out = {
-      id: id,
-      title: title,
-      section: section,
-      category: category,
-      badge_type: badgeTypeFromCategory(category),
-      status: STATUS_OPTIONS.indexOf(status) !== -1 ? status : "active"
+    const title = String((o && o.title) || "").trim();
+    const section = String((o && o.section) || "").trim();
+    const category = String((o && o.category) || "").trim();
+    const status = String((o && o.status) || "active").trim();
+    const badge_type = badgeTypeFromCategory(category);
+    const icon = String((o && o.icon) || "").trim();
+    const completion_rules = String((o && o.completion_rules) || "").trim();
+    const requirements_in = o && o.requirements;
+    const requirements = Array.isArray(requirements_in)
+      ? requirements_in.map((x) => String(x || "").trim()).filter((t) => t)
+      : [];
+    return {
+      id,
+      title,
+      section,
+      category,
+      badge_type,
+      ...(icon ? { icon } : {}),
+      ...(completion_rules ? { completion_rules } : {}),
+      ...(requirements.length ? { requirements } : {}),
+      status: STATUS_OPTIONS.includes(status) ? status : "active",
     };
-
-    if (icon) out.icon = icon;
-    if (requirements.length) out.requirements = requirements;
-    return out;
   }
 
   function mergeMasterAndOverrides(masterBadges, overrides) {
-    var map = {};
-    var i, b, id;
+    const map = new Map();
 
-    masterBadges = masterBadges || [];
-    for (i = 0; i < masterBadges.length; i++) {
-      b = masterBadges[i];
-      if (!b || !b.id) continue;
-      id = String(b.id);
-      map[id] = {
-        id: id,
+    (masterBadges || []).forEach((b) => {
+      if (!b || !b.id) return;
+      map.set(String(b.id), {
+        id: String(b.id),
         title: b.title || b.badge_name || "",
         section: b.section || "",
         category: b.category || "",
         badge_type: b.badge_type || badgeTypeFromCategory(b.category),
         status: b.status || "active",
         icon: b.icon || "",
+        // For display only; editing converts to a simple list of strings.
         requirements: b.requirements || [],
-        _source: "master"
-      };
-    }
-
-    overrides = overrides || [];
-    for (i = 0; i < overrides.length; i++) {
-      var n = normalizeOverride(overrides[i]);
-      if (!n) continue;
-      id = String(n.id);
-      if (map[id]) map[id] = assign({}, map[id], n, { _source: "override" });
-      else map[id] = assign({}, n, { _source: "override" });
-    }
-
-    var arr = [];
-    for (id in map) if (Object.prototype.hasOwnProperty.call(map, id)) arr.push(map[id]);
-    arr.sort(function (a, b2) {
-      var as = String(a.section || "");
-      var bs = String(b2.section || "");
-      if (as !== bs) return as.localeCompare(bs);
-      return String(a.title || a.id).localeCompare(String(b2.title || b2.id));
+        _source: "master",
+      });
     });
-    return arr;
+
+    (overrides || []).forEach((o) => {
+      const n = normalizeOverride(o);
+      if (!n) return;
+      const existing = map.get(n.id);
+      if (existing) {
+        map.set(n.id, {
+          ...existing,
+          ...n,
+          _source: "override",
+        });
+      } else {
+        map.set(n.id, {
+          ...n,
+          _source: "override",
+        });
+      }
+    });
+
+    return Array.from(map.values());
   }
 
-  function resolveIconFromId(id, stage) {
-    // stage 0 -> 64, stage 1 -> full, stage 2 -> missing
-    if (!id) return "";
-    if (stage === 0) return "/assets/images/badges/" + id + "_64.png";
-    if (stage === 1) return "/assets/images/badges/" + id + ".png";
-    return "/assets/images/badges/_missing.png";
-  }
+  const STYLES = {
+    wrap: {
+      fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+      maxWidth: "1200px",
+      padding: "12px 8px",
+    },
+    header: {
+      marginBottom: "10px",
+    },
+    subtitle: {
+      marginTop: "4px",
+      opacity: 0.8,
+      fontSize: "13px",
+      lineHeight: 1.35,
+    },
+    toolbar: {
+      display: "flex",
+      gap: "10px",
+      flexWrap: "wrap",
+      alignItems: "center",
+      margin: "14px 0 12px",
+    },
+    input: {
+      minWidth: "240px",
+      padding: "8px 10px",
+      border: "1px solid #d0d7de",
+      borderRadius: "8px",
+      fontSize: "14px",
+    },
+    select: {
+      padding: "8px 10px",
+      border: "1px solid #d0d7de",
+      borderRadius: "8px",
+      fontSize: "14px",
+      background: "white",
+    },
+    btn: {
+      padding: "8px 12px",
+      borderRadius: "10px",
+      border: "1px solid #d0d7de",
+      background: "#ffffff",
+      cursor: "pointer",
+      fontSize: "14px",
+    },
+    btnPrimary: {
+      padding: "8px 12px",
+      borderRadius: "10px",
+      border: "1px solid #1f2328",
+      background: "#1f2328",
+      color: "#fff",
+      cursor: "pointer",
+      fontSize: "14px",
+    },
+    badge: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "8px",
+      padding: "4px 10px",
+      borderRadius: "999px",
+      border: "1px solid #d0d7de",
+      background: "#f6f8fa",
+      fontSize: "12px",
+    },
+    table: {
+      border: "1px solid #d0d7de",
+      borderRadius: "12px",
+      overflow: "hidden",
+    },
+    row: {
+      display: "grid",
+      gridTemplateColumns: "28px 1.2fr 140px 200px 120px 90px 160px",
+      columnGap: "0px",
+      alignItems: "center",
+    },
+    cell: {
+      padding: "10px 12px",
+      borderBottom: "1px solid #eaeef2",
+      fontSize: "14px",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+    },
+    headCell: {
+      padding: "10px 12px",
+      borderBottom: "1px solid #d0d7de",
+      fontWeight: 600,
+      fontSize: "13px",
+      background: "#f6f8fa",
+    },
+    link: {
+      color: "#0969da",
+      textDecoration: "none",
+      fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+      fontSize: "12px",
+    },
+    sectionHeader: {
+      padding: "10px 12px",
+      background: "#fff",
+      borderBottom: "1px solid #eaeef2",
+      fontWeight: 700,
+      fontSize: "13px",
+    },
+    actions: {
+      display: "flex",
+      gap: "8px",
+      justifyContent: "flex-end",
+      flexWrap: "wrap",
+    },
+expandWrap: {
+  padding: "12px 12px 14px 12px",
+  background: "#f7f7f7",
+  borderBottom: "1px solid #eaeef2",
+},
+expandGrid: {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "12px",
+  alignItems: "start",
+},
+expandLabel: {
+  fontSize: "12px",
+  fontWeight: 700,
+  color: "#334155",
+  marginBottom: "6px",
+},
+expandCode: {
+  display: "inline-block",
+  padding: "2px 6px",
+  border: "1px solid #dbe2ea",
+  borderRadius: "6px",
+  background: "#ffffff",
+},
+iconPreview: {
+  width: "64px",
+  height: "64px",
+  objectFit: "contain",
+  border: "1px solid #dbe2ea",
+  borderRadius: "8px",
+  background: "#ffffff",
+},
+muted: {
+  color: "#64748b",
+  fontSize: "13px",
+},
+miniPath: {
+  marginTop: "6px",
+  fontSize: "12px",
+  color: "#64748b",
+  wordBreak: "break-all",
+},
+reqList: {
+  margin: "6px 0 0 18px",
+  padding: 0,
+},
+reqItem: {
+  marginBottom: "4px",
+},
+expanderCell: {
+  cursor: "pointer",
+  userSelect: "none",
+  fontSize: "14px",
+  color: "#334155",
+  textAlign: "center",
+},
 
-  var STYLES = {
-    wrap: { fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif", maxWidth: "1280px", padding: "12px 8px" },
-    header: { marginBottom: "10px" },
-    subtitle: { marginTop: "4px", opacity: 0.8, fontSize: "13px", lineHeight: 1.35 },
-
-    toolbar: { display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center", margin: "14px 0 12px" },
-    input: { minWidth: "240px", padding: "8px 10px", border: "1px solid #d0d7de", borderRadius: "8px", fontSize: "14px" },
-    select: { padding: "8px 10px", border: "1px solid #d0d7de", borderRadius: "8px", fontSize: "14px", background: "white" },
-    btn: { padding: "8px 12px", borderRadius: "10px", border: "1px solid #d0d7de", background: "#ffffff", cursor: "pointer", fontSize: "14px" },
-    btnPrimary: { padding: "8px 12px", borderRadius: "10px", border: "1px solid #1f2328", background: "#1f2328", color: "#fff", cursor: "pointer", fontSize: "14px" },
-    pill: { display: "inline-flex", alignItems: "center", gap: "8px", padding: "4px 10px", borderRadius: "999px", border: "1px solid #d0d7de", background: "#f6f8fa", fontSize: "12px" },
-
-    table: { border: "1px solid #d0d7de", borderRadius: "12px", overflow: "hidden", background: "#fff" },
-    row: { display: "grid", gridTemplateColumns: "28px 1.6fr 140px 240px 120px", alignItems: "center" },
-    cell: { padding: "10px 12px", borderBottom: "1px solid #eaeef2", fontSize: "14px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" },
-    headCell: { padding: "10px 12px", borderBottom: "1px solid #d0d7de", fontWeight: 600, fontSize: "13px", background: "#f6f8fa" },
-    expanderCell: { cursor: "pointer", userSelect: "none", fontSize: "14px", color: "#334155", textAlign: "center" },
-    sectionHeader: { padding: "10px 12px", background: "#fff", borderBottom: "1px solid #eaeef2", fontWeight: 700, fontSize: "13px" },
-
-    expandWrap: { borderBottom: "1px solid #eaeef2", background: "#fbfdff", padding: "12px 12px 14px" },
-    expandGrid: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", alignItems: "start" },
-    expandLabel: { fontSize: "12px", fontWeight: 700, color: "#475569", marginBottom: "4px" },
-    expandCode: { fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace", fontSize: "12px", padding: "2px 6px", border: "1px solid #dbe2ea", borderRadius: "6px", background: "#fff", display: "inline-block" },
-    muted: { color: "#64748b", fontSize: "13px" },
-    iconPreview: { width: "72px", height: "72px", objectFit: "contain", border: "1px solid #dbe2ea", borderRadius: "10px", background: "#ffffff" },
-    miniPath: { marginTop: "6px", fontSize: "12px", color: "#64748b", wordBreak: "break-word" },
-    reqList: { margin: "6px 0 0 18px", padding: 0 },
-    reqItem: { marginBottom: "4px" },
-    actions: { display: "flex", gap: "8px", flexWrap: "wrap" },
-
-    err: { padding: "10px 12px", border: "1px solid #ffcecc", background: "#fff5f5", borderRadius: "12px", color: "#cf222e", marginTop: "10px", whiteSpace: "pre-wrap", fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace", fontSize: "12px" },
-
-    // Simple modal
-    modalBackdrop: { position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.35)", display: "flex", alignItems: "flex-start", justifyContent: "center", zIndex: 99999, padding: "16px", overflowY: "auto" },
-    modal: { width: "min(720px, 100%)", maxHeight: "calc(100vh - 32px)", background: "#fff", borderRadius: "14px", border: "1px solid #d0d7de", boxShadow: "0 8px 24px rgba(0,0,0,0.2)", overflow: "hidden", display: "flex", flexDirection: "column" },
-    modalHead: { padding: "12px 14px", borderBottom: "1px solid #eaeef2", fontWeight: 700, display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" },
-    modalBody: { padding: "14px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", overflowY: "auto" },
-    field: { display: "flex", flexDirection: "column", gap: "6px" },
-    label: { fontSize: "12px", fontWeight: 600, opacity: 0.9 },
-    hint: { fontSize: "12px", opacity: 0.75, lineHeight: 1.3 },
-    okText: { fontSize: "12px", color: "#1a7f37", lineHeight: 1.3 },
-    errText: { fontSize: "12px", color: "#cf222e", lineHeight: 1.3, whiteSpace: "pre-wrap" },
-    modalFoot: { padding: "12px 14px", borderTop: "1px solid #eaeef2", display: "flex", justifyContent: "flex-end", gap: "10px", flexWrap: "wrap" }
+    modalBackdrop: {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: "rgba(0,0,0,0.35)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 99999,
+      padding: "16px",
+    },
+    modal: {
+      width: "min(720px, 100%)",
+      background: "#fff",
+      borderRadius: "14px",
+      border: "1px solid #d0d7de",
+      boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
+      overflow: "hidden",
+    },
+    modalHead: {
+      padding: "12px 14px",
+      borderBottom: "1px solid #eaeef2",
+      fontWeight: 700,
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: "12px",
+    },
+    modalBody: {
+      padding: "14px",
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "12px",
+    },
+    field: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "6px",
+    },
+    label: {
+      fontSize: "12px",
+      fontWeight: 600,
+      opacity: 0.9,
+    },
+    hint: {
+      fontSize: "12px",
+      opacity: 0.75,
+      lineHeight: 1.3,
+    },
+    modalFoot: {
+      padding: "12px 14px",
+      borderTop: "1px solid #eaeef2",
+      display: "flex",
+      justifyContent: "flex-end",
+      gap: "10px",
+      flexWrap: "wrap",
+    },
+    err: {
+      padding: "10px 12px",
+      border: "1px solid #ffcecc",
+      background: "#fff5f5",
+      borderRadius: "12px",
+      color: "#cf222e",
+      marginTop: "10px",
+      whiteSpace: "pre-wrap",
+      fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+      fontSize: "12px",
+    },
   };
 
-  var Control = window.createClass({
-    getInitialState: function () {
+  const Control = window.createClass({
+    getInitialState() {
       return {
         loading: true,
         error: null,
@@ -232,38 +376,59 @@ function normalizeOverride(o) {
         filterCategory: "all",
         filterStatus: "all",
         groupBySection: true,
+        editing: null, // {mode:'new'|'edit', badge, idTouched}
         expandedId: null,
-        iconStage: {}, // id -> 0/1/2
-        editing: null, // {mode, idTouched, badge}
-        uploadingIcon: false
       };
     },
 
-    componentDidMount: function () {
+    componentDidMount() {
       this.loadMaster();
     },
 
-    loadMaster: function () {
-      var self = this;
-      var base = getBaseUrl();
-      var url = base + "/admin/badges_master.json";
+    loadMaster() {
+      const base = getBaseUrl();
+      const url = `${base}/admin/badges_master.json`;
       safeJsonFetch(url)
-        .then(function (data) {
-          var badges = Array.isArray(data) ? data : (Array.isArray(data && data.badges) ? data.badges : []);
-          self.setState({ master: badges, loading: false, error: null });
+        .then((data) => {
+          // badges_master.json may be either:
+          //  - an array (current repo format)
+          //  - an object { badges: [...] } (older/alternate format)
+          const badges = Array.isArray(data) ? data : Array.isArray(data && data.badges) ? data.badges : [];
+          this.setState({ master: badges, loading: false, error: null });
         })
-        .catch(function (e) {
-          self.setState({ loading: false, error: String(e && e.message ? e.message : e) });
+        .catch((e) => {
+          this.setState({ loading: false, error: String(e && e.message ? e.message : e) });
         });
     },
 
-    getOverrides: function () {
-      var v = this.props.value;
+    _extractReqTexts(badge) {
+      // Convert master format (heading + req objects) into simple list of strings.
+      const reqs = badge && badge.requirements;
+      if (!Array.isArray(reqs)) return [];
+      const out = [];
+      for (const r of reqs) {
+        if (!r) continue;
+        if (typeof r === "string") {
+          const t = r.trim();
+          if (t) out.push(t);
+          continue;
+        }
+        if (typeof r === "object") {
+          if (r.kind && r.kind !== "req") continue;
+          const t = String(r.text || "").trim();
+          if (t) out.push(t);
+        }
+      }
+      return out;
+    },
+
+    getOverrides() {
+      const v = this.props.value;
       if (!v) return [];
       if (Array.isArray(v)) return v;
       if (typeof v === "string") {
         try {
-          var parsed = JSON.parse(v);
+          const parsed = JSON.parse(v);
           return Array.isArray(parsed) ? parsed : [];
         } catch (_) {
           return [];
@@ -272,59 +437,38 @@ function normalizeOverride(o) {
       return [];
     },
 
-    setOverrides: function (nextOverrides) {
-      var cleaned = [];
-      var i;
-      nextOverrides = nextOverrides || [];
-      for (i = 0; i < nextOverrides.length; i++) {
-        var n = normalizeOverride(nextOverrides[i]);
-        if (n) cleaned.push(n);
-      }
-      cleaned.sort(function (a, b) { return a.id.localeCompare(b.id); });
+    setOverrides(nextOverrides) {
+      // Keep the stored data small + consistent.
+      const cleaned = (nextOverrides || [])
+        .map(normalizeOverride)
+        .filter(Boolean)
+        .sort((a, b) => a.id.localeCompare(b.id));
       this.props.onChange(cleaned);
     },
 
-    toggleExpand: function (id) {
-      this.setState({ expandedId: this.state.expandedId === id ? null : id });
-      var next = assign({}, this.state.iconStage);
-      next[id] = 0;
-      this.setState({ iconStage: next });
-    },
-
-    _extractReqTexts: function (badge) {
-      var reqs = badge && badge.requirements;
-      if (!Array.isArray(reqs)) return [];
-      var out = [];
-      for (var i = 0; i < reqs.length; i++) {
-        var r = reqs[i];
-        if (!r) continue;
-        if (typeof r === "string") {
-          var t = r.trim();
-          if (t) out.push(t);
-        } else if (typeof r === "object") {
-          if (r.kind && r.kind !== "req") continue;
-          var tt = String(r.text || "").trim();
-          if (tt) out.push(tt);
-        }
-      }
-      return out;
-    },
-
-    openNew: function () {
+    openNew() {
       this.setState({
         editing: {
           mode: "new",
           idTouched: false,
-          badge: { id: "", title: "", section: "beavers", category: "Activity Badges", status: "active", icon: "", requirements: [] }
-        }
+          badge: {
+            id: "",
+            title: "",
+            section: "beavers",
+            category: "Activity Badges",
+            status: "active",
+            icon: "",
+            requirements: [],
+          },
+        },
       });
     },
 
-    openEdit: function (badge) {
+    openEdit(badge) {
       this.setState({
         editing: {
           mode: "edit",
-          idTouched: true,
+          idTouched: true, // don’t auto overwrite IDs on existing
           badge: {
             id: badge.id,
             title: badge.title || "",
@@ -332,46 +476,68 @@ function normalizeOverride(o) {
             category: badge.category || "",
             status: badge.status || "active",
             icon: badge.icon || "",
-            requirements: this._extractReqTexts(badge)
-          }
-        }
+            requirements: this._extractReqTexts(badge),
+          },
+        },
       });
     },
 
-    closeEdit: function () {
+    closeEdit() {
       this.setState({ editing: null });
     },
 
-    saveEdit: function () {
-      var ed = this.state.editing;
+    saveEdit() {
+      const ed = this.state.editing;
       if (!ed) return;
 
-      var raw = ed.badge || {};
-      var id = slugifyId(raw.id || raw.title);
-      var title = String(raw.title || "").trim();
-      var section = String(raw.section || "").trim();
-      var category = String(raw.category || "").trim();
-      var status = String(raw.status || "active").trim();
-      var icon = String(raw.icon || "").trim();
-      var reqs = Array.isArray(raw.requirements) ? raw.requirements : [];
-      var requirements = [];
-      for (var i = 0; i < reqs.length; i++) {
-        var t = String(reqs[i] || "").trim();
-        if (t) requirements.push(t);
+      const raw = ed.badge || {};
+      const id = slugifyId(raw.id || raw.title);
+      const title = String(raw.title || "").trim();
+      const section = String(raw.section || "").trim();
+      const category = String(raw.category || "").trim();
+      const status = String(raw.status || "active").trim();
+      const icon = String(raw.icon || "").trim();
+      const reqs = Array.isArray(raw.requirements) ? raw.requirements : [];
+      const requirements = reqs
+        .map((x) => String(x || "").trim())
+        .filter((x) => x.length > 0);
+
+      if (!id) {
+        this.setState({ error: "Badge ID is required." });
+        return;
+      }
+      if (!title) {
+        this.setState({ error: "Badge title is required." });
+        return;
+      }
+      if (!SECTION_OPTIONS.includes(section)) {
+        this.setState({ error: "Please choose a valid section." });
+        return;
+      }
+      if (!CATEGORY_OPTIONS.includes(category)) {
+        this.setState({ error: "Please choose a valid category." });
+        return;
+      }
+      if (!STATUS_OPTIONS.includes(status)) {
+        this.setState({ error: "Please choose a valid status." });
+        return;
       }
 
-      if (!id) return this.setState({ error: "Badge ID is required." });
-      if (!title) return this.setState({ error: "Badge title is required." });
-      if (SECTION_OPTIONS.indexOf(section) === -1) return this.setState({ error: "Please choose a valid section." });
-      if (CATEGORY_OPTIONS.indexOf(category) === -1) return this.setState({ error: "Please choose a valid category." });
-      if (STATUS_OPTIONS.indexOf(status) === -1) return this.setState({ error: "Please choose a valid status." });
+      const overrides = this.getOverrides();
+      const next = overrides.slice();
+      const idx = next.findIndex((o) => String(o.id) === id);
 
-      var overrides = this.getOverrides();
-      var next = overrides.slice();
-      var idx = -1;
-      for (i = 0; i < next.length; i++) if (String(next[i].id) === id) { idx = i; break; }
+      const payload = {
+        id,
+        title,
+        section,
+        category,
+        status,
+        badge_type: badgeTypeFromCategory(category),
+        icon,
+        requirements,
+      };
 
-      var payload = { id: id, title: title, section: section, category: category, status: status, badge_type: badgeTypeFromCategory(category), icon: icon, requirements: requirements };
       if (idx >= 0) next[idx] = payload;
       else next.push(payload);
 
@@ -379,13 +545,12 @@ function normalizeOverride(o) {
       this.setState({ editing: null, error: null });
     },
 
-    setStatus: function (badge, nextStatus) {
-      var overrides = this.getOverrides();
-      var next = overrides.slice();
-      var idx = -1;
-      for (var i = 0; i < next.length; i++) if (String(next[i].id) === String(badge.id)) { idx = i; break; }
+    setStatus(badge, nextStatus) {
+      const overrides = this.getOverrides();
+      const next = overrides.slice();
+      const idx = next.findIndex((o) => String(o.id) === String(badge.id));
 
-      var payload = {
+      const payload = {
         id: badge.id,
         title: badge.title,
         section: badge.section,
@@ -393,7 +558,7 @@ function normalizeOverride(o) {
         status: nextStatus,
         badge_type: badgeTypeFromCategory(badge.category),
         icon: badge.icon || "",
-        requirements: this._extractReqTexts(badge)
+        requirements: this._extractReqTexts(badge),
       };
 
       if (idx >= 0) next[idx] = payload;
@@ -402,161 +567,483 @@ function normalizeOverride(o) {
       this.setOverrides(next);
     },
 
-    getFilteredBadges: function () {
-      var merged = mergeMasterAndOverrides(this.state.master, this.getOverrides());
-      var q = String(this.state.q || "").trim().toLowerCase();
-      var fSection = this.state.filterSection;
-      var fCategory = this.state.filterCategory;
-      var fStatus = this.state.filterStatus;
+    getFilteredBadges() {
+      const merged = mergeMasterAndOverrides(this.state.master, this.getOverrides());
 
-      var out = [];
-      for (var i = 0; i < merged.length; i++) {
-        var b = merged[i];
-        if (fSection !== "all" && String(b.section) !== fSection) continue;
-        if (fCategory !== "all" && String(b.category) !== fCategory) continue;
-        if (fStatus !== "all" && String(b.status) !== fStatus) continue;
-        if (q) {
-          var hay = (b.id + " " + b.title + " " + b.section + " " + b.category).toLowerCase();
-          if (hay.indexOf(q) === -1) continue;
-        }
-        out.push(b);
-      }
-      return out;
+      const q = String(this.state.q || "").trim().toLowerCase();
+      const fSection = this.state.filterSection;
+      const fCategory = this.state.filterCategory;
+      const fStatus = this.state.filterStatus;
+
+      return merged
+        .filter((b) => {
+          if (fSection !== "all" && String(b.section) !== fSection) return false;
+          if (fCategory !== "all" && String(b.category) !== fCategory) return false;
+          if (fStatus !== "all" && String(b.status) !== fStatus) return false;
+          if (!q) return true;
+          const hay = `${b.id} ${b.title} ${b.section} ${b.category}`.toLowerCase();
+          return hay.includes(q);
+        })
+        .sort((a, b) => {
+          const as = String(a.section || "");
+          const bs = String(b.section || "");
+          if (as !== bs) return as.localeCompare(bs);
+          return String(a.title || a.id).localeCompare(String(b.title || b.id));
+        });
     },
 
-    renderExpanded: function (b) {
-      var id = String(b.id || "").trim();
-      var iconExplicit = String(b.icon || "").trim();
-      var stage = (this.state.iconStage && typeof this.state.iconStage[id] === "number") ? this.state.iconStage[id] : 0;
+    
+toggleExpand(id) {
+  this.setState({ expandedId: this.state.expandedId === id ? null : id });
+},
 
-      var iconUrl = "";
-      if (iconExplicit) {
-        if (stage === 0) iconUrl = iconExplicit.replace(/\.png$/i, "_64.png");
-        else if (stage === 1) iconUrl = iconExplicit;
-        else iconUrl = "/assets/images/badges/_missing.png";
-      } else {
-        iconUrl = resolveIconFromId(id, stage);
-      }
+renderExpanded(b) {
+  const icon = String(b.icon || "").trim();
+  const reqs = Array.isArray(b.requirements) ? b.requirements : [];
+  return window.h(
+    "div",
+    { style: STYLES.expandWrap },
+    window.h("div", { style: STYLES.expandGrid },
+      [
+        window.h("div", {}, [
+          window.h("div", { style: STYLES.expandLabel }, "ID"),
+          window.h("code", { style: STYLES.expandCode }, b.id || "—"),
+        ]),
+        window.h("div", {}, [
+          window.h("div", { style: STYLES.expandLabel }, "Icon"),
+          icon
+            ? window.h("img", { src: icon, style: STYLES.iconPreview })
+            : window.h("em", { style: STYLES.muted }, "No icon set"),
+          icon ? window.h("div", { style: STYLES.miniPath }, icon) : null,
+        ]),
+        window.h("div", { style: { gridColumn: "1 / -1" } }, [
+          window.h("div", { style: STYLES.expandLabel }, "Requirements"),
+          reqs.length
+            ? window.h(
+                "ol",
+                { style: STYLES.reqList },
+                reqs.map((t) => window.h("li", { style: STYLES.reqItem }, t))
+              )
+            : window.h("em", { style: STYLES.muted }, "No requirements"),
+        ]),
+      ]
+    )
+  );
+},
 
-      var reqs = this._extractReqTexts(b);
-      var isRetired = String(b.status) === "retired";
-      var self = this;
+renderTableRows(items) {
+      const rows = [];
+      const bySection = new Map();
+      items.forEach((b) => {
+        const s = String(b.section || "other");
+        if (!bySection.has(s)) bySection.set(s, []);
+        bySection.get(s).push(b);
+      });
 
-      function bump() {
-        var cur = (self.state.iconStage && typeof self.state.iconStage[id] === "number") ? self.state.iconStage[id] : 0;
-        var next = Math.min(cur + 1, 2);
-        var map = assign({}, self.state.iconStage);
-        map[id] = next;
-        self.setState({ iconStage: map });
-      }
+      const sections = Array.from(bySection.keys()).sort((a, b) => a.localeCompare(b));
+
+      sections.forEach((sec) => {
+        if (this.state.groupBySection) {
+          rows.push(
+            window.h(
+              "div",
+              { key: `sec-${sec}`, style: STYLES.sectionHeader },
+              sec
+            )
+          );
+        }
+
+        (bySection.get(sec) || []).forEach((b) => {
+          rows.push(this.renderRow(b));
+        });
+      });
+
+      return rows;
+    },
+
+    renderRow(b) {
+      const isRetired = String(b.status) === "retired";
+      const rowStyle = {
+        ...STYLES.row,
+        background: isRetired ? "#fafbfc" : "#fff",
+        opacity: isRetired ? 0.7 : 1,
+      };
+
+      const base = getBaseUrl();
+      const link = `${base}/badges/#${encodeURIComponent(b.id)}`;
 
       return window.h(
         "div",
-        { style: STYLES.expandWrap },
-        window.h("div", { style: STYLES.expandGrid }, [
-          window.h("div", { key: "id" }, [
-            window.h("div", { style: STYLES.expandLabel }, "ID"),
-            window.h("code", { style: STYLES.expandCode }, id || "—")
-          ]),
-          window.h("div", { key: "icon" }, [
-            window.h("div", { style: STYLES.expandLabel }, "Icon"),
-            window.h("img", { src: iconUrl, style: STYLES.iconPreview, onError: bump }),
-            window.h("div", { style: STYLES.miniPath }, iconExplicit ? iconExplicit : ("/assets/images/badges/" + id + ".png (auto)"))
-          ]),
-          window.h("div", { key: "reqs", style: { gridColumn: "1 / -1" } }, [
-            window.h("div", { style: STYLES.expandLabel }, "Requirements"),
-            reqs.length
-              ? window.h("ol", { style: STYLES.reqList }, reqs.map(function (t, i) { return window.h("li", { key: i, style: STYLES.reqItem }, t); }))
-              : window.h("em", { style: STYLES.muted }, "No requirements")
-          ]),
-          window.h("div", { key: "actions", style: { gridColumn: "1 / -1", display: "flex", justifyContent: "flex-end" } }, [
-            window.h("div", { style: STYLES.actions }, [
-              window.h("button", {
-                  style: STYLES.btn,
-                  onClick: function () {
-                    var ed2 = self.state.editing;
-                    if (!ed2 || !ed2.badge) return;
-                    var id2 = slugifyId(ed2.badge.id || ed2.badge.title);
-                    if (!id2) {
-                      self.setState({ error: "Set Title or ID before choosing an icon." });
-                      return;
-                    }
+        { key: b.id, style: rowStyle },
+        window.h(
+          "div",
+          { style: STYLES.cell },
+          window.h(
+            "a",
+            { href: link, target: "_blank", rel: "noopener", style: STYLES.link },
+            b.id
+          )
+        ),
+        window.h("div", { style: STYLES.cell, title: b.title }, b.title || "—"),
+        window.h("div", { style: STYLES.cell }, b.section || "—"),
+        window.h("div", { style: STYLES.cell }, b.category || "—"),
+        window.h("div", { style: STYLES.cell }, b.status || "active"),
+        window.h("div", { style: STYLES.cell }, String((b.requirements || []).length)),
+        window.h(
+          "div",
+          { style: { ...STYLES.cell, borderBottom: "1px solid #eaeef2" } },
+          window.h(
+            "div",
+            { style: STYLES.actions },
+            window.h(
+              "button",
+              { style: STYLES.btn, onClick: () => this.openEdit(b) },
+              "Edit"
+            ),
+            window.h(
+              "button",
+              {
+                style: STYLES.btn,
+                onClick: () => this.setStatus(b, isRetired ? "active" : "retired"),
+              },
+              isRetired ? "Restore" : "Retire"
+            )
+          )
+        )
+      );
+    },
 
-                    self.setState({ iconUploadError: "", iconUploadNote: "Opening media library…" });
+    renderModal() {
+      const ed = this.state.editing;
+      if (!ed) return null;
 
-                    var opened = openMediaLibraryForIcon(function (f) {
-                      // f might be: { path, url, name, ... }
-                      var url = "";
-                      var path = "";
-                      try { url = (f && (f.url || f.path)) ? String(f.url || f.path) : ""; } catch (_) {}
-                      try { path = (f && f.path) ? String(f.path) : url; } catch (_) {}
+      const b = ed.badge;
 
-                      // Ensure we store a public path (should start with /assets/...)
-                      var chosen = url || path;
-                      if (chosen && chosen.charAt(0) !== "/") chosen = "/" + chosen;
+      const update = (key, value) => {
+        const next = { ...b, [key]: value };
 
-                      // Set icon path on badge
-                      var ed3 = self.state.editing;
-                      if (!ed3 || !ed3.badge) return;
+        // Auto-generate ID from title until the user touches the ID field.
+        if (key === "title" && !ed.idTouched) {
+          next.id = slugifyId(value);
+        }
 
-                      var nextBadge = assign({}, ed3.badge, { id: id2, icon: chosen || ("/assets/images/badges/" + id2 + ".png") });
-                      self.setState({ editing: assign({}, ed3, { badge: nextBadge }), iconSelectedName: chosen ? chosen.split("/").pop() : "", iconUploadNote: "Selected via media library.", iconUploadError: "" });
+        this.setState({ editing: { ...ed, badge: next } });
+      };
 
-                      // Reset icon preview stage
-                      var map = assign({}, self.state.iconStage);
-                      map[id2] = 0;
-                      self.setState({ iconStage: map });
+      const onIdChange = (value) => {
+        const next = { ...b, id: slugifyId(value) };
+        this.setState({ editing: { ...ed, idTouched: true, badge: next } });
+      };
 
-                      // Warn if filename not canonical
-                      if (chosen) {
-                        var fn = chosen.split("/").pop();
-                        if (fn !== (id2 + ".png")) {
-                          self.setState({ iconUploadNote: "Selected: " + fn + ". NOTE: for auto _64 generation, rename to " + id2 + ".png in assets/images/badges." });
-                        }
-                      }
-                    });
+      return window.h(
+        "div",
+        { style: STYLES.modalBackdrop, onClick: () => this.closeEdit() },
+        window.h(
+          "div",
+          { style: STYLES.modal, onClick: (e) => e.stopPropagation() },
+          window.h(
+            "div",
+            { style: STYLES.modalHead },
+            window.h(
+              "div",
+              null,
+              ed.mode === "new" ? "Add new badge" : `Edit badge: ${b.id}`
+            ),
+            window.h(
+              "button",
+              { style: STYLES.btn, onClick: () => this.closeEdit() },
+              "Close"
+            )
+          ),
+          window.h(
+            "div",
+            { style: STYLES.modalBody },
+            window.h(
+              "div",
+              { style: { ...STYLES.field, gridColumn: "1 / span 2" } },
+              window.h("div", { style: STYLES.label }, "Title"),
+              window.h("input", {
+                style: STYLES.input,
+                value: b.title,
+                onChange: (e) => update("title", e.target.value),
+                placeholder: "e.g. My new badge",
+              })
+            ),
+            window.h(
+              "div",
+              { style: STYLES.field },
+              window.h("div", { style: STYLES.label }, "Canonical ID"),
+              window.h("input", {
+                style: STYLES.input,
+                value: b.id,
+                onChange: (e) => onIdChange(e.target.value),
+                placeholder: "e.g. beavers-my-new-badge",
+              }),
+              window.h(
+                "div",
+                { style: STYLES.hint },
+                "Lowercase, hyphenated. Don’t change after publishing."
+              )
+            ),
+            window.h(
+              "div",
+              { style: STYLES.field },
+              window.h("div", { style: STYLES.label }, "Status"),
+              window.h(
+                "select",
+                {
+                  style: STYLES.select,
+                  value: b.status,
+                  onChange: (e) => update("status", e.target.value),
+                },
+                STATUS_OPTIONS.map((s) => window.h("option", { key: s, value: s }, s))
+              )
+            ),
+            window.h(
+              "div",
+              { style: STYLES.field },
+              window.h("div", { style: STYLES.label }, "Section"),
+              window.h(
+                "select",
+                {
+                  style: STYLES.select,
+                  value: b.section,
+                  onChange: (e) => update("section", e.target.value),
+                },
+                SECTION_OPTIONS.map((s) => window.h("option", { key: s, value: s }, s))
+              )
+            ),
+            window.h(
+              "div",
+              { style: STYLES.field },
+              window.h("div", { style: STYLES.label }, "Category"),
+              window.h(
+                "select",
+                {
+                  style: STYLES.select,
+                  value: b.category,
+                  onChange: (e) => update("category", e.target.value),
+                },
+                CATEGORY_OPTIONS.map((c) => window.h("option", { key: c, value: c }, c))
+              ),
+              window.h(
+                "div",
+                { style: STYLES.hint },
+                `Badge type is auto-set to “${badgeTypeFromCategory(b.category)}”.`
+              )
+            )
 
-                    if (!opened) {
-                      self.setState({ iconUploadNote: "", iconUploadError: "Media library API is not available. Ensure Decap is loaded and media is enabled." });
-                    }
-                  }
-                }, "Choose/upload icon"),
-                window.h("span", { style: STYLES.hint }, "This uses Decap’s Media Library (upload + select). For auto 64px generation, filename should be <id>.png in assets/images/badges."),
-                window.h("div", { style: STYLES.okText }, (self.state.iconSelectedName ? ("Selected: " + self.state.iconSelectedName + ". ") : "") + (self.state.iconUploadNote || "")),
-                (self.state.iconUploadError ? window.h("div", { style: STYLES.errText }, self.state.iconUploadError) : null),
-          window.h("select", { style: STYLES.select, value: this.state.filterCategory, onChange: function (e) { this.setState({ filterCategory: e.target.value }); }.bind(this) }, [window.h("option", { value: "all" }, "All categories")].concat(CATEGORY_OPTIONS.map(function (c) { return window.h("option", { key: c, value: c }, c); }))),
-          window.h("select", { style: STYLES.select, value: this.state.filterStatus, onChange: function (e) { this.setState({ filterStatus: e.target.value }); }.bind(this) }, [window.h("option", { value: "all" }, "All statuses")].concat(STATUS_OPTIONS.map(function (s) { return window.h("option", { key: s, value: s }, s); }))),
-          window.h("button", { style: STYLES.btn, onClick: function () { this.setState({ groupBySection: !this.state.groupBySection }); }.bind(this) }, this.state.groupBySection ? "Ungroup" : "Group by section"),
-          window.h("button", { style: STYLES.btnPrimary, onClick: function () { this.openNew(); }.bind(this) }, "Add new badge"),
-          window.h("span", { style: STYLES.pill }, "Overrides: " + overrides.length)
-        ]),
+            ,
+            window.h(
+              "div",
+              { style: { ...STYLES.field, gridColumn: "1 / span 2" } },
+              window.h("div", { style: STYLES.label }, "Icon (optional)"),
+              window.h("input", {
+                style: STYLES.input,
+                value: b.icon || "",
+                onChange: (e) => update("icon", e.target.value),
+                placeholder: "/assets/images/badges/<id>.png",
+              }),
+              window.h(
+                "div",
+                { style: STYLES.hint },
+                "If you upload an icon in the CMS media library, paste its path here. If left blank, the site will use /assets/images/badges/<id>.png."
+              )
+            ),
+            window.h(
+              "div",
+              { style: { ...STYLES.field, gridColumn: "1 / span 2" } },
+              window.h("div", { style: STYLES.label }, "Requirements"),
+              window.h(
+                "div",
+                { style: { display: "grid", gap: "8px" } },
+                (Array.isArray(b.requirements) ? b.requirements : []).map((t, idx) =>
+                  window.h(
+                    "div",
+                    { key: idx, style: { display: "flex", gap: "8px", alignItems: "flex-start" } },
+                    window.h("textarea", {
+                      style: { ...STYLES.input, minHeight: "60px", width: "100%" },
+                      value: t,
+                      onChange: (e) => {
+                        const next = (Array.isArray(b.requirements) ? b.requirements.slice() : []);
+                        next[idx] = e.target.value;
+                        update("requirements", next);
+                      },
+                      placeholder: `Requirement ${idx + 1} text...`,
+                    }),
+                    window.h(
+                      "button",
+                      {
+                        style: STYLES.btn,
+                        onClick: () => {
+                          const next = (Array.isArray(b.requirements) ? b.requirements.slice() : []);
+                          next.splice(idx, 1);
+                          update("requirements", next);
+                        },
+                      },
+                      "Remove"
+                    )
+                  )
+                )
+              ),
+              window.h(
+                "div",
+                { style: { marginTop: "8px", display: "flex", gap: "8px", flexWrap: "wrap" } },
+                window.h(
+                  "button",
+                  {
+                    style: STYLES.btn,
+                    onClick: () => {
+                      const next = (Array.isArray(b.requirements) ? b.requirements.slice() : []);
+                      next.push("");
+                      update("requirements", next);
+                    },
+                  },
+                  "Add requirement"
+                ),
+                window.h(
+                  "button",
+                  {
+                    style: STYLES.btn,
+                    onClick: () => update("requirements", []),
+                  },
+                  "Clear"
+                )
+              ),
+              window.h(
+                "div",
+                { style: STYLES.hint },
+                "Numbering is automatic. Just add one requirement per box."
+              )
+            )
+          ),
+          window.h(
+            "div",
+            { style: STYLES.modalFoot },
+            window.h(
+              "button",
+              { style: STYLES.btn, onClick: () => this.closeEdit() },
+              "Cancel"
+            ),
+            window.h(
+              "button",
+              { style: STYLES.btnPrimary, onClick: () => this.saveEdit() },
+              "Save"
+            )
+          )
+        )
+      );
+    },
+
+    render() {
+      const overrides = this.getOverrides();
+      const filtered = this.getFilteredBadges();
+
+      return window.h(
+        "div",
+        { style: STYLES.wrap },
+        window.h(
+          "div",
+          { style: STYLES.header },
+          window.h("h2", { style: { margin: 0 } }, "Badges Manager"),
+          window.h(
+            "div",
+            { style: STYLES.subtitle },
+            "Add new badges and retire badges safely. Deletion is not supported. Retired badges will be pruned from mapping and activities by the site’s generation scripts/workflows."
+          )
+        ),
+
+        window.h(
+          "div",
+          { style: STYLES.toolbar },
+          window.h("input", {
+            style: STYLES.input,
+            value: this.state.q,
+            onChange: (e) => this.setState({ q: e.target.value }),
+            placeholder: "Search by ID, title, section…",
+          }),
+          window.h(
+            "select",
+            {
+              style: STYLES.select,
+              value: this.state.filterSection,
+              onChange: (e) => this.setState({ filterSection: e.target.value }),
+            },
+            window.h("option", { value: "all" }, "All sections"),
+            SECTION_OPTIONS.map((s) => window.h("option", { key: s, value: s }, s))
+          ),
+          window.h(
+            "select",
+            {
+              style: STYLES.select,
+              value: this.state.filterCategory,
+              onChange: (e) => this.setState({ filterCategory: e.target.value }),
+            },
+            window.h("option", { value: "all" }, "All categories"),
+            CATEGORY_OPTIONS.map((c) => window.h("option", { key: c, value: c }, c))
+          ),
+          window.h(
+            "select",
+            {
+              style: STYLES.select,
+              value: this.state.filterStatus,
+              onChange: (e) => this.setState({ filterStatus: e.target.value }),
+            },
+            window.h("option", { value: "all" }, "All statuses"),
+            STATUS_OPTIONS.map((s) => window.h("option", { key: s, value: s }, s))
+          ),
+          window.h(
+            "button",
+            {
+              style: STYLES.btn,
+              onClick: () => this.setState({ groupBySection: !this.state.groupBySection }),
+            },
+            this.state.groupBySection ? "Ungroup" : "Group by section"
+          ),
+          window.h(
+            "button",
+            { style: STYLES.btnPrimary, onClick: () => this.openNew() },
+            "Add new badge"
+          ),
+          window.h(
+            "span",
+            { style: STYLES.badge },
+            `Overrides: ${overrides.length}`
+          )
+        ),
 
         this.state.loading
           ? window.h("div", null, "Loading badges…")
-          : window.h("div", { style: STYLES.table }, [
-              window.h("div", { style: STYLES.row }, [
+          : window.h(
+              "div",
+              { style: STYLES.table },
+              window.h(
+                "div",
+                { style: STYLES.row },
                 window.h("div", { style: STYLES.headCell }, ""),
                 window.h("div", { style: STYLES.headCell }, "Title"),
                 window.h("div", { style: STYLES.headCell }, "Section"),
                 window.h("div", { style: STYLES.headCell }, "Category"),
-                window.h("div", { style: STYLES.headCell }, "Status")
-              ])
-            ].concat(this.renderTableRows(filtered))),
+                window.h("div", { style: STYLES.headCell }, "Status"),
+                window.h("div", { style: STYLES.headCell }, "Reqs"),
+                window.h("div", { style: STYLES.headCell }, "Actions")
+              ),
+              this.renderTableRows(filtered)
+            ),
 
         this.state.error ? window.h("div", { style: STYLES.err }, this.state.error) : null,
         this.renderModal()
       );
-    }
+    },
   });
 
   function register() {
     window.CMS.registerWidget("badges_manager", Control);
-    try { console.log("[badges_manager] widget registered"); } catch (_) {}
   }
 
   if (ready()) register();
   else {
-    var t = setInterval(function () {
+    const t = setInterval(() => {
       if (!ready()) return;
       clearInterval(t);
       register();
