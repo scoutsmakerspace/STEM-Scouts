@@ -236,6 +236,90 @@
       justifyContent: "flex-end",
       flexWrap: "wrap",
     },
+
+    rowWrap: {
+      display: "block",
+    },
+    expandBtn: {
+      border: "1px solid #d0d7de",
+      background: "#fff",
+      borderRadius: "8px",
+      width: "24px",
+      height: "24px",
+      lineHeight: "22px",
+      padding: 0,
+      marginRight: "8px",
+      cursor: "pointer",
+      color: "#57606a",
+      fontSize: "14px",
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    pill: {
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "2px 8px",
+      borderRadius: "999px",
+      border: "1px solid #d0d7de",
+      background: "#f6f8fa",
+      fontSize: "12px",
+      color: "#24292f",
+      whiteSpace: "nowrap",
+    },
+    detailsRow: {
+      borderBottom: "1px solid #eaeef2",
+      background: "#f6f8fa",
+      padding: "12px",
+    },
+    detailsGrid: {
+      display: "grid",
+      gridTemplateColumns: "360px 1fr",
+      gap: "14px",
+      alignItems: "start",
+    },
+    detailsTitle: {
+      fontSize: "12px",
+      fontWeight: 700,
+      textTransform: "uppercase",
+      letterSpacing: "0.04em",
+      color: "#57606a",
+      marginBottom: "6px",
+    },
+    detailsMeta: {
+      fontSize: "13px",
+      lineHeight: 1.5,
+    },
+    iconPreview: {
+      width: "40px",
+      height: "40px",
+      borderRadius: "10px",
+      border: "1px solid #d0d7de",
+      background: "#fff",
+      objectFit: "contain",
+    },
+    code: {
+      fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+      fontSize: "12px",
+      padding: "2px 6px",
+      borderRadius: "6px",
+      border: "1px solid #d0d7de",
+      background: "#fff",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      maxWidth: "260px",
+      display: "inline-block",
+    },
+    reqList: {
+      margin: 0,
+      paddingLeft: "18px",
+      fontSize: "13px",
+      lineHeight: 1.45,
+    },
+    reqItem: {
+      marginBottom: "6px",
+    },
     modalBackdrop: {
       position: "fixed",
       top: 0,
@@ -320,6 +404,7 @@
         filterStatus: "all",
         groupBySection: true,
         editing: null, // {mode:'new'|'edit', badge, idTouched}
+        expandedId: null,
       };
     },
 
@@ -534,7 +619,13 @@
         });
     },
 
-    renderTableRows(items) {
+    
+    toggleExpand(badgeId) {
+      const cur = this.state.expandedId;
+      this.setState({ expandedId: cur === badgeId ? null : badgeId });
+    },
+
+renderTableRows(items) {
       const rows = [];
       const bySection = new Map();
       items.forEach((b) => {
@@ -566,21 +657,52 @@
 
     renderRow(b) {
       const isRetired = String(b.status) === "retired";
+      const isExpanded = this.state.expandedId === String(b.id);
+
       const rowStyle = {
         ...STYLES.row,
         background: isRetired ? "#fafbfc" : "#fff",
         opacity: isRetired ? 0.7 : 1,
+        cursor: "default",
       };
 
       const base = getBaseUrl();
       const link = `${base}/badges/#${encodeURIComponent(b.id)}`;
 
-      return window.h(
+      const reqsRaw = Array.isArray(b.requirements) ? b.requirements : [];
+      const requirements = reqsRaw
+        .map((r) => {
+          if (typeof r === "string") return r.trim();
+          if (!r) return "";
+          return String(r.text || r.requirement || r.req || "").trim();
+        })
+        .filter(Boolean);
+
+      const reqCount = requirements.length;
+
+      const icon = String(b.icon || "").trim();
+      const iconSrc = icon && !/^https?:\/\//i.test(icon) && !icon.startsWith("/") ? `/${icon}` : icon;
+
+      const mainRow = window.h(
         "div",
-        { key: b.id, style: rowStyle },
+        { style: rowStyle },
         window.h(
           "div",
           { style: STYLES.cell },
+          window.h(
+            "button",
+            {
+              type: "button",
+              title: isExpanded ? "Collapse" : "Expand",
+              style: { ...STYLES.expandBtn, transform: isExpanded ? "rotate(90deg)" : "none" },
+              onClick: (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleExpand(String(b.id));
+              },
+            },
+            "▸"
+          ),
           window.h(
             "a",
             { href: link, target: "_blank", rel: "noopener", style: STYLES.link },
@@ -589,19 +711,24 @@
         ),
         window.h("div", { style: STYLES.cell, title: b.title }, b.title || "—"),
         window.h("div", { style: STYLES.cell }, b.section || "—"),
-        window.h("div", { style: STYLES.cell }, b.category || "—"),
-        window.h("div", { style: STYLES.cell }, b.status || "active"),
+        window.h(
+          "div",
+          { style: STYLES.cell, title: b.category || "" },
+          b.category || "—"
+        ),
+        window.h(
+          "div",
+          { style: STYLES.cell },
+          window.h("span", { style: STYLES.pill }, b.status || "active"),
+          window.h("span", { style: { ...STYLES.pill, marginLeft: "8px" } }, `Reqs: ${reqCount}`)
+        ),
         window.h(
           "div",
           { style: { ...STYLES.cell, borderBottom: "1px solid #eaeef2" } },
           window.h(
             "div",
             { style: STYLES.actions },
-            window.h(
-              "button",
-              { style: STYLES.btn, onClick: () => this.openEdit(b) },
-              "Edit"
-            ),
+            window.h("button", { style: STYLES.btn, onClick: () => this.openEdit(b) }, "Edit"),
             window.h(
               "button",
               {
@@ -613,7 +740,66 @@
           )
         )
       );
+
+      const details = !isExpanded
+        ? null
+        : window.h(
+            "div",
+            { style: STYLES.detailsRow },
+            window.h(
+              "div",
+              { style: STYLES.detailsGrid },
+              window.h(
+                "div",
+                null,
+                window.h("div", { style: STYLES.detailsTitle }, "Details"),
+                window.h(
+                  "div",
+                  { style: STYLES.detailsMeta },
+                  window.h("div", null, window.h("strong", null, "Badge type: "), b.badge_type || "—"),
+                  window.h("div", null, window.h("strong", null, "ID: "), b.id),
+                  window.h("div", null, window.h("strong", null, "Section: "), b.section || "—"),
+                  window.h("div", null, window.h("strong", null, "Category: "), b.category || "—")
+                ),
+                iconSrc
+                  ? window.h(
+                      "div",
+                      { style: { marginTop: "10px" } },
+                      window.h("div", { style: STYLES.detailsTitle }, "Icon"),
+                      window.h(
+                        "div",
+                        { style: { display: "flex", alignItems: "center", gap: "10px" } },
+                        window.h("img", { src: iconSrc, alt: "", style: STYLES.iconPreview }),
+                        window.h("code", { style: STYLES.code }, icon)
+                      )
+                    )
+                  : window.h(
+                      "div",
+                      { style: { marginTop: "10px", opacity: 0.75 } },
+                      window.h("div", { style: STYLES.detailsTitle }, "Icon"),
+                      "No icon set"
+                    )
+              ),
+              window.h(
+                "div",
+                null,
+                window.h("div", { style: STYLES.detailsTitle }, `Requirements (${reqCount})`),
+                reqCount === 0
+                  ? window.h("div", { style: { opacity: 0.75 } }, "No requirements.")
+                  : window.h(
+                      "ol",
+                      { style: STYLES.reqList },
+                      requirements.map((t, i) =>
+                        window.h("li", { key: `${b.id}-req-${i}`, style: STYLES.reqItem }, t)
+                      )
+                    )
+              )
+            )
+          );
+
+      return window.h("div", { key: b.id, style: STYLES.rowWrap }, mainRow, details);
     },
+
 
     renderModal() {
       const ed = this.state.editing;
