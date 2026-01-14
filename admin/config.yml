@@ -7,7 +7,7 @@ backend:
 site_url: https://scoutsmakerspace.github.io/STEM-Scouts
 display_url: https://scoutsmakerspace.github.io/STEM-Scouts
 publish_mode: editorial_workflow
-media_folder: /assets/images/uploads
+media_folder: assets/images/uploads
 public_folder: /assets/images/uploads
 collections:
 - name: activities
