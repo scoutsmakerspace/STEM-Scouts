@@ -50,6 +50,16 @@
     return p.slice(0, idx);
   }
 
+
+function resolveIconForDisplay(badge) {
+  const icon = String((badge && badge.icon) || "").trim();
+  if (icon) return { url: icon, source: "explicit" };
+  // Default convention: if icon not set, assume /assets/images/badges/<id>.png
+  const id = String((badge && badge.id) || "").trim();
+  if (!id) return { url: "", source: "none" };
+  return { url: `/assets/images/badges/${id}.png`, source: "default" };
+}
+
   function extractReqTexts(badge) {
     // badges_master.json stores requirements as a list of objects, including headings.
     // For editing, we only keep the actual requirement lines.
@@ -198,7 +208,7 @@
     },
     row: {
       display: "grid",
-      gridTemplateColumns: "28px 1.2fr 140px 200px 120px 90px 160px",
+      gridTemplateColumns: "28px 1.6fr 140px 220px 120px",
       columnGap: "0px",
       alignItems: "center",
     },
@@ -293,6 +303,84 @@ expanderCell: {
   textAlign: "center",
 },
 
+
+drawer: {
+  position: "fixed",
+  top: 0,
+  right: 0,
+  height: "100vh",
+  width: "min(520px, 92vw)",
+  background: "#ffffff",
+  borderLeft: "1px solid #d0d7de",
+  boxShadow: "-8px 0 24px rgba(0,0,0,0.15)",
+  zIndex: 99998,
+  display: "flex",
+  flexDirection: "column",
+},
+drawerHead: {
+  padding: "12px 14px",
+  borderBottom: "1px solid #eaeef2",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "10px",
+},
+drawerTitle: {
+  margin: 0,
+  fontSize: "16px",
+  fontWeight: 800,
+  lineHeight: 1.2,
+},
+drawerBody: {
+  padding: "12px 14px 16px 14px",
+  overflow: "auto",
+},
+drawerFooter: {
+  padding: "12px 14px",
+  borderTop: "1px solid #eaeef2",
+  display: "flex",
+  justifyContent: "flex-end",
+  gap: "10px",
+  flexWrap: "wrap",
+},
+kvRow: {
+  display: "grid",
+  gridTemplateColumns: "120px 1fr",
+  gap: "8px",
+  alignItems: "start",
+  padding: "6px 0",
+  borderBottom: "1px solid #f0f2f5",
+},
+kvKey: {
+  fontSize: "12px",
+  fontWeight: 800,
+  color: "#334155",
+},
+kvVal: {
+  fontSize: "13px",
+  color: "#0f172a",
+  wordBreak: "break-word",
+},
+smallCode: {
+  fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+  fontSize: "12px",
+  padding: "2px 6px",
+  border: "1px solid #dbe2ea",
+  borderRadius: "6px",
+  background: "#f8fafc",
+  display: "inline-block",
+},
+pillOk: {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "2px 8px",
+  borderRadius: "999px",
+  border: "1px solid #d0d7de",
+  background: "#f6f8fa",
+  fontSize: "12px",
+  fontWeight: 700,
+},
+
     modalBackdrop: {
       position: "fixed",
       top: 0,
@@ -377,7 +465,7 @@ expanderCell: {
         filterStatus: "all",
         groupBySection: true,
         editing: null, // {mode:'new'|'edit', badge, idTouched}
-        expandedId: null,
+        selectedId: null,
       };
     },
 
@@ -591,18 +679,6 @@ expanderCell: {
           return String(a.title || a.id).localeCompare(String(b.title || b.id));
         });
     },
-
-    
-toggleExpand(id) {
-  this.setState({ expandedId: this.state.expandedId === id ? null : id });
-},
-
-renderExpanded(b) {
-  const icon = String(b.icon || "").trim();
-  const reqs = Array.isArray(b.requirements) ? b.requirements : [];
-  return window.h(
-    "div",
-    { style: STYLES.expandWrap },
     window.h("div", { style: STYLES.expandGrid },
       [
         window.h("div", {}, [
@@ -661,51 +737,35 @@ renderTableRows(items) {
       return rows;
     },
 
-    renderRow(b) {
-      const isRetired = String(b.status) === "retired";
-      const rowStyle = {
-        ...STYLES.row,
-        background: isRetired ? "#fafbfc" : "#fff",
-        opacity: isRetired ? 0.7 : 1,
-      };
 
-      const base = getBaseUrl();
-      const link = `${base}/badges/#${encodeURIComponent(b.id)}`;
+renderRow(b) {
+  const isRetired = String(b.status) === "retired";
+  const isSelected = this.state.selectedId === b.id;
 
-      return window.h(
-        "div",
-        { key: b.id, style: rowStyle },
-        window.h(
-          "div",
-          { style: STYLES.cell },
-          window.h(
-            "a",
-            { href: link, target: "_blank", rel: "noopener", style: STYLES.link },
-            b.id
-          )
-        ),
-        window.h("div", { style: STYLES.cell, title: b.title }, b.title || "—"),
-        window.h("div", { style: STYLES.cell }, b.section || "—"),
-        window.h("div", { style: STYLES.cell }, b.category || "—"),
-        window.h("div", { style: STYLES.cell }, b.status || "active"),
-        window.h("div", { style: STYLES.cell }, String((b.requirements || []).length)),
-        window.h(
-          "div",
-          { style: { ...STYLES.cell, borderBottom: "1px solid #eaeef2" } },
-          window.h(
-            "div",
-            { style: STYLES.actions },
-            window.h(
-              "button",
-              { style: STYLES.btn, onClick: () => this.openEdit(b) },
-              "Edit"
-            ),
-            window.h(
-              "button",
-              {
-                style: STYLES.btn,
-                onClick: () => this.setStatus(b, isRetired ? "active" : "retired"),
-              },
+  const rowStyle = {
+    ...STYLES.row,
+    background: isRetired ? "#fafbfc" : "#fff",
+    opacity: isRetired ? 0.7 : 1,
+    cursor: "pointer",
+  };
+
+  const chev = isSelected ? "▾" : "▸";
+
+  return window.h(
+    "div",
+    {
+      key: b.id,
+      style: rowStyle,
+      onClick: () => this.setState({ selectedId: isSelected ? null : b.id }),
+    },
+    window.h("div", { style: { ...STYLES.cell, ...STYLES.expanderCell } }, chev),
+    window.h("div", { style: STYLES.cell, title: b.title || "" }, b.title || "—"),
+    window.h("div", { style: STYLES.cell }, b.section || "—"),
+    window.h("div", { style: STYLES.cell }, b.category || "—"),
+    window.h("div", { style: STYLES.cell }, b.status || "active")
+  );
+},
+
               isRetired ? "Restore" : "Retire"
             )
           )
@@ -713,6 +773,102 @@ renderTableRows(items) {
       );
     },
 
+
+getSelectedBadge() {
+  const id = this.state.selectedId;
+  if (!id) return null;
+  const merged = mergeMasterAndOverrides(this.state.master, this.getOverrides());
+  return merged.find((b) => String(b.id) === String(id)) || null;
+},
+
+renderDrawer() {
+  const b = this.getSelectedBadge();
+  if (!b) return null;
+
+  const isRetired = String(b.status) === "retired";
+  const { url: iconUrl, source: iconSource } = resolveIconForDisplay(b);
+  const reqs = Array.isArray(b.requirements) ? b.requirements : [];
+  const reqTexts = reqs.map((r) => (typeof r === "string" ? r : String((r && r.text) || ""))).map((t) => String(t || "").trim()).filter(Boolean);
+
+  const iconNote =
+    iconSource === "explicit"
+      ? "Set explicitly"
+      : iconSource === "default"
+      ? "Using default path (may be missing)"
+      : "No icon";
+
+  return window.h(
+    "div",
+    { style: STYLES.drawer },
+    window.h(
+      "div",
+      { style: STYLES.drawerHead },
+      window.h("h3", { style: STYLES.drawerTitle }, b.title || "Badge details"),
+      window.h(
+        "button",
+        { style: STYLES.btn, onClick: () => this.setState({ selectedId: null }) },
+        "Close"
+      )
+    ),
+    window.h(
+      "div",
+      { style: STYLES.drawerBody },
+      window.h("div", { style: STYLES.kvRow }, [
+        window.h("div", { style: STYLES.kvKey }, "ID"),
+        window.h("div", { style: STYLES.kvVal }, window.h("span", { style: STYLES.smallCode }, b.id || "—")),
+      ]),
+      window.h("div", { style: STYLES.kvRow }, [
+        window.h("div", { style: STYLES.kvKey }, "Section"),
+        window.h("div", { style: STYLES.kvVal }, b.section || "—"),
+      ]),
+      window.h("div", { style: STYLES.kvRow }, [
+        window.h("div", { style: STYLES.kvKey }, "Category"),
+        window.h("div", { style: STYLES.kvVal }, b.category || "—"),
+      ]),
+      window.h("div", { style: STYLES.kvRow }, [
+        window.h("div", { style: STYLES.kvKey }, "Status"),
+        window.h("div", { style: STYLES.kvVal }, window.h("span", { style: STYLES.pillOk }, b.status || "active")),
+      ]),
+      window.h("div", { style: STYLES.kvRow }, [
+        window.h("div", { style: STYLES.kvKey }, "Icon"),
+        window.h("div", { style: STYLES.kvVal }, [
+          iconUrl
+            ? window.h("img", {
+                src: iconUrl,
+                style: { ...STYLES.iconPreview, width: "80px", height: "80px" },
+                onError: (e) => {
+                  try {
+                    e.target.style.display = "none";
+                  } catch (_) {}
+                },
+              })
+            : window.h("em", { style: STYLES.muted }, "No icon set"),
+          iconUrl ? window.h("div", { style: STYLES.miniPath }, iconUrl) : null,
+          window.h("div", { style: STYLES.muted }, iconNote),
+        ]),
+      ]),
+      window.h("div", { style: { marginTop: "12px" } }, [
+        window.h("div", { style: STYLES.expandLabel }, `Requirements (${reqTexts.length})`),
+        reqTexts.length
+          ? window.h("ol", { style: STYLES.reqList }, reqTexts.map((t, i) => window.h("li", { key: i, style: STYLES.reqItem }, t)))
+          : window.h("em", { style: STYLES.muted }, "No requirements"),
+      ])
+    ),
+    window.h(
+      "div",
+      { style: STYLES.drawerFooter },
+      window.h("button", { style: STYLES.btn, onClick: () => this.openEdit(b) }, "Edit"),
+      window.h(
+        "button",
+        {
+          style: STYLES.btn,
+          onClick: () => this.setStatus(b, isRetired ? "active" : "retired"),
+        },
+        isRetired ? "Restore" : "Retire"
+      )
+    )
+  );
+},
     renderModal() {
       const ed = this.state.editing;
       if (!ed) return null;
@@ -1024,12 +1180,12 @@ renderTableRows(items) {
                 window.h("div", { style: STYLES.headCell }, "Title"),
                 window.h("div", { style: STYLES.headCell }, "Section"),
                 window.h("div", { style: STYLES.headCell }, "Category"),
-                window.h("div", { style: STYLES.headCell }, "Status"),
-                window.h("div", { style: STYLES.headCell }, "Reqs"),
-                window.h("div", { style: STYLES.headCell }, "Actions")
+                window.h("div", { style: STYLES.headCell }, "Status")
               ),
               this.renderTableRows(filtered)
             ),
+
+        this.renderDrawer(),
 
         this.state.error ? window.h("div", { style: STYLES.err }, this.state.error) : null,
         this.renderModal()
