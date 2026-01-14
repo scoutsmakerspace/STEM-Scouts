@@ -601,7 +601,7 @@ function normalizeOverride(o) {
               this.renderModal()
           ]
       );
-      );
+    
     }
   });
 
