@@ -601,18 +601,31 @@ collections:
       name: text
       widget: text
 
-- name: badges_manager
-  label: Badges Manager
-  label_singular: Badges Manager
+- name: badges
+  label: Badges
+  label_singular: Badge
+  folder: _badges
+  create: true
+  delete: true
   preview: false
-  files:
-  - file: _data/badges_catalog.yml
-    label: Badges manager data
-    name: badges_catalog
-    fields:
-    - label: Badges Manager
-      name: badges
-      widget: badges_manager
+  media_folder: /assets/images/badges
+  public_folder: /assets/images/badges
+  fields:
+  - {label: Layout, name: layout, widget: hidden, default: badge}
+  - {label: Title, name: title, widget: string}
+  - {label: ID, name: id, widget: string, hint: "lowercase-kebab-case (e.g. beavers-animal-friend)"}
+  - {label: Section, name: section, widget: select, options: [squirrels, beavers, cubs, scouts, explorers]}
+  - {label: Category, name: category, widget: select, options: ["Activity Badges", "Staged Activity Badges", "Challenge Awards", "Core Awards", "Other"]}
+  - {label: Badge type, name: badge_type, widget: select, options: [Activity, Staged, Challenge, Core, Other]}
+  - {label: Status, name: status, widget: select, options: [active, retired], default: active}
+  - {label: Icon, name: icon, widget: image, required: false}
+  - {label: Description, name: description, widget: text, required: false}
+  - {label: Completion rules, name: completion_rules, widget: string, required: false}
+  - label: Requirements (numbering is automatic)
+    name: requirements
+    widget: list
+    allow_add: true
+    field: {label: Requirement, name: req, widget: string}
 - name: stem_badge_map
   label: STEM Badge Map
   label_singular: STEM Badge Map
