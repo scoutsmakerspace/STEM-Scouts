@@ -509,7 +509,7 @@ function normalizeOverride(o) {
           ]),
           window.h("div", { key: "actions", style: { gridColumn: "1 / -1", display: "flex", justifyContent: "flex-end" } }, [
             window.h("div", { style: STYLES.actions }, [
-              . For auto 64px generation, filename should be <id>.png in assets/images/badges."),
+              // For auto 64px generation, filename should be <id>.png in assets/images/badges."),
                 window.h("div", { style: STYLES.okText }, (self.state.iconSelectedName ? ("Selected: " + self.state.iconSelectedName + ". ") : "") + (self.state.iconUploadNote || "")),
                 (self.state.iconUploadError ? window.h("div", { style: STYLES.errText }, self.state.iconUploadError) : null),
           window.h("select", { style: STYLES.select, value: this.state.filterCategory, onChange: function (e) { this.setState({ filterCategory: e.target.value }); }.bind(this) }, [window.h("option", { value: "all" }, "All categories")].concat(CATEGORY_OPTIONS.map(function (c) { return window.h("option", { key: c, value: c }, c); }))),
