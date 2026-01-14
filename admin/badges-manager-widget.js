@@ -25,6 +25,16 @@
     return "Activity";
   }
 
+
+function goToMedia() {
+  try {
+    var base = String(window.location && window.location.href ? window.location.href : "").split("#")[0];
+    window.location.href = base + "#/media";
+  } catch (e) {
+    try { window.location.hash = "/media"; } catch (_) {}
+  }
+}
+
   function slugifyId(value) {
     return String(value || "")
       .trim()
