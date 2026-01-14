@@ -48,7 +48,46 @@
     return p.slice(0, idx);
   }
 
-  function normalizeOverride(o) {
+  
+function getBackend() {
+  try { return window.CMS && window.CMS.getBackend && window.CMS.getBackend(); } catch (_) { return null; }
+}
+
+function persistBadgeIconPng(file, badgeId) {
+  return new Promise(function (resolve, reject) {
+    try {
+      var backend = getBackend();
+      if (!backend || !backend.persistMedia) return reject(new Error("CMS backend does not support media uploads here."));
+      if (!file) return reject(new Error("No file selected."));
+
+      // Force canonical filename: <id>.png
+      var renamed;
+      try {
+        renamed = new File([file], badgeId + ".png", { type: "image/png" });
+      } catch (e) {
+        // Fallback: if File constructor is blocked, just use original file name (best effort)
+        renamed = file;
+      }
+
+      var opts = { path: "/assets/images/badges" };
+      Promise.resolve(backend.persistMedia(renamed, opts))
+        .then(function (res) {
+          // Different backends return different shapes
+          var url = "";
+          if (res && typeof res === "object") {
+            url = res.url || res.path || "";
+            if (!url && res[0]) url = res[0].url || res[0].path || "";
+          }
+          resolve(url || ("/assets/images/badges/" + badgeId + ".png"));
+        })
+        .catch(function (err) { reject(err); });
+    } catch (err2) {
+      reject(err2);
+    }
+  });
+}
+
+function normalizeOverride(o) {
     var id = slugifyId(o && o.id);
     if (!id) return null;
 
@@ -187,7 +226,8 @@
         groupBySection: true,
         expandedId: null,
         iconStage: {}, // id -> 0/1/2
-        editing: null // {mode, idTouched, badge}
+        editing: null, // {mode, idTouched, badge}
+        uploadingIcon: false
       };
     },
 
@@ -540,6 +580,63 @@
               window.h("div", { style: STYLES.label }, "Icon (optional)"),
               window.h("input", { style: STYLES.input, value: b.icon || "", onChange: function (e) { update("icon", e.target.value); }, placeholder: "/assets/images/badges/<id>.png" }),
               window.h("div", { style: STYLES.hint }, "Preview uses /assets/images/badges/<id>_64.png first, then full, then _missing.png.")
+,
+              window.h("div", { style: { display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" } }, [
+                window.h("button", {
+                  style: STYLES.btn,
+                  disabled: self.state.uploadingIcon,
+                  onClick: function () {
+                    var ed2 = self.state.editing;
+                    if (!ed2 || !ed2.badge) return;
+                    var id2 = slugifyId(ed2.badge.id || ed2.badge.title);
+                    if (!id2) {
+                      self.setState({ error: "Set Title or ID before uploading an icon." });
+                      return;
+                    }
+                    var input = document.getElementById("badge-icon-upload-input");
+                    if (input) input.click();
+                  }
+                }, self.state.uploadingIcon ? "Uploading…" : "Upload icon (.png)"),
+                window.h("span", { style: STYLES.hint }, "Saves as /assets/images/badges/<id>.png. GitHub Action generates <id>_64.png.")
+              ]),
+              window.h("input", {
+                id: "badge-icon-upload-input",
+                type: "file",
+                accept: "image/png",
+                style: { display: "none" },
+                onChange: function (e) {
+                  var ed3 = self.state.editing;
+                  if (!ed3 || !ed3.badge) return;
+                  var file = e.target && e.target.files && e.target.files[0];
+                  if (!file) return;
+
+                  var id3 = slugifyId(ed3.badge.id || ed3.badge.title);
+                  if (!id3) {
+                    self.setState({ error: "Set Title or ID before uploading an icon." });
+                    return;
+                  }
+
+                  self.setState({ uploadingIcon: true, error: null });
+
+                  persistBadgeIconPng(file, id3)
+                    .then(function () {
+                      // Set canonical icon path
+                      var nextBadge = assign({}, ed3.badge, { id: id3, icon: "/assets/images/badges/" + id3 + ".png" });
+                      self.setState({ editing: assign({}, ed3, { badge: nextBadge }), uploadingIcon: false });
+
+                      // Reset icon preview stage so drawer tries _64 first again
+                      var map = assign({}, self.state.iconStage);
+                      map[id3] = 0;
+                      self.setState({ iconStage: map });
+                    })
+                    .catch(function (err) {
+                      self.setState({ uploadingIcon: false, error: String(err && err.message ? err.message : err) });
+                    })
+                    .finally(function () {
+                      try { e.target.value = ""; } catch (_) {}
+                    });
+                }
+              })
             ]),
             window.h("div", { style: assign({}, STYLES.field, { gridColumn: "1 / span 2" }) }, [
               window.h("div", { style: STYLES.label }, "Requirements"),
