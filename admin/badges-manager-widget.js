@@ -50,6 +50,17 @@
     return p.slice(0, idx);
   }
 
+  function extractReqTexts(badge) {
+    // badges_master.json stores requirements as a list of objects, including headings.
+    // For editing, we only keep the actual requirement lines.
+    const reqs = badge && badge.requirements;
+    if (!Array.isArray(reqs)) return [];
+    return reqs
+      .filter((r) => r && (r.kind === "req" || r.no || r.text))
+      .map((r) => String((r && r.text) || "").trim())
+      .filter((t) => t.length > 0);
+  }
+
   function normalizeOverride(o) {
     const id = slugifyId(o && o.id);
     if (!id) return null;
@@ -58,12 +69,21 @@
     const category = String((o && o.category) || "").trim();
     const status = String((o && o.status) || "active").trim();
     const badge_type = badgeTypeFromCategory(category);
+    const icon = String((o && o.icon) || "").trim();
+    const completion_rules = String((o && o.completion_rules) || "").trim();
+    const requirements_in = o && o.requirements;
+    const requirements = Array.isArray(requirements_in)
+      ? requirements_in.map((x) => String(x || "").trim()).filter((t) => t)
+      : [];
     return {
       id,
       title,
       section,
       category,
       badge_type,
+      ...(icon ? { icon } : {}),
+      ...(completion_rules ? { completion_rules } : {}),
+      ...(requirements.length ? { requirements } : {}),
       status: STATUS_OPTIONS.includes(status) ? status : "active",
     };
   }
@@ -75,11 +95,14 @@
       if (!b || !b.id) return;
       map.set(String(b.id), {
         id: String(b.id),
-        title: b.title || "",
+        title: b.title || b.badge_name || "",
         section: b.section || "",
         category: b.category || "",
         badge_type: b.badge_type || badgeTypeFromCategory(b.category),
         status: b.status || "active",
+        icon: b.icon || "",
+        // For display only; editing converts to a simple list of strings.
+        requirements: b.requirements || [],
         _source: "master",
       });
     });
@@ -309,12 +332,36 @@
       const url = `${base}/admin/badges_master.json`;
       safeJsonFetch(url)
         .then((data) => {
-          const badges = Array.isArray(data && data.badges) ? data.badges : [];
+          // badges_master.json may be either:
+          //  - an array (current repo format)
+          //  - an object { badges: [...] } (older/alternate format)
+          const badges = Array.isArray(data) ? data : Array.isArray(data && data.badges) ? data.badges : [];
           this.setState({ master: badges, loading: false, error: null });
         })
         .catch((e) => {
           this.setState({ loading: false, error: String(e && e.message ? e.message : e) });
         });
+    },
+
+    _extractReqTexts(badge) {
+      // Convert master format (heading + req objects) into simple list of strings.
+      const reqs = badge && badge.requirements;
+      if (!Array.isArray(reqs)) return [];
+      const out = [];
+      for (const r of reqs) {
+        if (!r) continue;
+        if (typeof r === "string") {
+          const t = r.trim();
+          if (t) out.push(t);
+          continue;
+        }
+        if (typeof r === "object") {
+          if (r.kind && r.kind !== "req") continue;
+          const t = String(r.text || "").trim();
+          if (t) out.push(t);
+        }
+      }
+      return out;
     },
 
     getOverrides() {
@@ -352,6 +399,8 @@
             section: "beavers",
             category: "Activity Badges",
             status: "active",
+            icon: "",
+            requirements: [],
           },
         },
       });
@@ -368,6 +417,8 @@
             section: badge.section || "",
             category: badge.category || "",
             status: badge.status || "active",
+            icon: badge.icon || "",
+            requirements: this._extractReqTexts(badge),
           },
         },
       });
@@ -387,6 +438,11 @@
       const section = String(raw.section || "").trim();
       const category = String(raw.category || "").trim();
       const status = String(raw.status || "active").trim();
+      const icon = String(raw.icon || "").trim();
+      const reqs = Array.isArray(raw.requirements) ? raw.requirements : [];
+      const requirements = reqs
+        .map((x) => String(x || "").trim())
+        .filter((x) => x.length > 0);
 
       if (!id) {
         this.setState({ error: "Badge ID is required." });
@@ -420,6 +476,8 @@
         category,
         status,
         badge_type: badgeTypeFromCategory(category),
+        icon,
+        requirements,
       };
 
       if (idx >= 0) next[idx] = payload;
@@ -441,6 +499,8 @@
         category: badge.category,
         status: nextStatus,
         badge_type: badgeTypeFromCategory(badge.category),
+        icon: badge.icon || "",
+        requirements: this._extractReqTexts(badge),
       };
 
       if (idx >= 0) next[idx] = payload;
@@ -672,6 +732,90 @@
                 "div",
                 { style: STYLES.hint },
                 `Badge type is auto-set to “${badgeTypeFromCategory(b.category)}”.`
+              )
+            )
+
+            ,
+            window.h(
+              "div",
+              { style: { ...STYLES.field, gridColumn: "1 / span 2" } },
+              window.h("div", { style: STYLES.label }, "Icon (optional)"),
+              window.h("input", {
+                style: STYLES.input,
+                value: b.icon || "",
+                onChange: (e) => update("icon", e.target.value),
+                placeholder: "/assets/images/badges/<id>.png",
+              }),
+              window.h(
+                "div",
+                { style: STYLES.hint },
+                "If you upload an icon in the CMS media library, paste its path here. If left blank, the site will use /assets/images/badges/<id>.png."
+              )
+            ),
+            window.h(
+              "div",
+              { style: { ...STYLES.field, gridColumn: "1 / span 2" } },
+              window.h("div", { style: STYLES.label }, "Requirements"),
+              window.h(
+                "div",
+                { style: { display: "grid", gap: "8px" } },
+                (Array.isArray(b.requirements) ? b.requirements : []).map((t, idx) =>
+                  window.h(
+                    "div",
+                    { key: idx, style: { display: "flex", gap: "8px", alignItems: "flex-start" } },
+                    window.h("textarea", {
+                      style: { ...STYLES.input, minHeight: "60px", width: "100%" },
+                      value: t,
+                      onChange: (e) => {
+                        const next = (Array.isArray(b.requirements) ? b.requirements.slice() : []);
+                        next[idx] = e.target.value;
+                        update("requirements", next);
+                      },
+                      placeholder: `Requirement ${idx + 1} text...`,
+                    }),
+                    window.h(
+                      "button",
+                      {
+                        style: STYLES.btn,
+                        onClick: () => {
+                          const next = (Array.isArray(b.requirements) ? b.requirements.slice() : []);
+                          next.splice(idx, 1);
+                          update("requirements", next);
+                        },
+                      },
+                      "Remove"
+                    )
+                  )
+                )
+              ),
+              window.h(
+                "div",
+                { style: { marginTop: "8px", display: "flex", gap: "8px", flexWrap: "wrap" } },
+                window.h(
+                  "button",
+                  {
+                    style: STYLES.btn,
+                    onClick: () => {
+                      const next = (Array.isArray(b.requirements) ? b.requirements.slice() : []);
+                      next.push("");
+                      update("requirements", next);
+                    },
+                  },
+                  "Add requirement"
+                ),
+                window.h(
+                  "button",
+                  {
+                    style: STYLES.btn,
+                    onClick: () => update("requirements", []),
+                  },
+                  "Clear"
+                )
+              ),
+              window.h(
+                "div",
+                { style: STYLES.hint },
+                "Numbering is automatic. Just add one requirement per box."
               )
             )
           ),

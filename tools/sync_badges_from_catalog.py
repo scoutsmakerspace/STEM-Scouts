@@ -55,17 +55,23 @@ def _front_matter_for_badge(b: Dict[str, Any]) -> Dict[str, Any]:
     if icon:
         fm["icon"] = icon
 
+    # Requirements: store as a simple list of strings.
+    # Numbering is intrinsic (rendered by the site/UI), so we never store explicit numbers.
     reqs_in = b.get("requirements")
-    reqs_out: List[Dict[str, Any]] = []
+    reqs_out: List[str] = []
     if isinstance(reqs_in, list):
         for r in reqs_in:
-            if not isinstance(r, dict):
+            if r is None:
                 continue
-            no = str(r.get("no") or "").strip()
-            text = str(r.get("text") or "").strip()
-            if not no or not text:
-                continue
-            reqs_out.append({"no": no, "text": text})
+            # Allow either strings or legacy dicts {no,text}
+            if isinstance(r, str):
+                text = r.strip()
+            elif isinstance(r, dict):
+                text = str(r.get("text") or "").strip()
+            else:
+                text = str(r).strip()
+            if text:
+                reqs_out.append(text)
     if reqs_out:
         fm["requirements"] = reqs_out
         fm["requirements_count"] = len(reqs_out)
