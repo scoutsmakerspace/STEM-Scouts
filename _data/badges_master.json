@@ -1006,6 +1006,34 @@
     ]
   },
   {
+    "id": "test-badge-5",
+    "badge_name": "Test badge 5",
+    "section": "beavers",
+    "section_label": "Beavers",
+    "category": "Activity Badges",
+    "type": "Activity",
+    "description": "",
+    "completion_rules": "",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "Complete ALL of the following"
+      },
+      {
+        "kind": "req",
+        "id": "1",
+        "no": "1",
+        "text": "asdasdsad"
+      },
+      {
+        "kind": "req",
+        "id": "2",
+        "no": "2",
+        "text": "dasdasdasd"
+      }
+    ]
+  },
+  {
     "id": "beavers-my-adventure",
     "badge_name": "My Adventure",
     "section": "beavers",
