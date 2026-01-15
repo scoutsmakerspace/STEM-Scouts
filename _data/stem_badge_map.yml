@@ -2693,3 +2693,24 @@ badges:
         areas: []
         why_stem: ""
         leader_prompts: []
+  - badge_id: test-badge-6
+    title: Test badge 6
+    section: Beavers
+    section_slug: beavers
+    category: Activity Badges
+    badge_type: Activity
+    stem_requirements:
+      - rid: test-badge-6::1
+        ref: "1"
+        text: 1. sdsadsa
+        strength: strong
+        areas: []
+        why_stem: ""
+        leader_prompts: []
+      - rid: test-badge-6::2
+        ref: "2"
+        text: 2. vbnnvbnbv
+        strength: strong
+        areas: []
+        why_stem: ""
+        leader_prompts: []
