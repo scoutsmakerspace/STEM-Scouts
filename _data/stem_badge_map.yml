@@ -2679,23 +2679,17 @@ badges:
         leader_prompts:
           - asdasdasd
           - dsadasda
-  - badge_id: test-badge
-    title: Test badge
+  - badge_id: test-badge-3
+    title: Test badge 3
     section: Beavers
     section_slug: beavers
     category: Activity Badges
     badge_type: Activity
     stem_requirements:
-      - rid: test-badge::1
+      - rid: test-badge-3::1
         ref: "1"
-        text: 1. dasdasdas
+        text: 1. qwedwqewqe
         strength: strong
-        areas:
-          - Coding
-        why_stem: |-
-          fsfdfsdf
-          gdfhdfhdfhdrfh
-        leader_prompts:
-          - fsdfsdfsdfsd
-          - dasdasda
-          - asdasdasd
+        areas: []
+        why_stem: ""
+        leader_prompts: []
