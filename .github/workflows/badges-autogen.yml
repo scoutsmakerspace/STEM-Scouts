@@ -12,6 +12,8 @@ on:
       - "tools/generate_badges_master.py"
       - "tools/normalise_badge_icons.py"
       - "tools/sync_badges_from_catalog.py"
+      - "tools/prune_retired_badges.py"
+      - "tools/generate_stem_badge_map.py"
       - ".github/workflows/badges-autogen.yml"
   workflow_dispatch:
 
@@ -49,6 +51,14 @@ jobs:
       - name: Normalise uploaded icons into canonical badge icons (also generates 64px)
         run: |
           python tools/normalise_badge_icons.py
+
+      - name: Prune retired badges from mapping + activities
+        run: |
+          python tools/prune_retired_badges.py
+
+      - name: Regenerate stem_badge_map.json + index
+        run: |
+          python tools/generate_stem_badge_map.py
 
       - name: Generate badges_master.json
         run: |
