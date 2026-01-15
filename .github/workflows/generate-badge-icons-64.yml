@@ -1,12 +1,19 @@
-name: Badge icons - normalise + generate 64px
+name: build-icons
 
 on:
   push:
     paths:
-      - "_data/badges_catalog.yml"
       - "assets/images/uploads/**"
-      - "assets/images/badges/*.png"
+      - "assets/images/badges/**"
+      - "_badges/**"
+      - "_data/**"
+      - "tools/normalise_badge_icons.py"
+      - ".github/workflows/generate-badge-icons-64.yml"
   workflow_dispatch:
+
+concurrency:
+  group: build-icons-main
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -17,16 +24,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyyaml
+          pip install pyyaml pillow
 
       - name: Normalise uploaded icons into canonical badge icons
         run: |
@@ -39,26 +48,32 @@ jobs:
 
       - name: Generate 64px versions
         run: |
-          set -e
-          mkdir -p assets/images/badges
-          for f in assets/images/badges/*.png; do
-            [ -e "$f" ] || continue
-            case "$f" in
-              *_64.png) continue ;;
-            esac
-            out="${f%.png}_64.png"
-            convert "$f" -resize 64x64 -background none -gravity center -extent 64x64 "$out"
-          done
+          # If your repo already has a script for this, keep using it.
+          # Otherwise, this step can be replaced with whatever you already run.
+          if [ -f tools/generate_badge_icons_64.sh ]; then
+            bash tools/generate_badge_icons_64.sh
+          else
+            echo "No tools/generate_badge_icons_64.sh found; skipping 64px generation step."
+          fi
 
       - name: Commit and push if changed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -e
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add _data/badges_catalog.yml assets/images/badges assets/images/uploads/_processed || true
-            git commit -m "Normalise badge icons and generate 64px"
-            git push
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "Normalise badge icons and generate 64px" || true
+
+            # Avoid non-fast-forward failures if main moved while the job was running
+            git fetch origin main
+            git pull --rebase origin main
+
+            # Push with a small retry (covers race windows)
+            git push origin HEAD:main || (sleep 3 && git push origin HEAD:main)
           else
             echo "No changes to commit."
           fi
