@@ -41,6 +41,30 @@
     });
   }
 
+
+function navigateToMedia() {
+  try {
+    // Prefer clicking the existing top-nav Media tab so Decap uses its own router.
+    var links = document.querySelectorAll("a");
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      var txt = (a && a.textContent) ? String(a.textContent).trim() : "";
+      if (txt === "Media") {
+        try { a.click(); return; } catch (_) {}
+        break;
+      }
+    }
+
+    // Fallback: try common routes
+    try { window.location.hash = "/media"; return; } catch (_) {}
+    try {
+      var href = (window.location && window.location.href) ? String(window.location.href) : "";
+      var base = href.split("#")[0];
+      window.location.href = base + "#/media";
+    } catch (_) {}
+  } catch (e) {}
+}
+
   function getBaseUrl() {
     var p = window.location.pathname;
     var idx = p.toLowerCase().indexOf("/admin");
@@ -593,11 +617,16 @@ function normalizeOverride(o) {
                 " for you."
               ]),
               window.h("div", { style: { display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" } }, [
-                window.h("a", {
-                  href: "#/media",
-                  target: "_self",
-                  style: assign({}, STYLES.btn, { textDecoration: "none", display: "inline-block" })
-                }, "Use the top Media tab to upload icons"),
+                window.h("button", {
+                  type: "button",
+                  style: STYLES.btn,
+                  onClick: function (e) {
+                    try { if (e && e.preventDefault) e.preventDefault(); if (e && e.stopPropagation) e.stopPropagation(); } catch (_) {}
+                    // Close the modal first, then navigate.
+                    try { self.setState({ editing: null }); } catch (_) {}
+                    try { setTimeout(function () { navigateToMedia(); }, 50); } catch (_) { navigateToMedia(); }
+                  }
+                }, "Go to Media to upload icons"),
                 window.h("span", { style: STYLES.hint }, "Expected final: /assets/images/badges/<id>.png (+ <id>_64.png).")
               ])
             ]),
