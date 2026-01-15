@@ -288,7 +288,7 @@ function normalizeOverride(o) {
     loadMaster: function () {
       var self = this;
       var base = getBaseUrl();
-      var url = base + "/admin/badges_master.json";
+      var url = base + "/admin/badges_manager_master.json";
       safeJsonFetch(url)
         .then(function (data) {
           var badges = Array.isArray(data) ? data : (Array.isArray(data && data.badges) ? data.badges : []);
@@ -644,25 +644,11 @@ function normalizeOverride(o) {
               ]),
               window.h("div", { style: { display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" } }, [
                 window.h("a", {
-                  href: "https://github.com/scoutsmakerspace/STEM-Scouts/tree/main/assets/images/uploads",
-                  target: "_blank",
-                  rel: "noopener noreferrer",
+                  href: "#/media",
+                  target: "_self",
                   style: assign({}, STYLES.btn, { textDecoration: "none", display: "inline-block" })
-                }, "Open uploads folder (GitHub)"),
-                window.h("button", {
-                  type: "button",
-                  style: STYLES.btn,
-                  onClick: function () {
-                    // Convenience: prefill the icon field with the uploads prefix.
-                    // User can then paste/append the filename, e.g. /assets/images/uploads/my-icon.png
-                    var cur = (b.icon || "");
-                    if (!cur) return update("icon", "/assets/images/uploads/");
-                    if (cur.indexOf("/assets/images/uploads/") !== 0) return update("icon", "/assets/images/uploads/" + cur.replace(/^\/+/, ""));
-                    // already prefixed
-                    return;
-                  }
-                }, "Insert uploads path"),
-                window.h("span", { style: STYLES.hint }, "Upload icons to assets/images/uploads. The workflow will move+rename to /assets/images/badges/<id>.png and create <id>_64.png.")
+                }, "Open Media (upload icon)"),
+                window.h("span", { style: STYLES.hint }, "Expected final: /assets/images/badges/<id>.png (+ <id>_64.png).")
               ])
             ]),
             window.h("div", { style: assign({}, STYLES.field, { gridColumn: "1 / span 2" }) }, [

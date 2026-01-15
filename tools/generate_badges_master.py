@@ -33,6 +33,9 @@ BASE_ADMIN = ROOT / "admin" / "badges_master.json"
 BASE_DATA = ROOT / "_data" / "badges_master.json"
 OUT_ADMIN = ROOT / "admin" / "badges_master.json"
 OUT_DATA = ROOT / "_data" / "badges_master.json"
+OUT_ADMIN_MANAGER = ROOT / "admin" / "badges_manager_master.json"
+OUT_DATA_MANAGER = ROOT / "_data" / "badges_manager_master.json"
+
 
 ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
@@ -201,7 +204,7 @@ def _build_badge_json(frontmatter: Dict[str, Any], base: Dict[str, Any]) -> Dict
     }
 
 
-def build_master() -> List[Dict[str, Any]]:
+def build_master(include_retired: bool = False) -> List[Dict[str, Any]]:
     """Build the master list.
 
     Key rule to avoid regressions:
@@ -244,7 +247,7 @@ def build_master() -> List[Dict[str, Any]]:
         if keep == "no":
             out_by_id.pop(badge_id, None)
             continue
-        if status and status != "active":
+        if (not include_retired) and status and status != "active":
             out_by_id.pop(badge_id, None)
             continue
 
@@ -271,10 +274,14 @@ def _write_json(path: Path, data: Any) -> None:
 
 
 def main() -> None:
-    master = build_master()
-    _write_json(OUT_ADMIN, master)
-    _write_json(OUT_DATA, master)
-    print(f"Wrote {len(master)} badges -> {OUT_ADMIN} and {OUT_DATA}")
+    master_active = build_master(include_retired=False)
+    master_all = build_master(include_retired=True)
+    _write_json(OUT_ADMIN, master_active)
+    _write_json(OUT_DATA, master_active)
+    _write_json(OUT_ADMIN_MANAGER, master_all)
+    _write_json(OUT_DATA_MANAGER, master_all)
+    print(f"Wrote {len(master_active)} active badges -> {OUT_ADMIN} and {OUT_DATA}")
+    print(f"Wrote {len(master_all)} (including retired) -> {OUT_ADMIN_MANAGER} and {OUT_DATA_MANAGER}")
 
 
 if __name__ == "__main__":
