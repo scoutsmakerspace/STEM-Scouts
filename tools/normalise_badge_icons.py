@@ -1,196 +1,125 @@
 #!/usr/bin/env python3
 """
-Normalise badge icons to canonical PNG names and generate 64×64 thumbnails.
+Normalize badge icons that were uploaded with arbitrary names into the canonical format.
 
-Rules:
-- Canonical icon paths:
-    assets/images/badges/<id>.png
-    assets/images/badges/<id>_64.png
-- Source image is taken from badge front-matter `icon` if present and exists,
-  otherwise from the canonical <id>.png if it exists.
-- Any size/format is accepted; output is always PNG.
-- The badge Markdown front-matter `icon` is rewritten to the canonical path
-  when a source image exists.
+- Source icons live in: assets/images/uploads/
+- Badge records live in: _data/badges_catalog.yml
+- A badge claims an uploaded file by setting:
+    icon: /assets/images/uploads/<whatever>.png
 
-This runs in CI to keep the site and mapping stable.
+This script will:
+1) Copy the claimed upload to:
+      assets/images/badges/<badge_id>.png
+2) Move the original upload to:
+      assets/images/uploads/_processed/<badge_id>__<original_filename>
+3) Rewrite the badge icon field to the canonical path:
+      /assets/images/badges/<badge_id>.png
+
+It does NOT generate the 64px version; that is handled by the GitHub Action step.
 """
+
 from __future__ import annotations
 
-import re
+import shutil
 from pathlib import Path
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, List
 
 import yaml
-from PIL import Image
 
-ROOT = Path(__file__).resolve().parents[1]
-BADGES_DIR = ROOT / "_badges"
-BADGE_IMG_DIR = ROOT / "assets" / "images" / "badges"
-UPLOADS_DIR = ROOT / "assets" / "images" / "uploads"
-UPLOADS_PROCESSED_DIR = UPLOADS_DIR / "_processed"
+REPO_ROOT = Path(__file__).resolve().parents[1]
+CATALOG_PATH = REPO_ROOT / "_data" / "badges_catalog.yml"
 
-ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
-
-CANON_ICON_PUBLIC = "/assets/images/badges/{id}.png"
-CANON_ICON_FILE = BADGE_IMG_DIR / "{id}.png"
-CANON_ICON_64_FILE = BADGE_IMG_DIR / "{id}_64.png"
+UPLOADS_DIR = REPO_ROOT / "assets" / "images" / "uploads"
+PROCESSED_DIR = UPLOADS_DIR / "_processed"
+BADGES_DIR = REPO_ROOT / "assets" / "images" / "badges"
 
 
-def _read_text(p: Path) -> str:
-    return p.read_text(encoding="utf-8")
+def _norm_icon_path(p: str) -> str:
+    p = (p or "").strip()
+    if not p:
+        return ""
+    if not p.startswith("/"):
+        p = "/" + p
+    return p
 
 
-def _write_text(p: Path, s: str) -> None:
-    p.write_text(s, encoding="utf-8")
+def main() -> int:
+    if not CATALOG_PATH.exists():
+        print(f"[normalise_badge_icons] Catalog not found: {CATALOG_PATH}")
+        return 2
 
+    PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+    BADGES_DIR.mkdir(parents=True, exist_ok=True)
 
-def _parse_front_matter(md: str) -> Tuple[Dict[str, Any], str]:
-    """Return (frontmatter, body). If no frontmatter, returns ({}, full_text)."""
-    if not md.startswith("---"):
-        return {}, md
-    parts = md.split("---", 2)
-    if len(parts) < 3:
-        return {}, md
-    fm_text = parts[1]
-    body = parts[2]
-    fm = yaml.safe_load(fm_text) or {}
-    if not isinstance(fm, dict):
-        fm = {}
-    return fm, body
+    data = yaml.safe_load(CATALOG_PATH.read_text(encoding="utf-8")) or {}
+    badges: List[Dict[str, Any]] = data.get("badges") or []
 
+    changed = False
+    processed_any = False
 
-def _dump_front_matter(fm: Dict[str, Any], body: str) -> str:
-    fm_text = yaml.safe_dump(fm, sort_keys=False, allow_unicode=True).strip()
-    return f"---\n{fm_text}\n---{body}"
-
-
-def _resolve_icon_source(fm: Dict[str, Any], badge_id: str) -> Optional[Path]:
-    icon = fm.get("icon")
-    if isinstance(icon, str) and icon.strip():
-        # allow leading slash
-        rel = icon.strip().lstrip("/")
-        p = ROOT / rel
-        if p.exists() and p.is_file():
-            return p
-    # fallback to canonical id.png if present
-    p2 = Path(str(CANON_ICON_FILE).format(id=badge_id))
-    if p2.exists() and p2.is_file():
-        return p2
-    return None
-
-
-def _maybe_archive_source(src: Path) -> None:
-    """Move raw uploaded sources out of the way so the repo stays tidy.
-
-    We *only* archive files that live in assets/images/uploads (Decap's media folder).
-    Canonical badge icons under assets/images/badges are never moved.
-
-    If the file is already under uploads/_processed, we leave it.
-    """
-    try:
-        src_rel = src.resolve().relative_to(ROOT)
-    except Exception:
-        return
-
-    # Only touch uploads
-    if not str(src_rel).startswith(str(UPLOADS_DIR.relative_to(ROOT)).replace("\\", "/")):
-        return
-
-    # Leave already processed files
-    if str(src_rel).startswith(str(UPLOADS_PROCESSED_DIR.relative_to(ROOT)).replace("\\", "/")):
-        return
-
-    try:
-        UPLOADS_PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
-        target = UPLOADS_PROCESSED_DIR / src.name
-        # Avoid collisions
-        if target.exists():
-            stem = target.stem
-            suffix = target.suffix
-            i = 2
-            while True:
-                cand = UPLOADS_PROCESSED_DIR / f"{stem}__{i}{suffix}"
-                if not cand.exists():
-                    target = cand
-                    break
-                i += 1
-        src.rename(target)
-    except Exception:
-        # If we can't move it (permissions, etc), don't fail the whole pipeline.
-        return
-
-
-def _open_image(path: Path) -> Image.Image:
-    im = Image.open(path)
-    # convert to RGBA to preserve transparency
-    if im.mode not in ("RGBA", "LA"):
-        im = im.convert("RGBA")
-    else:
-        im = im.convert("RGBA")
-    return im
-
-
-def _save_png(im: Image.Image, out_path: Path) -> None:
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    im.save(out_path, format="PNG", optimize=True)
-
-
-def _make_64(im: Image.Image) -> Image.Image:
-    # contain within 64x64, then paste centered onto 64x64 transparent background
-    target = (64, 64)
-    im2 = im.copy()
-    im2.thumbnail(target, Image.Resampling.LANCZOS)
-    canvas = Image.new("RGBA", target, (0, 0, 0, 0))
-    x = (target[0] - im2.size[0]) // 2
-    y = (target[1] - im2.size[1]) // 2
-    canvas.paste(im2, (x, y), im2)
-    return canvas
-
-
-def main() -> None:
-    BADGE_IMG_DIR.mkdir(parents=True, exist_ok=True)
-
-    changed = 0
-    for md_path in sorted(BADGES_DIR.glob("*.md")):
-        md = _read_text(md_path)
-        fm, body = _parse_front_matter(md)
-        badge_id = str(fm.get("id") or "").strip()
+    for b in badges:
+        badge_id = (b.get("id") or "").strip()
         if not badge_id:
             continue
-        if not ID_RE.match(badge_id):
-            raise SystemExit(
-                f"Invalid badge id '{badge_id}' in {md_path}. "
-                "IDs must match: ^[a-z0-9]+(?:-[a-z0-9]+)*$"
-            )
 
-        keep = str(fm.get("keep") or "yes").strip().lower()
-        status = str(fm.get("status") or "active").strip().lower()
-        if keep == "no" or (status and status != "active"):
+        icon_raw = b.get("icon", "")
+        icon = _norm_icon_path(str(icon_raw)) if icon_raw is not None else ""
+        if not icon:
             continue
 
-        src = _resolve_icon_source(fm, badge_id)
-        if not src:
+        # Only process icons pointing at uploads
+        if not icon.startswith("/assets/images/uploads/"):
             continue
 
-        im = _open_image(src)
-        out_main = Path(str(CANON_ICON_FILE).format(id=badge_id))
-        out_64 = Path(str(CANON_ICON_64_FILE).format(id=badge_id))
+        src_rel = icon.lstrip("/")  # repo-relative
+        src_path = REPO_ROOT / src_rel
+        if not src_path.exists():
+            print(f"[normalise_badge_icons] WARNING: Icon source missing for {badge_id}: {src_rel}")
+            continue
 
-        _save_png(im, out_main)
-        _save_png(_make_64(im), out_64)
+        if src_path.suffix.lower() != ".png":
+            print(f"[normalise_badge_icons] WARNING: Not a .png, skipping for {badge_id}: {src_rel}")
+            continue
 
-        # If the icon came from the generic uploads folder, archive it to keep things clean.
-        _maybe_archive_source(src)
+        dst_path = BADGES_DIR / f"{badge_id}.png"
+        processed_path = PROCESSED_DIR / f"{badge_id}__{src_path.name}"
 
-        # rewrite frontmatter icon to canonical path
-        fm["icon"] = CANON_ICON_PUBLIC.format(id=badge_id)
-        new_md = _dump_front_matter(fm, body)
-        if new_md != md:
-            _write_text(md_path, new_md)
-            changed += 1
+        # Copy upload to canonical badge icon (overwrite)
+        shutil.copy2(src_path, dst_path)
 
-    print(f"Normalised icons for {changed} badge markdown files.")
+        # Move upload to processed (keep repo tidy)
+        try:
+            if processed_path.exists():
+                processed_path.unlink()
+            shutil.move(str(src_path), str(processed_path))
+        except Exception as e:
+            # Fall back to copy then delete
+            try:
+                shutil.copy2(src_path, processed_path)
+                src_path.unlink()
+            except Exception:
+                print(f"[normalise_badge_icons] WARNING: Could not move/delete upload for {badge_id}: {e}")
+
+        # Rewrite icon to canonical
+        b["icon"] = f"/assets/images/badges/{badge_id}.png"
+        changed = True
+        processed_any = True
+        print(f"[normalise_badge_icons] OK: {badge_id} <- {icon} -> /assets/images/badges/{badge_id}.png")
+
+    if changed:
+        out = dict(data)
+        out["badges"] = badges
+        CATALOG_PATH.write_text(
+            yaml.safe_dump(out, sort_keys=False, allow_unicode=True, width=120),
+            encoding="utf-8",
+        )
+        print("[normalise_badge_icons] Catalog updated.")
+
+    if not processed_any:
+        print("[normalise_badge_icons] Nothing to do.")
+
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
