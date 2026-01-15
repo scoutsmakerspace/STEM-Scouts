@@ -25,6 +25,56 @@
     return "Activity";
   }
 
+
+function _findMediaHref() {
+  try {
+    // Prefer the actual nav link labeled "Media" (works even if Decap changes routes)
+    var links = document.querySelectorAll("a[href]");
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      var txt = (a.textContent || "").trim().toLowerCase();
+      var href = a.getAttribute("href") || "";
+      if (txt === "media") {
+        return href;
+      }
+      if (href.indexOf("#/media") !== -1) {
+        return href;
+      }
+    }
+  } catch (e) {}
+  return "#/media";
+}
+
+function goToMedia() {
+  // Decap routing can show "Not Found" when navigating from inside entry modals.
+  // We resolve the REAL Media route from the top nav and open it directly.
+  try {
+    var href = _findMediaHref();
+    var base = String(window.location.href || "").split("#")[0]; // keeps /admin/ path
+    var target = href;
+
+    if (href && href.charAt(0) === "#") {
+      target = base + href;
+    } else if (href && href.indexOf("http://") !== 0 && href.indexOf("https://") !== 0) {
+      // relative like "/admin/#/media"
+      if (href.charAt(0) === "/") {
+        // make absolute
+        target = window.location.origin + href;
+      } else {
+        target = base + href;
+      }
+    }
+
+    // Most reliable: open a fresh tab so Decap boots straight into Media.
+    try { window.open(target, "_blank", "noopener,noreferrer"); } catch (_) {}
+
+    // Also attempt in-place navigation.
+    try { window.location.href = target; } catch (e2) {
+      try { window.location.hash = "/media"; } catch (_) {}
+    }
+  } catch (e) {}
+}
+
   function slugifyId(value) {
     return String(value || "")
       .trim()
@@ -41,30 +91,6 @@
     });
   }
 
-
-function navigateToMedia() {
-  try {
-    // Prefer clicking the existing top-nav Media tab so Decap uses its own router.
-    var links = document.querySelectorAll("a");
-    for (var i = 0; i < links.length; i++) {
-      var a = links[i];
-      var txt = (a && a.textContent) ? String(a.textContent).trim() : "";
-      if (txt === "Media") {
-        try { a.click(); return; } catch (_) {}
-        break;
-      }
-    }
-
-    // Fallback: try common routes
-    try { window.location.hash = "/media"; return; } catch (_) {}
-    try {
-      var href = (window.location && window.location.href) ? String(window.location.href) : "";
-      var base = href.split("#")[0];
-      window.location.href = base + "#/media";
-    } catch (_) {}
-  } catch (e) {}
-}
-
   function getBaseUrl() {
     var p = window.location.pathname;
     var idx = p.toLowerCase().indexOf("/admin");
@@ -74,7 +100,7 @@ function navigateToMedia() {
 
   
 function getBackend() {
-  try { return window.CMS && window.CMS.getBackend && window.CMS.getBackend(); } catch (e) { return null; }
+  try { return window.CMS && window.CMS.getBackend && window.CMS.getBackend(); } catch (_) { return null; }
 }
 
 function persistBadgeIconPng(file, badgeId) {
@@ -281,7 +307,7 @@ function normalizeOverride(o) {
         try {
           var parsed = JSON.parse(v);
           return Array.isArray(parsed) ? parsed : [];
-        } catch (e) {
+        } catch (_) {
           return [];
         }
       }
@@ -617,16 +643,11 @@ function normalizeOverride(o) {
                 " for you."
               ]),
               window.h("div", { style: { display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" } }, [
-                window.h("button", {
-                  type: "button",
-                  style: STYLES.btn,
-                  onClick: function (e) {
-                    try { if (e && e.preventDefault) e.preventDefault(); if (e && e.stopPropagation) e.stopPropagation(); } catch (_) {}
-                    // Close the modal first, then navigate.
-                    try { self.setState({ editing: null }); } catch (_) {}
-                    try { setTimeout(function () { navigateToMedia(); }, 50); } catch (_) { navigateToMedia(); }
-                  }
-                }, "Go to Media to upload icons"),
+                window.h("a", {
+                  href: "#/media",
+                  target: "_self",
+                  style: assign({}, STYLES.btn, { textDecoration: "none", display: "inline-block" })
+                }, "Open Media (upload icon)"),
                 window.h("span", { style: STYLES.hint }, "Expected final: /assets/images/badges/<id>.png (+ <id>_64.png).")
               ])
             ]),
@@ -718,7 +739,7 @@ function normalizeOverride(o) {
 
   function register() {
     window.CMS.registerWidget("badges_manager", Control);
-    try { console.log("[badges_manager] widget registered"); } catch (e) {}
+    try { console.log("[badges_manager] widget registered"); } catch (_) {}
   }
 
   if (ready()) register();
