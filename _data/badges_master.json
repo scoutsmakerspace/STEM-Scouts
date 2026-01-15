@@ -1,6 +1,7 @@
 [
   {
     "id": "beavers-animal-friend",
+    "status": "active",
     "badge_name": "Animal Friend",
     "section": "beavers",
     "section_label": "Beavers",
@@ -41,6 +42,7 @@
   },
   {
     "id": "beavers-book-reader",
+    "status": "active",
     "badge_name": "Book Reader",
     "section": "beavers",
     "section_label": "Beavers",
@@ -81,6 +83,7 @@
   },
   {
     "id": "beavers-builder",
+    "status": "active",
     "badge_name": "Builder",
     "section": "beavers",
     "section_label": "Beavers",
@@ -121,6 +124,7 @@
   },
   {
     "id": "beavers-camp-craft",
+    "status": "active",
     "badge_name": "Camp Craft",
     "section": "beavers",
     "section_label": "Beavers",
@@ -179,6 +183,7 @@
   },
   {
     "id": "beavers-collector",
+    "status": "active",
     "badge_name": "Collector",
     "section": "beavers",
     "section_label": "Beavers",
@@ -213,6 +218,7 @@
   },
   {
     "id": "beavers-communicator",
+    "status": "active",
     "badge_name": "Communicator",
     "section": "beavers",
     "section_label": "Beavers",
@@ -259,6 +265,7 @@
   },
   {
     "id": "beavers-cook",
+    "status": "active",
     "badge_name": "Cook",
     "section": "beavers",
     "section_label": "Beavers",
@@ -299,6 +306,7 @@
   },
   {
     "id": "beavers-creative",
+    "status": "active",
     "badge_name": "Creative",
     "section": "beavers",
     "section_label": "Beavers",
@@ -339,6 +347,7 @@
   },
   {
     "id": "beavers-cyclist",
+    "status": "active",
     "badge_name": "Cyclist",
     "section": "beavers",
     "section_label": "Beavers",
@@ -379,6 +388,7 @@
   },
   {
     "id": "beavers-disability-awareness",
+    "status": "active",
     "badge_name": "Disability Awareness",
     "section": "beavers",
     "section_label": "Beavers",
@@ -419,6 +429,7 @@
   },
   {
     "id": "beavers-experiment",
+    "status": "active",
     "badge_name": "Experiment",
     "section": "beavers",
     "section_label": "Beavers",
@@ -447,6 +458,7 @@
   },
   {
     "id": "beavers-explore",
+    "status": "active",
     "badge_name": "Explore",
     "section": "beavers",
     "section_label": "Beavers",
@@ -487,6 +499,7 @@
   },
   {
     "id": "beavers-faith",
+    "status": "active",
     "badge_name": "Faith",
     "section": "beavers",
     "section_label": "Beavers",
@@ -527,6 +540,7 @@
   },
   {
     "id": "beavers-gardener",
+    "status": "active",
     "badge_name": "Gardener",
     "section": "beavers",
     "section_label": "Beavers",
@@ -573,6 +587,7 @@
   },
   {
     "id": "beavers-global-issues",
+    "status": "active",
     "badge_name": "Global Issues",
     "section": "beavers",
     "section_label": "Beavers",
@@ -619,6 +634,7 @@
   },
   {
     "id": "beavers-health-and-fitness",
+    "status": "active",
     "badge_name": "Health and Fitness",
     "section": "beavers",
     "section_label": "Beavers",
@@ -659,6 +675,7 @@
   },
   {
     "id": "beavers-hobbies",
+    "status": "active",
     "badge_name": "Hobbies",
     "section": "beavers",
     "section_label": "Beavers",
@@ -693,6 +710,7 @@
   },
   {
     "id": "beavers-international",
+    "status": "active",
     "badge_name": "International",
     "section": "beavers",
     "section_label": "Beavers",
@@ -739,6 +757,7 @@
   },
   {
     "id": "beavers-money-skills",
+    "status": "active",
     "badge_name": "Money Skills",
     "section": "beavers",
     "section_label": "Beavers",
@@ -779,6 +798,7 @@
   },
   {
     "id": "beavers-photographer",
+    "status": "active",
     "badge_name": "Photographer",
     "section": "beavers",
     "section_label": "Beavers",
@@ -813,6 +833,7 @@
   },
   {
     "id": "beavers-safety",
+    "status": "active",
     "badge_name": "Safety",
     "section": "beavers",
     "section_label": "Beavers",
@@ -871,6 +892,7 @@
   },
   {
     "id": "beavers-space",
+    "status": "active",
     "badge_name": "Space",
     "section": "beavers",
     "section_label": "Beavers",
@@ -917,6 +939,7 @@
   },
   {
     "id": "beavers-sports",
+    "status": "active",
     "badge_name": "Sports",
     "section": "beavers",
     "section_label": "Beavers",
@@ -963,6 +986,7 @@
   },
   {
     "id": "beavers-my-adventure",
+    "status": "active",
     "badge_name": "My Adventure",
     "section": "beavers",
     "section_label": "Beavers",
@@ -1003,6 +1027,7 @@
   },
   {
     "id": "beavers-my-outdoors",
+    "status": "active",
     "badge_name": "My Outdoors",
     "section": "beavers",
     "section_label": "Beavers",
@@ -1055,6 +1080,7 @@
   },
   {
     "id": "beavers-my-skills",
+    "status": "active",
     "badge_name": "My Skills",
     "section": "beavers",
     "section_label": "Beavers",
@@ -1119,6 +1145,7 @@
   },
   {
     "id": "beavers-my-world",
+    "status": "active",
     "badge_name": "My World",
     "section": "beavers",
     "section_label": "Beavers",
@@ -1177,6 +1204,7 @@
   },
   {
     "id": "beavers-personal",
+    "status": "active",
     "badge_name": "Personal",
     "section": "beavers",
     "section_label": "Beavers",
@@ -1205,6 +1233,7 @@
   },
   {
     "id": "beavers-teamwork",
+    "status": "active",
     "badge_name": "Teamwork",
     "section": "beavers",
     "section_label": "Beavers",
@@ -1257,6 +1286,7 @@
   },
   {
     "id": "beavers-earth-tribe-award-beavers",
+    "status": "active",
     "badge_name": "Earth Tribe Award - Beavers",
     "section": "beavers",
     "section_label": "Beavers",
@@ -1363,6 +1393,7 @@
   },
   {
     "id": "cubs-animal-carer",
+    "status": "active",
     "badge_name": "Animal Carer",
     "section": "cubs",
     "section_label": "Cubs",
@@ -1421,6 +1452,7 @@
   },
   {
     "id": "cubs-artist",
+    "status": "active",
     "badge_name": "Artist",
     "section": "cubs",
     "section_label": "Cubs",
@@ -1497,6 +1529,7 @@
   },
   {
     "id": "cubs-athletics",
+    "status": "active",
     "badge_name": "Athletics",
     "section": "cubs",
     "section_label": "Cubs",
@@ -1549,6 +1582,7 @@
   },
   {
     "id": "cubs-athletics-plus",
+    "status": "active",
     "badge_name": "Athletics Plus",
     "section": "cubs",
     "section_label": "Cubs",
@@ -1619,6 +1653,7 @@
   },
   {
     "id": "cubs-backwoods-cooking",
+    "status": "active",
     "badge_name": "Backwoods Cooking",
     "section": "cubs",
     "section_label": "Cubs",
@@ -1671,6 +1706,7 @@
   },
   {
     "id": "cubs-book-reader",
+    "status": "active",
     "badge_name": "Book Reader",
     "section": "cubs",
     "section_label": "Cubs",
@@ -1717,6 +1753,7 @@
   },
   {
     "id": "cubs-chef",
+    "status": "active",
     "badge_name": "Chef",
     "section": "cubs",
     "section_label": "Cubs",
@@ -1757,6 +1794,7 @@
   },
   {
     "id": "cubs-collector",
+    "status": "active",
     "badge_name": "Collector",
     "section": "cubs",
     "section_label": "Cubs",
@@ -1797,6 +1835,7 @@
   },
   {
     "id": "cubs-communicator",
+    "status": "active",
     "badge_name": "Communicator",
     "section": "cubs",
     "section_label": "Cubs",
@@ -1891,6 +1930,7 @@
   },
   {
     "id": "cubs-cyclist",
+    "status": "active",
     "badge_name": "Cyclist",
     "section": "cubs",
     "section_label": "Cubs",
@@ -1949,6 +1989,7 @@
   },
   {
     "id": "cubs-diy",
+    "status": "active",
     "badge_name": "DIY",
     "section": "cubs",
     "section_label": "Cubs",
@@ -1989,6 +2030,7 @@
   },
   {
     "id": "cubs-disability-awareness",
+    "status": "active",
     "badge_name": "Disability Awareness",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2029,6 +2071,7 @@
   },
   {
     "id": "cubs-entertainer",
+    "status": "active",
     "badge_name": "Entertainer",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2099,6 +2142,7 @@
   },
   {
     "id": "cubs-environmental-conservation",
+    "status": "active",
     "badge_name": "Environmental Conservation",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2139,6 +2183,7 @@
   },
   {
     "id": "cubs-equestrian",
+    "status": "active",
     "badge_name": "Equestrian",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2209,6 +2254,7 @@
   },
   {
     "id": "cubs-fire-safety",
+    "status": "active",
     "badge_name": "Fire Safety",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2267,6 +2313,7 @@
   },
   {
     "id": "cubs-gardener",
+    "status": "active",
     "badge_name": "Gardener",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2313,6 +2360,7 @@
   },
   {
     "id": "cubs-global-issues",
+    "status": "active",
     "badge_name": "Global Issues",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2359,6 +2407,7 @@
   },
   {
     "id": "cubs-hobbies",
+    "status": "active",
     "badge_name": "Hobbies",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2399,6 +2448,7 @@
   },
   {
     "id": "cubs-home-help",
+    "status": "active",
     "badge_name": "Home Help",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2463,6 +2513,7 @@
   },
   {
     "id": "cubs-home-safety",
+    "status": "active",
     "badge_name": "Home Safety",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2509,6 +2560,7 @@
   },
   {
     "id": "cubs-international",
+    "status": "active",
     "badge_name": "International",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2549,6 +2601,7 @@
   },
   {
     "id": "cubs-local-knowledge",
+    "status": "active",
     "badge_name": "Local Knowledge",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2595,6 +2648,7 @@
   },
   {
     "id": "cubs-martial-arts",
+    "status": "active",
     "badge_name": "Martial Arts",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2629,6 +2683,7 @@
   },
   {
     "id": "cubs-money-skills",
+    "status": "active",
     "badge_name": "Money Skills",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2675,6 +2730,7 @@
   },
   {
     "id": "cubs-my-faith",
+    "status": "active",
     "badge_name": "My Faith",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2709,6 +2765,7 @@
   },
   {
     "id": "cubs-naturalist",
+    "status": "active",
     "badge_name": "Naturalist",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2773,6 +2830,7 @@
   },
   {
     "id": "cubs-personal-safety",
+    "status": "active",
     "badge_name": "Personal Safety",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2831,6 +2889,7 @@
   },
   {
     "id": "cubs-photographer",
+    "status": "active",
     "badge_name": "Photographer",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2889,6 +2948,7 @@
   },
   {
     "id": "cubs-physical-recreation",
+    "status": "active",
     "badge_name": "Physical Recreation",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2935,6 +2995,7 @@
   },
   {
     "id": "cubs-pioneer",
+    "status": "active",
     "badge_name": "Pioneer",
     "section": "cubs",
     "section_label": "Cubs",
@@ -2981,6 +3042,7 @@
   },
   {
     "id": "cubs-road-safety",
+    "status": "active",
     "badge_name": "Road Safety",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3021,6 +3083,7 @@
   },
   {
     "id": "cubs-scientist",
+    "status": "active",
     "badge_name": "Scientist",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3055,6 +3118,7 @@
   },
   {
     "id": "cubs-skater",
+    "status": "active",
     "badge_name": "Skater",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3101,6 +3165,7 @@
   },
   {
     "id": "cubs-space",
+    "status": "active",
     "badge_name": "Space",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3153,6 +3218,7 @@
   },
   {
     "id": "cubs-sports-enthusiast",
+    "status": "active",
     "badge_name": "Sports Enthusiast",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3205,6 +3271,7 @@
   },
   {
     "id": "cubs-water-activities",
+    "status": "active",
     "badge_name": "Water Activities",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3239,6 +3306,7 @@
   },
   {
     "id": "cubs-world-faiths",
+    "status": "active",
     "badge_name": "World Faiths",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3279,6 +3347,7 @@
   },
   {
     "id": "cubs-our-adventure",
+    "status": "active",
     "badge_name": "Our Adventure",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3319,6 +3388,7 @@
   },
   {
     "id": "cubs-our-outdoors",
+    "status": "active",
     "badge_name": "Our Outdoors",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3431,6 +3501,7 @@
   },
   {
     "id": "cubs-our-skills",
+    "status": "active",
     "badge_name": "Our Skills",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3477,6 +3548,7 @@
   },
   {
     "id": "cubs-our-world",
+    "status": "active",
     "badge_name": "Our World",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3541,6 +3613,7 @@
   },
   {
     "id": "cubs-personal",
+    "status": "active",
     "badge_name": "Personal",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3569,6 +3642,7 @@
   },
   {
     "id": "cubs-team-leader",
+    "status": "active",
     "badge_name": "Team Leader",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3609,6 +3683,7 @@
   },
   {
     "id": "cubs-teamwork",
+    "status": "active",
     "badge_name": "Teamwork",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3655,6 +3730,7 @@
   },
   {
     "id": "cubs-earth-tribe-award-cubs",
+    "status": "active",
     "badge_name": "Earth Tribe Award - Cubs",
     "section": "cubs",
     "section_label": "Cubs",
@@ -3791,10 +3867,12 @@
         "no": "3",
         "text": "Become a Cub Scout by making the Promise"
       }
-    ]
+    ],
+    "status": "active"
   },
   {
     "id": "explorers-activity-centre-service",
+    "status": "active",
     "badge_name": "Activity Centre Service",
     "section": "explorers",
     "section_label": "Explorers",
@@ -3871,6 +3949,7 @@
   },
   {
     "id": "explorers-athletics",
+    "status": "active",
     "badge_name": "Athletics",
     "section": "explorers",
     "section_label": "Explorers",
@@ -3911,6 +3990,7 @@
   },
   {
     "id": "explorers-camper",
+    "status": "active",
     "badge_name": "Camper",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4041,6 +4121,7 @@
   },
   {
     "id": "explorers-caving",
+    "status": "active",
     "badge_name": "Caving",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4093,6 +4174,7 @@
   },
   {
     "id": "explorers-climber",
+    "status": "active",
     "badge_name": "Climber",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4151,6 +4233,7 @@
   },
   {
     "id": "explorers-creative",
+    "status": "active",
     "badge_name": "Creative",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4179,6 +4262,7 @@
   },
   {
     "id": "explorers-fundraising",
+    "status": "active",
     "badge_name": "Fundraising",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4231,6 +4315,7 @@
   },
   {
     "id": "explorers-global-issues",
+    "status": "active",
     "badge_name": "Global Issues",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4277,6 +4362,7 @@
   },
   {
     "id": "explorers-hill-walker",
+    "status": "active",
     "badge_name": "Hill Walker",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4311,6 +4397,7 @@
   },
   {
     "id": "explorers-instructor",
+    "status": "active",
     "badge_name": "Instructor",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4351,6 +4438,7 @@
   },
   {
     "id": "explorers-international",
+    "status": "active",
     "badge_name": "International",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4403,6 +4491,7 @@
   },
   {
     "id": "explorers-leadership",
+    "status": "active",
     "badge_name": "Leadership",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4473,6 +4562,7 @@
   },
   {
     "id": "explorers-lifesaver",
+    "status": "active",
     "badge_name": "Lifesaver",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4507,6 +4597,7 @@
   },
   {
     "id": "explorers-media-relations-and-marketing",
+    "status": "active",
     "badge_name": "Media Relations and Marketing",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4607,6 +4698,7 @@
   },
   {
     "id": "explorers-money-skills",
+    "status": "active",
     "badge_name": "Money Skills",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4653,6 +4745,7 @@
   },
   {
     "id": "explorers-motor-sports",
+    "status": "active",
     "badge_name": "Motor Sports",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4699,6 +4792,7 @@
   },
   {
     "id": "explorers-mountain-biking",
+    "status": "active",
     "badge_name": "Mountain Biking",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4781,6 +4875,7 @@
   },
   {
     "id": "explorers-naturalist",
+    "status": "active",
     "badge_name": "Naturalist",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4821,6 +4916,7 @@
   },
   {
     "id": "explorers-performing-arts",
+    "status": "active",
     "badge_name": "Performing Arts",
     "section": "explorers",
     "section_label": "Explorers",
@@ -4849,6 +4945,7 @@
   },
   {
     "id": "explorers-physical-recreation",
+    "status": "active",
     "badge_name": "Physical Recreation",
     "section": "explorers",
     "section_label": "Explorers",
@@ -5033,6 +5130,7 @@
   },
   {
     "id": "explorers-pioneer",
+    "status": "active",
     "badge_name": "Pioneer",
     "section": "explorers",
     "section_label": "Explorers",
@@ -5073,6 +5171,7 @@
   },
   {
     "id": "explorers-racquet-sports",
+    "status": "active",
     "badge_name": "Racquet Sports",
     "section": "explorers",
     "section_label": "Explorers",
@@ -5113,6 +5212,7 @@
   },
   {
     "id": "explorers-science-and-technology",
+    "status": "active",
     "badge_name": "Science and Technology",
     "section": "explorers",
     "section_label": "Explorers",
@@ -5243,6 +5343,7 @@
   },
   {
     "id": "explorers-space",
+    "status": "active",
     "badge_name": "Space",
     "section": "explorers",
     "section_label": "Explorers",
@@ -5289,6 +5390,7 @@
   },
   {
     "id": "explorers-street-sports",
+    "status": "active",
     "badge_name": "Street Sports",
     "section": "explorers",
     "section_label": "Explorers",
@@ -5329,6 +5431,7 @@
   },
   {
     "id": "explorers-survival-skills",
+    "status": "active",
     "badge_name": "Survival Skills",
     "section": "explorers",
     "section_label": "Explorers",
@@ -5417,6 +5520,7 @@
   },
   {
     "id": "explorers-water-activities",
+    "status": "active",
     "badge_name": "Water Activities",
     "section": "explorers",
     "section_label": "Explorers",
@@ -5457,6 +5561,7 @@
   },
   {
     "id": "explorers-explorer-belt",
+    "status": "active",
     "badge_name": "Explorer Belt",
     "section": "explorers",
     "section_label": "Explorers",
@@ -5509,6 +5614,7 @@
   },
   {
     "id": "explorers-earth-tribe-award-explorers",
+    "status": "active",
     "badge_name": "Earth Tribe Award - Explorers",
     "section": "explorers",
     "section_label": "Explorers",
@@ -5615,6 +5721,7 @@
   },
   {
     "id": "scouts-activity-centre-service",
+    "status": "active",
     "badge_name": "Activity Centre Service",
     "section": "scouts",
     "section_label": "Scouts",
@@ -5703,6 +5810,7 @@
   },
   {
     "id": "scouts-air-researcher",
+    "status": "active",
     "badge_name": "Air Researcher",
     "section": "scouts",
     "section_label": "Scouts",
@@ -5737,6 +5845,7 @@
   },
   {
     "id": "scouts-air-spotter",
+    "status": "active",
     "badge_name": "Air Spotter",
     "section": "scouts",
     "section_label": "Scouts",
@@ -5795,6 +5904,7 @@
   },
   {
     "id": "scouts-air-or-sea-navigation-activity-badge",
+    "status": "active",
     "badge_name": "Air or Sea Navigation Activity Badge",
     "section": "scouts",
     "section_label": "Scouts",
@@ -5913,6 +6023,7 @@
   },
   {
     "id": "scouts-angler",
+    "status": "active",
     "badge_name": "Angler",
     "section": "scouts",
     "section_label": "Scouts",
@@ -5983,6 +6094,7 @@
   },
   {
     "id": "scouts-artist",
+    "status": "active",
     "badge_name": "Artist",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6047,6 +6159,7 @@
   },
   {
     "id": "scouts-athletics",
+    "status": "active",
     "badge_name": "Athletics",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6087,6 +6200,7 @@
   },
   {
     "id": "scouts-athletics-plus",
+    "status": "active",
     "badge_name": "Athletics Plus",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6121,6 +6235,7 @@
   },
   {
     "id": "scouts-camper",
+    "status": "active",
     "badge_name": "Camper",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6191,6 +6306,7 @@
   },
   {
     "id": "scouts-caver",
+    "status": "active",
     "badge_name": "Caver",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6225,6 +6341,7 @@
   },
   {
     "id": "scouts-chef-indoors",
+    "status": "active",
     "badge_name": "Chef - Indoors",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6313,10 +6430,12 @@
         "no": "5",
         "text": "Demonstrate the best way to clear up afterwards."
       }
-    ]
+    ],
+    "status": "active"
   },
   {
     "id": "scouts-circus-skills",
+    "status": "active",
     "badge_name": "Circus Skills",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6363,6 +6482,7 @@
   },
   {
     "id": "scouts-climber",
+    "status": "active",
     "badge_name": "Climber",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6427,6 +6547,7 @@
   },
   {
     "id": "scouts-communicator",
+    "status": "active",
     "badge_name": "Communicator",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6635,6 +6756,7 @@
   },
   {
     "id": "scouts-craft",
+    "status": "active",
     "badge_name": "Craft",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6657,6 +6779,7 @@
   },
   {
     "id": "scouts-cyclist",
+    "status": "active",
     "badge_name": "Cyclist",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6769,6 +6892,7 @@
   },
   {
     "id": "scouts-diy",
+    "status": "active",
     "badge_name": "DIY",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6821,6 +6945,7 @@
   },
   {
     "id": "scouts-dragon-boating",
+    "status": "active",
     "badge_name": "Dragon Boating",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6867,6 +6992,7 @@
   },
   {
     "id": "scouts-electronics",
+    "status": "active",
     "badge_name": "Electronics",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6949,6 +7075,7 @@
   },
   {
     "id": "scouts-entertainer",
+    "status": "active",
     "badge_name": "Entertainer",
     "section": "scouts",
     "section_label": "Scouts",
@@ -6989,6 +7116,7 @@
   },
   {
     "id": "scouts-environmental-conservation",
+    "status": "active",
     "badge_name": "Environmental Conservation",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7023,6 +7151,7 @@
   },
   {
     "id": "scouts-equestrian",
+    "status": "active",
     "badge_name": "Equestrian",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7093,6 +7222,7 @@
   },
   {
     "id": "scouts-farming",
+    "status": "active",
     "badge_name": "Farming",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7151,6 +7281,7 @@
   },
   {
     "id": "scouts-fire-safety",
+    "status": "active",
     "badge_name": "Fire Safety",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7227,6 +7358,7 @@
   },
   {
     "id": "scouts-forester",
+    "status": "active",
     "badge_name": "Forester",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7279,6 +7411,7 @@
   },
   {
     "id": "scouts-fundraising",
+    "status": "active",
     "badge_name": "Fundraising",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7319,6 +7452,7 @@
   },
   {
     "id": "scouts-geocaching",
+    "status": "active",
     "badge_name": "Geocaching",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7383,6 +7517,7 @@
   },
   {
     "id": "scouts-global-issues",
+    "status": "active",
     "badge_name": "Global Issues",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7429,6 +7564,7 @@
   },
   {
     "id": "scouts-hill-walker",
+    "status": "active",
     "badge_name": "Hill Walker",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7499,6 +7635,7 @@
   },
   {
     "id": "scouts-hobbies",
+    "status": "active",
     "badge_name": "Hobbies",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7527,6 +7664,7 @@
   },
   {
     "id": "scouts-instructor",
+    "status": "active",
     "badge_name": "Instructor",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7567,6 +7705,7 @@
   },
   {
     "id": "scouts-international",
+    "status": "active",
     "badge_name": "International",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7607,6 +7746,7 @@
   },
   {
     "id": "scouts-librarian",
+    "status": "active",
     "badge_name": "Librarian",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7659,6 +7799,7 @@
   },
   {
     "id": "scouts-lifesaver",
+    "status": "active",
     "badge_name": "Lifesaver",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7693,6 +7834,7 @@
   },
   {
     "id": "scouts-local-knowledge",
+    "status": "active",
     "badge_name": "Local Knowledge",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7769,6 +7911,7 @@
   },
   {
     "id": "scouts-martial-arts",
+    "status": "active",
     "badge_name": "Martial Arts",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7797,6 +7940,7 @@
   },
   {
     "id": "scouts-master-at-arms",
+    "status": "active",
     "badge_name": "Master at Arms",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7831,6 +7975,7 @@
   },
   {
     "id": "scouts-mechanic",
+    "status": "active",
     "badge_name": "Mechanic",
     "section": "scouts",
     "section_label": "Scouts",
@@ -7985,6 +8130,7 @@
   },
   {
     "id": "scouts-meteorologist",
+    "status": "active",
     "badge_name": "Meteorologist",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8037,6 +8183,7 @@
   },
   {
     "id": "scouts-model-maker",
+    "status": "active",
     "badge_name": "Model Maker",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8083,6 +8230,7 @@
   },
   {
     "id": "scouts-money-skills",
+    "status": "active",
     "badge_name": "Money Skills",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8123,6 +8271,7 @@
   },
   {
     "id": "scouts-my-faith",
+    "status": "active",
     "badge_name": "My Faith",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8163,6 +8312,7 @@
   },
   {
     "id": "scouts-naturalist",
+    "status": "active",
     "badge_name": "Naturalist",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8209,6 +8359,7 @@
   },
   {
     "id": "scouts-orienteer",
+    "status": "active",
     "badge_name": "Orienteer",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8255,6 +8406,7 @@
   },
   {
     "id": "scouts-parascending",
+    "status": "active",
     "badge_name": "Parascending",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8295,6 +8447,7 @@
   },
   {
     "id": "scouts-photographer",
+    "status": "active",
     "badge_name": "Photographer",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8365,6 +8518,7 @@
   },
   {
     "id": "scouts-physical-recreation",
+    "status": "active",
     "badge_name": "Physical Recreation",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8411,6 +8565,7 @@
   },
   {
     "id": "scouts-pioneer",
+    "status": "active",
     "badge_name": "Pioneer",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8475,6 +8630,7 @@
   },
   {
     "id": "scouts-power-coxswain",
+    "status": "active",
     "badge_name": "Power Coxswain",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8545,6 +8701,7 @@
   },
   {
     "id": "scouts-pulling-fixed-seat-rowing",
+    "status": "active",
     "badge_name": "Pulling (Fixed Seat Rowing)",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8669,6 +8826,7 @@
   },
   {
     "id": "scouts-quartermaster",
+    "status": "active",
     "badge_name": "Quartermaster",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8733,6 +8891,7 @@
   },
   {
     "id": "scouts-scientist",
+    "status": "active",
     "badge_name": "Scientist",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8773,6 +8932,7 @@
   },
   {
     "id": "scouts-space",
+    "status": "active",
     "badge_name": "Space",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8831,6 +8991,7 @@
   },
   {
     "id": "scouts-sports-enthusiast",
+    "status": "active",
     "badge_name": "Sports Enthusiast",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8883,6 +9044,7 @@
   },
   {
     "id": "scouts-street-sports",
+    "status": "active",
     "badge_name": "Street Sports",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8929,6 +9091,7 @@
   },
   {
     "id": "scouts-survival-skills",
+    "status": "active",
     "badge_name": "Survival Skills",
     "section": "scouts",
     "section_label": "Scouts",
@@ -8999,6 +9162,7 @@
   },
   {
     "id": "scouts-water-activities",
+    "status": "active",
     "badge_name": "Water Activities",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9021,6 +9185,7 @@
   },
   {
     "id": "scouts-world-faiths",
+    "status": "active",
     "badge_name": "World Faiths",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9061,6 +9226,7 @@
   },
   {
     "id": "scouts-writer",
+    "status": "active",
     "badge_name": "Writer",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9137,6 +9303,7 @@
   },
   {
     "id": "scouts-adventure",
+    "status": "active",
     "badge_name": "Adventure",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9177,6 +9344,7 @@
   },
   {
     "id": "scouts-creative",
+    "status": "active",
     "badge_name": "Creative",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9229,6 +9397,7 @@
   },
   {
     "id": "scouts-expedition",
+    "status": "active",
     "badge_name": "Expedition",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9269,6 +9438,7 @@
   },
   {
     "id": "scouts-outdoor",
+    "status": "active",
     "badge_name": "Outdoor",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9405,6 +9575,7 @@
   },
   {
     "id": "scouts-personal",
+    "status": "active",
     "badge_name": "Personal",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9433,6 +9604,7 @@
   },
   {
     "id": "scouts-skills",
+    "status": "active",
     "badge_name": "Skills",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9533,6 +9705,7 @@
   },
   {
     "id": "scouts-team-leader",
+    "status": "active",
     "badge_name": "Team Leader",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9573,6 +9746,7 @@
   },
   {
     "id": "scouts-teamwork",
+    "status": "active",
     "badge_name": "Teamwork",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9613,6 +9787,7 @@
   },
   {
     "id": "scouts-world",
+    "status": "active",
     "badge_name": "World",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9671,6 +9846,7 @@
   },
   {
     "id": "scouts-earth-tribe-award-scouts",
+    "status": "active",
     "badge_name": "Earth Tribe Award - Scouts",
     "section": "scouts",
     "section_label": "Scouts",
@@ -9789,10 +9965,12 @@
         "kind": "heading",
         "text": "No formal requirements - awarded by leader discretion"
       }
-    ]
+    ],
+    "status": "active"
   },
   {
     "id": "squirrels-be-active",
+    "status": "active",
     "badge_name": "Be Active",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -9827,6 +10005,7 @@
   },
   {
     "id": "squirrels-brilliant-builder",
+    "status": "active",
     "badge_name": "Brilliant Builder",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -9861,6 +10040,7 @@
   },
   {
     "id": "squirrels-exciting-experiments",
+    "status": "active",
     "badge_name": "Exciting Experiments",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -9895,6 +10075,7 @@
   },
   {
     "id": "squirrels-explore-outdoors",
+    "status": "active",
     "badge_name": "Explore Outdoors",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -9929,6 +10110,7 @@
   },
   {
     "id": "squirrels-feel-good",
+    "status": "active",
     "badge_name": "Feel Good",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -9963,6 +10145,7 @@
   },
   {
     "id": "squirrels-get-creative",
+    "status": "active",
     "badge_name": "Get Creative",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -9997,6 +10180,7 @@
   },
   {
     "id": "squirrels-go-wild",
+    "status": "active",
     "badge_name": "Go Wild",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -10031,6 +10215,7 @@
   },
   {
     "id": "squirrels-let-it-grow",
+    "status": "active",
     "badge_name": "Let It Grow",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -10065,6 +10250,7 @@
   },
   {
     "id": "squirrels-let-s-celebrate",
+    "status": "active",
     "badge_name": "Let’s Celebrate",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -10099,6 +10285,7 @@
   },
   {
     "id": "squirrels-local-superhero",
+    "status": "active",
     "badge_name": "Local Superhero",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -10133,6 +10320,7 @@
   },
   {
     "id": "squirrels-space-explorer",
+    "status": "active",
     "badge_name": "Space Explorer",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -10167,6 +10355,7 @@
   },
   {
     "id": "squirrels-story-time",
+    "status": "active",
     "badge_name": "Story Time",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -10201,6 +10390,7 @@
   },
   {
     "id": "squirrels-super-chef",
+    "status": "active",
     "badge_name": "Super Chef",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -10235,6 +10425,7 @@
   },
   {
     "id": "squirrels-all-about-adventure",
+    "status": "active",
     "badge_name": "All About Adventure",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -10275,6 +10466,7 @@
   },
   {
     "id": "squirrels-all-about-me",
+    "status": "active",
     "badge_name": "All About Me",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -10315,6 +10507,7 @@
   },
   {
     "id": "squirrels-all-around-us",
+    "status": "active",
     "badge_name": "All Around Us",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -10355,6 +10548,7 @@
   },
   {
     "id": "squirrels-all-together",
+    "status": "active",
     "badge_name": "All Together",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -10395,6 +10589,7 @@
   },
   {
     "id": "squirrels-earth-tribe-award-squirrels",
+    "status": "active",
     "badge_name": "Earth Tribe Award - Squirrels",
     "section": "squirrels",
     "section_label": "Squirrels",
@@ -10501,6 +10696,7 @@
   },
   {
     "id": "staged-activity-plus-badge",
+    "status": "active",
     "badge_name": "Activity Plus Badge",
     "section": "staged",
     "section_label": "Staged",
@@ -10535,6 +10731,7 @@
   },
   {
     "id": "staged-air-activities-stage-1",
+    "status": "active",
     "badge_name": "Air Activities - Stage 1",
     "section": "staged",
     "section_label": "Staged",
@@ -10581,6 +10778,7 @@
   },
   {
     "id": "staged-air-activities-stage-2",
+    "status": "active",
     "badge_name": "Air Activities - Stage 2",
     "section": "staged",
     "section_label": "Staged",
@@ -10657,6 +10855,7 @@
   },
   {
     "id": "staged-air-activities-stage-3",
+    "status": "active",
     "badge_name": "Air Activities - Stage 3",
     "section": "staged",
     "section_label": "Staged",
@@ -10733,6 +10932,7 @@
   },
   {
     "id": "staged-air-activities-stage-4",
+    "status": "active",
     "badge_name": "Air Activities - Stage 4",
     "section": "staged",
     "section_label": "Staged",
@@ -10809,6 +11009,7 @@
   },
   {
     "id": "staged-air-activities-stage-5",
+    "status": "active",
     "badge_name": "Air Activities - Stage 5",
     "section": "staged",
     "section_label": "Staged",
@@ -10891,6 +11092,7 @@
   },
   {
     "id": "staged-community-impact-stage-1",
+    "status": "active",
     "badge_name": "Community Impact - Stage 1",
     "section": "staged",
     "section_label": "Staged",
@@ -10937,6 +11139,7 @@
   },
   {
     "id": "staged-community-impact-stage-2",
+    "status": "active",
     "badge_name": "Community Impact - Stage 2",
     "section": "staged",
     "section_label": "Staged",
@@ -10983,6 +11186,7 @@
   },
   {
     "id": "staged-community-impact-stage-3",
+    "status": "active",
     "badge_name": "Community Impact - Stage 3",
     "section": "staged",
     "section_label": "Staged",
@@ -11029,6 +11233,7 @@
   },
   {
     "id": "staged-community-impact-stage-4",
+    "status": "active",
     "badge_name": "Community Impact - Stage 4",
     "section": "staged",
     "section_label": "Staged",
@@ -11075,6 +11280,7 @@
   },
   {
     "id": "staged-digital-citizen-stage-1",
+    "status": "active",
     "badge_name": "Digital Citizen - Stage 1",
     "section": "staged",
     "section_label": "Staged",
@@ -11115,6 +11321,7 @@
   },
   {
     "id": "staged-digital-citizen-stage-2",
+    "status": "active",
     "badge_name": "Digital Citizen - Stage 2",
     "section": "staged",
     "section_label": "Staged",
@@ -11161,6 +11368,7 @@
   },
   {
     "id": "staged-digital-citizen-stage-3",
+    "status": "active",
     "badge_name": "Digital Citizen - Stage 3",
     "section": "staged",
     "section_label": "Staged",
@@ -11207,6 +11415,7 @@
   },
   {
     "id": "staged-digital-citizen-stage-4",
+    "status": "active",
     "badge_name": "Digital Citizen - Stage 4",
     "section": "staged",
     "section_label": "Staged",
@@ -11253,6 +11462,7 @@
   },
   {
     "id": "staged-digital-maker-stage-1",
+    "status": "active",
     "badge_name": "Digital Maker - Stage 1",
     "section": "staged",
     "section_label": "Staged",
@@ -11287,6 +11497,7 @@
   },
   {
     "id": "staged-digital-maker-stage-2",
+    "status": "active",
     "badge_name": "Digital Maker - Stage 2",
     "section": "staged",
     "section_label": "Staged",
@@ -11321,6 +11532,7 @@
   },
   {
     "id": "staged-digital-maker-stage-3",
+    "status": "active",
     "badge_name": "Digital Maker - Stage 3",
     "section": "staged",
     "section_label": "Staged",
@@ -11361,6 +11573,7 @@
   },
   {
     "id": "staged-digital-maker-stage-4",
+    "status": "active",
     "badge_name": "Digital Maker - Stage 4",
     "section": "staged",
     "section_label": "Staged",
@@ -11389,6 +11602,7 @@
   },
   {
     "id": "staged-digital-maker-stage-5",
+    "status": "active",
     "badge_name": "Digital Maker - Stage 5",
     "section": "staged",
     "section_label": "Staged",
@@ -11417,6 +11631,7 @@
   },
   {
     "id": "staged-emergency-aid-stage-1",
+    "status": "active",
     "badge_name": "Emergency Aid - Stage 1",
     "section": "staged",
     "section_label": "Staged",
@@ -11463,6 +11678,7 @@
   },
   {
     "id": "staged-emergency-aid-stage-2",
+    "status": "active",
     "badge_name": "Emergency Aid - Stage 2",
     "section": "staged",
     "section_label": "Staged",
@@ -11521,6 +11737,7 @@
   },
   {
     "id": "staged-emergency-aid-stage-3",
+    "status": "active",
     "badge_name": "Emergency Aid - Stage 3",
     "section": "staged",
     "section_label": "Staged",
@@ -11591,6 +11808,7 @@
   },
   {
     "id": "staged-emergency-aid-stage-4",
+    "status": "active",
     "badge_name": "Emergency Aid - Stage 4",
     "section": "staged",
     "section_label": "Staged",
@@ -11697,6 +11915,7 @@
   },
   {
     "id": "staged-emergency-aid-stage-5",
+    "status": "active",
     "badge_name": "Emergency Aid - Stage 5",
     "section": "staged",
     "section_label": "Staged",
@@ -11809,6 +12028,7 @@
   },
   {
     "id": "staged-hikes-away-1",
+    "status": "active",
     "badge_name": "Hikes Away - 1",
     "section": "staged",
     "section_label": "Staged",
@@ -11825,6 +12045,7 @@
   },
   {
     "id": "staged-hikes-away-10",
+    "status": "active",
     "badge_name": "Hikes Away - 10",
     "section": "staged",
     "section_label": "Staged",
@@ -11841,6 +12062,7 @@
   },
   {
     "id": "staged-hikes-away-15",
+    "status": "active",
     "badge_name": "Hikes Away - 15",
     "section": "staged",
     "section_label": "Staged",
@@ -11857,6 +12079,7 @@
   },
   {
     "id": "staged-hikes-away-2",
+    "status": "active",
     "badge_name": "Hikes Away - 2",
     "section": "staged",
     "section_label": "Staged",
@@ -11873,6 +12096,7 @@
   },
   {
     "id": "staged-hikes-away-20",
+    "status": "active",
     "badge_name": "Hikes Away - 20",
     "section": "staged",
     "section_label": "Staged",
@@ -11889,6 +12113,7 @@
   },
   {
     "id": "staged-hikes-away-35",
+    "status": "active",
     "badge_name": "Hikes Away - 35",
     "section": "staged",
     "section_label": "Staged",
@@ -11905,6 +12130,7 @@
   },
   {
     "id": "staged-hikes-away-5",
+    "status": "active",
     "badge_name": "Hikes Away - 5",
     "section": "staged",
     "section_label": "Staged",
@@ -11921,6 +12147,7 @@
   },
   {
     "id": "staged-hikes-away-50",
+    "status": "active",
     "badge_name": "Hikes Away - 50",
     "section": "staged",
     "section_label": "Staged",
@@ -11937,6 +12164,7 @@
   },
   {
     "id": "staged-musician-stage-1",
+    "status": "active",
     "badge_name": "Musician - Stage 1",
     "section": "staged",
     "section_label": "Staged",
@@ -11977,6 +12205,7 @@
   },
   {
     "id": "staged-musician-stage-2",
+    "status": "active",
     "badge_name": "Musician - Stage 2",
     "section": "staged",
     "section_label": "Staged",
@@ -12017,6 +12246,7 @@
   },
   {
     "id": "staged-musician-stage-3",
+    "status": "active",
     "badge_name": "Musician - Stage 3",
     "section": "staged",
     "section_label": "Staged",
@@ -12057,6 +12287,7 @@
   },
   {
     "id": "staged-musician-stage-4",
+    "status": "active",
     "badge_name": "Musician - Stage 4",
     "section": "staged",
     "section_label": "Staged",
@@ -12097,6 +12328,7 @@
   },
   {
     "id": "staged-musician-stage-5",
+    "status": "active",
     "badge_name": "Musician - Stage 5",
     "section": "staged",
     "section_label": "Staged",
@@ -12137,6 +12369,7 @@
   },
   {
     "id": "staged-nautical-skills-stage-1",
+    "status": "active",
     "badge_name": "Nautical Skills - Stage 1",
     "section": "staged",
     "section_label": "Staged",
@@ -12171,6 +12404,7 @@
   },
   {
     "id": "staged-nautical-skills-stage-2",
+    "status": "active",
     "badge_name": "Nautical Skills - Stage 2",
     "section": "staged",
     "section_label": "Staged",
@@ -12223,6 +12457,7 @@
   },
   {
     "id": "staged-nautical-skills-stage-3",
+    "status": "active",
     "badge_name": "Nautical Skills - Stage 3",
     "section": "staged",
     "section_label": "Staged",
@@ -12287,6 +12522,7 @@
   },
   {
     "id": "staged-nautical-skills-stage-4",
+    "status": "active",
     "badge_name": "Nautical Skills - Stage 4",
     "section": "staged",
     "section_label": "Staged",
@@ -12357,6 +12593,7 @@
   },
   {
     "id": "staged-nautical-skills-stage-5",
+    "status": "active",
     "badge_name": "Nautical Skills - Stage 5",
     "section": "staged",
     "section_label": "Staged",
@@ -12439,6 +12676,7 @@
   },
   {
     "id": "staged-nautical-skills-stage-6",
+    "status": "active",
     "badge_name": "Nautical Skills - Stage 6",
     "section": "staged",
     "section_label": "Staged",
@@ -12491,6 +12729,7 @@
   },
   {
     "id": "staged-navigator-stage-1",
+    "status": "active",
     "badge_name": "Navigator - Stage 1",
     "section": "staged",
     "section_label": "Staged",
@@ -12543,6 +12782,7 @@
   },
   {
     "id": "staged-navigator-stage-2",
+    "status": "active",
     "badge_name": "Navigator - Stage 2",
     "section": "staged",
     "section_label": "Staged",
@@ -12601,6 +12841,7 @@
   },
   {
     "id": "staged-navigator-stage-3",
+    "status": "active",
     "badge_name": "Navigator - Stage 3",
     "section": "staged",
     "section_label": "Staged",
@@ -12647,6 +12888,7 @@
   },
   {
     "id": "staged-navigator-stage-4",
+    "status": "active",
     "badge_name": "Navigator - Stage 4",
     "section": "staged",
     "section_label": "Staged",
@@ -12693,6 +12935,7 @@
   },
   {
     "id": "staged-navigator-stage-5",
+    "status": "active",
     "badge_name": "Navigator - Stage 5",
     "section": "staged",
     "section_label": "Staged",
@@ -12751,6 +12994,7 @@
   },
   {
     "id": "staged-nights-away-1",
+    "status": "active",
     "badge_name": "Nights Away - 1",
     "section": "staged",
     "section_label": "Staged",
@@ -12767,6 +13011,7 @@
   },
   {
     "id": "staged-nights-away-10",
+    "status": "active",
     "badge_name": "Nights Away - 10",
     "section": "staged",
     "section_label": "Staged",
@@ -12783,6 +13028,7 @@
   },
   {
     "id": "staged-nights-away-100",
+    "status": "active",
     "badge_name": "Nights Away - 100",
     "section": "staged",
     "section_label": "Staged",
@@ -12799,6 +13045,7 @@
   },
   {
     "id": "staged-nights-away-125",
+    "status": "active",
     "badge_name": "Nights Away - 125",
     "section": "staged",
     "section_label": "Staged",
@@ -12815,6 +13062,7 @@
   },
   {
     "id": "staged-nights-away-15",
+    "status": "active",
     "badge_name": "Nights Away - 15",
     "section": "staged",
     "section_label": "Staged",
@@ -12831,6 +13079,7 @@
   },
   {
     "id": "staged-nights-away-150",
+    "status": "active",
     "badge_name": "Nights Away - 150",
     "section": "staged",
     "section_label": "Staged",
@@ -12847,6 +13096,7 @@
   },
   {
     "id": "staged-nights-away-175",
+    "status": "active",
     "badge_name": "Nights Away - 175",
     "section": "staged",
     "section_label": "Staged",
@@ -12863,6 +13113,7 @@
   },
   {
     "id": "staged-nights-away-2",
+    "status": "active",
     "badge_name": "Nights Away - 2",
     "section": "staged",
     "section_label": "Staged",
@@ -12879,6 +13130,7 @@
   },
   {
     "id": "staged-nights-away-20",
+    "status": "active",
     "badge_name": "Nights Away - 20",
     "section": "staged",
     "section_label": "Staged",
@@ -12895,6 +13147,7 @@
   },
   {
     "id": "staged-nights-away-200",
+    "status": "active",
     "badge_name": "Nights Away - 200",
     "section": "staged",
     "section_label": "Staged",
@@ -12911,6 +13164,7 @@
   },
   {
     "id": "staged-nights-away-3",
+    "status": "active",
     "badge_name": "Nights Away - 3",
     "section": "staged",
     "section_label": "Staged",
@@ -12927,6 +13181,7 @@
   },
   {
     "id": "staged-nights-away-35",
+    "status": "active",
     "badge_name": "Nights Away - 35",
     "section": "staged",
     "section_label": "Staged",
@@ -12943,6 +13198,7 @@
   },
   {
     "id": "staged-nights-away-4",
+    "status": "active",
     "badge_name": "Nights Away - 4",
     "section": "staged",
     "section_label": "Staged",
@@ -12959,6 +13215,7 @@
   },
   {
     "id": "staged-nights-away-5",
+    "status": "active",
     "badge_name": "Nights Away - 5",
     "section": "staged",
     "section_label": "Staged",
@@ -12975,6 +13232,7 @@
   },
   {
     "id": "staged-nights-away-50",
+    "status": "active",
     "badge_name": "Nights Away - 50",
     "section": "staged",
     "section_label": "Staged",
@@ -12991,6 +13249,7 @@
   },
   {
     "id": "staged-nights-away-75",
+    "status": "active",
     "badge_name": "Nights Away - 75",
     "section": "staged",
     "section_label": "Staged",
@@ -13007,6 +13266,7 @@
   },
   {
     "id": "staged-paddle-sports-stage-1",
+    "status": "active",
     "badge_name": "Paddle Sports - Stage 1",
     "section": "staged",
     "section_label": "Staged",
@@ -13059,6 +13319,7 @@
   },
   {
     "id": "staged-paddle-sports-stage-2",
+    "status": "active",
     "badge_name": "Paddle Sports - Stage 2",
     "section": "staged",
     "section_label": "Staged",
@@ -13117,6 +13378,7 @@
   },
   {
     "id": "staged-paddle-sports-stage-3",
+    "status": "active",
     "badge_name": "Paddle Sports - Stage 3",
     "section": "staged",
     "section_label": "Staged",
@@ -13187,6 +13449,7 @@
   },
   {
     "id": "staged-paddle-sports-stage-4",
+    "status": "active",
     "badge_name": "Paddle Sports - Stage 4",
     "section": "staged",
     "section_label": "Staged",
@@ -13221,6 +13484,7 @@
   },
   {
     "id": "staged-sailing-stage-1",
+    "status": "active",
     "badge_name": "Sailing - Stage 1",
     "section": "staged",
     "section_label": "Staged",
@@ -13273,6 +13537,7 @@
   },
   {
     "id": "staged-sailing-stage-2",
+    "status": "active",
     "badge_name": "Sailing - Stage 2",
     "section": "staged",
     "section_label": "Staged",
@@ -13325,6 +13590,7 @@
   },
   {
     "id": "staged-sailing-stage-3",
+    "status": "active",
     "badge_name": "Sailing - Stage 3",
     "section": "staged",
     "section_label": "Staged",
@@ -13395,6 +13661,7 @@
   },
   {
     "id": "staged-sailing-stage-4",
+    "status": "active",
     "badge_name": "Sailing - Stage 4",
     "section": "staged",
     "section_label": "Staged",
@@ -13441,6 +13708,7 @@
   },
   {
     "id": "staged-snowports-stage-1",
+    "status": "active",
     "badge_name": "Snowports - Stage 1",
     "section": "staged",
     "section_label": "Staged",
@@ -13487,6 +13755,7 @@
   },
   {
     "id": "staged-snowports-stage-2",
+    "status": "active",
     "badge_name": "Snowports - Stage 2",
     "section": "staged",
     "section_label": "Staged",
@@ -13545,6 +13814,7 @@
   },
   {
     "id": "staged-snowports-stage-3",
+    "status": "active",
     "badge_name": "Snowports - Stage 3",
     "section": "staged",
     "section_label": "Staged",
@@ -13597,6 +13867,7 @@
   },
   {
     "id": "staged-snowports-stage-4",
+    "status": "active",
     "badge_name": "Snowports - Stage 4",
     "section": "staged",
     "section_label": "Staged",
@@ -13649,6 +13920,7 @@
   },
   {
     "id": "staged-swimmer-stage-1",
+    "status": "active",
     "badge_name": "Swimmer - Stage 1",
     "section": "staged",
     "section_label": "Staged",
@@ -13713,6 +13985,7 @@
   },
   {
     "id": "staged-swimmer-stage-2",
+    "status": "active",
     "badge_name": "Swimmer - Stage 2",
     "section": "staged",
     "section_label": "Staged",
@@ -13783,6 +14056,7 @@
   },
   {
     "id": "staged-swimmer-stage-3",
+    "status": "active",
     "badge_name": "Swimmer - Stage 3",
     "section": "staged",
     "section_label": "Staged",
@@ -13859,6 +14133,7 @@
   },
   {
     "id": "staged-swimmer-stage-4",
+    "status": "active",
     "badge_name": "Swimmer - Stage 4",
     "section": "staged",
     "section_label": "Staged",
@@ -13941,6 +14216,7 @@
   },
   {
     "id": "staged-swimmer-stage-5",
+    "status": "active",
     "badge_name": "Swimmer - Stage 5",
     "section": "staged",
     "section_label": "Staged",
@@ -14029,6 +14305,7 @@
   },
   {
     "id": "staged-time-on-water-1",
+    "status": "active",
     "badge_name": "Time on Water - 1",
     "section": "staged",
     "section_label": "Staged",
@@ -14045,6 +14322,7 @@
   },
   {
     "id": "staged-time-on-water-10",
+    "status": "active",
     "badge_name": "Time on Water - 10",
     "section": "staged",
     "section_label": "Staged",
@@ -14061,6 +14339,7 @@
   },
   {
     "id": "staged-time-on-water-15",
+    "status": "active",
     "badge_name": "Time on Water - 15",
     "section": "staged",
     "section_label": "Staged",
@@ -14077,6 +14356,7 @@
   },
   {
     "id": "staged-time-on-water-2",
+    "status": "active",
     "badge_name": "Time on Water - 2",
     "section": "staged",
     "section_label": "Staged",
@@ -14093,6 +14373,7 @@
   },
   {
     "id": "staged-time-on-water-20",
+    "status": "active",
     "badge_name": "Time on Water - 20",
     "section": "staged",
     "section_label": "Staged",
@@ -14109,6 +14390,7 @@
   },
   {
     "id": "staged-time-on-water-35",
+    "status": "active",
     "badge_name": "Time on Water - 35",
     "section": "staged",
     "section_label": "Staged",
@@ -14125,6 +14407,7 @@
   },
   {
     "id": "staged-time-on-water-5",
+    "status": "active",
     "badge_name": "Time on Water - 5",
     "section": "staged",
     "section_label": "Staged",
@@ -14141,6 +14424,7 @@
   },
   {
     "id": "staged-time-on-water-50",
+    "status": "active",
     "badge_name": "Time on Water - 50",
     "section": "staged",
     "section_label": "Staged",
