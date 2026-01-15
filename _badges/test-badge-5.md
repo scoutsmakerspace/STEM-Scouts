@@ -6,7 +6,7 @@ status: active
 section: beavers
 category: Activity Badges
 badge_type: Activity
-icon: /assets/images/uploads/test-badge-2.png
+icon: /assets/images/badges/test-badge-5.png
 requirements:
 - asdasdsad
 - dasdasdasd
