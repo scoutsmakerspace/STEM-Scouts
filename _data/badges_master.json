@@ -990,6 +990,22 @@
     ]
   },
   {
+    "id": "test-badge-4",
+    "badge_name": "Test badge 4",
+    "section": "beavers",
+    "section_label": "Beavers",
+    "category": "Activity Badges",
+    "type": "Activity",
+    "description": "",
+    "completion_rules": "",
+    "requirements": [
+      {
+        "kind": "heading",
+        "text": "(No requirements found)"
+      }
+    ]
+  },
+  {
     "id": "beavers-my-adventure",
     "badge_name": "My Adventure",
     "section": "beavers",
