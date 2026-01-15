@@ -3,6 +3,12 @@ name: Build and deploy Jekyll site to GitHub Pages
 on:
   push:
     branches: ["main"]
+  # Actions using GITHUB_TOKEN that push back to main (e.g. badges-autogen)
+  # do NOT reliably trigger other workflows. So we also rebuild when the
+  # autogen workflow completes.
+  workflow_run:
+    workflows: ["Auto-update badges index + icons", "Generate 64px badge icons", "build-icons"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -16,25 +22,26 @@ concurrency:
 
 jobs:
   build:
+    # Only run for successful workflow_run events
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3"
+          ruby-version: "3.2"
           bundler-cache: true
 
       - name: Setup Pages
-        id: pages
         uses: actions/configure-pages@v5
 
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
-        env:
-          JEKYLL_ENV: production
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

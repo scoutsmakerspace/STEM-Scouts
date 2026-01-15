@@ -5,9 +5,9 @@ on:
     branches: ["main"]
     paths:
       - "_badges/**"
-      - "assets/images/badges/**"
-      - "assets/images/uploads/**"
       - "_data/badges_catalog.yml"
+      - "assets/images/uploads/**"
+      - "assets/images/badges/**"
       - "admin/config.yml"
       - "tools/generate_badges_master.py"
       - "tools/normalise_badge_icons.py"
@@ -15,16 +15,16 @@ on:
       - ".github/workflows/badges-autogen.yml"
   workflow_dispatch:
 
+# prevent two runs racing to push
+concurrency:
+  group: badges-autogen-main
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
-concurrency:
-  group: badges-autogen
-  cancel-in-progress: true
-
 jobs:
   autogen:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,31 +32,45 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install deps
-        run: pip install pillow pyyaml
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml pillow
 
-      - name: Sync badges from catalog (Badges Manager)
-        run: python tools/sync_badges_from_catalog.py
+      - name: Sync badges from catalog (creates/updates _badges/*.md)
+        run: |
+          python tools/sync_badges_from_catalog.py
 
-      - name: Normalise icons (PNG + 64x64)
-        run: python tools/normalise_badge_icons.py
+      - name: Normalise uploaded icons into canonical badge icons (also generates 64px)
+        run: |
+          python tools/normalise_badge_icons.py
 
       - name: Generate badges_master.json
-        run: python tools/generate_badges_master.py
-
-      - name: Commit changes (if any)
         run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add _badges/*.md assets/images/badges/*.png assets/images/uploads/** admin/badges_master.json _data/badges_master.json
-            git commit -m "Auto-update badges index + icons"
-            git push
+          python tools/generate_badges_master.py
+
+      - name: Commit and push if changed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "Auto-update badges index + icons" || true
+
+            # Avoid non-fast-forward if main moved while job was running
+            git fetch origin main
+            git pull --rebase origin main
+
+            git push origin HEAD:main || (sleep 3 && git push origin HEAD:main)
           else
             echo "No changes to commit."
           fi
