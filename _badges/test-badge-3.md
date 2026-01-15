@@ -6,7 +6,7 @@ status: active
 section: beavers
 category: Activity Badges
 badge_type: Activity
-icon: /assets/images/badges/test-badge-3.png
+icon: assets/images/uploads/test-badge-2.png
 requirements:
 - qwedwqewqe
 - eqwewqeqwqe
