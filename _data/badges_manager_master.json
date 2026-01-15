@@ -3027,113 +3027,29 @@
     "category": "Activity Badges",
     "type": "Activity",
     "description": "From the cells in our bodies to the energy fuelling our homes and the stars in the night sky, we use science to find out more about the mind-boggling universe we call home. Pop on your safety goggles and get experimenting.",
-    "completion_rules": "2 from  + 2 from  + 2 from",
+    "completion_rules": "",
     "requirements": [
       {
         "kind": "heading",
-        "text": "2 from  + 2 from  + 2 from"
+        "text": "Complete ALL of the following"
       },
       {
         "kind": "req",
         "id": "1",
         "no": "1",
-        "text": "Find out what happens when you add salt to water."
+        "text": "Reactions:\n- Find out what happens when you add salt to water.\n- Show how vinegar reacts with different items and explain what happens. The different items could be steel wool, sodium bicarbonate or old dirty coins.\n- Compare the density of water to the density of other liquids. Show how these liquids react to each other.\n- Make a pH indicator solution. Use it to test the acidity or alkalinity of other liquids.\n- Grow crystals.\n- Another activity agreed with your leader"
       },
       {
         "kind": "req",
         "id": "2",
         "no": "2",
-        "text": "Show how vinegar reacts with different items and explain what happens. The different items could be steel wool, sodium bicarbonate or old dirty coins."
+        "text": "Interacting with energy"
       },
       {
         "kind": "req",
         "id": "3",
         "no": "3",
-        "text": "Compare the density of water to the density of other liquids. Show how these liquids react to each other."
-      },
-      {
-        "kind": "req",
-        "id": "4",
-        "no": "4",
-        "text": "Make a pH indicator solution. Use it to test the acidity or alkalinity of other liquids."
-      },
-      {
-        "kind": "req",
-        "id": "5",
-        "no": "5",
-        "text": "Grow crystals."
-      },
-      {
-        "kind": "req",
-        "id": "6",
-        "no": "6",
-        "text": "Another activity agreed with your leader"
-      },
-      {
-        "kind": "req",
-        "id": "7",
-        "no": "7",
-        "text": "Find a way to show that hot air rises."
-      },
-      {
-        "kind": "req",
-        "id": "8",
-        "no": "8",
-        "text": "Create a basic electrical circuit that includes a switch. Show how it could be used to control a lightbulb powered by a battery."
-      },
-      {
-        "kind": "req",
-        "id": "9",
-        "no": "9",
-        "text": "Make an air-powered balloon rocket or a water rocket. Investigate ways of improving how far it can travel."
-      },
-      {
-        "kind": "req",
-        "id": "10",
-        "no": "10",
-        "text": "Make a simple compass. Show the effects of metallic and magnetic materials upon it."
-      },
-      {
-        "kind": "req",
-        "id": "11",
-        "no": "11",
-        "text": "Use marshmallows and spaghetti to build the strongest tower you can. Explain how you improved your design."
-      },
-      {
-        "kind": "req",
-        "id": "12",
-        "no": "12",
-        "text": "Another activity agreed with your leader."
-      },
-      {
-        "kind": "req",
-        "id": "13",
-        "no": "13",
-        "text": "Set up a wormery or ant colony. Record what happens over three or four weeks."
-      },
-      {
-        "kind": "req",
-        "id": "14",
-        "no": "14",
-        "text": "Investigate what happens to your pulse rate before, during and after exercise."
-      },
-      {
-        "kind": "req",
-        "id": "15",
-        "no": "15",
-        "text": "Grow cress, beans, peas or a similar plant. Investigate what happens when the plant has no access to light. What happens when it has light, but no water?"
-      },
-      {
-        "kind": "req",
-        "id": "16",
-        "no": "16",
-        "text": "Find a way to show that plants take water up through their stems."
-      },
-      {
-        "kind": "req",
-        "id": "17",
-        "no": "17",
-        "text": "Make some yoghurt and find out how living organisms are involved in the process."
+        "text": "Living things"
       }
     ]
   },
