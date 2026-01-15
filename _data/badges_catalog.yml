@@ -1,34 +1,24 @@
 badges:
-  - id: test-badge-3
-    title: Test badge 3
-    section: beavers
+  - id: cubs-scientist
+    title: Scientist
+    section: cubs
     category: Activity Badges
     badge_type: Activity
-    status: retired
+    status: active
     requirements:
-      - qwedwqewqe
-      - eqwewqeqwqe
-  - id: test-badge-4
-    title: Test badge 4
-    section: beavers
-    category: Activity Badges
-    badge_type: Activity
-    status: retired
-  - id: test-badge-5
-    title: Test badge 5
-    section: beavers
-    category: Activity Badges
-    badge_type: Activity
-    status: retired
-    requirements:
-      - asdasdsad
-      - dasdasdasd
-  - id: test-badge-6
-    title: Test badge 6
-    section: beavers
-    category: Activity Badges
-    badge_type: Activity
-    status: retired
-    requirements:
-      - sdsadsa
-      - vbnnvbnbv
+      - >-
+        Reactions:
+
+        - Find out what happens when you add salt to water.
+
+        - Show how vinegar reacts with different items and explain what happens. The different items could be steel wool, sodium bicarbonate or old dirty coins.
+
+        - Compare the density of water to the density of other liquids. Show how these liquids react to each other.
+
+        - Make a pH indicator solution. Use it to test the acidity or alkalinity of other liquids.
+
+        - Grow crystals.
+
+        - Another activity agreed with your leader
+      - Interacting with energy
+      - Living things
