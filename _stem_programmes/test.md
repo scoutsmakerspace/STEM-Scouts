@@ -9,5 +9,6 @@ sections:
 partner_name: eqweqwe
 url: weqweq
 status: seasonal
+last_checked: 2026-01-15
 ---
 qeqweqw
