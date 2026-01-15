@@ -603,10 +603,20 @@ function normalizeOverride(o) {
                 " for you."
               ]),
               window.h("div", { style: { display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" } }, [
-                window.h("a", {
-                  href: "#/media",
-                  target: "_self",
-                  style: assign({}, STYLES.btn, { textDecoration: "none", display: "inline-block" })
+                window.h("button", {
+                  style: STYLES.btn,
+                  onClick: function (e) {
+                    try { if (e && e.preventDefault) e.preventDefault(); } catch (_) {}
+                    try { if (e && e.stopPropagation) e.stopPropagation(); } catch (_) {}
+                    try {
+                      var base = String(window.location.href || "");
+                      var i = base.indexOf("#");
+                      if (i >= 0) base = base.slice(0, i);
+                      window.location.href = base + "#/media";
+                    } catch (err) {
+                      try { window.location.hash = "#/media"; } catch (_) {}
+                    }
+                  }
                 }, "Open Media (upload icon)"),
                 window.h("span", { style: STYLES.hint }, "Expected final: /assets/images/badges/<id>.png (+ <id>_64.png).")
               ])
