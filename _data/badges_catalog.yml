@@ -1,19 +1,11 @@
 badges:
-  - id: test-badge
-    title: Test badge
+  - id: test-badge-3
+    title: Test badge 3
     section: beavers
     category: Activity Badges
     badge_type: Activity
-    status: retired
+    status: active
+    icon: assets/images/uploads/test-badge-2.png
     requirements:
-      - dasdasdas
-      - adasdasdas
-  - id: test-badge-2
-    title: Test badge 2
-    section: beavers
-    category: Activity Badges
-    badge_type: Activity
-    status: retired
-    requirements:
-      - asASas
-      - ASas
+      - qwedwqewqe
+      - eqwewqeqwqe
