@@ -170,6 +170,7 @@ def _build_badge_json(frontmatter: Dict[str, Any], base: Dict[str, Any]) -> Dict
     category = str(frontmatter.get("category") or "").strip()
     badge_type = str(frontmatter.get("badge_type") or frontmatter.get("type") or "").strip()
     completion_rules = str(frontmatter.get("completion_rules") or "").strip()
+    status = str(frontmatter.get("status") or base.get("status") or "active").strip().lower()
 
     req_pairs = _requirements_from_front_matter(frontmatter)
     has_reqs = len(req_pairs) > 0
@@ -193,6 +194,7 @@ def _build_badge_json(frontmatter: Dict[str, Any], base: Dict[str, Any]) -> Dict
 
     return {
         "id": badge_id,
+        "status": status,
         "badge_name": title or badge_id,
         "section": section,
         "section_label": _section_label(section) if section else "",
@@ -252,7 +254,7 @@ def build_master(include_retired: bool = False) -> List[Dict[str, Any]]:
             continue
 
         is_in_base = badge_id in base_by_id
-        is_explicit_new = (not is_in_base) and (status == "active")  # new CMS entries
+        is_explicit_new = (not is_in_base) and (status == "active" or (include_retired and status == "retired"))  # new CMS entries
 
         if not is_in_base and not is_explicit_new:
             # Ignore stray/legacy Markdown files that aren't part of the baseline set.
@@ -264,6 +266,10 @@ def build_master(include_retired: bool = False) -> List[Dict[str, Any]]:
         out_by_id[badge_id] = built
 
     out = list(out_by_id.values())
+    # Ensure status is always present for UI filtering (legacy baseline entries may lack it).
+    for b in out:
+        if not b.get("status"):
+            b["status"] = "active"
     out.sort(key=lambda b: (b.get("section", ""), b.get("category", ""), b.get("badge_name", "")))
     return out
 
