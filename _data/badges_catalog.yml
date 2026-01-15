@@ -1,8 +1,11 @@
 badges:
-- id: test-badge-4
-  title: Test badge 4
-  section: beavers
-  category: Activity Badges
-  badge_type: Activity
-  status: active
-  icon: /assets/images/badges/test-badge-4.png
+  - id: test-badge-5
+    title: Test badge 5
+    section: beavers
+    category: Activity Badges
+    badge_type: Activity
+    status: active
+    icon: /assets/images/uploads/test-badge-2.png
+    requirements:
+      - asdasdsad
+      - dasdasdasd
