@@ -27,12 +27,28 @@
 
 
 function goToMedia() {
+  // Decap routing can show "Not Found" when navigating from inside entry modals.
+  // This forces a clean media view by opening a fresh tab, and also tries to navigate this tab.
   try {
-    var base = String(window.location && window.location.href ? window.location.href : "").split("#")[0];
-    window.location.href = base + "#/media";
+    var href = (window.location && window.location.href) ? String(window.location.href) : "";
+    var base = href.split("#")[0]; // keeps /admin/ path
+    var target = base + "#/media";
+
+    try {
+      // Fresh tab is the most reliable (full app boot to the media route).
+      window.open(target, "_blank", "noopener,noreferrer");
+    } catch (_) {}
+
+    // Also attempt in-place navigation (may work once the modal closes).
+    try {
+      window.location.href = target;
+    } catch (e2) {
+      try { window.location.hash = "/media"; } catch (_) {}
+    }
   } catch (e) {
-    try { window.location.hash = "/media"; } catch (_) {}
+    // Last resort: do nothing.
   }
+}
 }
 
   function slugifyId(value) {
@@ -603,20 +619,10 @@ function normalizeOverride(o) {
                 " for you."
               ]),
               window.h("div", { style: { display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" } }, [
-                window.h("button", {
-                  style: STYLES.btn,
-                  onClick: function (e) {
-                    try { if (e && e.preventDefault) e.preventDefault(); } catch (_) {}
-                    try { if (e && e.stopPropagation) e.stopPropagation(); } catch (_) {}
-                    try {
-                      var base = String(window.location.href || "");
-                      var i = base.indexOf("#");
-                      if (i >= 0) base = base.slice(0, i);
-                      window.location.href = base + "#/media";
-                    } catch (err) {
-                      try { window.location.hash = "#/media"; } catch (_) {}
-                    }
-                  }
+                window.h("a", {
+                  href: "#/media",
+                  target: "_self",
+                  style: assign({}, STYLES.btn, { textDecoration: "none", display: "inline-block" })
                 }, "Open Media (upload icon)"),
                 window.h("span", { style: STYLES.hint }, "Expected final: /assets/images/badges/<id>.png (+ <id>_64.png).")
               ])
