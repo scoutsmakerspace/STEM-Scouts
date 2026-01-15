@@ -25,32 +25,6 @@
     return "Activity";
   }
 
-
-function goToMedia() {
-  // Decap routing can show "Not Found" when navigating from inside entry modals.
-  // This forces a clean media view by opening a fresh tab, and also tries to navigate this tab.
-  try {
-    var href = (window.location && window.location.href) ? String(window.location.href) : "";
-    var base = href.split("#")[0]; // keeps /admin/ path
-    var target = base + "#/media";
-
-    try {
-      // Fresh tab is the most reliable (full app boot to the media route).
-      window.open(target, "_blank", "noopener,noreferrer");
-    } catch (_) {}
-
-    // Also attempt in-place navigation (may work once the modal closes).
-    try {
-      window.location.href = target;
-    } catch (e2) {
-      try { window.location.hash = "/media"; } catch (_) {}
-    }
-  } catch (e) {
-    // Last resort: do nothing.
-  }
-}
-}
-
   function slugifyId(value) {
     return String(value || "")
       .trim()
@@ -76,7 +50,7 @@ function goToMedia() {
 
   
 function getBackend() {
-  try { return window.CMS && window.CMS.getBackend && window.CMS.getBackend(); } catch (_) { return null; }
+  try { return window.CMS && window.CMS.getBackend && window.CMS.getBackend(); } catch (e) { return null; }
 }
 
 function persistBadgeIconPng(file, badgeId) {
@@ -283,7 +257,7 @@ function normalizeOverride(o) {
         try {
           var parsed = JSON.parse(v);
           return Array.isArray(parsed) ? parsed : [];
-        } catch (_) {
+        } catch (e) {
           return [];
         }
       }
@@ -623,7 +597,7 @@ function normalizeOverride(o) {
                   href: "#/media",
                   target: "_self",
                   style: assign({}, STYLES.btn, { textDecoration: "none", display: "inline-block" })
-                }, "Open Media (upload icon)"),
+                }, "Use the top Media tab to upload icons"),
                 window.h("span", { style: STYLES.hint }, "Expected final: /assets/images/badges/<id>.png (+ <id>_64.png).")
               ])
             ]),
@@ -715,7 +689,7 @@ function normalizeOverride(o) {
 
   function register() {
     window.CMS.registerWidget("badges_manager", Control);
-    try { console.log("[badges_manager] widget registered"); } catch (_) {}
+    try { console.log("[badges_manager] widget registered"); } catch (e) {}
   }
 
   if (ready()) register();
