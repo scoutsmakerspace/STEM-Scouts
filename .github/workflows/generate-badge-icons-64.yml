@@ -1,8 +1,10 @@
-name: Generate 64px badge icons
+name: Badge icons - normalise + generate 64px
 
 on:
   push:
     paths:
+      - "_data/badges_catalog.yml"
+      - "assets/images/uploads/**"
       - "assets/images/badges/*.png"
   workflow_dispatch:
 
@@ -16,36 +18,47 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+
+      - name: Normalise uploaded icons into canonical badge icons
+        run: |
+          python tools/normalise_badge_icons.py
+
       - name: Install ImageMagick
         run: |
           sudo apt-get update
           sudo apt-get install -y imagemagick
 
-      - name: Generate _64 icons
+      - name: Generate 64px versions
         run: |
           set -e
-          shopt -s nullglob
           mkdir -p assets/images/badges
           for f in assets/images/badges/*.png; do
-            base="$(basename "$f" .png)"
-            # Skip already-generated 64px icons and placeholder
-            if [[ "$base" == *_64 ]] || [[ "$base" == "_missing" ]]; then
-              continue
-            fi
-            out="assets/images/badges/${base}_64.png"
-            # Resize with padding to exactly 64x64, keep transparency
+            [ -e "$f" ] || continue
+            case "$f" in
+              *_64.png) continue ;;
+            esac
+            out="${f%.png}_64.png"
             convert "$f" -resize 64x64 -background none -gravity center -extent 64x64 "$out"
           done
 
       - name: Commit and push if changed
         run: |
           set -e
-          if [[ -n "$(git status --porcelain assets/images/badges/*_64.png)" ]]; then
+          if [[ -n "$(git status --porcelain)" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add assets/images/badges/*_64.png
-            git commit -m "Generate 64px badge icons"
+            git add _data/badges_catalog.yml assets/images/badges assets/images/uploads/_processed || true
+            git commit -m "Normalise badge icons and generate 64px"
             git push
           else
-            echo "No icon changes to commit."
+            echo "No changes to commit."
           fi
