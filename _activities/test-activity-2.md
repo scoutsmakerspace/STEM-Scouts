@@ -104,6 +104,12 @@ badge_links:
       - "1"
       - "2"
     notes: bvbxcbcv
+  - badge_id: test-badge-6
+    badge_title: Beavers — Test badge 6
+    requirements_met:
+      - "1"
+      - "2"
+    notes: ""
 ---
 Finibus condimentum a nullam phasellus maecenas nisi nisi eget at molestie. Morbi nostra faucibus eleifend quis auctor cubilia lorem purus inceptos finibus faucibus nibh enim. Et nulla molestie augue senectus eu nisl in nulla quisque magna.
 
