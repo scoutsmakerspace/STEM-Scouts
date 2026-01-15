@@ -126,6 +126,12 @@ badge_links:
     requirements_met:
       - "1"
     notes: cxzcxczxczxczxcxzczx
+  - badge_id: test-badge-6
+    badge_title: Beavers — Test badge 6
+    requirements_met:
+      - "1"
+      - "2"
+    notes: ""
 ---
 **Sagittis ac aenean** nam tristique rhoncus cras augue dignissim posuere arcu netus iaculis. Ligula sem integer aliquam arcu tincidunt libero vestibulum ad phasellus imperdiet metus dictum torquent dictum. Odio est arcu cras praesent commodo cras mauris litora. Rhoncus tristique lobortis varius tincidunt felis.
 
