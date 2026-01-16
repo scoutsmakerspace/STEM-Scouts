@@ -303,8 +303,9 @@ collections:
     name: badge_links
     widget: list
     required: false
-    collapsed: true
-    summary: '{{fields.badge_title}}'
+    # Keep the list open: Decap can intermittently render an empty panel when
+    # expanding list items that use a custom control widget (like our `badge_link`).
+    collapsed: false
     hint: 'Only badges/requirements that exist in the STEM Badge Map can be selected
       here. If you can''t find a badge, go to: STEM Badge Map → Badge mapping → Add/Remove
       requirements → Save/Publish, then come back here and refresh the page.'
