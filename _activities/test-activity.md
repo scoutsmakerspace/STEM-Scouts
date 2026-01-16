@@ -12,7 +12,7 @@ hero_image: /assets/images/uploads/grabatron-1.png
 sections:
   - scouts
   - cubs
-difficulty: 3
+difficulty: 4
 time_minutes: 60
 type: electronics
 location: indoors
