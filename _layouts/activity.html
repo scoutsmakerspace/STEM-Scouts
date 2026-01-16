@@ -199,7 +199,15 @@ So we place the section IDs on the <h3> headings below (not on the <section> wra
 
   <div class="activity-badges">
     {% for bl in a.badge_links %}
-      {% assign bid = bl.badge_id | default: '' %}
+      {%- comment -%}
+      Backward/forward compatibility:
+      - Older Activities front matter stored each link as: { item: { badge_id, requirements_met, notes, ... } }
+      - Newer configs may store the link directly as: { badge_id, requirements_met, notes, ... }
+      This keeps the website rendering working across both shapes.
+      {%- endcomment -%}
+
+      {% assign link = bl.item | default: bl %}
+      {% assign bid = link.badge_id | default: '' %}
 {% unless allowed_badge_ids contains bid | append: "||" %}{% continue %}{% endunless %}
       {% if bid != '' %}
         {% assign badge_obj = site.data.badges_master | where: "id", bid | first %}
@@ -210,8 +218,8 @@ So we place the section IDs on the <h3> headings below (not on the <section> wra
           {% if badge_obj.badge_name %}{% assign badge_name = badge_obj.badge_name %}{% endif %}
           {% if badge_obj.section %}{% assign badge_section = badge_obj.section %}{% endif %}
           {% if badge_obj.category %}{% assign badge_category = badge_obj.category %}{% endif %}
-        {% elsif bl.badge_title %}
-          {% assign badge_name = bl.badge_title %}
+        {% elsif link.badge_title %}
+          {% assign badge_name = link.badge_title %}
         {% endif %}
 
         <div class="activity-badge" style="margin: 0 0 1rem 0;">
@@ -221,10 +229,10 @@ So we place the section IDs on the <h3> headings below (not on the <section> wra
             {% if badge_category != '' %}<span style="font-weight:400; opacity:.85;"> — {{ badge_category }}</span>{% endif %}</span>
           </div>
 
-          {% if badge_obj and bl.requirements_met and bl.requirements_met.size > 0 %}
+          {% if badge_obj and link.requirements_met and link.requirements_met.size > 0 %}
             {% assign reqs = badge_obj.requirements | where_exp: "r", "r.kind == 'req' or r.kind == nil" %}
             <ul style="margin: .5rem 0 0 1.25rem;">
-              {% for rid in bl.requirements_met %}
+              {% for rid in link.requirements_met %}
                 {% assign req = reqs | where: "id", rid | first %}
                 {% if req and req.text %}
                   <li><strong>{{ rid }}.</strong> {{ req.text }}</li>
@@ -233,14 +241,14 @@ So we place the section IDs on the <h3> headings below (not on the <section> wra
                 {% endif %}
               {% endfor %}
             </ul>
-          {% elsif bl.requirements_met and bl.requirements_met.size > 0 %}
-            <p style="margin: .5rem 0 0 0; opacity:.85;">Requirements selected: {{ bl.requirements_met | join: ", " }}</p>
+          {% elsif link.requirements_met and link.requirements_met.size > 0 %}
+            <p style="margin: .5rem 0 0 0; opacity:.85;">Requirements selected: {{ link.requirements_met | join: ", " }}</p>
           {% else %}
             <p style="margin: .5rem 0 0 0; opacity:.85;">No specific requirements selected.</p>
           {% endif %}
 
-          {% if bl.notes %}
-            <p style="margin: .5rem 0 0 0;"><em>{{ bl.notes }}</em></p>
+          {% if link.notes %}
+            <p style="margin: .5rem 0 0 0;"><em>{{ link.notes }}</em></p>
           {% endif %}
         </div>
       {% endif %}

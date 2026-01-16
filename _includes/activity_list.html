@@ -12,7 +12,13 @@ Add badge metadata for filtering and search.
     {%- assign badge_search = "" -%}
     {%- if a.badge_links and a.badge_links.size > 0 -%}
       {%- for bl in a.badge_links -%}
-        {%- assign bid = bl.badge_id | default: "" -%}
+        {%- comment -%}
+        Backward/forward compatibility:
+        - Some Activities store each badge link as { item: { badge_id, requirements_met, ... } }
+        - Others store it directly as { badge_id, requirements_met, ... }
+        {%- endcomment -%}
+        {%- assign link = bl.item | default: bl -%}
+        {%- assign bid = link.badge_id | default: "" -%}
         {%- if bid != "" -%}
           {%- assign badge_ids = badge_ids | append: bid -%}
           {%- unless forloop.last -%}{%- assign badge_ids = badge_ids | append: "|" -%}{%- endunless -%}
@@ -21,17 +27,17 @@ Add badge metadata for filtering and search.
           {%- assign badge_name = "" -%}
           {%- if badge_obj and badge_obj.badge_name -%}
             {%- assign badge_name = badge_obj.badge_name -%}
-          {%- elsif bl.badge_title -%}
-            {%- assign badge_name = bl.badge_title -%}
+          {%- elsif link.badge_title -%}
+            {%- assign badge_name = link.badge_title -%}
           {%- else -%}
             {%- assign badge_name = bid -%}
           {%- endif -%}
 
           {%- assign badge_search = badge_search | append: " " | append: badge_name -%}
 
-          {%- if badge_obj and bl.requirements_met and bl.requirements_met.size > 0 -%}
+          {%- if badge_obj and link.requirements_met and link.requirements_met.size > 0 -%}
             {%- assign reqs = badge_obj.requirements | where_exp: "r", "r.kind == 'req' or r.kind == nil" -%}
-            {%- for rid in bl.requirements_met -%}
+            {%- for rid in link.requirements_met -%}
               {%- assign req = reqs | where: "id", rid | first -%}
               {%- if req and req.text -%}
                 {%- assign badge_search = badge_search | append: " " | append: req.text -%}
