@@ -303,17 +303,18 @@ collections:
     name: badge_links
     widget: list
     required: false
-    # Keep the list open: Decap can intermittently render an empty panel when
-    # expanding list items that use a custom control widget (like our `badge_link`).
+    # NOTE: Decap has a rendering bug where list+custom widgets can appear empty when
+    # entries are collapsed/expanded (especially when using `field:`). Keeping the
+    # list expanded and using `fields:` avoids that failure mode.
     collapsed: false
     hint: 'Only badges/requirements that exist in the STEM Badge Map can be selected
       here. If you can''t find a badge, go to: STEM Badge Map → Badge mapping → Add/Remove
       requirements → Save/Publish, then come back here and refresh the page.'
-    field:
-      label: Badge link
-      name: item
-      widget: badge_link
-      required: false
+    fields:
+      - label: Badge link
+        name: item
+        widget: badge_link
+        required: false
   - label: Extra notes (optional)
     name: body
     widget: markdown
