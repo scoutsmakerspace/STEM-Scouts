@@ -1,3 +1,4 @@
+/* Maker Kits public section */
 .mk-hero {
   border: 1px solid rgba(0,0,0,.12);
   border-radius: 18px;
@@ -7,7 +8,7 @@
 }
 .mk-kicker { font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: .78rem; opacity: .75; margin-bottom: .25rem; }
 .mk-hero h1 { margin-top: 0; border-bottom: 0 !important; padding-bottom: 0 !important; }
-.mk-hero__intro { font-size: 1.05rem; max-width: 62rem; }
+.mk-hero__intro { font-size: 1.08rem; max-width: 64rem; }
 .mk-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1rem; }
 .mk-warning-card,
 .mk-card,
@@ -24,7 +25,7 @@
 .mk-grid--3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
 .mk-card { padding: 1rem; }
 .mk-card h2, .mk-kit-card h2, .mk-doc-card h2 { margin-top: 0; border-bottom: 0 !important; padding-bottom: 0 !important; }
-.mk-card--link { text-decoration: none; color: inherit; display: block; }
+.mk-card--link { text-decoration: none; color: inherit; display: block; transition: transform .12s ease, box-shadow .12s ease; }
 .mk-card--link:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
 .mk-kit-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; margin: 1rem 0; }
 .mk-kit-card { overflow: hidden; display: flex; flex-direction: column; }
@@ -36,14 +37,41 @@
 .mk-meta-list dd { margin: 0; }
 .mk-muted { opacity: .75; font-size: .92rem; }
 .mk-doc-list { display: grid; gap: 1rem; margin: 1rem 0; }
-.mk-map { min-height: 560px; border: 1px solid rgba(0,0,0,.18); border-radius: 14px; overflow: hidden; margin: 1rem 0; background: rgba(0,0,0,.03); }
+
+/* Wide map layout: intentionally breaks out of narrow article columns. */
+.mk-map-shell {
+  width: min(1220px, calc(100vw - 2rem));
+  max-width: 1220px;
+  margin: 0 auto;
+}
+.mk-map-intro { margin-top: 0; }
+.mk-map {
+  width: 100%;
+  height: min(74vh, 780px);
+  min-height: 620px;
+  border: 1px solid rgba(0,0,0,.18);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 1rem 0;
+  background: rgba(0,0,0,.03);
+}
+.leaflet-container { font-family: inherit; }
+
 .mk-stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1rem; margin: 1.25rem 0; }
+.mk-stat-grid--six { grid-template-columns: repeat(3, minmax(0,1fr)); }
 .mk-stat-card { padding: 1rem; text-align: center; }
 .mk-stat-card__value { display: block; font-size: 2rem; line-height: 1.1; font-weight: 800; }
 .mk-stat-card__label { display: block; margin-top: .35rem; font-size: .9rem; opacity: .8; }
 .mk-popup-title { font-weight: 800; margin-bottom: .25rem; }
 .mk-popup-line { margin: .15rem 0; }
+
+@media (min-width: 900px) {
+  .mk-map-shell {
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
 @media (max-width: 900px) {
-  .mk-grid--2, .mk-grid--3, .mk-kit-grid, .mk-stat-grid { grid-template-columns: 1fr; }
-  .mk-map { min-height: 460px; }
+  .mk-grid--2, .mk-grid--3, .mk-kit-grid, .mk-stat-grid, .mk-stat-grid--six { grid-template-columns: 1fr; }
+  .mk-map { min-height: 460px; height: 68vh; }
 }
