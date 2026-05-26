@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-05-26T10:26:11Z",
+  "source_tool_version": "V1.16.3",
+  "privacy_level": "aggregate_only",
+  "totals": {
+    "kits_supplied": 8915,
+    "groups_supported": 131,
+    "postcode_districts_reached": 114,
+    "batches_completed": null,
+    "estimated_young_people_reached": 8915,
+    "estimated_effort_hours": null
+  },
+  "assumptions": {
+    "groups_supported": "Counted from public map source rows. Review if the same group appears in multiple rows.",
+    "young_people_reached": "Placeholder estimate using one kit per young person. Adjust if your public reporting uses a different assumption.",
+    "map_counts": "Map popups use kit bands, not exact per-district kit quantities."
+  },
+  "warnings": {
+    "missing_postcode_districts": []
+  }
+}

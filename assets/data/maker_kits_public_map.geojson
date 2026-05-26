@@ -1,0 +1,1838 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "schema_version": "1.0",
+    "generated_at": "2026-05-26T10:26:11Z",
+    "source_tool_version": "V1.16.3",
+    "location_precision": "postcode_district_centroid",
+    "privacy_level": "aggregate_only",
+    "private_fields_removed": true,
+    "missing_postcode_districts": []
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.49306,
+          57.6682
+        ]
+      },
+      "properties": {
+        "postcode_district": "AB44",
+        "display_area": "Macduff",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4073,
+          57.5344
+        ]
+      },
+      "properties": {
+        "postcode_district": "AB53",
+        "display_area": "Turriff",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.7562,
+          57.4656
+        ]
+      },
+      "properties": {
+        "postcode_district": "AB54",
+        "display_area": "Aberchirder, Cabrach, Cairnie, Forgue, Gartly, Glass, Kennethmont, Lumsden, Rhynie, Rothiemay",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.05051,
+          52.3237
+        ]
+      },
+      "properties": {
+        "postcode_district": "B60",
+        "display_area": "Bromsgrove",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.89699,
+          52.2778
+        ]
+      },
+      "properties": {
+        "postcode_district": "B80",
+        "display_area": "Studley",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.74208,
+          52.3832
+        ]
+      },
+      "properties": {
+        "postcode_district": "B93",
+        "display_area": "Knowle, Dorridge",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.79138,
+          52.3528
+        ]
+      },
+      "properties": {
+        "postcode_district": "B94",
+        "display_area": "Olton, Solihull",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.46582,
+          53.7552
+        ]
+      },
+      "properties": {
+        "postcode_district": "BB1",
+        "display_area": "Blackburn, Bank Hey, Belthorn, Blackamoor, Clayton-le-Dale, Guide, Knuzden, Mellor, Ramsgreave, Rishton, Salesbury, Shadsworth, Sunnybower, Whitebirk, Wilpshire",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.71437,
+          53.7266
+        ]
+      },
+      "properties": {
+        "postcode_district": "BD19",
+        "display_area": "Cleckheaton, Gomersal, Scholes",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4406,
+          53.5889
+        ]
+      },
+      "properties": {
+        "postcode_district": "BL1",
+        "display_area": "Bolton, Smithills, Halliwell, Heaton",
+        "groups_supported": 2,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.54011,
+          53.5911
+        ]
+      },
+      "properties": {
+        "postcode_district": "BL6",
+        "display_area": "Bolton, Blackrod, Horwich, Lostock, Rivington",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.28889,
+          53.5922
+        ]
+      },
+      "properties": {
+        "postcode_district": "BL9",
+        "display_area": "Bury, Heap, Heap Bridge, Nangreaves, Summerseat, Unsworth, Walmersley",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.00313196,
+          50.8784
+        ]
+      },
+      "properties": {
+        "postcode_district": "BN7",
+        "display_area": "Lewes, Cooksbridge, East Chiltington, Iford, Kingston, Offham, Plumpton, Plumpton Green, Rodmell, Southease, Swanborough, Telscombe",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0318655,
+          51.4033
+        ]
+      },
+      "properties": {
+        "postcode_district": "BR3",
+        "display_area": "Beckenham, Eden Park, Elmers End, Park Langley, Shortlands",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.92826,
+          51.3606
+        ]
+      },
+      "properties": {
+        "postcode_district": "BS22",
+        "display_area": "Kewstoke, Weston-super-Mare, Worle",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.59816,
+          51.4701
+        ]
+      },
+      "properties": {
+        "postcode_district": "BS6",
+        "display_area": "Redland, Montpelier, Westbury Park",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.70762,
+          54.5716
+        ]
+      },
+      "properties": {
+        "postcode_district": "BT23",
+        "display_area": "Newtownards, Ballygowan, Comber, Conlig, Killinchy, Moneyrea",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.88096,
+          54.5145
+        ]
+      },
+      "properties": {
+        "postcode_district": "BT70",
+        "display_area": "Dungannon, Ballygawley, Cappagh, Castlecaulfield, Donaghmore, Galbally, Garvaghy, Pomeroy, Rock, Seskilgreen",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.257165,
+          52.0287
+        ]
+      },
+      "properties": {
+        "postcode_district": "CB10",
+        "display_area": "Ashdon, Church End, Great Chesterford, Great Sampford, Hempstead, Hinxton, Howlett End, Ickleton, Little Chesterford, Little Sampford, Little Walden, Radwinter, Red Oaks Hill, Saffron Walden, Sewards End, Wimbish, Wimbish Green",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.20205,
+          51.5204
+        ]
+      },
+      "properties": {
+        "postcode_district": "CF14",
+        "display_area": "Whitchurch, Thornhill, Lisvane, Rhiwbina, Pantmawr, Gabalfa, Heath, Llandaff North",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.26057,
+          51.4104
+        ]
+      },
+      "properties": {
+        "postcode_district": "CF63",
+        "display_area": "Barry, Cadoxton, Barry Docks",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.82543,
+          53.1677
+        ]
+      },
+      "properties": {
+        "postcode_district": "CH3",
+        "display_area": "Boughton, Chester, Huntington, Mouldsworth, Tarvin, Tattenhall, Farndon",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.98218,
+          53.3358
+        ]
+      },
+      "properties": {
+        "postcode_district": "CH62",
+        "display_area": "Bromborough, Eastham, New Ferry, Port Sunlight, Spital",
+        "groups_supported": 2,
+        "kits_supplied_band": "250-499"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0742801,
+          51.7614
+        ]
+      },
+      "properties": {
+        "postcode_district": "CM19",
+        "display_area": "Harlow, Roydon",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.20644,
+          51.2768
+        ]
+      },
+      "properties": {
+        "postcode_district": "CT3",
+        "display_area": "Canterbury",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.48181,
+          52.3934
+        ]
+      },
+      "properties": {
+        "postcode_district": "CV3",
+        "display_area": "Binley, Whitley, Willenhall, Cheylesmore, Styvechale, Finham, Fenside, Stoke Aldermoor, Green Lane, Ernesford Grange, Binley Woods",
+        "groups_supported": 2,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.02796,
+          56.4712
+        ]
+      },
+      "properties": {
+        "postcode_district": "DD2",
+        "display_area": "Lochee, Blackness, Ninewells, Menziehill, Charleston, Balgay, Ardler, Logie",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.43512,
+          52.9324
+        ]
+      },
+      "properties": {
+        "postcode_district": "DE21",
+        "display_area": "Chaddesden, Oakwood, Spondon, Breadsall, Horsley, Little Eaton",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.49997,
+          52.8994
+        ]
+      },
+      "properties": {
+        "postcode_district": "DE23",
+        "display_area": "Heatherton Village, Littleover, Normanton, Pear Tree",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.62323,
+          52.8668
+        ]
+      },
+      "properties": {
+        "postcode_district": "DE65",
+        "display_area": "Burnaston, Egginton, Etwall, Findern, Hatton, Hilton, Milton, Repton, Willington",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.5621,
+          54.7828
+        ]
+      },
+      "properties": {
+        "postcode_district": "DH1",
+        "display_area": "Durham",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.8325,
+          54.8533
+        ]
+      },
+      "properties": {
+        "postcode_district": "DH8",
+        "display_area": "Consett, Ebchester",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.3952,
+          54.3675
+        ]
+      },
+      "properties": {
+        "postcode_district": "DL6",
+        "display_area": "Northallerton East, Ingleby Cross",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.78283,
+          54.2945
+        ]
+      },
+      "properties": {
+        "postcode_district": "DL8",
+        "display_area": "Wensleydale, Bedale",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.071103,
+          53.5632
+        ]
+      },
+      "properties": {
+        "postcode_district": "DN32",
+        "display_area": "Grimsby",
+        "groups_supported": 2,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.17116,
+          53.5368
+        ]
+      },
+      "properties": {
+        "postcode_district": "DN5",
+        "display_area": "Arksey, Barnburgh, Bentley, Cusworth, Harlington, Scawsby, Scawthorpe, Sprotborough, Toll Bar",
+        "groups_supported": 2,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.17958,
+          50.8614
+        ]
+      },
+      "properties": {
+        "postcode_district": "DT11",
+        "display_area": "Blandford Forum",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.22914,
+          52.3866
+        ]
+      },
+      "properties": {
+        "postcode_district": "DY10",
+        "display_area": "Kidderminster",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0201401,
+          51.5864
+        ]
+      },
+      "properties": {
+        "postcode_district": "E17",
+        "display_area": "Walthamstow, Upper Walthamstow",
+        "groups_supported": 2,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.50822,
+          50.7272
+        ]
+      },
+      "properties": {
+        "postcode_district": "EX1",
+        "display_area": "Exeter city centre",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.46049,
+          50.6956
+        ]
+      },
+      "properties": {
+        "postcode_district": "EX3",
+        "display_area": "Exeter",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.85115,
+          56.1499
+        ]
+      },
+      "properties": {
+        "postcode_district": "FK11",
+        "display_area": "Menstrie",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.91439,
+          56.0217
+        ]
+      },
+      "properties": {
+        "postcode_district": "FK6",
+        "display_area": "Denny, Fankerton, Stoneywood",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.20912,
+          55.8561
+        ]
+      },
+      "properties": {
+        "postcode_district": "G31",
+        "display_area": "Dennistoun, Haghill, Parkhead",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.21888,
+          51.8428
+        ]
+      },
+      "properties": {
+        "postcode_district": "GL4",
+        "display_area": "Gloucester",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.22122,
+          51.7393
+        ]
+      },
+      "properties": {
+        "postcode_district": "GL5",
+        "display_area": "Stroud",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.761416,
+          51.2909
+        ]
+      },
+      "properties": {
+        "postcode_district": "GU14",
+        "display_area": "Farnborough, Cove",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.57701,
+          51.3199
+        ]
+      },
+      "properties": {
+        "postcode_district": "GU21",
+        "display_area": "Woking, Knaphill, St. John's, Horsell, Goldsworth Park",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.02419,
+          53.4891
+        ]
+      },
+      "properties": {
+        "postcode_district": "L23",
+        "display_area": "Blundellsands, Brighton-le-Sands, Crosby, Little Crosby, Thornton",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.706799,
+          52.6593
+        ]
+      },
+      "properties": {
+        "postcode_district": "LE15",
+        "display_area": "Empingham, Manton, Thistleton, Uppingham, Whissendine, Langham",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.09669,
+          52.6361
+        ]
+      },
+      "properties": {
+        "postcode_district": "LE5",
+        "display_area": "Hamilton, Thurnby Lodge, Evington",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.328913,
+          53.3757
+        ]
+      },
+      "properties": {
+        "postcode_district": "LN8",
+        "display_area": "Market Rasen",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.64466,
+          53.8409
+        ]
+      },
+      "properties": {
+        "postcode_district": "LS18",
+        "display_area": "Horsforth",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.54723,
+          53.8015
+        ]
+      },
+      "properties": {
+        "postcode_district": "LS2",
+        "display_area": "Leeds city centre, Woodhouse",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.68282,
+          53.9101
+        ]
+      },
+      "properties": {
+        "postcode_district": "LS21",
+        "display_area": "Arthington, Otley, Pool",
+        "groups_supported": 2,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.44268,
+          53.7571
+        ]
+      },
+      "properties": {
+        "postcode_district": "LS26",
+        "display_area": "Great Preston, Methley, Mickletown, Oulton, Rothwell, Swillington, Woodlesford",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.465199,
+          51.8985
+        ]
+      },
+      "properties": {
+        "postcode_district": "LU4",
+        "display_area": "Luton (West), Chalton, Leagrave",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.661494,
+          51.9109
+        ]
+      },
+      "properties": {
+        "postcode_district": "LU7",
+        "display_area": "Leighton Buzzard, Bragenham, Briggington, Burcott, Cheddington, Chelmscote, Clipstone, Crafton, Cublington, Eggington, Great Billington, Grove, Heath and Reach, Hockliffe, Horton, Hollingdon, Ivinghoe, Ivinghoe Aston, Ledburn, Leedon, Little Billington, Mentmore, Pitstone, Slapton, Soulbury, Stanbridge, Stewkley, Stockgrove, Tebworth, Tilsworth, Wing, Wingfield",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.27341,
+          53.4389
+        ]
+      },
+      "properties": {
+        "postcode_district": "M21",
+        "display_area": "Chorlton-cum-Hardy, Firswood",
+        "groups_supported": 1,
+        "kits_supplied_band": "250-499"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.28654,
+          53.3972
+        ]
+      },
+      "properties": {
+        "postcode_district": "M23",
+        "display_area": "Baguley, Roundthorn Industrial Estate",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.83814,
+          55.728
+        ]
+      },
+      "properties": {
+        "postcode_district": "ML8",
+        "display_area": "Carluke, Law",
+        "groups_supported": 2,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.71969,
+          54.9835
+        ]
+      },
+      "properties": {
+        "postcode_district": "NE15",
+        "display_area": "Lemington, Throckley, Newburn",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.51874,
+          55.0011
+        ]
+      },
+      "properties": {
+        "postcode_district": "NE28",
+        "display_area": "Battle Hill, Willington, Wallsend, North Tyne Tunnel",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.57967,
+          54.9973
+        ]
+      },
+      "properties": {
+        "postcode_district": "NE7",
+        "display_area": "High Heaton, Benton",
+        "groups_supported": 3,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.04264,
+          53.0133
+        ]
+      },
+      "properties": {
+        "postcode_district": "NG14",
+        "display_area": "Calverton, Lowdham",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.13718,
+          52.9375
+        ]
+      },
+      "properties": {
+        "postcode_district": "NG2",
+        "display_area": "Nottingham City Centre, Sneinton, The Meadows, West Bridgford",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.681947,
+          52.5
+        ]
+      },
+      "properties": {
+        "postcode_district": "NN17",
+        "display_area": "Bulwick, Corby",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.710096,
+          52.4792
+        ]
+      },
+      "properties": {
+        "postcode_district": "NN18",
+        "display_area": "Great Oakley, Little Oakley",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.03961,
+          51.6934
+        ]
+      },
+      "properties": {
+        "postcode_district": "NP4",
+        "display_area": "Pontypool, Blaenavon, Little Mill, Glascoed",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.46482,
+          52.6348
+        ]
+      },
+      "properties": {
+        "postcode_district": "NR13",
+        "display_area": "Acle, Brundall, Reedham, Rackheath, Salhouse",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.20423,
+          53.7008
+        ]
+      },
+      "properties": {
+        "postcode_district": "OL13",
+        "display_area": "Bacup, Britannia, Stacksteads",
+        "groups_supported": 2,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0115,
+          53.5525
+        ]
+      },
+      "properties": {
+        "postcode_district": "OL3",
+        "display_area": "Delph, Denshaw, Diggle, Dobcross, Greenfield, Uppermill",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.33897,
+          52.0635
+        ]
+      },
+      "properties": {
+        "postcode_district": "OX16",
+        "display_area": "Banbury",
+        "groups_supported": 2,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.263379,
+          52.2366
+        ]
+      },
+      "properties": {
+        "postcode_district": "PE19",
+        "display_area": "St Neots, Abbotsley, Buckden, Croxton, Diddington, Duloe, Eaton Ford, Eaton Socon, Eltisley, Eynesbury",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.190682,
+          52.3585
+        ]
+      },
+      "properties": {
+        "postcode_district": "PE28",
+        "display_area": "Abbots Ripton, Alconbury, Alconbury Weston, Barham, Bluntisham, Brampton, Broughton, Buckworth, Bythorn, Catworth, Colne, Coppingford, Covington, Earith, Easton, Ellington, Fenstanton, Glatton, Grafham, Great Gidding, Great Stukeley, Hamerton, Hartford, Hemingford Abbots, Hemingford Grey, Hilton, Houghton, Keyston, Kimbolton, Kings Ripton, Leighton Bromswold, Little Gidding, Little Stukeley, Lower Dean, Molesworth, Old Hurst, Old Weston, Perry, Pidley, Sawtry, Somersham, Spaldwick, Stow Longa, Tilbrook, Upper Dean, Warboys, Wennington, Winwick, Wistow, Woodhurst, Woodwalton, Woolley, Wyton",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.40884,
+          56.3861
+        ]
+      },
+      "properties": {
+        "postcode_district": "PH2",
+        "display_area": "Perth",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.14274,
+          50.7988
+        ]
+      },
+      "properties": {
+        "postcode_district": "PO12",
+        "display_area": "Gosport, Alverstoke, Hardway",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.7018,
+          53.7579
+        ]
+      },
+      "properties": {
+        "postcode_district": "PR1",
+        "display_area": "City Centre, Avenham, Broadgate, Deepdale, Fishwick, St. Matthew's, Penwortham",
+        "groups_supported": 2,
+        "kits_supplied_band": "250-499"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.32123,
+          51.3985
+        ]
+      },
+      "properties": {
+        "postcode_district": "RG14",
+        "display_area": "Newbury",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.949716,
+          51.3073
+        ]
+      },
+      "properties": {
+        "postcode_district": "RG27",
+        "display_area": "Hook, Sherfield-on-Loddon, Stratfield Turgis, Turgis Green",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.04049,
+          51.4563
+        ]
+      },
+      "properties": {
+        "postcode_district": "RG31",
+        "display_area": "Calcot Row, Tilehurst",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.907026,
+          51.4529
+        ]
+      },
+      "properties": {
+        "postcode_district": "RG5",
+        "display_area": "Woodley",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.328747,
+          51.0749
+        ]
+      },
+      "properties": {
+        "postcode_district": "RH12",
+        "display_area": "Horsham, Broadbridge Heath, Rusper, Rudgwick, Warnham",
+        "groups_supported": 2,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.135731,
+          50.9568
+        ]
+      },
+      "properties": {
+        "postcode_district": "RH15",
+        "display_area": "Burgess Hill, Ditchling Common",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0999159,
+          51.0029
+        ]
+      },
+      "properties": {
+        "postcode_district": "RH16",
+        "display_area": "Haywards Heath, Lindfield",
+        "groups_supported": 3,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.203249,
+          51.2367
+        ]
+      },
+      "properties": {
+        "postcode_district": "RH2",
+        "display_area": "Reigate",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.3704,
+          51.4676
+        ]
+      },
+      "properties": {
+        "postcode_district": "RM18",
+        "display_area": "Tilbury, East Tilbury, West Tilbury",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.40923,
+          53.3499
+        ]
+      },
+      "properties": {
+        "postcode_district": "S12",
+        "display_area": "Birley, Gleadless, Gleadless Townend, Hackenthorpe, Intake, Ridgeway",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0501639,
+          51.4401
+        ]
+      },
+      "properties": {
+        "postcode_district": "SE23",
+        "display_area": "Forest Hill, Honor Oak, Crofton Park",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.054573,
+          51.4462
+        ]
+      },
+      "properties": {
+        "postcode_district": "SE9",
+        "display_area": "Eltham, Mottingham, New Eltham, Falconwood, Chinbrook, Longlands, Kidbrooke",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0909954,
+          51.8056
+        ]
+      },
+      "properties": {
+        "postcode_district": "SG14",
+        "display_area": "Hertford",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.262473,
+          52.0116
+        ]
+      },
+      "properties": {
+        "postcode_district": "SG15",
+        "display_area": "Arlesey",
+        "groups_supported": 2,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.264064,
+          52.0826
+        ]
+      },
+      "properties": {
+        "postcode_district": "SG18",
+        "display_area": "Biggleswade, Budna, Hatch, Langford, Lower Caldecote, Northill, Upper Caldecote",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.20891,
+          53.3813
+        ]
+      },
+      "properties": {
+        "postcode_district": "SK8",
+        "display_area": "Cheadle, Cheadle Hulme, Gatley, Heald Green",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.555495,
+          51.5955
+        ]
+      },
+      "properties": {
+        "postcode_district": "SL9",
+        "display_area": "Chalfont Common, Chalfont St Peter, Gerrards Cross, Horn Hill",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.09235,
+          51.4709
+        ]
+      },
+      "properties": {
+        "postcode_district": "SN15",
+        "display_area": "Chippenham",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.08102,
+          51.5891
+        ]
+      },
+      "properties": {
+        "postcode_district": "SN16",
+        "display_area": "Malmesbury",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.74399,
+          51.6149
+        ]
+      },
+      "properties": {
+        "postcode_district": "SN6",
+        "display_area": "Cricklade, Ashton Keynes, Highworth, Shrivenham, Watchfield",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.589402,
+          51.522
+        ]
+      },
+      "properties": {
+        "postcode_district": "SS8",
+        "display_area": "Canvey Island",
+        "groups_supported": 1,
+        "kits_supplied_band": "500+"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.10099,
+          52.7896
+        ]
+      },
+      "properties": {
+        "postcode_district": "ST17",
+        "display_area": "Stafford",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.16866,
+          53.1155
+        ]
+      },
+      "properties": {
+        "postcode_district": "ST8",
+        "display_area": "Biddulph",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.129598,
+          51.4238
+        ]
+      },
+      "properties": {
+        "postcode_district": "SW16",
+        "display_area": "Streatham, Norbury, Thornton Heath, Streatham Park, Furzedown, Streatham Vale, Pollards Hill",
+        "groups_supported": 1,
+        "kits_supplied_band": "250-499"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.7944,
+          52.5352
+        ]
+      },
+      "properties": {
+        "postcode_district": "SY6",
+        "display_area": "Church Stretton, Cardington",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.47248,
+          52.8981
+        ]
+      },
+      "properties": {
+        "postcode_district": "TF9",
+        "display_area": "Market Drayton",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.163112,
+          51.2952
+        ]
+      },
+      "properties": {
+        "postcode_district": "TN14",
+        "display_area": "Cudham",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.268,
+          51.299
+        ]
+      },
+      "properties": {
+        "postcode_district": "TN15",
+        "display_area": "Ightham, Wrotham",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.26794,
+          51.1267
+        ]
+      },
+      "properties": {
+        "postcode_district": "TN2",
+        "display_area": "Royal Tunbridge Wells, Pembury",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.07613,
+          50.4138
+        ]
+      },
+      "properties": {
+        "postcode_district": "TR7",
+        "display_area": "Newquay",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.420048,
+          51.4522
+        ]
+      },
+      "properties": {
+        "postcode_district": "TW14",
+        "display_area": "Hatton",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.120626,
+          51.522
+        ]
+      },
+      "properties": {
+        "postcode_district": "WC1N",
+        "display_area": "Great Ormond Street Hospital",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.401176,
+          51.6697
+        ]
+      },
+      "properties": {
+        "postcode_district": "WD24",
+        "display_area": "North Watford",
+        "groups_supported": 1,
+        "kits_supplied_band": "100-249"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.93005,
+          52.095
+        ]
+      },
+      "properties": {
+        "postcode_district": "WR11",
+        "display_area": "Evesham",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.41981,
+          54.0142
+        ]
+      },
+      "properties": {
+        "postcode_district": "YO25",
+        "display_area": "Driffield",
+        "groups_supported": 1,
+        "kits_supplied_band": "25-49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.788705,
+          53.9249
+        ]
+      },
+      "properties": {
+        "postcode_district": "YO42",
+        "display_area": "Pocklington, Barmby Moor, Melbourne, Seaton Ross",
+        "groups_supported": 1,
+        "kits_supplied_band": "50-99"
+      }
+    }
+  ]
+}
