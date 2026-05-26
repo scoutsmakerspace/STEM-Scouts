@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "schema_version": "1.0",
-    "generated_at": "2026-05-26T10:26:11Z",
+    "schema_version": "1.1",
+    "generated_at": "2026-05-26T13:30:31Z",
     "source_tool_version": "V1.16.3",
     "location_precision": "postcode_district_centroid",
     "privacy_level": "aggregate_only",
@@ -23,6 +23,9 @@
         "postcode_district": "AB44",
         "display_area": "Macduff",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -39,6 +42,9 @@
         "postcode_district": "AB53",
         "display_area": "Turriff",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -55,6 +61,9 @@
         "postcode_district": "AB54",
         "display_area": "Aberchirder, Cabrach, Cairnie, Forgue, Gartly, Glass, Kennethmont, Lumsden, Rhynie, Rothiemay",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -71,6 +80,9 @@
         "postcode_district": "B60",
         "display_area": "Bromsgrove",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -87,6 +99,9 @@
         "postcode_district": "B80",
         "display_area": "Studley",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -103,6 +118,9 @@
         "postcode_district": "B93",
         "display_area": "Knowle, Dorridge",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -119,6 +137,9 @@
         "postcode_district": "B94",
         "display_area": "Olton, Solihull",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -135,6 +156,9 @@
         "postcode_district": "BB1",
         "display_area": "Blackburn, Bank Hey, Belthorn, Blackamoor, Clayton-le-Dale, Guide, Knuzden, Mellor, Ramsgreave, Rishton, Salesbury, Shadsworth, Sunnybower, Whitebirk, Wilpshire",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -151,6 +175,9 @@
         "postcode_district": "BD19",
         "display_area": "Cleckheaton, Gomersal, Scholes",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -167,6 +194,9 @@
         "postcode_district": "BL1",
         "display_area": "Bolton, Smithills, Halliwell, Heaton",
         "groups_supported": 2,
+        "unique_groups_supported": 2,
+        "public_map_entries": 2,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -183,6 +213,9 @@
         "postcode_district": "BL6",
         "display_area": "Bolton, Blackrod, Horwich, Lostock, Rivington",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -199,6 +232,9 @@
         "postcode_district": "BL9",
         "display_area": "Bury, Heap, Heap Bridge, Nangreaves, Summerseat, Unsworth, Walmersley",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -215,6 +251,9 @@
         "postcode_district": "BN7",
         "display_area": "Lewes, Cooksbridge, East Chiltington, Iford, Kingston, Offham, Plumpton, Plumpton Green, Rodmell, Southease, Swanborough, Telscombe",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -231,6 +270,9 @@
         "postcode_district": "BR3",
         "display_area": "Beckenham, Eden Park, Elmers End, Park Langley, Shortlands",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -247,6 +289,9 @@
         "postcode_district": "BS22",
         "display_area": "Kewstoke, Weston-super-Mare, Worle",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -263,6 +308,9 @@
         "postcode_district": "BS6",
         "display_area": "Redland, Montpelier, Westbury Park",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -279,6 +327,9 @@
         "postcode_district": "BT23",
         "display_area": "Newtownards, Ballygowan, Comber, Conlig, Killinchy, Moneyrea",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -295,6 +346,9 @@
         "postcode_district": "BT70",
         "display_area": "Dungannon, Ballygawley, Cappagh, Castlecaulfield, Donaghmore, Galbally, Garvaghy, Pomeroy, Rock, Seskilgreen",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -311,6 +365,9 @@
         "postcode_district": "CB10",
         "display_area": "Ashdon, Church End, Great Chesterford, Great Sampford, Hempstead, Hinxton, Howlett End, Ickleton, Little Chesterford, Little Sampford, Little Walden, Radwinter, Red Oaks Hill, Saffron Walden, Sewards End, Wimbish, Wimbish Green",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -327,6 +384,9 @@
         "postcode_district": "CF14",
         "display_area": "Whitchurch, Thornhill, Lisvane, Rhiwbina, Pantmawr, Gabalfa, Heath, Llandaff North",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -343,6 +403,9 @@
         "postcode_district": "CF63",
         "display_area": "Barry, Cadoxton, Barry Docks",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -359,6 +422,9 @@
         "postcode_district": "CH3",
         "display_area": "Boughton, Chester, Huntington, Mouldsworth, Tarvin, Tattenhall, Farndon",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -375,6 +441,9 @@
         "postcode_district": "CH62",
         "display_area": "Bromborough, Eastham, New Ferry, Port Sunlight, Spital",
         "groups_supported": 2,
+        "unique_groups_supported": 2,
+        "public_map_entries": 2,
+        "returning_group_entries": 0,
         "kits_supplied_band": "250-499"
       }
     },
@@ -391,6 +460,9 @@
         "postcode_district": "CM19",
         "display_area": "Harlow, Roydon",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -407,6 +479,9 @@
         "postcode_district": "CT3",
         "display_area": "Canterbury",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -422,7 +497,10 @@
       "properties": {
         "postcode_district": "CV3",
         "display_area": "Binley, Whitley, Willenhall, Cheylesmore, Styvechale, Finham, Fenside, Stoke Aldermoor, Green Lane, Ernesford Grange, Binley Woods",
-        "groups_supported": 2,
+        "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 2,
+        "returning_group_entries": 1,
         "kits_supplied_band": "100-249"
       }
     },
@@ -439,6 +517,9 @@
         "postcode_district": "DD2",
         "display_area": "Lochee, Blackness, Ninewells, Menziehill, Charleston, Balgay, Ardler, Logie",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -455,6 +536,9 @@
         "postcode_district": "DE21",
         "display_area": "Chaddesden, Oakwood, Spondon, Breadsall, Horsley, Little Eaton",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -471,6 +555,9 @@
         "postcode_district": "DE23",
         "display_area": "Heatherton Village, Littleover, Normanton, Pear Tree",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -487,6 +574,9 @@
         "postcode_district": "DE65",
         "display_area": "Burnaston, Egginton, Etwall, Findern, Hatton, Hilton, Milton, Repton, Willington",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -503,6 +593,9 @@
         "postcode_district": "DH1",
         "display_area": "Durham",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -519,6 +612,9 @@
         "postcode_district": "DH8",
         "display_area": "Consett, Ebchester",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -535,6 +631,9 @@
         "postcode_district": "DL6",
         "display_area": "Northallerton East, Ingleby Cross",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -551,6 +650,9 @@
         "postcode_district": "DL8",
         "display_area": "Wensleydale, Bedale",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -566,7 +668,10 @@
       "properties": {
         "postcode_district": "DN32",
         "display_area": "Grimsby",
-        "groups_supported": 2,
+        "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 2,
+        "returning_group_entries": 1,
         "kits_supplied_band": "50-99"
       }
     },
@@ -582,7 +687,10 @@
       "properties": {
         "postcode_district": "DN5",
         "display_area": "Arksey, Barnburgh, Bentley, Cusworth, Harlington, Scawsby, Scawthorpe, Sprotborough, Toll Bar",
-        "groups_supported": 2,
+        "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 2,
+        "returning_group_entries": 1,
         "kits_supplied_band": "50-99"
       }
     },
@@ -599,6 +707,9 @@
         "postcode_district": "DT11",
         "display_area": "Blandford Forum",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -615,6 +726,9 @@
         "postcode_district": "DY10",
         "display_area": "Kidderminster",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -630,7 +744,10 @@
       "properties": {
         "postcode_district": "E17",
         "display_area": "Walthamstow, Upper Walthamstow",
-        "groups_supported": 2,
+        "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 2,
+        "returning_group_entries": 1,
         "kits_supplied_band": "100-249"
       }
     },
@@ -647,6 +764,9 @@
         "postcode_district": "EX1",
         "display_area": "Exeter city centre",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -663,6 +783,9 @@
         "postcode_district": "EX3",
         "display_area": "Exeter",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -679,6 +802,9 @@
         "postcode_district": "FK11",
         "display_area": "Menstrie",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -695,6 +821,9 @@
         "postcode_district": "FK6",
         "display_area": "Denny, Fankerton, Stoneywood",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -711,6 +840,9 @@
         "postcode_district": "G31",
         "display_area": "Dennistoun, Haghill, Parkhead",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -727,6 +859,9 @@
         "postcode_district": "GL4",
         "display_area": "Gloucester",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -743,6 +878,9 @@
         "postcode_district": "GL5",
         "display_area": "Stroud",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -759,6 +897,9 @@
         "postcode_district": "GU14",
         "display_area": "Farnborough, Cove",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -775,6 +916,9 @@
         "postcode_district": "GU21",
         "display_area": "Woking, Knaphill, St. John's, Horsell, Goldsworth Park",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -791,6 +935,9 @@
         "postcode_district": "L23",
         "display_area": "Blundellsands, Brighton-le-Sands, Crosby, Little Crosby, Thornton",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -807,6 +954,9 @@
         "postcode_district": "LE15",
         "display_area": "Empingham, Manton, Thistleton, Uppingham, Whissendine, Langham",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -823,6 +973,9 @@
         "postcode_district": "LE5",
         "display_area": "Hamilton, Thurnby Lodge, Evington",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -839,6 +992,9 @@
         "postcode_district": "LN8",
         "display_area": "Market Rasen",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -855,6 +1011,9 @@
         "postcode_district": "LS18",
         "display_area": "Horsforth",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -871,6 +1030,9 @@
         "postcode_district": "LS2",
         "display_area": "Leeds city centre, Woodhouse",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -887,6 +1049,9 @@
         "postcode_district": "LS21",
         "display_area": "Arthington, Otley, Pool",
         "groups_supported": 2,
+        "unique_groups_supported": 2,
+        "public_map_entries": 2,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -903,6 +1068,9 @@
         "postcode_district": "LS26",
         "display_area": "Great Preston, Methley, Mickletown, Oulton, Rothwell, Swillington, Woodlesford",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -919,6 +1087,9 @@
         "postcode_district": "LU4",
         "display_area": "Luton (West), Chalton, Leagrave",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -935,6 +1106,9 @@
         "postcode_district": "LU7",
         "display_area": "Leighton Buzzard, Bragenham, Briggington, Burcott, Cheddington, Chelmscote, Clipstone, Crafton, Cublington, Eggington, Great Billington, Grove, Heath and Reach, Hockliffe, Horton, Hollingdon, Ivinghoe, Ivinghoe Aston, Ledburn, Leedon, Little Billington, Mentmore, Pitstone, Slapton, Soulbury, Stanbridge, Stewkley, Stockgrove, Tebworth, Tilsworth, Wing, Wingfield",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -951,6 +1125,9 @@
         "postcode_district": "M21",
         "display_area": "Chorlton-cum-Hardy, Firswood",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "250-499"
       }
     },
@@ -967,6 +1144,9 @@
         "postcode_district": "M23",
         "display_area": "Baguley, Roundthorn Industrial Estate",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -983,6 +1163,9 @@
         "postcode_district": "ML8",
         "display_area": "Carluke, Law",
         "groups_supported": 2,
+        "unique_groups_supported": 2,
+        "public_map_entries": 2,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -999,6 +1182,9 @@
         "postcode_district": "NE15",
         "display_area": "Lemington, Throckley, Newburn",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1015,6 +1201,9 @@
         "postcode_district": "NE28",
         "display_area": "Battle Hill, Willington, Wallsend, North Tyne Tunnel",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -1030,7 +1219,10 @@
       "properties": {
         "postcode_district": "NE7",
         "display_area": "High Heaton, Benton",
-        "groups_supported": 3,
+        "groups_supported": 2,
+        "unique_groups_supported": 2,
+        "public_map_entries": 3,
+        "returning_group_entries": 1,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1047,6 +1239,9 @@
         "postcode_district": "NG14",
         "display_area": "Calverton, Lowdham",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1063,6 +1258,9 @@
         "postcode_district": "NG2",
         "display_area": "Nottingham City Centre, Sneinton, The Meadows, West Bridgford",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1079,6 +1277,9 @@
         "postcode_district": "NN17",
         "display_area": "Bulwick, Corby",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1095,6 +1296,9 @@
         "postcode_district": "NN18",
         "display_area": "Great Oakley, Little Oakley",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1111,6 +1315,9 @@
         "postcode_district": "NP4",
         "display_area": "Pontypool, Blaenavon, Little Mill, Glascoed",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1127,6 +1334,9 @@
         "postcode_district": "NR13",
         "display_area": "Acle, Brundall, Reedham, Rackheath, Salhouse",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1143,6 +1353,9 @@
         "postcode_district": "OL13",
         "display_area": "Bacup, Britannia, Stacksteads",
         "groups_supported": 2,
+        "unique_groups_supported": 2,
+        "public_map_entries": 2,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1159,6 +1372,9 @@
         "postcode_district": "OL3",
         "display_area": "Delph, Denshaw, Diggle, Dobcross, Greenfield, Uppermill",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1175,6 +1391,9 @@
         "postcode_district": "OX16",
         "display_area": "Banbury",
         "groups_supported": 2,
+        "unique_groups_supported": 2,
+        "public_map_entries": 2,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1191,6 +1410,9 @@
         "postcode_district": "PE19",
         "display_area": "St Neots, Abbotsley, Buckden, Croxton, Diddington, Duloe, Eaton Ford, Eaton Socon, Eltisley, Eynesbury",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1207,6 +1429,9 @@
         "postcode_district": "PE28",
         "display_area": "Abbots Ripton, Alconbury, Alconbury Weston, Barham, Bluntisham, Brampton, Broughton, Buckworth, Bythorn, Catworth, Colne, Coppingford, Covington, Earith, Easton, Ellington, Fenstanton, Glatton, Grafham, Great Gidding, Great Stukeley, Hamerton, Hartford, Hemingford Abbots, Hemingford Grey, Hilton, Houghton, Keyston, Kimbolton, Kings Ripton, Leighton Bromswold, Little Gidding, Little Stukeley, Lower Dean, Molesworth, Old Hurst, Old Weston, Perry, Pidley, Sawtry, Somersham, Spaldwick, Stow Longa, Tilbrook, Upper Dean, Warboys, Wennington, Winwick, Wistow, Woodhurst, Woodwalton, Woolley, Wyton",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1223,6 +1448,9 @@
         "postcode_district": "PH2",
         "display_area": "Perth",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1239,6 +1467,9 @@
         "postcode_district": "PO12",
         "display_area": "Gosport, Alverstoke, Hardway",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1254,7 +1485,10 @@
       "properties": {
         "postcode_district": "PR1",
         "display_area": "City Centre, Avenham, Broadgate, Deepdale, Fishwick, St. Matthew's, Penwortham",
-        "groups_supported": 2,
+        "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 2,
+        "returning_group_entries": 1,
         "kits_supplied_band": "250-499"
       }
     },
@@ -1271,6 +1505,9 @@
         "postcode_district": "RG14",
         "display_area": "Newbury",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1287,6 +1524,9 @@
         "postcode_district": "RG27",
         "display_area": "Hook, Sherfield-on-Loddon, Stratfield Turgis, Turgis Green",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1303,6 +1543,9 @@
         "postcode_district": "RG31",
         "display_area": "Calcot Row, Tilehurst",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1319,6 +1562,9 @@
         "postcode_district": "RG5",
         "display_area": "Woodley",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1335,6 +1581,9 @@
         "postcode_district": "RH12",
         "display_area": "Horsham, Broadbridge Heath, Rusper, Rudgwick, Warnham",
         "groups_supported": 2,
+        "unique_groups_supported": 2,
+        "public_map_entries": 2,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -1351,6 +1600,9 @@
         "postcode_district": "RH15",
         "display_area": "Burgess Hill, Ditchling Common",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1366,7 +1618,10 @@
       "properties": {
         "postcode_district": "RH16",
         "display_area": "Haywards Heath, Lindfield",
-        "groups_supported": 3,
+        "groups_supported": 2,
+        "unique_groups_supported": 2,
+        "public_map_entries": 3,
+        "returning_group_entries": 1,
         "kits_supplied_band": "100-249"
       }
     },
@@ -1383,6 +1638,9 @@
         "postcode_district": "RH2",
         "display_area": "Reigate",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1399,6 +1657,9 @@
         "postcode_district": "RM18",
         "display_area": "Tilbury, East Tilbury, West Tilbury",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1415,6 +1676,9 @@
         "postcode_district": "S12",
         "display_area": "Birley, Gleadless, Gleadless Townend, Hackenthorpe, Intake, Ridgeway",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1431,6 +1695,9 @@
         "postcode_district": "SE23",
         "display_area": "Forest Hill, Honor Oak, Crofton Park",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1447,6 +1714,9 @@
         "postcode_district": "SE9",
         "display_area": "Eltham, Mottingham, New Eltham, Falconwood, Chinbrook, Longlands, Kidbrooke",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1463,6 +1733,9 @@
         "postcode_district": "SG14",
         "display_area": "Hertford",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1479,6 +1752,9 @@
         "postcode_district": "SG15",
         "display_area": "Arlesey",
         "groups_supported": 2,
+        "unique_groups_supported": 2,
+        "public_map_entries": 2,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -1495,6 +1771,9 @@
         "postcode_district": "SG18",
         "display_area": "Biggleswade, Budna, Hatch, Langford, Lower Caldecote, Northill, Upper Caldecote",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1511,6 +1790,9 @@
         "postcode_district": "SK8",
         "display_area": "Cheadle, Cheadle Hulme, Gatley, Heald Green",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1527,6 +1809,9 @@
         "postcode_district": "SL9",
         "display_area": "Chalfont Common, Chalfont St Peter, Gerrards Cross, Horn Hill",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1543,6 +1828,9 @@
         "postcode_district": "SN15",
         "display_area": "Chippenham",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1559,6 +1847,9 @@
         "postcode_district": "SN16",
         "display_area": "Malmesbury",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -1575,6 +1866,9 @@
         "postcode_district": "SN6",
         "display_area": "Cricklade, Ashton Keynes, Highworth, Shrivenham, Watchfield",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1591,6 +1885,9 @@
         "postcode_district": "SS8",
         "display_area": "Canvey Island",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "500+"
       }
     },
@@ -1607,6 +1904,9 @@
         "postcode_district": "ST17",
         "display_area": "Stafford",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1623,6 +1923,9 @@
         "postcode_district": "ST8",
         "display_area": "Biddulph",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1639,6 +1942,9 @@
         "postcode_district": "SW16",
         "display_area": "Streatham, Norbury, Thornton Heath, Streatham Park, Furzedown, Streatham Vale, Pollards Hill",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "250-499"
       }
     },
@@ -1655,6 +1961,9 @@
         "postcode_district": "SY6",
         "display_area": "Church Stretton, Cardington",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -1671,6 +1980,9 @@
         "postcode_district": "TF9",
         "display_area": "Market Drayton",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1687,6 +1999,9 @@
         "postcode_district": "TN14",
         "display_area": "Cudham",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1703,6 +2018,9 @@
         "postcode_district": "TN15",
         "display_area": "Ightham, Wrotham",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1719,6 +2037,9 @@
         "postcode_district": "TN2",
         "display_area": "Royal Tunbridge Wells, Pembury",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1735,6 +2056,9 @@
         "postcode_district": "TR7",
         "display_area": "Newquay",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1751,6 +2075,9 @@
         "postcode_district": "TW14",
         "display_area": "Hatton",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     },
@@ -1767,6 +2094,9 @@
         "postcode_district": "WC1N",
         "display_area": "Great Ormond Street Hospital",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1783,6 +2113,9 @@
         "postcode_district": "WD24",
         "display_area": "North Watford",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "100-249"
       }
     },
@@ -1799,6 +2132,9 @@
         "postcode_district": "WR11",
         "display_area": "Evesham",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1815,6 +2151,9 @@
         "postcode_district": "YO25",
         "display_area": "Driffield",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "25-49"
       }
     },
@@ -1831,6 +2170,9 @@
         "postcode_district": "YO42",
         "display_area": "Pocklington, Barmby Moor, Melbourne, Seaton Ross",
         "groups_supported": 1,
+        "unique_groups_supported": 1,
+        "public_map_entries": 1,
+        "returning_group_entries": 0,
         "kits_supplied_band": "50-99"
       }
     }

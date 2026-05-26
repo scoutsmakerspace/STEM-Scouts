@@ -1,20 +1,25 @@
 {
-  "schema_version": "1.0",
-  "generated_at": "2026-05-26T10:26:11Z",
+  "schema_version": "1.1",
+  "generated_at": "2026-05-26T13:30:31Z",
   "source_tool_version": "V1.16.3",
   "privacy_level": "aggregate_only",
   "totals": {
     "kits_supplied": 8915,
-    "groups_supported": 131,
+    "groups_supported": 124,
+    "unique_groups_supported": 124,
+    "public_map_entries": 131,
+    "returning_group_entries": 7,
     "postcode_districts_reached": 114,
     "batches_completed": null,
     "estimated_young_people_reached": 8915,
     "estimated_effort_hours": null
   },
   "assumptions": {
-    "groups_supported": "Counted from public map source rows. Review if the same group appears in multiple rows.",
+    "groups_supported": "Unique group names counted once from the private source export before names are removed from public files.",
+    "public_map_entries": "Rows/order entries in the public source export. This can be higher than unique groups because some groups order more than once.",
+    "returning_group_entries": "Difference between public map/order entries and unique groups supported.",
     "young_people_reached": "Placeholder estimate using one kit per young person. Adjust if your public reporting uses a different assumption.",
-    "map_counts": "Map popups use kit bands, not exact per-district kit quantities."
+    "map_counts": "Map popups use postcode-district aggregates and kit bands, not exact per-district order rows or names."
   },
   "warnings": {
     "missing_postcode_districts": []
