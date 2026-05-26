@@ -18,26 +18,26 @@ toc: true
 
 ## Before you order
 
-These kits are normally organised as a batch fundraiser/community project rather than a shop-style stock system. That means order windows, prices and delivery timing may change between batches.
+Maker Kits are normally organised as batch orders rather than a permanent shop. This helps keep the project practical, reduces waste and makes packing manageable for larger group orders.
 
 Before placing an order, check:
 
 - which kit designs are currently available
-- whether the order is for individually packed kits or bulk-packed components
-- whether you need custom logo/writing on the PCB
+- whether you need individually packed kits or labelled bulk component bags
+- whether you need custom logo or wording on the PCB
 - the expected packing and dispatch window
 - the current price list and postage process
 - whether your group has enough adult support and equipment to run the activity safely
 
 ## Packing approach
 
-For smaller orders, PCBs may be individually bagged while components are supplied in labelled bulk bags by component type. Larger orders may use bulk packing unless individual packing is agreed.
+Smaller orders may be supplied with PCBs individually bagged and the other components grouped in labelled bulk bags. Larger orders are usually easier and less wasteful to manage with bulk-packed components, unless individual packing has been agreed.
 
-This reduces unnecessary packaging and makes larger group orders more practical. The parcel should include a packing list so the receiving leader can check the contents.
+Each parcel should include a packing list so the receiving leader can check the contents before running a session.
 
 ## Payment and postage
 
-Payment and postage details should be handled directly through the organiser and should not be published through this public website.
+Payment and postage are confirmed directly with the organiser. Postage is normally confirmed once parcels are packed and ready to send.
 
 {{ mk.ordering.pricing_note }}
 
@@ -45,6 +45,6 @@ Payment and postage details should be handled directly through the organiser and
 
 The kits involve soldering or practical making. Leaders should prepare a suitable workspace, supervision plan and risk assessment for their own setting. Public instructions can help, but they do not replace local safety planning.
 
-## Private order data
+## Need help?
 
-The website does not provide public order lookup. Customer emails, contact names, full addresses, payment details, issue records and packing assignments stay in the private operational tool.
+If something is missing or unclear, contact the organiser with the kit type, approximate quantity and a clear description of the issue. Avoid posting private order details, addresses or payment information in public comments or on social media.
