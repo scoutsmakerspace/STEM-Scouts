@@ -23,6 +23,23 @@
     return Math.max(28, Math.min(48, 24 + Math.sqrt(n) * 8));
   }
 
+  function scoutDistrictText(g, p) {
+    var value = (g && (g.scout_district || g.scout_district_name)) ||
+      p.scout_district || p.scout_district_name || p.scouts_district || '';
+    value = String(value || '').trim();
+    if (!value) return '';
+    return /district/i.test(value) ? value : value + ' Scout District';
+  }
+
+  function supporterSubtitle(g, p) {
+    var entries = Number((g && g.entries) || 1);
+    var bits = [];
+    var district = scoutDistrictText(g || {}, p || {});
+    if (district) bits.push(district);
+    bits.push(entries > 1 ? 'Repeat supporter ×' + entries : 'Supporter');
+    return bits.join(' · ');
+  }
+
   function makeIcon(props) {
     var groups = Number(props.groups_supported || props.public_entries || 1);
     var size = markerSize(groups);
@@ -51,8 +68,9 @@
         return '<li>' + escapeHtml(name) + '</li>';
       }).join('') + '</ul>';
     }
-
-    return '<div class="mk-popup-title">' + escapeHtml(p.display_area || p.postcode_district || 'Approximate area') + '</div>' +
+    var district = scoutDistrictText({}, p);
+    return '<div class="mk-popup-title">' + escapeHtml(p.postcode_district || 'Approximate area') + '</div>' +
+      (district ? '<div class="mk-popup-line"><strong>Scout district:</strong> ' + escapeHtml(district) + '</div>' : '') +
       '<div class="mk-popup-line"><strong>Postcode district:</strong> ' + escapeHtml(p.postcode_district || '—') + '</div>' +
       '<div class="mk-popup-line"><strong>Groups supported here:</strong> ' + formatNumber(p.groups_supported) + '</div>' +
       '<div class="mk-popup-line"><strong>Public entries:</strong> ' + formatNumber(p.public_entries || p.groups_supported) + '</div>' +
@@ -69,8 +87,8 @@
       var groups = p.group_details || (p.public_group_names || []).map(function (name) { return { name: name, entries: 1 }; });
       if (!groups.length) {
         rows.push({
-          label: p.display_area || p.postcode_district,
-          subtitle: (p.postcode_district || '') + ' · ' + formatNumber(p.groups_supported) + ' group(s)',
+          label: p.postcode_district || 'Approximate area',
+          subtitle: formatNumber(p.groups_supported) + ' group(s)',
           search: [p.display_area, p.postcode_district].join(' '),
           feature: feature,
           coords: coords
@@ -78,11 +96,10 @@
         return;
       }
       groups.forEach(function (g) {
-        var entries = Number(g.entries || 1);
         rows.push({
           label: g.name || String(g),
-          subtitle: (p.display_area || p.postcode_district || 'Area') + ' · ' + (entries > 1 ? 'repeat supporter ×' + entries : 'supporter'),
-          search: [g.name || g, p.display_area, p.postcode_district, p.kits_supplied_band].join(' '),
+          subtitle: supporterSubtitle(g, p),
+          search: [g.name || g, scoutDistrictText(g, p), p.display_area, p.postcode_district, p.kits_supplied_band].join(' '),
           feature: feature,
           coords: coords
         });
@@ -181,6 +198,9 @@
             p.postcode_district,
             p.display_area,
             p.kits_supplied_band,
+            p.scout_district,
+            p.scout_district_name,
+            p.scouts_district,
             (p.public_group_names || []).join(' ')
           ].join(' '));
           layerGroup.addLayer(marker);
@@ -198,8 +218,6 @@
         setText('mk-map-stat-entries', totals.publicEntries);
         setText('mk-map-stat-repeat', totals.repeatEntries);
         setText('mk-map-stat-districts', totals.districts);
-        var mode = document.getElementById('mk-map-stat-mode');
-        if (mode) mode.textContent = (geojson.metadata && geojson.metadata.privacy_level) || 'public';
 
         var rows = flattenGroupRows(features);
         var list = document.getElementById('maker-kits-group-list');
