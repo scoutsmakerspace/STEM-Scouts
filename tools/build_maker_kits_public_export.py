@@ -1,21 +1,17 @@
 #!/usr/bin/env python3
 """Build public-safe Maker Kits map/stat files from the current map CSV inputs.
 
-The default output is the public supporter-map format:
-- aggregates by postcode district centroid
-- includes public Scout/group names only, not contact names
-- removes emails, full addresses, full postcodes, payment, tracking, private notes and order-row data
-- uses kit-count bands on the map, not exact per-group quantities
-- keeps exact totals only in the high-level impact summary
+This script is intentionally conservative:
+- aggregates by postcode district
+- can include public group names for a supporter map
+- removes contact names, emails, addresses, full postcodes, payments, order rows and private notes
+- removes exact kit counts from map popups and uses bands instead
+- writes exact totals only to the high-level impact summary
 
-Expected inputs:
-  Region_report.csv with columns including Scout Group Name, District Code and Kits
-  Postcode_districts.csv with columns including Postcode, Latitude, Longitude, Town/Area
-
-Example:
-  python tools/build_maker_kits_public_export.py \
-    --region-report Region_report.csv \
-    --postcode-districts Postcode_districts.csv
+Optional Scout district support:
+If the Region report contains a column called one of the following, it will be carried into
+public group details and map properties:
+  Scout District, Scout District Name, Scouts District, Scout District/Area
 """
 from __future__ import annotations
 
@@ -28,6 +24,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Tuple
 
 ROOT = Path(__file__).resolve().parents[1]
+SCOUT_DISTRICT_COLUMNS = ["Scout District", "Scout District Name", "Scouts District", "Scout District/Area"]
 
 
 def _clean(value: Any) -> str:
@@ -57,6 +54,14 @@ def _kit_band(n: int) -> str:
     return "500+"
 
 
+def _get_scout_district(row: Dict[str, Any]) -> str:
+    for col in SCOUT_DISTRICT_COLUMNS:
+        value = _clean(row.get(col))
+        if value:
+            return value
+    return ""
+
+
 def _read_postcode_lookup(path: Path) -> Dict[str, Dict[str, Any]]:
     lookup: Dict[str, Dict[str, Any]] = {}
     with path.open("r", encoding="utf-8-sig", newline="") as f:
@@ -65,9 +70,11 @@ def _read_postcode_lookup(path: Path) -> Dict[str, Dict[str, Any]]:
             code = _clean(row.get("Postcode")).upper()
             if not code:
                 continue
+            lat = _clean(row.get("Latitude"))
+            lon = _clean(row.get("Longitude"))
             try:
-                lat_f = float(_clean(row.get("Latitude")))
-                lon_f = float(_clean(row.get("Longitude")))
+                lat_f = float(lat)
+                lon_f = float(lon)
             except Exception:
                 continue
             lookup[code] = {
@@ -82,12 +89,14 @@ def _read_postcode_lookup(path: Path) -> Dict[str, Dict[str, Any]]:
 
 def _read_region_report(path: Path) -> Tuple[Dict[str, Dict[str, Any]], int, int, int, int]:
     by_district: Dict[str, Dict[str, Any]] = defaultdict(lambda: {
-        "group_names": [],
+        "entries": 0,
         "kits_supplied": 0,
+        "group_counter": Counter(),
+        "scout_district_counter": Counter(),
     })
-    all_group_names: List[str] = []
     total_rows = 0
     total_kits = 0
+    global_group_counter: Counter[str] = Counter()
 
     with path.open("r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
@@ -95,34 +104,34 @@ def _read_region_report(path: Path) -> Tuple[Dict[str, Dict[str, Any]], int, int
             district = _clean(row.get("District Code")).upper()
             if not district:
                 continue
-            group_name = _clean(row.get("Scout Group Name"))
             kits = _as_int(row.get("Kits"))
+            group_name = _clean(row.get("Scout Group Name"))
+            scout_district = _get_scout_district(row)
+
+            stats = by_district[district]
+            stats["entries"] += 1
+            stats["kits_supplied"] += kits
             if group_name:
-                by_district[district]["group_names"].append(group_name)
-                all_group_names.append(group_name)
-            by_district[district]["kits_supplied"] += kits
+                stats["group_counter"][group_name] += 1
+                global_group_counter[group_name] += 1
+            if scout_district:
+                stats["scout_district_counter"][scout_district] += 1
+
             total_rows += 1
             total_kits += kits
 
-    unique_groups = len(set(all_group_names))
-    repeat_entries = max(0, total_rows - unique_groups)
+    unique_groups = len(global_group_counter) if global_group_counter else total_rows
+    repeat_entries = sum(max(0, count - 1) for count in global_group_counter.values())
     return dict(by_district), total_rows, total_kits, unique_groups, repeat_entries
 
 
-def build(
-    region_report: Path,
-    postcode_districts: Path,
-    out_geojson: Path,
-    out_summary: Path,
-    source_tool_version: str,
-    include_group_names: bool,
-) -> None:
+def build(region_report: Path, postcode_districts: Path, out_geojson: Path, out_summary: Path, source_tool_version: str, show_group_names: bool) -> None:
     postcode_lookup = _read_postcode_lookup(postcode_districts)
     by_district, total_rows, total_kits, unique_groups, repeat_entries_total = _read_region_report(region_report)
 
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-    features = []
-    missing = []
+    features: List[Dict[str, Any]] = []
+    missing: List[str] = []
 
     for district in sorted(by_district):
         loc = postcode_lookup.get(district)
@@ -130,24 +139,31 @@ def build(
             missing.append(district)
             continue
         stats = by_district[district]
-        names = [n for n in stats["group_names"] if n]
-        counts = Counter(names)
-        public_names = sorted(counts, key=lambda s: s.lower())
-        unique_here = len(public_names)
-        entries_here = len(names)
-        repeat_here = max(0, entries_here - unique_here)
         town = loc.get("town_area") or loc.get("post_town") or f"{district} area"
-        props = {
+        group_counter: Counter[str] = stats["group_counter"]
+        scout_district_counter: Counter[str] = stats["scout_district_counter"]
+        main_scout_district = scout_district_counter.most_common(1)[0][0] if scout_district_counter else ""
+        group_details = []
+        if show_group_names:
+            for name, count in sorted(group_counter.items(), key=lambda item: item[0].lower()):
+                detail = {"name": name, "entries": count}
+                if main_scout_district:
+                    detail["scout_district"] = main_scout_district
+                group_details.append(detail)
+
+        properties: Dict[str, Any] = {
             "postcode_district": district,
             "display_area": town,
-            "groups_supported": unique_here,
-            "public_entries": entries_here,
-            "repeat_entries": repeat_here,
+            "groups_supported": len(group_counter) if group_counter else stats["entries"],
+            "public_entries": stats["entries"],
+            "repeat_entries": max(0, stats["entries"] - (len(group_counter) if group_counter else stats["entries"])),
             "kits_supplied_band": _kit_band(stats["kits_supplied"]),
         }
-        if include_group_names:
-            props["public_group_names"] = public_names
-            props["group_details"] = [{"name": n, "entries": counts[n]} for n in public_names]
+        if main_scout_district:
+            properties["scout_district"] = main_scout_district
+        if show_group_names:
+            properties["public_group_names"] = [g["name"] for g in group_details]
+            properties["group_details"] = group_details
 
         features.append({
             "type": "Feature",
@@ -155,10 +171,10 @@ def build(
                 "type": "Point",
                 "coordinates": [loc["longitude"], loc["latitude"]],
             },
-            "properties": props,
+            "properties": properties,
         })
 
-    privacy_level = "named_groups_no_contacts" if include_group_names else "aggregate_only"
+    privacy_level = "public_group_names" if show_group_names else "aggregate_only"
     geojson = {
         "type": "FeatureCollection",
         "metadata": {
@@ -168,7 +184,6 @@ def build(
             "location_precision": "postcode_district_centroid",
             "privacy_level": privacy_level,
             "private_fields_removed": True,
-            "group_names_policy": "Group names are public supporter names only. No contact names, emails, full addresses, full postcodes, payment, tracking or order-row data is included.",
             "missing_postcode_districts": missing,
         },
         "features": features,
@@ -182,8 +197,7 @@ def build(
         "totals": {
             "kits_supplied": total_kits,
             "unique_groups_supported": unique_groups,
-            "groups_supported": unique_groups,
-            "public_entries": total_rows,
+            "public_support_entries": total_rows,
             "repeat_entries": repeat_entries_total,
             "postcode_districts_reached": len(features),
             "batches_completed": None,
@@ -191,10 +205,10 @@ def build(
             "estimated_effort_hours": None,
         },
         "assumptions": {
-            "groups_supported": "Unique public group names in the current public map source. Repeat entries are counted separately as returning/repeat support.",
-            "public_entries": "Number of public source rows used to build the map. This may be higher than unique groups because some groups appear more than once.",
+            "unique_groups_supported": "Unique public group names counted from the public map source. Review before publishing.",
+            "public_support_entries": "Rows in the public map source; repeat groups are counted separately here.",
             "young_people_reached": "Placeholder estimate using one kit per young person. Adjust if your public reporting uses a different assumption.",
-            "map_counts": "Map popups show kit bands rather than exact per-district or per-group quantities.",
+            "map_counts": "Map popups use kit bands, not exact per-district or per-group kit quantities.",
         },
         "warnings": {
             "missing_postcode_districts": missing,
@@ -207,7 +221,6 @@ def build(
     out_summary.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Wrote {out_geojson} ({len(features)} map features)")
     print(f"Wrote {out_summary}")
-    print(f"Unique groups: {unique_groups}; public entries: {total_rows}; repeat entries: {repeat_entries_total}; kits: {total_kits}")
     if missing:
         print("Warning: missing postcode districts:", ", ".join(missing))
 
@@ -219,7 +232,7 @@ def main(argv: Iterable[str] | None = None) -> int:
     parser.add_argument("--out-geojson", default=str(ROOT / "assets/data/maker_kits_public_map.geojson"))
     parser.add_argument("--out-summary", default=str(ROOT / "assets/data/maker_kits_impact_summary.json"))
     parser.add_argument("--source-tool-version", default="V1.16.3")
-    parser.add_argument("--hide-group-names", action="store_true", help="Generate an aggregate-only map with no public group names.")
+    parser.add_argument("--hide-group-names", action="store_true", help="Generate aggregate-only public map data.")
     args = parser.parse_args(list(argv) if argv is not None else None)
 
     build(
@@ -228,7 +241,7 @@ def main(argv: Iterable[str] | None = None) -> int:
         out_geojson=Path(args.out_geojson),
         out_summary=Path(args.out_summary),
         source_tool_version=args.source_tool_version,
-        include_group_names=not args.hide_group_names,
+        show_group_names=not args.hide_group_names,
     )
     return 0
 
