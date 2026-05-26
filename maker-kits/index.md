@@ -1,7 +1,6 @@
 ---
 layout: splash
 title: "Maker Kits"
-classes: wide maker-kits-wide
 toc: false
 ---
 
@@ -32,11 +31,11 @@ toc: false
   </a>
   <a class="mk-card mk-card--link" href="{{ '/maker-kits/instructions/' | relative_url }}">
     <h2>Instructions</h2>
-    <p>Open the current build guides, leader notes and support documents for running a kit activity.</p>
+    <p>Download build guides, leader notes, safety reminders and troubleshooting documents for the kits.</p>
   </a>
-  <a class="mk-card mk-card--link" href="{{ '/maker-kits/impact/' | relative_url }}">
-    <h2>Impact</h2>
-    <p>See the broad public reach of the project, including kits supplied, groups supported and postcode districts reached.</p>
+  <a class="mk-card mk-card--link" href="{{ '/maker-kits/map/' | relative_url }}">
+    <h2>Impact map</h2>
+    <p>See where Maker Kits have reached, including public supporter names, repeat support and postcode districts reached.</p>
   </a>
 </section>
 
@@ -60,26 +59,26 @@ toc: false
       {% for skill in kit.skills %}<li>{{ skill }}</li>{% endfor %}
       </ul>
       {% if kit.instructions_url and kit.instructions_url != "" %}
-        <a class="btn btn--primary" href="{{ kit.instructions_url }}">Open instructions</a>
+        <a class="btn btn--primary" href="{{ kit.instructions_url }}">Download instructions</a>
       {% else %}
-        <p class="mk-muted">Instructions will be added as each public guide is finalised.</p>
+        <p class="mk-muted">Instructions link to be added.</p>
       {% endif %}
     </div>
   </article>
 {% endfor %}
 </div>
 
-## Public map and statistics
+## Public reach
 
 <div class="mk-grid mk-grid--2">
   <div class="mk-card">
-    <h2>Public map</h2>
-    <p>Explore the broad areas reached by the Maker Kits project. Group names may be shown as public supporters, but locations are approximate and private contact/order details are not published.</p>
-    <p><a class="btn" href="{{ '/maker-kits/map/' | relative_url }}">Open the map</a></p>
+    <h2>Impact map</h2>
+    <p>Public supporter names and broad reach statistics are shown together on the impact map. Locations are approximate and shown by postcode district, not exact address.</p>
+    <p><a class="btn" href="{{ '/maker-kits/map/' | relative_url }}">Open the impact map</a></p>
   </div>
   <div class="mk-card">
-    <h2>Public impact</h2>
-    <p>See public-safe totals such as kits supplied, unique groups supported, repeat support entries and postcode districts reached.</p>
-    <p><a class="btn" href="{{ '/maker-kits/impact/' | relative_url }}">View impact statistics</a></p>
+    <h2>Instructions and support</h2>
+    <p>Build guides, safety notes and support information are kept together so leaders can plan sessions confidently.</p>
+    <p><a class="btn" href="{{ '/maker-kits/instructions/' | relative_url }}">Open the instructions</a></p>
   </div>
 </div>
