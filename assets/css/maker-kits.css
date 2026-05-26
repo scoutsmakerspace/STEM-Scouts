@@ -55,14 +55,13 @@
 }
 .maker-kits-wide .page__content,
 .maker-kits-map-page .page__content {
-  max-width: min(1520px, calc(100vw - 2rem));
+  max-width: min(1740px, calc(100vw - 1rem));
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Enhanced map dashboard */
 .mk-map-page-title {
-  max-width: 920px;
+  max-width: 980px;
   margin: 0 auto 1rem;
   text-align: center;
 }
@@ -73,12 +72,12 @@
 }
 .mk-map-page-title p { margin-bottom: 0; }
 .mk-map-dashboard {
-  width: min(1520px, calc(100vw - 1.5rem));
+  width: min(1740px, calc(100vw - 1rem));
   margin: 1rem auto 1.5rem;
 }
 .mk-map-summary {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0,1fr));
+  grid-template-columns: repeat(4, minmax(0,1fr));
   gap: .75rem;
   margin: 1rem 0;
 }
@@ -103,7 +102,7 @@
 }
 .mk-map-toolbar {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) auto auto auto;
+  grid-template-columns: minmax(280px, 1fr) auto auto auto;
   gap: .6rem;
   align-items: center;
   margin: .75rem 0;
@@ -128,7 +127,7 @@
 .mk-map-button:hover { background: rgba(0,0,0,.04); }
 .mk-map-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-columns: minmax(0, 1fr) 340px;
   gap: 1rem;
   align-items: stretch;
 }
@@ -142,8 +141,8 @@
 }
 .mk-map {
   width: 100%;
-  min-height: 720px;
-  height: min(78vh, 860px);
+  min-height: 740px;
+  height: min(80vh, 900px);
   background: rgba(0,0,0,.03);
 }
 .mk-map-side-panel {
@@ -152,8 +151,8 @@
   background: #fff;
   box-shadow: 0 1px 8px rgba(0,0,0,.04);
   overflow: hidden;
-  min-height: 720px;
-  height: min(78vh, 860px);
+  min-height: 740px;
+  height: min(80vh, 900px);
   display: flex;
   flex-direction: column;
 }
