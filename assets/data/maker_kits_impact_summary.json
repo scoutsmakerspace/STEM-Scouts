@@ -1,25 +1,24 @@
 {
   "schema_version": "1.1",
-  "generated_at": "2026-05-26T13:30:31Z",
+  "generated_at": "2026-05-26T13:55:00Z",
   "source_tool_version": "V1.16.3",
-  "privacy_level": "aggregate_only",
+  "privacy_level": "named_groups_no_contacts",
   "totals": {
     "kits_supplied": 8915,
-    "groups_supported": 124,
     "unique_groups_supported": 124,
-    "public_map_entries": 131,
-    "returning_group_entries": 7,
+    "groups_supported": 124,
+    "public_entries": 131,
+    "repeat_entries": 7,
     "postcode_districts_reached": 114,
     "batches_completed": null,
     "estimated_young_people_reached": 8915,
     "estimated_effort_hours": null
   },
   "assumptions": {
-    "groups_supported": "Unique group names counted once from the private source export before names are removed from public files.",
-    "public_map_entries": "Rows/order entries in the public source export. This can be higher than unique groups because some groups order more than once.",
-    "returning_group_entries": "Difference between public map/order entries and unique groups supported.",
+    "groups_supported": "Unique public group names in the current public map source. Repeat entries are counted separately as returning/repeat support.",
+    "public_entries": "Number of public source rows used to build the map. This may be higher than unique groups because some groups appear more than once.",
     "young_people_reached": "Placeholder estimate using one kit per young person. Adjust if your public reporting uses a different assumption.",
-    "map_counts": "Map popups use postcode-district aggregates and kit bands, not exact per-district order rows or names."
+    "map_counts": "Map popups show kit bands rather than exact per-district or per-group quantities."
   },
   "warnings": {
     "missing_postcode_districts": []
