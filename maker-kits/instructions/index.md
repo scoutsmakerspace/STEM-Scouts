@@ -8,14 +8,13 @@ toc: true
 
 {% assign mk = site.data.maker_kits %}
 
-Build guides, leader notes and printable documents are collected here for groups running Maker Kit sessions.
+The current public build guides and leader documents are stored in the instructions folder below. Please check that you are using the latest version for your kit batch before printing or running a session.
 
-{% if mk.instructions.folder_url and mk.instructions.folder_url != "" %}
+<p><a class="btn btn--primary" href="{{ mk.instructions.drive_folder_url }}">{{ mk.instructions.drive_folder_label }}</a></p>
+
 <div class="mk-warning-card">
-  <strong>Instruction PDFs:</strong> {{ mk.instructions.folder_note }}
-  <p><a class="btn btn--primary" href="{{ mk.instructions.folder_url }}">{{ mk.instructions.folder_label }}</a></p>
+  <strong>Session safety:</strong> soldering activities need suitable adult supervision, safety glasses, a sensible workspace and a local risk assessment.
 </div>
-{% endif %}
 
 <div class="mk-doc-list">
 {% for doc in mk.documents %}
@@ -26,20 +25,24 @@ Build guides, leader notes and printable documents are collected here for groups
     {% if doc.date and doc.date != "" %}<p><strong>Date:</strong> {{ doc.date }}</p>{% endif %}
     {% if doc.file and doc.file != "" %}
       <p><a class="btn btn--primary" href="{{ doc.file }}">Open</a></p>
+    {% else %}
+      <p class="mk-muted">Download not added yet.</p>
     {% endif %}
   </article>
 {% endfor %}
 </div>
 
-## Before running a session
+## Suggested document set
 
-Please check the latest instructions before your session, especially if your kits were ordered in a different batch. Small component or PCB changes can affect the build order.
-
-Useful documents include:
+The public instructions folder should eventually include:
 
 - build instructions for each kit
 - leader notes for running a session
 - soldering safety briefing
-- troubleshooting notes
+- troubleshooting sheet
 - packing/content checklist for receiving groups
-- optional youth worksheets or reflection sheets
+- optional youth worksheet or reflection sheet
+
+## Version control
+
+Put a version and date on each public document. When a kit changes, update the document and the public page together so leaders do not use old instructions with new parts.
