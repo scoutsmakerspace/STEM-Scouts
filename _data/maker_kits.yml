@@ -1,0 +1,154 @@
+# Public configuration for the Maker Kits section.
+# Keep this file public-safe. Do not add customer names, emails, addresses, payment notes,
+# order rows, private issue notes, packing assignments, tracking numbers, or full postcodes.
+
+section:
+  title: "Maker Kits"
+  subtitle: "Practical soldering and making kits for Scouts, schools, clubs and community groups."
+  intro: >-
+    These kits are made to help young people learn practical STEM skills by building something real.
+    The operation is run as a fundraising/community project, with private order and packing data kept
+    separately from this public website.
+  primary_cta_label: "How to order"
+  primary_cta_url: "/maker-kits/how-to-order/"
+  secondary_cta_label: "View the public impact map"
+  secondary_cta_url: "/maker-kits/map/"
+
+ordering:
+  status: "Batch ordering"
+  order_link: ""
+  order_link_label: "Current order form"
+  contact_note: >-
+    Ordering is normally handled in batches. Add your current order form or contact link here when you are ready.
+  pricing_note: >-
+    Prices may change between batches because component, PCB and postage costs change. Publish a current price list
+    only when you are ready to keep it up to date.
+
+privacy:
+  map_note: >-
+    Locations are shown approximately by postcode district. The public map does not show customer emails,
+    contact names, full addresses, payment details, order rows, private issue notes or packing data.
+  public_data_note: >-
+    Public statistics are aggregated or rounded and are intended to show broad community reach, not private order details.
+
+kits:
+  - slug: rocket
+    name: "Rocket soldering kit"
+    short_description: "A beginner-friendly LED soldering kit that works well as a first electronics build."
+    difficulty: "Beginner"
+    build_time: "30–60 minutes"
+    age_guidance: "Best with adult supervision; suitable for youth groups where soldering safety is managed properly."
+    skills:
+      - "Soldering basics"
+      - "LED polarity"
+      - "Simple circuits"
+      - "Safe tool use"
+    included:
+      - "PCB"
+      - "LEDs and electronic components"
+      - "Battery holder or power parts, depending on kit version"
+      - "Small fixings where required"
+    tools_needed:
+      - "Soldering iron and solder"
+      - "Side cutters"
+      - "Safety glasses"
+      - "Adult supervision and a suitable risk assessment"
+    image: ""
+    instructions_url: ""
+
+  - slug: camp-fire
+    name: "Camp fire soldering kit"
+    short_description: "A themed electronics kit for practising soldering while building a small light-up project."
+    difficulty: "Beginner"
+    build_time: "30–60 minutes"
+    age_guidance: "Good for Cubs, Scouts and similar groups with suitable adult support."
+    skills:
+      - "Component identification"
+      - "Soldering accuracy"
+      - "Circuit assembly"
+      - "Testing and troubleshooting"
+    included:
+      - "PCB"
+      - "LEDs and components"
+      - "Fixings where required"
+    tools_needed:
+      - "Soldering iron and solder"
+      - "Side cutters"
+      - "Safety glasses"
+      - "Adult supervision and a suitable risk assessment"
+    image: ""
+    instructions_url: ""
+
+  - slug: i-can-solder
+    name: "I can solder badge kit"
+    short_description: "A simple confidence-building soldering activity for young makers."
+    difficulty: "Beginner"
+    build_time: "20–45 minutes"
+    age_guidance: "Designed for supervised group sessions and first-time soldering practice."
+    skills:
+      - "Making clean solder joints"
+      - "Following a build sequence"
+      - "Checking orientation"
+      - "Taking pride in a finished object"
+    included:
+      - "PCB"
+      - "Simple electronic components"
+      - "Fixings where required"
+    tools_needed:
+      - "Soldering iron and solder"
+      - "Side cutters"
+      - "Safety glasses"
+      - "Adult supervision and a suitable risk assessment"
+    image: ""
+    instructions_url: ""
+
+documents:
+  - title: "Soldering safety and session notes"
+    kit_slug: "all"
+    type: "Leader notes"
+    version: "draft"
+    date: ""
+    file: ""
+  - title: "Rocket kit build instructions"
+    kit_slug: "rocket"
+    type: "Build guide"
+    version: "draft"
+    date: ""
+    file: ""
+  - title: "Camp fire kit build instructions"
+    kit_slug: "camp-fire"
+    type: "Build guide"
+    version: "draft"
+    date: ""
+    file: ""
+  - title: "I can solder badge kit instructions"
+    kit_slug: "i-can-solder"
+    type: "Build guide"
+    version: "draft"
+    date: ""
+    file: ""
+
+faq:
+  - question: "Who are the kits for?"
+    answer: >-
+      They are mainly intended for Scouts, schools, clubs and community groups that want a practical STEM activity.
+      They work best when adults prepare the session properly and manage soldering safety.
+  - question: "Can complete beginners build them?"
+    answer: >-
+      Yes, with supervision. The kits are designed to be approachable, but young people still need a clear safety briefing,
+      a sensible workspace and adults who can help with soldering and troubleshooting.
+  - question: "Are the kits individually packed?"
+    answer: >-
+      It depends on the order size and packing option. Smaller orders are usually supplied with PCBs individually bagged and
+      other components grouped in labelled bulk bags. Larger orders may use bulk packing unless individual packing is agreed.
+  - question: "Why are locations on the map approximate?"
+    answer: >-
+      To protect privacy. The public map shows broad postcode-district reach only, not full addresses or private order details.
+  - question: "What should I do if something is missing?"
+    answer: >-
+      Check the packing list in the parcel first, then contact the organiser with the kit type, quantity and missing item.
+      Do not send private order details through public comments or social media.
+  - question: "How are funds used?"
+    answer: >-
+      The aim is to support practical STEM making and fundraising/community work. Replace this wording with your current,
+      accurate fundraising explanation before publishing.
