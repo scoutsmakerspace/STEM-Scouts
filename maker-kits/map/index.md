@@ -1,6 +1,6 @@
 ---
 layout: splash
-title: "Maker Kits Public Map"
+title: "Maker Kits Impact Map"
 classes: wide maker-kits-wide maker-kits-map-page
 toc: false
 ---
@@ -10,29 +10,22 @@ toc: false
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
 
-{% assign mk = site.data.maker_kits %}
-
 <div class="mk-map-dashboard">
   <div class="mk-map-page-title">
-    <p class="mk-kicker">Public reach map</p>
+    <p class="mk-kicker">Public impact map</p>
     <h1>Where Maker Kits have reached</h1>
-    <p>This map shows the broad areas reached by the Maker Kits project. Locations are approximate postcode-district centroids, not exact addresses.</p>
+    <p>This map brings the project’s public impact statistics and supporter map together in one place. It shows broad reach by postcode district, not exact addresses.</p>
   </div>
 
-  <div class="mk-warning-card">
-    <strong>Public supporter map:</strong> group names are shown as public supporter names where available. No contact names, emails, full addresses, full postcodes, payment details, tracking details or private order records are published.
-  </div>
-
-  <div class="mk-map-summary" aria-label="Maker Kits public map summary">
+  <div class="mk-map-summary" aria-label="Maker Kits public impact summary">
     <div class="mk-mini-stat"><span id="mk-map-stat-groups" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">unique groups supported</span></div>
     <div class="mk-mini-stat"><span id="mk-map-stat-entries" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">public support entries</span></div>
     <div class="mk-mini-stat"><span id="mk-map-stat-repeat" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">repeat entries</span></div>
     <div class="mk-mini-stat"><span id="mk-map-stat-districts" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">postcode districts reached</span></div>
-    <div class="mk-mini-stat"><span id="mk-map-stat-mode" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">privacy mode</span></div>
   </div>
 
   <div class="mk-map-toolbar">
-    <input id="maker-kits-map-search" class="mk-map-search" type="search" placeholder="Search group name, town or postcode district…" aria-label="Search public map">
+    <input id="maker-kits-map-search" class="mk-map-search" type="search" placeholder="Search group name, postcode district, town or area…" aria-label="Search public impact map">
     <button id="maker-kits-clear-search" class="mk-map-button" type="button">Clear search</button>
     <button id="maker-kits-reset-map" class="mk-map-button" type="button">Reset map</button>
     <button id="maker-kits-toggle-list" class="mk-map-button" type="button">Show/hide list</button>
@@ -47,7 +40,7 @@ toc: false
   <div class="mk-map-layout">
     <div class="mk-map-shell">
       <div id="maker-kits-map" class="mk-map" data-geojson-url="{{ '/assets/data/maker_kits_public_map.geojson' | relative_url }}">
-        <p>Loading public map…</p>
+        <p>Loading public impact map…</p>
       </div>
     </div>
 
@@ -61,7 +54,7 @@ toc: false
   </div>
 
   <div class="mk-map-note">
-    Kit quantities are shown as bands on the map, not exact per-group order quantities. The map is intended to show public reach and appreciation, not act as a private order register.
+    Locations are approximate postcode-district centroids. Kit quantities are shown as bands on the map, not exact per-group order quantities. No contact details, full addresses, full postcodes, payment details, tracking details or private order records are published.
   </div>
 </div>
 
