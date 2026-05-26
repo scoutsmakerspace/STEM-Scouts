@@ -6,12 +6,12 @@ section:
   title: "Maker Kits"
   subtitle: "Practical soldering and making kits for Scouts, schools, clubs and community groups."
   intro: >-
-    These kits are made to help young people learn practical STEM skills by building something real.
-    The operation is run as a fundraising/community project, with private order and packing data kept
-    separately from this public website.
+    Practical soldering and making kits for Scouts, schools, clubs and community groups.
+    The kits are designed to help young people build confidence with electronics, tools,
+    problem-solving and hands-on STEM.
   primary_cta_label: "How to order"
   primary_cta_url: "/maker-kits/how-to-order/"
-  secondary_cta_label: "View the public impact map"
+  secondary_cta_label: "View the impact map"
   secondary_cta_url: "/maker-kits/map/"
 
 ordering:
@@ -19,17 +19,25 @@ ordering:
   order_link: ""
   order_link_label: "Current order form"
   contact_note: >-
-    Ordering is normally handled in batches. Add your current order form or contact link here when you are ready.
+    Kits are normally produced and packed in batches rather than held as shop stock.
+    If you are interested in ordering, please check the current order information and get in touch before planning a session.
   pricing_note: >-
-    Prices may change between batches because component, PCB and postage costs change. Publish a current price list
-    only when you are ready to keep it up to date.
+    Prices are confirmed for each batch because component, PCB and postage costs can change.
+    Postage is normally confirmed once parcels are packed and ready to send.
 
 privacy:
   map_note: >-
-    Locations are shown approximately by postcode district. The public map does not show customer emails,
-    contact names, full addresses, payment details, order rows, private issue notes or packing data.
+    The map shows broad areas reached by the Maker Kits project. Locations are approximate and shown by postcode district,
+    not by exact address.
   public_data_note: >-
-    Public statistics are aggregated or rounded and are intended to show broad community reach, not private order details.
+    The numbers on this page are public summary figures. They show the broad reach of the project, not private order or payment records.
+
+instructions:
+  folder_url: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
+  folder_label: "Open the instruction PDF folder"
+  folder_note: >-
+    Build instructions and printable documents are kept together in a shared Google Drive folder. Make sure the folder is set to
+    Anyone with the link can view before sharing this page publicly.
 
 kits:
   - slug: rocket
@@ -54,7 +62,7 @@ kits:
       - "Safety glasses"
       - "Adult supervision and a suitable risk assessment"
     image: ""
-    instructions_url: ""
+    instructions_url: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
 
   - slug: camp-fire
     name: "Camp fire soldering kit"
@@ -77,7 +85,7 @@ kits:
       - "Safety glasses"
       - "Adult supervision and a suitable risk assessment"
     image: ""
-    instructions_url: ""
+    instructions_url: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
 
   - slug: i-can-solder
     name: "I can solder badge kit"
@@ -100,33 +108,39 @@ kits:
       - "Safety glasses"
       - "Adult supervision and a suitable risk assessment"
     image: ""
-    instructions_url: ""
+    instructions_url: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
 
 documents:
+  - title: "Instruction PDF folder"
+    kit_slug: "all"
+    type: "Shared Drive folder"
+    version: "current"
+    date: ""
+    file: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
   - title: "Soldering safety and session notes"
     kit_slug: "all"
     type: "Leader notes"
-    version: "draft"
+    version: "current"
     date: ""
-    file: ""
+    file: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
   - title: "Rocket kit build instructions"
     kit_slug: "rocket"
     type: "Build guide"
-    version: "draft"
+    version: "current"
     date: ""
-    file: ""
+    file: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
   - title: "Camp fire kit build instructions"
     kit_slug: "camp-fire"
     type: "Build guide"
-    version: "draft"
+    version: "current"
     date: ""
-    file: ""
+    file: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
   - title: "I can solder badge kit instructions"
     kit_slug: "i-can-solder"
     type: "Build guide"
-    version: "draft"
+    version: "current"
     date: ""
-    file: ""
+    file: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
 
 faq:
   - question: "Who are the kits for?"
@@ -144,11 +158,15 @@ faq:
   - question: "Why are locations on the map approximate?"
     answer: >-
       To protect privacy. The public map shows broad postcode-district reach only, not full addresses or private order details.
+  - question: "Why do the impact numbers use both groups and order entries?"
+    answer: >-
+      Some groups have ordered more than once. The public impact page therefore separates unique groups supported from public map/order entries,
+      so repeat batches are counted without making the group total look larger than it is.
   - question: "What should I do if something is missing?"
     answer: >-
-      Check the packing list in the parcel first, then contact the organiser with the kit type, quantity and missing item.
-      Do not send private order details through public comments or social media.
+      Check the packing list in the parcel first, then contact the organiser with the kit type, approximate quantity and missing item.
+      Please avoid posting private order details, addresses or payment information in public comments or on social media.
   - question: "How are funds used?"
     answer: >-
-      The aim is to support practical STEM making and fundraising/community work. Replace this wording with your current,
-      accurate fundraising explanation before publishing.
+      The project helps fund practical STEM activities and supports young people learning by making. Any surplus from kit batches is used to support
+      community STEM work, equipment, materials and future activities.
