@@ -19,4 +19,4 @@ toc: true
 
 When asking for help with an order, include the kit type, approximate quantity, batch/order reference if you have one, and a clear description of the issue.
 
-Do not post private order details, addresses, payment information or personal contact details in public comments or on social media.
+Please do not post private order details, addresses, payment information or personal contact details in public comments or on social media.
