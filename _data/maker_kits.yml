@@ -1,17 +1,16 @@
 # Public configuration for the Maker Kits section.
-# Keep this file public-safe. Do not add customer contact names, emails, full addresses,
-# payment notes, order rows, private issue notes, packing assignments, tracking numbers, or full postcodes.
+# Keep this file public-safe. Do not add customer contact names, emails, addresses, payment notes,
+# private issue notes, packing assignments, tracking numbers, full postcodes, or raw order data.
 
 section:
   title: "Maker Kits"
   subtitle: "Practical soldering and making kits for Scouts, schools, clubs and community groups."
   intro: >-
     Practical soldering and making kits for Scouts, schools, clubs and community groups.
-    The kits are designed to help young people build confidence with electronics, tools,
-    problem-solving and hands-on STEM.
+    The kits help young people build confidence with electronics, tools, problem-solving and hands-on STEM.
   primary_cta_label: "How to order"
   primary_cta_url: "/maker-kits/how-to-order/"
-  secondary_cta_label: "View the public impact map"
+  secondary_cta_label: "View the impact map"
   secondary_cta_url: "/maker-kits/map/"
 
 ordering:
@@ -27,16 +26,14 @@ ordering:
 
 privacy:
   map_note: >-
-    The public map shows broad postcode-district reach only. Group names may be shown as public supporter names,
-    but private contact names, emails, full addresses, full postcodes, payment details, tracking details and private order records are not published.
+    Locations are shown approximately by postcode district. Public supporter names may be shown where available,
+    but no contact names, emails, full addresses, full postcodes, payment details or private order records are published.
   public_data_note: >-
     Public statistics are aggregated or rounded and are intended to show broad community reach, not private order details.
 
 instructions:
-  drive_folder_url: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
-  drive_folder_label: "Open the public instructions folder"
-  note: >-
-    Build guides and leader documents are stored in the public instructions folder. Please check that you are using the latest version for your kit batch.
+  folder_url: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
+  folder_label: "Open the instruction documents folder"
 
 kits:
   - slug: rocket
@@ -110,10 +107,10 @@ kits:
     instructions_url: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
 
 documents:
-  - title: "Public instructions folder"
+  - title: "Instruction documents folder"
     kit_slug: "all"
     type: "Build guides and leader notes"
-    version: "live folder"
+    version: "current"
     date: ""
     file: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
 
@@ -133,10 +130,6 @@ faq:
   - question: "Why are locations on the map approximate?"
     answer: >-
       To protect privacy. The public map shows broad postcode-district reach only, not full addresses or private order details.
-  - question: "Why are some groups shown by name?"
-    answer: >-
-      Scout groups, schools and clubs are shown only as public supporter names. The site does not publish named contacts,
-      email addresses, full addresses, full postcodes, payment information or private order records.
   - question: "What should I do if something is missing?"
     answer: >-
       Check the packing list in the parcel first, then contact the organiser with the kit type, quantity and missing item.
