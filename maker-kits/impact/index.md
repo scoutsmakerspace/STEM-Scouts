@@ -1,6 +1,7 @@
 ---
-layout: single
-title: "Maker Kits Impact"
+layout: splash
+title: "Maker Kits Public Impact"
+classes: wide maker-kits-wide
 toc: true
 ---
 
@@ -8,34 +9,33 @@ toc: true
 
 {% assign mk = site.data.maker_kits %}
 
-<div class="mk-warning-card">
-  <strong>Public summary:</strong> {{ mk.privacy.public_data_note }}
-</div>
+<section class="mk-hero">
+  <p class="mk-kicker">Public impact</p>
+  <h1>What the Maker Kits project has supported</h1>
+  <p class="mk-hero__intro">These figures show the broad public reach of the Maker Kits project. They are deliberately public-safe: no private contact details, addresses, payments, tracking information or order rows are published.</p>
+</section>
 
-<div id="maker-kits-impact" class="mk-stat-grid mk-stat-grid--six" data-summary-url="{{ '/assets/data/maker_kits_impact_summary.json' | relative_url }}">
+<div id="maker-kits-impact" class="mk-stat-grid" data-summary-url="{{ '/assets/data/maker_kits_impact_summary.json' | relative_url }}">
   <div class="mk-stat-card"><span class="mk-stat-card__value" data-stat="kits_supplied">—</span><span class="mk-stat-card__label">kits supplied</span></div>
-  <div class="mk-stat-card"><span class="mk-stat-card__value" data-stat="groups_supported">—</span><span class="mk-stat-card__label">unique groups supported</span></div>
-  <div class="mk-stat-card"><span class="mk-stat-card__value" data-stat="public_map_entries">—</span><span class="mk-stat-card__label">order / map entries</span></div>
-  <div class="mk-stat-card"><span class="mk-stat-card__value" data-stat="returning_group_entries">—</span><span class="mk-stat-card__label">repeat entries</span></div>
+  <div class="mk-stat-card"><span class="mk-stat-card__value" data-stat="unique_groups_supported">—</span><span class="mk-stat-card__label">unique groups supported</span></div>
+  <div class="mk-stat-card"><span class="mk-stat-card__value" data-stat="public_entries">—</span><span class="mk-stat-card__label">public support entries</span></div>
   <div class="mk-stat-card"><span class="mk-stat-card__value" data-stat="postcode_districts_reached">—</span><span class="mk-stat-card__label">postcode districts reached</span></div>
-  <div class="mk-stat-card"><span class="mk-stat-card__value" data-stat="estimated_young_people_reached">—</span><span class="mk-stat-card__label">estimated young people reached</span></div>
 </div>
 
 <p id="maker-kits-impact-note" class="mk-muted"></p>
 
-## Why the numbers are separated
+## Why entries and groups are different
 
-Some groups have ordered more than once. To keep the public figures honest, the impact page separates:
+A group can appear more than once if they have supported or ordered through the project more than once. For that reason, the impact page separates **unique groups supported** from **public support entries**.
 
-- **unique groups supported** — each group counted once
-- **order / map entries** — the number of public source entries used for the map and totals
-- **repeat entries** — extra entries from groups that appear more than once
-- **postcode districts reached** — broad geographic areas reached, not exact addresses
-
-This means the numbers do add up: repeat entries are included in the order/map entry count, but they do not inflate the unique group count.
+This avoids overstating the number of separate groups while still recognising returning supporters.
 
 ## What is not published
 
-The public impact page does not publish customer emails, contact names, full addresses, exact order rows, payment details, packing assignments, issue notes, tracking numbers or private operational data.
+The public impact page does not publish customer emails, named contacts, full addresses, full postcodes, exact order rows, payment details, packing assignments, private issue notes or tracking numbers.
+
+## Assumptions used
+
+<ul id="maker-kits-impact-assumptions"></ul>
 
 <script src="{{ '/assets/js/maker-kits-impact.js' | relative_url }}"></script>
