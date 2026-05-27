@@ -43,3 +43,88 @@
 
 
 .stem-badge-map__badge-icon{width:32px;height:32px;flex:0 0 32px;object-fit:contain;margin-right:8px;border-radius:4px;}
+
+
+/* Badge map page polish: remove cramped blog-column feel and use the page width. */
+.stem-badge-page .page__content {
+  max-width: none !important;
+  width: min(1180px, calc(100vw - 2rem));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stem-badge-page .stem-badge-map {
+  max-width: none;
+}
+
+.stem-badge-page .stem-badge-map__controls {
+  display: grid;
+  grid-template-columns: minmax(160px, 220px) minmax(180px, 240px) minmax(260px, 1fr) auto;
+  gap: .85rem 1rem;
+  align-items: end;
+}
+
+.stem-badge-page .stem-badge-map__control {
+  min-width: 0;
+}
+
+.stem-badge-page .stem-badge-map__control--checkbox {
+  padding-top: 0;
+  align-self: end;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+.stem-badge-page .stem-badge-map__control input[type="search"],
+.stem-badge-page .stem-badge-map__control select {
+  min-height: 38px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.stem-badge-page .stem-badge-map__results summary {
+  align-items: center;
+}
+
+.stem-badge-page .stem-badge-map__badge {
+  box-sizing: border-box;
+}
+
+.stem-badge-page .stem-badge-map__reqs {
+  margin-left: 48px;
+  max-width: 980px;
+}
+
+@media (max-width: 900px) {
+  .stem-badge-page .stem-badge-map__controls {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stem-badge-page .stem-badge-map__control--checkbox {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 620px) {
+  .stem-badge-page .page__content {
+    width: min(100%, calc(100vw - 1rem));
+  }
+
+  .stem-badge-page .stem-badge-map__controls {
+    grid-template-columns: 1fr;
+  }
+
+  .stem-badge-page .stem-badge-map__reqs {
+    margin-left: 0;
+  }
+
+  .stem-badge-map__results summary {
+    flex-wrap: wrap;
+  }
+
+  .stem-badge-map__counts {
+    width: 100%;
+    margin-left: 40px;
+  }
+}

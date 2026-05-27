@@ -1,9 +1,12 @@
 ---
-layout: single
+layout: splash
 title: "Badge Requirement Links"
 permalink: /badges/
-toc: true
+toc: false
+classes: wide stem-badge-page
 ---
+
+<link rel="stylesheet" href="{{ '/assets/css/stem-badge-map.css' | relative_url }}">
 
 This page links to official badge requirement pages / trusted references where available.
 
