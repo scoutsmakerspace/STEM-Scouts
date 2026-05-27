@@ -270,3 +270,32 @@
   .mk-map { min-height: 520px; height: 68vh; }
   .mk-map-summary { grid-template-columns: 1fr; }
 }
+
+/* Final dashboard alignment: centre the map area in the browser viewport, not inside the theme article column. */
+.maker-kits-map-page .page__content {
+  max-width: none !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.maker-kits-map-page .mk-map-dashboard {
+  box-sizing: border-box;
+  width: calc(100vw - 2rem);
+  max-width: 1680px;
+  margin: 1rem 0 1.5rem 50%;
+  transform: translateX(-50%);
+}
+.maker-kits-map-page .mk-map-summary {
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+}
+.maker-kits-map-page .mk-map-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(310px, 360px);
+}
+@media (max-width: 1200px) {
+  .maker-kits-map-page .mk-map-summary { grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+  .maker-kits-map-page .mk-map-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .maker-kits-map-page .mk-map-dashboard { width: calc(100vw - 1rem); }
+  .maker-kits-map-page .mk-map-summary { grid-template-columns: 1fr; }
+}
