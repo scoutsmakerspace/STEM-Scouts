@@ -1,0 +1,37 @@
+{% assign mk = site.data.maker_kits %}
+<section class="mk-card mk-price-card" id="{{ include.id | default: 'price-list' }}">
+  <h2>{{ mk.price_list.title }}</h2>
+  <p>{{ mk.price_list.note }}</p>
+
+  <div class="mk-price-notes">
+    <strong>Important:</strong>
+    <ul>
+      {% for note in mk.price_list.important %}<li>{{ note }}</li>{% endfor %}
+    </ul>
+  </div>
+
+  <div class="mk-table-wrap">
+    <table class="mk-price-table mk-price-table--tiers">
+      <thead>
+        <tr>
+          <th>Discount</th>
+          <th>Quantity</th>
+          <th>I Can Solder</th>
+          <th>Rocket</th>
+          <th>Camp Fire</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tier in mk.price_list.tiers %}
+        <tr>
+          <td class="mk-price-table__meta">{{ tier.discount }}</td>
+          <td class="mk-price-table__meta">{{ tier.quantity }}</td>
+          <td><strong class="mk-price-main">{{ tier.i_can_solder.lot }}</strong><span class="mk-price-sub">{{ tier.i_can_solder.unit }} each</span></td>
+          <td><strong class="mk-price-main">{{ tier.rocket.lot }}</strong><span class="mk-price-sub">{{ tier.rocket.unit }} each</span></td>
+          <td><strong class="mk-price-main">{{ tier.camp_fire.lot }}</strong><span class="mk-price-sub">{{ tier.camp_fire.unit }} each</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>

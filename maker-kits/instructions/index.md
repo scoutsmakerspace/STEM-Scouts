@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: splash
 title: "Maker Kit Instructions"
 classes: wide maker-kits-wide maker-kits-content-page
 toc: false

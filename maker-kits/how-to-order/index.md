@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: splash
 title: "How to order Maker Kits"
 classes: wide maker-kits-wide maker-kits-content-page
 toc: false
@@ -53,41 +53,7 @@ Before placing an order, check:
 - whether your group has the tools, batteries, workspace and adult support needed for soldering
 - the payment deadline and delivery estimate for the active batch
 
-## Current price list
-
-{{ mk.ordering.pricing_note }}
-
-<div class="mk-price-notes">
-  <strong>Important:</strong>
-  <ul>
-    {% for note in mk.price_list.important %}<li>{{ note }}</li>{% endfor %}
-  </ul>
-</div>
-
-<div class="mk-table-wrap">
-  <table class="mk-price-table mk-price-table--tiers">
-    <thead>
-      <tr>
-        <th>Discount</th>
-        <th>Quantity</th>
-        <th>I Can Solder</th>
-        <th>Rocket</th>
-        <th>Camp Fire</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for tier in mk.price_list.tiers %}
-      <tr>
-        <td>{{ tier.discount }}</td>
-        <td>{{ tier.quantity }}</td>
-        <td><strong class="mk-price-main">{{ tier.i_can_solder.lot }}</strong><br><span class="mk-price-sub">{{ tier.i_can_solder.unit }} each</span></td>
-        <td><strong class="mk-price-main">{{ tier.rocket.lot }}</strong><br><span class="mk-price-sub">{{ tier.rocket.unit }} each</span></td>
-        <td><strong class="mk-price-main">{{ tier.camp_fire.lot }}</strong><br><span class="mk-price-sub">{{ tier.camp_fire.unit }} each</span></td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+{% include maker-kits-price-list.html id="price-list" %}
 
 ## Packing approach
 
