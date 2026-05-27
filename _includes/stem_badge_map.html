@@ -10,35 +10,34 @@
       <select id="stemCategorySelect"></select>
     </div>
 
-    <div class="stem-badge-map__control">
+    <div class="stem-badge-map__control stem-badge-map__control--search">
       <label for="stemSearchInput"><strong>Search</strong></label>
-      <input id="stemSearchInput" type="search" placeholder="Search badges or requirement text…" autocomplete="off" />
+      <input id="stemSearchInput" type="search" placeholder="Search badges, STEM area, thinking skill or requirement…" autocomplete="off" />
     </div>
 
     <div class="stem-badge-map__control stem-badge-map__control--checkbox">
       <label>
         <input id="stemIncludeBorderline" type="checkbox" checked />
-        Include borderline links
+        Include STEM-through-framing links
       </label>
     </div>
   </div>
 
   <p class="stem-badge-map__intro">
-    This is a curated map of badge requirements with a clear STEM link. Each included requirement has a short <em>Why STEM</em> justification.
-    Leader prompts are available on demand to help you run it in a meeting (age notes included where helpful).
+    This is a curated first-pass map of badge requirements that can support STEM learning. <strong>Direct STEM</strong> links are already STEM by nature. <strong>STEM through framing</strong> links become STEM when the leader adds evidence, testing, measurement, design constraints, comparison or explanation.
   </p>
 
   <div id="stemBadgeMapResults" class="stem-badge-map__results" aria-live="polite"></div>
 
   <p class="stem-badge-map__footnote">
-    Note: This page summarises STEM links and does not replace official badge requirements or programme guidance.
+    Note: This page is a planning aid for leaders. It does not replace the official badge requirements or Scouts programme guidance. Always check the official source before signing off badge work.
   </p>
 </div>
 
 <script>window.siteBaseUrl = "{{ site.baseurl }}";</script>
 <script>
   // Single source of truth for the curated STEM mapping.
-  // This is edited via the CMS "STEM Badge Map" manager.
+  // The first V2 pass is generated from badge data, then can be refined through the CMS.
   window.STEM_BADGE_MAP_DATA = {{ site.data.stem_badge_map | jsonify }};
 </script>
 <script defer src="{{ '/assets/js/stem-badge-map.js' | relative_url }}"></script>

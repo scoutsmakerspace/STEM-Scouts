@@ -1,32 +1,15 @@
 ---
-layout: splash
-title: "Badge Requirement Links"
+layout: single
+title: "Where STEM fits into Scout badges"
 permalink: /badges/
 toc: false
-classes: wide stem-badge-page
+classes: wide badge-map-page
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/stem-badge-map.css' | relative_url }}">
 
-This page links to official badge requirement pages / trusted references where available.
+This page helps leaders spot honest opportunities to bring STEM thinking into normal Scout badge work. Some links are direct; others depend on how the activity is run.
 
-(We avoid copying requirement text so links stay current.)
-
----
-
-## STEM badge requirement map
+The aim is not to force STEM into every badge, but to help leaders add measuring, testing, designing, observing, comparing, improving and explaining where it genuinely fits.
 
 {% include stem_badge_map.html %}
-
----
-
-## Official links
-
-{% for section in site.data.badges %}
-## {{ section.section_name }}
-
-{% for b in section.badges %}
-- **{{ b.badge }}** — {{ b.notes }} ([Link]({{ b.url }}))
-{% endfor %}
-
-{% endfor %}
