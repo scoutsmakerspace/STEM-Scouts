@@ -31,6 +31,14 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Build Maker Kits public data
+        run: |
+          python tools/build_maker_kits_public_export.py \
+            --region-report assets/data/source/Region_report.csv \
+            --postcode-districts assets/data/source/postcode_districts.csv \
+            --strict
+          python tools/validate_maker_kits_public_export.py
+
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl ""
 
