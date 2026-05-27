@@ -1,14 +1,14 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "schema_version": "1.1",
-    "generated_at": "2026-05-26T13:55:00Z",
+    "schema_version": "1.2",
+    "generated_at": "2026-05-27T08:25:04Z",
     "source_tool_version": "V1.16.3",
     "location_precision": "postcode_district_centroid",
-    "privacy_level": "named_groups_no_contacts",
+    "privacy_level": "public_group_names",
     "private_fields_removed": true,
-    "group_names_policy": "Scout/group names are shown as public supporter names only. No contact names, emails, addresses, full postcodes, payment, tracking or order-row data is included.",
-    "missing_postcode_districts": []
+    "missing_postcode_districts": [],
+    "scout_district_column_supported": true
   },
   "features": [
     {
@@ -27,13 +27,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Deveron",
+        "scout_districts": [
+          "Deveron"
+        ],
         "public_group_names": [
-          "1st Macduff cub scout group"
+          "1st Macduff Scout Group"
         ],
         "group_details": [
           {
-            "name": "1st Macduff cub scout group",
-            "entries": 1
+            "name": "1st Macduff Scout Group",
+            "entries": 1,
+            "scout_district": "Deveron"
           }
         ]
       }
@@ -54,13 +59,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Deveron",
+        "scout_districts": [
+          "Deveron"
+        ],
         "public_group_names": [
-          "1st Fyvie scout group"
+          "1st Fyvie Scout Group"
         ],
         "group_details": [
           {
-            "name": "1st Fyvie scout group",
-            "entries": 1
+            "name": "1st Fyvie Scout Group",
+            "entries": 1,
+            "scout_district": "Deveron"
           }
         ]
       }
@@ -81,13 +91,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Deveron",
+        "scout_districts": [
+          "Deveron"
+        ],
         "public_group_names": [
           "1st Marnoch"
         ],
         "group_details": [
           {
             "name": "1st Marnoch",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Deveron"
           }
         ]
       }
@@ -108,13 +123,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Bromsgrove",
+        "scout_districts": [
+          "Bromsgrove"
+        ],
         "public_group_names": [
           "Lickey and Blackwell"
         ],
         "group_details": [
           {
             "name": "Lickey and Blackwell",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Bromsgrove"
           }
         ]
       }
@@ -135,13 +155,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "West Warwickshire",
+        "scout_districts": [
+          "West Warwickshire"
+        ],
         "public_group_names": [
           "Studley - Griffin Scouts"
         ],
         "group_details": [
           {
             "name": "Studley - Griffin Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "West Warwickshire"
           }
         ]
       }
@@ -162,13 +187,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Cole",
+        "scout_districts": [
+          "Cole"
+        ],
         "public_group_names": [
           "4th Knowle Sea Scouts"
         ],
         "group_details": [
           {
             "name": "4th Knowle Sea Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Cole"
           }
         ]
       }
@@ -189,13 +219,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "West Warwickshire",
+        "scout_districts": [
+          "West Warwickshire"
+        ],
         "public_group_names": [
           "1st Tanworth in Arden Scouts"
         ],
         "group_details": [
           {
             "name": "1st Tanworth in Arden Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "West Warwickshire"
           }
         ]
       }
@@ -216,13 +251,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Blackburn",
+        "scout_districts": [
+          "Blackburn"
+        ],
         "public_group_names": [
           "Equalinks"
         ],
         "group_details": [
           {
             "name": "Equalinks",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Blackburn"
           }
         ]
       }
@@ -243,13 +283,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Spen Valley",
+        "scout_districts": [
+          "Spen Valley"
+        ],
         "public_group_names": [
           "3rd Spen Valley"
         ],
         "group_details": [
           {
             "name": "3rd Spen Valley",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Spen Valley"
           }
         ]
       }
@@ -270,6 +315,10 @@
         "public_entries": 2,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Bolton Moorland",
+        "scout_districts": [
+          "Bolton Moorland"
+        ],
         "public_group_names": [
           "16th Bolton",
           "16th Bolton Scouts"
@@ -277,11 +326,13 @@
         "group_details": [
           {
             "name": "16th Bolton",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Bolton Moorland"
           },
           {
             "name": "16th Bolton Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Bolton Moorland"
           }
         ]
       }
@@ -302,13 +353,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Bolton Moorland",
+        "scout_districts": [
+          "Bolton Moorland"
+        ],
         "public_group_names": [
           "6th Horwich Scout Group"
         ],
         "group_details": [
           {
             "name": "6th Horwich Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Bolton Moorland"
           }
         ]
       }
@@ -329,13 +385,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Bury and Ramsbottom",
+        "scout_districts": [
+          "Bury and Ramsbottom"
+        ],
         "public_group_names": [
           "44th Bury (R.O.B.O.T.)"
         ],
         "group_details": [
           {
             "name": "44th Bury (R.O.B.O.T.)",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Bury and Ramsbottom"
           }
         ]
       }
@@ -356,13 +417,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Lewes",
+        "scout_districts": [
+          "Lewes"
+        ],
         "public_group_names": [
           "6th Lewes"
         ],
         "group_details": [
           {
             "name": "6th Lewes",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Lewes"
           }
         ]
       }
@@ -383,13 +449,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Bromley",
+        "scout_districts": [
+          "Bromley"
+        ],
         "public_group_names": [
           "1st Beckenham South"
         ],
         "group_details": [
           {
             "name": "1st Beckenham South",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Bromley"
           }
         ]
       }
@@ -410,13 +481,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Axe",
+        "scout_districts": [
+          "Axe"
+        ],
         "public_group_names": [
           "1st North Worle"
         ],
         "group_details": [
           {
             "name": "1st North Worle",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Axe"
           }
         ]
       }
@@ -437,13 +513,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Cabot",
+        "scout_districts": [
+          "Cabot"
+        ],
         "public_group_names": [
           "18th Bristol 1st Redland Green"
         ],
         "group_details": [
           {
             "name": "18th Bristol 1st Redland Green",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Cabot"
           }
         ]
       }
@@ -464,13 +545,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Strangford",
+        "scout_districts": [
+          "Strangford"
+        ],
         "public_group_names": [
           "2nd Ards Scout Group"
         ],
         "group_details": [
           {
             "name": "2nd Ards Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Strangford"
           }
         ]
       }
@@ -491,13 +577,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Tyrone",
+        "scout_districts": [
+          "Tyrone"
+        ],
         "public_group_names": [
           "1st Ballygawley"
         ],
         "group_details": [
           {
             "name": "1st Ballygawley",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Tyrone"
           }
         ]
       }
@@ -518,13 +609,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Saffron Walden",
+        "scout_districts": [
+          "Saffron Walden"
+        ],
         "public_group_names": [
           "1st Thaxted-Carver Scout Group"
         ],
         "group_details": [
           {
             "name": "1st Thaxted-Carver Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Saffron Walden"
           }
         ]
       }
@@ -545,13 +641,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Cardiff North",
+        "scout_districts": [
+          "Cardiff North"
+        ],
         "public_group_names": [
           "Llanishen and Lisvane Scout Group"
         ],
         "group_details": [
           {
             "name": "Llanishen and Lisvane Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Cardiff North"
           }
         ]
       }
@@ -572,13 +673,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Tir A Mor",
+        "scout_districts": [
+          "Tir A Mor"
+        ],
         "public_group_names": [
           "11th Barry Sea Scouts"
         ],
         "group_details": [
           {
             "name": "11th Barry Sea Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Tir A Mor"
           }
         ]
       }
@@ -599,13 +705,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Chester And District",
+        "scout_districts": [
+          "Chester And District"
+        ],
         "public_group_names": [
           "40th Chester (Stags)"
         ],
         "group_details": [
           {
             "name": "40th Chester (Stags)",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Chester And District"
           }
         ]
       }
@@ -626,6 +737,10 @@
         "public_entries": 2,
         "repeat_entries": 0,
         "kits_supplied_band": "250-499",
+        "scout_district": "Bebington",
+        "scout_districts": [
+          "Bebington"
+        ],
         "public_group_names": [
           "13th Bebington (St Barnabas) Scout Group",
           "Bebington District"
@@ -633,11 +748,13 @@
         "group_details": [
           {
             "name": "13th Bebington (St Barnabas) Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Bebington"
           },
           {
             "name": "Bebington District",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Bebington"
           }
         ]
       }
@@ -658,13 +775,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Harlow",
+        "scout_districts": [
+          "Harlow"
+        ],
         "public_group_names": [
           "2nd Great Parndon"
         ],
         "group_details": [
           {
             "name": "2nd Great Parndon",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Harlow"
           }
         ]
       }
@@ -685,13 +807,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Deal Walmer and Sandwich",
+        "scout_districts": [
+          "Deal Walmer and Sandwich"
+        ],
         "public_group_names": [
-          "8th Deal (wingham)"
+          "8th Deal (Wingham)"
         ],
         "group_details": [
           {
-            "name": "8th Deal (wingham)",
-            "entries": 1
+            "name": "8th Deal (Wingham)",
+            "entries": 1,
+            "scout_district": "Deal Walmer and Sandwich"
           }
         ]
       }
@@ -712,13 +839,18 @@
         "public_entries": 2,
         "repeat_entries": 1,
         "kits_supplied_band": "100-249",
+        "scout_district": "Charterhouse",
+        "scout_districts": [
+          "Charterhouse"
+        ],
         "public_group_names": [
           "70th Coventry"
         ],
         "group_details": [
           {
             "name": "70th Coventry",
-            "entries": 2
+            "entries": 2,
+            "scout_district": "Charterhouse"
           }
         ]
       }
@@ -739,13 +871,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "South Angus",
+        "scout_districts": [
+          "South Angus"
+        ],
         "public_group_names": [
           "46th Angus"
         ],
         "group_details": [
           {
             "name": "46th Angus",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "South Angus"
           }
         ]
       }
@@ -766,13 +903,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Derby East",
+        "scout_districts": [
+          "Derby East"
+        ],
         "public_group_names": [
-          "66th Derby 1st Spondon"
+          "66th Derby (1st Spondon)"
         ],
         "group_details": [
           {
-            "name": "66th Derby 1st Spondon",
-            "entries": 1
+            "name": "66th Derby (1st Spondon)",
+            "entries": 1,
+            "scout_district": "Derby East"
           }
         ]
       }
@@ -793,13 +935,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Derby North",
+        "scout_districts": [
+          "Derby North"
+        ],
         "public_group_names": [
           "125th Littleover Scouts"
         ],
         "group_details": [
           {
             "name": "125th Littleover Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Derby North"
           }
         ]
       }
@@ -820,13 +967,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Derby North",
+        "scout_districts": [
+          "Derby North"
+        ],
         "public_group_names": [
           "161st Derby (Hilton)"
         ],
         "group_details": [
           {
             "name": "161st Derby (Hilton)",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Derby North"
           }
         ]
       }
@@ -847,13 +999,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Durham City",
+        "scout_districts": [
+          "Durham City"
+        ],
         "public_group_names": [
           "19th Durham Scouts"
         ],
         "group_details": [
           {
             "name": "19th Durham Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Durham City"
           }
         ]
       }
@@ -874,13 +1031,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Derwentside",
+        "scout_districts": [
+          "Derwentside"
+        ],
         "public_group_names": [
           "1st Consett"
         ],
         "group_details": [
           {
             "name": "1st Consett",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Derwentside"
           }
         ]
       }
@@ -890,24 +1052,29 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -1.3952,
-          54.3675
+          -1.47886,
+          54.3369
         ]
       },
       "properties": {
-        "postcode_district": "DL6",
-        "display_area": "Northallerton East, Ingleby Cross",
+        "postcode_district": "DL7",
+        "display_area": "Northallerton West",
         "groups_supported": 1,
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "North Hambleton",
+        "scout_districts": [
+          "North Hambleton"
+        ],
         "public_group_names": [
           "1st Northallerton Mafeking scouts"
         ],
         "group_details": [
           {
             "name": "1st Northallerton Mafeking scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "North Hambleton"
           }
         ]
       }
@@ -928,13 +1095,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "North Hambleton",
+        "scout_districts": [
+          "North Hambleton"
+        ],
         "public_group_names": [
           "North Hambleton District Scouts"
         ],
         "group_details": [
           {
             "name": "North Hambleton District Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "North Hambleton"
           }
         ]
       }
@@ -955,13 +1127,18 @@
         "public_entries": 2,
         "repeat_entries": 1,
         "kits_supplied_band": "50-99",
+        "scout_district": "Grimsby And Cleethorpes",
+        "scout_districts": [
+          "Grimsby And Cleethorpes"
+        ],
         "public_group_names": [
           "3rd Cleethorpes"
         ],
         "group_details": [
           {
             "name": "3rd Cleethorpes",
-            "entries": 2
+            "entries": 2,
+            "scout_district": "Grimsby And Cleethorpes"
           }
         ]
       }
@@ -982,13 +1159,18 @@
         "public_entries": 2,
         "repeat_entries": 1,
         "kits_supplied_band": "50-99",
+        "scout_district": "Doncaster Danum",
+        "scout_districts": [
+          "Doncaster Danum"
+        ],
         "public_group_names": [
           "9th Doncaster Scout Troop"
         ],
         "group_details": [
           {
             "name": "9th Doncaster Scout Troop",
-            "entries": 2
+            "entries": 2,
+            "scout_district": "Doncaster Danum"
           }
         ]
       }
@@ -1009,13 +1191,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "North Dorset",
+        "scout_districts": [
+          "North Dorset"
+        ],
         "public_group_names": [
           "Blandford Scout Group & The Winterborne Scout Group"
         ],
         "group_details": [
           {
             "name": "Blandford Scout Group & The Winterborne Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "North Dorset"
           }
         ]
       }
@@ -1025,24 +1212,29 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -2.22914,
-          52.3866
+          -2.32326,
+          52.3865
         ]
       },
       "properties": {
-        "postcode_district": "DY10",
-        "display_area": "Kidderminster",
+        "postcode_district": "DY12",
+        "display_area": "Bewdley",
         "groups_supported": 1,
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Wyre Forest",
+        "scout_districts": [
+          "Wyre Forest"
+        ],
         "public_group_names": [
           "WF11 Harkaway Explorers"
         ],
         "group_details": [
           {
             "name": "WF11 Harkaway Explorers",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Wyre Forest"
           }
         ]
       }
@@ -1063,13 +1255,18 @@
         "public_entries": 2,
         "repeat_entries": 1,
         "kits_supplied_band": "100-249",
+        "scout_district": "Waltham Forest",
+        "scout_districts": [
+          "Waltham Forest"
+        ],
         "public_group_names": [
           "30th Walthamstow"
         ],
         "group_details": [
           {
             "name": "30th Walthamstow",
-            "entries": 2
+            "entries": 2,
+            "scout_district": "Waltham Forest"
           }
         ]
       }
@@ -1090,13 +1287,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Exeter",
+        "scout_districts": [
+          "Exeter"
+        ],
         "public_group_names": [
           "2nd Exeter Scouts"
         ],
         "group_details": [
           {
             "name": "2nd Exeter Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Exeter"
           }
         ]
       }
@@ -1117,13 +1319,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Exeter",
+        "scout_districts": [
+          "Exeter"
+        ],
         "public_group_names": [
           "1st Topsham Scouts"
         ],
         "group_details": [
           {
             "name": "1st Topsham Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Exeter"
           }
         ]
       }
@@ -1144,13 +1351,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Clackmannanshire",
+        "scout_districts": [
+          "Clackmannanshire"
+        ],
         "public_group_names": [
           "Menstrie Scouts"
         ],
         "group_details": [
           {
             "name": "Menstrie Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Clackmannanshire"
           }
         ]
       }
@@ -1171,13 +1383,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Falkirk",
+        "scout_districts": [
+          "Falkirk"
+        ],
         "public_group_names": [
           "51st Dennyloanhead Scout Group"
         ],
         "group_details": [
           {
             "name": "51st Dennyloanhead Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Falkirk"
           }
         ]
       }
@@ -1198,13 +1415,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "South East",
+        "scout_districts": [
+          "South East"
+        ],
         "public_group_names": [
           "105th Glasgow Scouts"
         ],
         "group_details": [
           {
             "name": "105th Glasgow Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "South East"
           }
         ]
       }
@@ -1225,13 +1447,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Gloucester",
+        "scout_districts": [
+          "Gloucester"
+        ],
         "public_group_names": [
           "Unmentionables ESU"
         ],
         "group_details": [
           {
             "name": "Unmentionables ESU",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Gloucester"
           }
         ]
       }
@@ -1252,13 +1479,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Stroud And Tetbury",
+        "scout_districts": [
+          "Stroud And Tetbury"
+        ],
         "public_group_names": [
           "Randwick Scouts"
         ],
         "group_details": [
           {
             "name": "Randwick Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Stroud And Tetbury"
           }
         ]
       }
@@ -1279,13 +1511,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Blackwater Valley",
+        "scout_districts": [
+          "Blackwater Valley"
+        ],
         "public_group_names": [
           "8th Farnborough Air Scouts"
         ],
         "group_details": [
           {
             "name": "8th Farnborough Air Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Blackwater Valley"
           }
         ]
       }
@@ -1306,13 +1543,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Woking",
+        "scout_districts": [
+          "Woking"
+        ],
         "public_group_names": [
           "Sheerwater Scout Group"
         ],
         "group_details": [
           {
             "name": "Sheerwater Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Woking"
           }
         ]
       }
@@ -1333,13 +1575,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Crosby",
+        "scout_districts": [
+          "Crosby"
+        ],
         "public_group_names": [
           "30th Crosby"
         ],
         "group_details": [
           {
             "name": "30th Crosby",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Crosby"
           }
         ]
       }
@@ -1360,13 +1607,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Rutland",
+        "scout_districts": [
+          "Rutland"
+        ],
         "public_group_names": [
           "2nd Cottesmore"
         ],
         "group_details": [
           {
             "name": "2nd Cottesmore",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Rutland"
           }
         ]
       }
@@ -1387,13 +1639,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Leicester North East",
+        "scout_districts": [
+          "Leicester North East"
+        ],
         "public_group_names": [
           "115th Leicester"
         ],
         "group_details": [
           {
             "name": "115th Leicester",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Leicester North East"
           }
         ]
       }
@@ -1414,13 +1671,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Lincoln",
+        "scout_districts": [
+          "Lincoln"
+        ],
         "public_group_names": [
           "8th Lincoln (1st Wragby)"
         ],
         "group_details": [
           {
             "name": "8th Lincoln (1st Wragby)",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Lincoln"
           }
         ]
       }
@@ -1441,13 +1703,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Shire Oak",
+        "scout_districts": [
+          "Shire Oak"
+        ],
         "public_group_names": [
           "7th Airedale"
         ],
         "group_details": [
           {
             "name": "7th Airedale",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Shire Oak"
           }
         ]
       }
@@ -1468,13 +1735,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Wetherby",
+        "scout_districts": [
+          "Wetherby"
+        ],
         "public_group_names": [
           "Wetherby District Explorers"
         ],
         "group_details": [
           {
             "name": "Wetherby District Explorers",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Wetherby"
           }
         ]
       }
@@ -1495,6 +1767,10 @@
         "public_entries": 2,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Wharfedale",
+        "scout_districts": [
+          "Wharfedale"
+        ],
         "public_group_names": [
           "2nd Otley Scouts",
           "Otley Bridge Church Scouts"
@@ -1502,11 +1778,13 @@
         "group_details": [
           {
             "name": "2nd Otley Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Wharfedale"
           },
           {
             "name": "Otley Bridge Church Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Wharfedale"
           }
         ]
       }
@@ -1527,13 +1805,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "South Leeds & Morley",
+        "scout_districts": [
+          "South Leeds & Morley"
+        ],
         "public_group_names": [
           "Rothwell Scouts"
         ],
         "group_details": [
           {
             "name": "Rothwell Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "South Leeds & Morley"
           }
         ]
       }
@@ -1554,13 +1837,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Falkes",
+        "scout_districts": [
+          "Falkes"
+        ],
         "public_group_names": [
           "Leagrave Scout Group"
         ],
         "group_details": [
           {
             "name": "Leagrave Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Falkes"
           }
         ]
       }
@@ -1581,13 +1869,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Leighton-Linslade",
+        "scout_districts": [
+          "Leighton-Linslade"
+        ],
         "public_group_names": [
           "Heath and Reach"
         ],
         "group_details": [
           {
             "name": "Heath and Reach",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Leighton-Linslade"
           }
         ]
       }
@@ -1608,13 +1901,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "250-499",
+        "scout_district": "Manchester",
+        "scout_districts": [
+          "Manchester"
+        ],
         "public_group_names": [
           "Chorlton Scout Group"
         ],
         "group_details": [
           {
             "name": "Chorlton Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Manchester"
           }
         ]
       }
@@ -1635,13 +1933,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Manchester South",
+        "scout_districts": [
+          "Manchester South"
+        ],
         "public_group_names": [
           "1st Wythenshawe"
         ],
         "group_details": [
           {
             "name": "1st Wythenshawe",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Manchester South"
           }
         ]
       }
@@ -1662,18 +1965,24 @@
         "public_entries": 2,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Clydesdale",
+        "scout_districts": [
+          "Clydesdale"
+        ],
         "public_group_names": [
           "3rd Carluke Scouts",
-          "6th Lanarkshire (1st Carluke) St Johnâ€™s Scouts"
+          "6th Lanarkshire (1st Carluke) St John's Scouts"
         ],
         "group_details": [
           {
             "name": "3rd Carluke Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Clydesdale"
           },
           {
-            "name": "6th Lanarkshire (1st Carluke) St Johnâ€™s Scouts",
-            "entries": 1
+            "name": "6th Lanarkshire (1st Carluke) St John's Scouts",
+            "entries": 1,
+            "scout_district": "Clydesdale"
           }
         ]
       }
@@ -1694,13 +2003,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "City of Newcastle",
+        "scout_districts": [
+          "City of Newcastle"
+        ],
         "public_group_names": [
           "1st Lemington Scouts"
         ],
         "group_details": [
           {
             "name": "1st Lemington Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "City of Newcastle"
           }
         ]
       }
@@ -1721,13 +2035,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Tynemouth",
+        "scout_districts": [
+          "Tynemouth"
+        ],
         "public_group_names": [
           "18th Wallsend Scouts/Tynemouth Scouts"
         ],
         "group_details": [
           {
             "name": "18th Wallsend Scouts/Tynemouth Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Tynemouth"
           }
         ]
       }
@@ -1745,9 +2064,13 @@
         "postcode_district": "NE7",
         "display_area": "High Heaton, Benton",
         "groups_supported": 2,
-        "public_entries": 3,
-        "repeat_entries": 1,
+        "public_entries": 2,
+        "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "City of Newcastle",
+        "scout_districts": [
+          "City of Newcastle"
+        ],
         "public_group_names": [
           "61st Newcastle Scout Group",
           "Dene Explorers"
@@ -1755,11 +2078,13 @@
         "group_details": [
           {
             "name": "61st Newcastle Scout Group",
-            "entries": 2
+            "entries": 1,
+            "scout_district": "City of Newcastle"
           },
           {
             "name": "Dene Explorers",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "City of Newcastle"
           }
         ]
       }
@@ -1780,13 +2105,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Central Notts",
+        "scout_districts": [
+          "Central Notts"
+        ],
         "public_group_names": [
           "1st Trentside Scouts"
         ],
         "group_details": [
           {
             "name": "1st Trentside Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Central Notts"
           }
         ]
       }
@@ -1807,13 +2137,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Rushcliffe",
+        "scout_districts": [
+          "Rushcliffe"
+        ],
         "public_group_names": [
           "4th West Bridgford Scouts"
         ],
         "group_details": [
           {
             "name": "4th West Bridgford Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Rushcliffe"
           }
         ]
       }
@@ -1834,13 +2169,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Glendon",
+        "scout_districts": [
+          "Glendon"
+        ],
         "public_group_names": [
           "1st Corby"
         ],
         "group_details": [
           {
             "name": "1st Corby",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Glendon"
           }
         ]
       }
@@ -1861,13 +2201,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Glendon",
+        "scout_districts": [
+          "Glendon"
+        ],
         "public_group_names": [
           "7th Corby Scout Group"
         ],
         "group_details": [
           {
             "name": "7th Corby Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Glendon"
           }
         ]
       }
@@ -1888,13 +2233,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Monmouthshire",
+        "scout_districts": [
+          "Monmouthshire"
+        ],
         "public_group_names": [
           "1st Goytre"
         ],
         "group_details": [
           {
             "name": "1st Goytre",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Monmouthshire"
           }
         ]
       }
@@ -1915,13 +2265,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "East Norfolk",
+        "scout_districts": [
+          "East Norfolk"
+        ],
         "public_group_names": [
           "1st Acle Scouts"
         ],
         "group_details": [
           {
             "name": "1st Acle Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "East Norfolk"
           }
         ]
       }
@@ -1942,18 +2297,24 @@
         "public_entries": 2,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Rossendale Valley",
+        "scout_districts": [
+          "Rossendale Valley"
+        ],
         "public_group_names": [
           "2nd Rossendale Scout Group",
-          "42nd Rossendale Scout GroupOL"
+          "42nd Rossendale Scout Group"
         ],
         "group_details": [
           {
             "name": "2nd Rossendale Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Rossendale Valley"
           },
           {
-            "name": "42nd Rossendale Scout GroupOL",
-            "entries": 1
+            "name": "42nd Rossendale Scout Group",
+            "entries": 1,
+            "scout_district": "Rossendale Valley"
           }
         ]
       }
@@ -1974,13 +2335,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Oldham Borough",
+        "scout_districts": [
+          "Oldham Borough"
+        ],
         "public_group_names": [
           "20th Oldham Scout Group"
         ],
         "group_details": [
           {
             "name": "20th Oldham Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Oldham Borough"
           }
         ]
       }
@@ -2001,6 +2367,10 @@
         "public_entries": 2,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "North Oxfordshire",
+        "scout_districts": [
+          "North Oxfordshire"
+        ],
         "public_group_names": [
           "7th Banbury Scout Group",
           "7th Banbury Scout Troop"
@@ -2008,11 +2378,13 @@
         "group_details": [
           {
             "name": "7th Banbury Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "North Oxfordshire"
           },
           {
             "name": "7th Banbury Scout Troop",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "North Oxfordshire"
           }
         ]
       }
@@ -2033,13 +2405,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Hinchingbrooke",
+        "scout_districts": [
+          "Hinchingbrooke"
+        ],
         "public_group_names": [
           "2nd St Neots"
         ],
         "group_details": [
           {
             "name": "2nd St Neots",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Hinchingbrooke"
           }
         ]
       }
@@ -2060,13 +2437,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Hinchingbrooke",
+        "scout_districts": [
+          "Hinchingbrooke"
+        ],
         "public_group_names": [
           "1st Brington"
         ],
         "group_details": [
           {
             "name": "1st Brington",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Hinchingbrooke"
           }
         ]
       }
@@ -2087,13 +2469,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Perth and Kinross",
+        "scout_districts": [
+          "Perth and Kinross"
+        ],
         "public_group_names": [
           "3rd Perthshire (Scone) Scouts"
         ],
         "group_details": [
           {
             "name": "3rd Perthshire (Scone) Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Perth and Kinross"
           }
         ]
       }
@@ -2114,13 +2501,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Gosport",
+        "scout_districts": [
+          "Gosport"
+        ],
         "public_group_names": [
           "5th Gosport Sea Scouts"
         ],
         "group_details": [
           {
             "name": "5th Gosport Sea Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Gosport"
           }
         ]
       }
@@ -2141,13 +2533,18 @@
         "public_entries": 2,
         "repeat_entries": 1,
         "kits_supplied_band": "250-499",
+        "scout_district": "Preston And District",
+        "scout_districts": [
+          "Preston And District"
+        ],
         "public_group_names": [
           "Deepdale Central (PMGHS) Scouts"
         ],
         "group_details": [
           {
             "name": "Deepdale Central (PMGHS) Scouts",
-            "entries": 2
+            "entries": 2,
+            "scout_district": "Preston And District"
           }
         ]
       }
@@ -2168,13 +2565,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Kennet",
+        "scout_districts": [
+          "Kennet"
+        ],
         "public_group_names": [
           "2nd Newbury Scouts"
         ],
         "group_details": [
           {
             "name": "2nd Newbury Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Kennet"
           }
         ]
       }
@@ -2195,13 +2597,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Bramshill",
+        "scout_districts": [
+          "Bramshill"
+        ],
         "public_group_names": [
-          "4th Bramshill Hartley Wintney"
+          "4th Bramshill (Hartley Wintney)"
         ],
         "group_details": [
           {
-            "name": "4th Bramshill Hartley Wintney",
-            "entries": 1
+            "name": "4th Bramshill (Hartley Wintney)",
+            "entries": 1,
+            "scout_district": "Bramshill"
           }
         ]
       }
@@ -2222,13 +2629,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Pang Valley",
+        "scout_districts": [
+          "Pang Valley"
+        ],
         "public_group_names": [
           "1st Theale and Calcot"
         ],
         "group_details": [
           {
             "name": "1st Theale and Calcot",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Pang Valley"
           }
         ]
       }
@@ -2249,13 +2661,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Loddon",
+        "scout_districts": [
+          "Loddon"
+        ],
         "public_group_names": [
           "1st Woodley"
         ],
         "group_details": [
           {
             "name": "1st Woodley",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Loddon"
           }
         ]
       }
@@ -2276,6 +2693,10 @@
         "public_entries": 2,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Horsham",
+        "scout_districts": [
+          "Horsham"
+        ],
         "public_group_names": [
           "2nd Horsham",
           "Titans Explorer Scout Unit"
@@ -2283,11 +2704,13 @@
         "group_details": [
           {
             "name": "2nd Horsham",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Horsham"
           },
           {
             "name": "Titans Explorer Scout Unit",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Horsham"
           }
         ]
       }
@@ -2308,13 +2731,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Mid Sussex",
+        "scout_districts": [
+          "Mid Sussex"
+        ],
         "public_group_names": [
           "Rowallan"
         ],
         "group_details": [
           {
             "name": "Rowallan",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Mid Sussex"
           }
         ]
       }
@@ -2332,9 +2760,13 @@
         "postcode_district": "RH16",
         "display_area": "Haywards Heath, Lindfield",
         "groups_supported": 2,
-        "public_entries": 3,
-        "repeat_entries": 1,
+        "public_entries": 2,
+        "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Mid Sussex",
+        "scout_districts": [
+          "Mid Sussex"
+        ],
         "public_group_names": [
           "10th Haywards Heath Scouts",
           "1st Lindfield"
@@ -2342,11 +2774,13 @@
         "group_details": [
           {
             "name": "10th Haywards Heath Scouts",
-            "entries": 2
+            "entries": 1,
+            "scout_district": "Mid Sussex"
           },
           {
             "name": "1st Lindfield",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Mid Sussex"
           }
         ]
       }
@@ -2367,13 +2801,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Reigate",
+        "scout_districts": [
+          "Reigate"
+        ],
         "public_group_names": [
           "Reigate District"
         ],
         "group_details": [
           {
             "name": "Reigate District",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Reigate"
           }
         ]
       }
@@ -2394,13 +2833,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Thurrock",
+        "scout_districts": [
+          "Thurrock"
+        ],
         "public_group_names": [
           "East Tilbury Scout Group"
         ],
         "group_details": [
           {
             "name": "East Tilbury Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Thurrock"
           }
         ]
       }
@@ -2421,13 +2865,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Sheffield Norfolk",
+        "scout_districts": [
+          "Sheffield Norfolk"
+        ],
         "public_group_names": [
           "270th Intake"
         ],
         "group_details": [
           {
             "name": "270th Intake",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Sheffield Norfolk"
           }
         ]
       }
@@ -2448,13 +2897,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Lewisham",
+        "scout_districts": [
+          "Lewisham"
+        ],
         "public_group_names": [
           "3rd Crofton Park"
         ],
         "group_details": [
           {
             "name": "3rd Crofton Park",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Lewisham"
           }
         ]
       }
@@ -2475,13 +2929,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Royal Greenwich",
+        "scout_districts": [
+          "Royal Greenwich"
+        ],
         "public_group_names": [
           "3rd Royal Eltham Storm Troop"
         ],
         "group_details": [
           {
             "name": "3rd Royal Eltham Storm Troop",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Royal Greenwich"
           }
         ]
       }
@@ -2502,13 +2961,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Hertford",
+        "scout_districts": [
+          "Hertford"
+        ],
         "public_group_names": [
           "1st Watton at Stone"
         ],
         "group_details": [
           {
             "name": "1st Watton at Stone",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Hertford"
           }
         ]
       }
@@ -2529,6 +2993,10 @@
         "public_entries": 2,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Biggleswade & District",
+        "scout_districts": [
+          "Biggleswade & District"
+        ],
         "public_group_names": [
           "1st Arlesey",
           "1st Arlesey Halifax Troop"
@@ -2536,11 +3004,13 @@
         "group_details": [
           {
             "name": "1st Arlesey",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Biggleswade & District"
           },
           {
             "name": "1st Arlesey Halifax Troop",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Biggleswade & District"
           }
         ]
       }
@@ -2561,13 +3031,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Biggleswade",
+        "scout_districts": [
+          "Biggleswade"
+        ],
         "public_group_names": [
           "Irwin Scouts"
         ],
         "group_details": [
           {
             "name": "Irwin Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Biggleswade"
           }
         ]
       }
@@ -2588,13 +3063,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Three Brooks District",
+        "scout_districts": [
+          "Three Brooks District"
+        ],
         "public_group_names": [
           "3rd Heald Green"
         ],
         "group_details": [
           {
             "name": "3rd Heald Green",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Three Brooks District"
           }
         ]
       }
@@ -2615,13 +3095,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Misbourne Valley",
+        "scout_districts": [
+          "Misbourne Valley"
+        ],
         "public_group_names": [
           "1st CSP Scouts"
         ],
         "group_details": [
           {
             "name": "1st CSP Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Misbourne Valley"
           }
         ]
       }
@@ -2642,13 +3127,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Wiltshire North",
+        "scout_districts": [
+          "Wiltshire North"
+        ],
         "public_group_names": [
           "Wiltshire North Explorers"
         ],
         "group_details": [
           {
             "name": "Wiltshire North Explorers",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Wiltshire North"
           }
         ]
       }
@@ -2669,13 +3159,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Wiltshire North",
+        "scout_districts": [
+          "Wiltshire North"
+        ],
         "public_group_names": [
           "1st Malmesbury (King Athelstan) Scout Group"
         ],
         "group_details": [
           {
             "name": "1st Malmesbury (King Athelstan) Scout Group",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Wiltshire North"
           }
         ]
       }
@@ -2696,13 +3191,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Swindon North",
+        "scout_districts": [
+          "Swindon North"
+        ],
         "public_group_names": [
           "Northview Scouts"
         ],
         "group_details": [
           {
             "name": "Northview Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Swindon North"
           }
         ]
       }
@@ -2723,13 +3223,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "500+",
+        "scout_district": "Essex",
+        "scout_districts": [
+          "Essex"
+        ],
         "public_group_names": [
           "Essex Scouts"
         ],
         "group_details": [
           {
             "name": "Essex Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Essex"
           }
         ]
       }
@@ -2750,13 +3255,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Stafford",
+        "scout_districts": [
+          "Stafford"
+        ],
         "public_group_names": [
           "12th Stafford/Mercury Cubs"
         ],
         "group_details": [
           {
             "name": "12th Stafford/Mercury Cubs",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Stafford"
           }
         ]
       }
@@ -2777,13 +3287,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Macclesfield And Congleton",
+        "scout_districts": [
+          "Macclesfield And Congleton"
+        ],
         "public_group_names": [
           "1st Buglawton"
         ],
         "group_details": [
           {
             "name": "1st Buglawton",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Macclesfield And Congleton"
           }
         ]
       }
@@ -2804,13 +3319,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "250-499",
+        "scout_district": "Lambeth",
+        "scout_districts": [
+          "Lambeth"
+        ],
         "public_group_names": [
           "4th Streatham Sea Scouts"
         ],
         "group_details": [
           {
             "name": "4th Streatham Sea Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Lambeth"
           }
         ]
       }
@@ -2831,13 +3351,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Shropshire Borders",
+        "scout_districts": [
+          "Shropshire Borders"
+        ],
         "public_group_names": [
           "2nd Longmynd"
         ],
         "group_details": [
           {
             "name": "2nd Longmynd",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Shropshire Borders"
           }
         ]
       }
@@ -2858,13 +3383,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Newcastle",
+        "scout_districts": [
+          "Newcastle"
+        ],
         "public_group_names": [
           "1st Ashley Scouts"
         ],
         "group_details": [
           {
             "name": "1st Ashley Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Newcastle"
           }
         ]
       }
@@ -2885,13 +3415,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Sevenoaks",
+        "scout_districts": [
+          "Sevenoaks"
+        ],
         "public_group_names": [
           "4th Sevenoaks (St. John's) Scouts"
         ],
         "group_details": [
           {
             "name": "4th Sevenoaks (St. John's) Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Sevenoaks"
           }
         ]
       }
@@ -2912,13 +3447,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Sevenoaks",
+        "scout_districts": [
+          "Sevenoaks"
+        ],
         "public_group_names": [
           "9th Sevenoaks (Seal) Scouts"
         ],
         "group_details": [
           {
             "name": "9th Sevenoaks (Seal) Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Sevenoaks"
           }
         ]
       }
@@ -2939,13 +3479,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Royal Tunbridge Wells",
+        "scout_districts": [
+          "Royal Tunbridge Wells"
+        ],
         "public_group_names": [
           "23rd Hawkenbury, Tunbridge Wells"
         ],
         "group_details": [
           {
             "name": "23rd Hawkenbury, Tunbridge Wells",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Royal Tunbridge Wells"
           }
         ]
       }
@@ -2966,13 +3511,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Mid Cornwall",
+        "scout_districts": [
+          "Mid Cornwall"
+        ],
         "public_group_names": [
           "Artemis ESU"
         ],
         "group_details": [
           {
             "name": "Artemis ESU",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Mid Cornwall"
           }
         ]
       }
@@ -2993,13 +3543,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Thameside Grand Union",
+        "scout_districts": [
+          "Thameside Grand Union"
+        ],
         "public_group_names": [
           "10th Feltham"
         ],
         "group_details": [
           {
             "name": "10th Feltham",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Thameside Grand Union"
           }
         ]
       }
@@ -3020,13 +3575,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "North London",
+        "scout_districts": [
+          "North London"
+        ],
         "public_group_names": [
           "8th Holborn"
         ],
         "group_details": [
           {
             "name": "8th Holborn",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "North London"
           }
         ]
       }
@@ -3047,13 +3607,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "100-249",
+        "scout_district": "Watford North",
+        "scout_districts": [
+          "Watford North"
+        ],
         "public_group_names": [
           "1st North Watford"
         ],
         "group_details": [
           {
             "name": "1st North Watford",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Watford North"
           }
         ]
       }
@@ -3074,13 +3639,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "West Warwickshire",
+        "scout_districts": [
+          "West Warwickshire"
+        ],
         "public_group_names": [
           "1st Salford Priors"
         ],
         "group_details": [
           {
             "name": "1st Salford Priors",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "West Warwickshire"
           }
         ]
       }
@@ -3101,13 +3671,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "25-49",
+        "scout_district": "Wolds & Coast",
+        "scout_districts": [
+          "Wolds & Coast"
+        ],
         "public_group_names": [
           "Nafferton Scouts"
         ],
         "group_details": [
           {
             "name": "Nafferton Scouts",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Wolds & Coast"
           }
         ]
       }
@@ -3128,13 +3703,18 @@
         "public_entries": 1,
         "repeat_entries": 0,
         "kits_supplied_band": "50-99",
+        "scout_district": "Pocklington",
+        "scout_districts": [
+          "Pocklington"
+        ],
         "public_group_names": [
           "Pocklington Scout Troop"
         ],
         "group_details": [
           {
             "name": "Pocklington Scout Troop",
-            "entries": 1
+            "entries": 1,
+            "scout_district": "Pocklington"
           }
         ]
       }

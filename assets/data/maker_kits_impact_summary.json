@@ -1,26 +1,31 @@
 {
-  "schema_version": "1.1",
-  "generated_at": "2026-05-26T13:55:00Z",
+  "schema_version": "1.2",
+  "generated_at": "2026-05-27T08:25:04Z",
   "source_tool_version": "V1.16.3",
-  "privacy_level": "named_groups_no_contacts",
+  "privacy_level": "public_group_names",
   "totals": {
     "kits_supplied": 8915,
     "unique_groups_supported": 124,
-    "groups_supported": 124,
-    "public_entries": 131,
-    "repeat_entries": 7,
+    "public_support_entries": 129,
+    "returning_groups": 5,
+    "repeat_entries": 5,
     "postcode_districts_reached": 114,
+    "scout_districts_reached": 100,
     "batches_completed": null,
     "estimated_young_people_reached": 8915,
     "estimated_effort_hours": null
   },
   "assumptions": {
-    "groups_supported": "Unique public group names in the current public map source. Repeat entries are counted separately as returning/repeat support.",
-    "public_entries": "Number of public source rows used to build the map. This may be higher than unique groups because some groups appear more than once.",
+    "unique_groups_supported": "Unique public group names counted from the public map source. Review before publishing.",
+    "public_support_entries": "Rows in the public map source; repeat groups are counted separately here.",
+    "returning_groups": "Unique public group names with more than one entry.",
+    "scout_districts_reached": "Unique Scout district names supplied in Region_report.csv.",
     "young_people_reached": "Placeholder estimate using one kit per young person. Adjust if your public reporting uses a different assumption.",
-    "map_counts": "Map popups show kit bands rather than exact per-district or per-group quantities."
+    "map_counts": "Map popups use kit bands, not exact per-district or per-group kit quantities."
   },
   "warnings": {
-    "missing_postcode_districts": []
+    "missing_postcode_districts": [],
+    "missing_map_district_rows": [],
+    "missing_scout_district_rows": []
   }
 }
