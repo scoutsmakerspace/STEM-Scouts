@@ -482,3 +482,104 @@
     row-gap: .15rem;
   }
 }
+
+
+/* Refinement: kit card row alignment and fuller price table */
+.mk-meta-list {
+  grid-auto-rows: auto;
+}
+.mk-meta-list div {
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  align-items: baseline;
+}
+.mk-meta-list dt,
+.mk-meta-list dd {
+  overflow-wrap: anywhere;
+}
+.mk-kit-card__body {
+  justify-content: flex-start;
+}
+.mk-kit-card__body > ul {
+  margin-top: -.25rem;
+}
+
+.mk-price-card {
+  padding: 1.15rem;
+  overflow: hidden;
+}
+.mk-price-card > h2 {
+  margin-top: 0;
+  border-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+.mk-price-card .mk-table-wrap {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 1rem;
+  overflow-x: auto;
+  border: 1px solid rgba(0,0,0,.13);
+  border-radius: 12px;
+  background: #fff;
+}
+.mk-price-card table.mk-price-table,
+.mk-price-card table.mk-price-table--tiers {
+  display: table !important;
+  width: 100% !important;
+  min-width: 760px;
+  table-layout: fixed;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+}
+.mk-price-card .mk-price-table th,
+.mk-price-card .mk-price-table td {
+  border: 0 !important;
+  border-right: 1px solid rgba(0,0,0,.12) !important;
+  border-bottom: 1px solid rgba(0,0,0,.12) !important;
+  padding: .75rem .65rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.mk-price-card .mk-price-table th:last-child,
+.mk-price-card .mk-price-table td:last-child {
+  border-right: 0 !important;
+}
+.mk-price-card .mk-price-table tbody tr:last-child td {
+  border-bottom: 0 !important;
+}
+.mk-price-card .mk-price-table th {
+  background: rgba(0,0,0,.045);
+  font-weight: 800;
+}
+.mk-price-card .mk-price-table td:nth-child(1),
+.mk-price-card .mk-price-table td:nth-child(2),
+.mk-price-card .mk-price-table th:nth-child(1),
+.mk-price-card .mk-price-table th:nth-child(2) {
+  width: 9rem;
+}
+.mk-price-card .mk-price-table td strong {
+  display: block;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+.mk-price-card .mk-price-table td .mk-muted {
+  display: block;
+  margin-top: .2rem;
+  font-size: .82rem;
+  opacity: .72;
+}
+.mk-price-notes {
+  max-width: none;
+}
+@media (max-width: 700px) {
+  .mk-price-card .mk-price-table th,
+  .mk-price-card .mk-price-table td {
+    padding: .6rem .5rem;
+  }
+  .mk-meta-list div {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}

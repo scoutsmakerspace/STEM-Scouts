@@ -159,17 +159,40 @@ price_list:
         lot: "£742.50"
 
 kits:
+  - slug: i-can-solder
+    name: "I can solder badge kit"
+    short_description: "The simplest starter kit for first-time soldering and confidence-building."
+    difficulty: "Easiest"
+    build_time: "around 5–10 minutes per kit/workstation, depending on confidence"
+    age_guidance: "Designed for supervised group sessions and first-time soldering practice."
+    skills:
+      - "First solder joints"
+      - "Safe soldering setup"
+      - "Following a simple build sequence"
+      - "Checking solder joint quality"
+    included:
+      - "PCB"
+      - "Simple electronic components"
+      - "Fixings where required"
+    tools_needed:
+      - "Soldering iron and solder"
+      - "Side cutters"
+      - "Safety glasses"
+      - "Adult supervision and a suitable risk assessment"
+    image: ""
+    instructions_url: "/docs/instructions/I%20Can%20Solder%20badge%20instructions%20v2.pdf"
+
   - slug: rocket
     name: "Rocket soldering kit"
-    short_description: "A beginner-friendly LED soldering kit that works well as a first electronics build."
-    difficulty: "Beginner"
-    build_time: "30–60 minutes"
+    short_description: "A beginner-friendly LED soldering kit with more components to place and check."
+    difficulty: "Easy+"
+    build_time: "around 10–20 minutes per kit/workstation, depending on confidence"
     age_guidance: "Best with adult supervision; suitable for youth groups where soldering safety is managed properly."
     skills:
-      - "Through-hole soldering"
+      - "Through-hole soldering with more components"
       - "LED polarity and orientation"
-      - "Using resistors in a simple circuit"
-      - "Mechanical assembly with PCBs and fixings"
+      - "Resistor placement and simple circuits"
+      - "Mechanical assembly with PCB fixings"
     included:
       - "PCB"
       - "LEDs and electronic components"
@@ -185,15 +208,15 @@ kits:
 
   - slug: camp-fire
     name: "Camp fire soldering kit"
-    short_description: "A themed electronics kit for practising soldering while building a small light-up project."
-    difficulty: "Beginner"
-    build_time: "30–60 minutes"
+    short_description: "An easy themed light-up electronics kit for practising soldering and testing."
+    difficulty: "Easy"
+    build_time: "around 10–20 minutes per kit/workstation, depending on confidence"
     age_guidance: "Good for Cubs, Scouts and similar groups with suitable adult support."
     skills:
       - "Through-hole soldering practice"
-      - "Component identification and placement"
-      - "LED polarity and visual effect"
-      - "Testing and troubleshooting"
+      - "Component placement and orientation"
+      - "LED polarity and simple circuit testing"
+      - "Troubleshooting a light-up build"
     included:
       - "PCB"
       - "LEDs and components"
@@ -205,29 +228,6 @@ kits:
       - "Adult supervision and a suitable risk assessment"
     image: ""
     instructions_url: "/docs/instructions/Camp%20Fire%20badge%20instructions%20v2.pdf"
-
-  - slug: i-can-solder
-    name: "I can solder badge kit"
-    short_description: "A simple confidence-building soldering activity for young makers."
-    difficulty: "Beginner"
-    build_time: "20–45 minutes"
-    age_guidance: "Designed for supervised group sessions and first-time soldering practice."
-    skills:
-      - "First solder joints"
-      - "Following a simple build sequence"
-      - "Component placement and orientation"
-      - "Safe tool use and quality checking"
-    included:
-      - "PCB"
-      - "Simple electronic components"
-      - "Fixings where required"
-    tools_needed:
-      - "Soldering iron and solder"
-      - "Side cutters"
-      - "Safety glasses"
-      - "Adult supervision and a suitable risk assessment"
-    image: ""
-    instructions_url: "/docs/instructions/I%20Can%20Solder%20badge%20instructions%20v2.pdf"
 
 documents:
   - title: "Rocket badge instructions"
