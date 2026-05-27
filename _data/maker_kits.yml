@@ -166,10 +166,10 @@ kits:
     build_time: "30–60 minutes"
     age_guidance: "Best with adult supervision; suitable for youth groups where soldering safety is managed properly."
     skills:
-      - "Soldering basics"
-      - "LED polarity"
-      - "Simple circuits"
-      - "Safe tool use"
+      - "Through-hole soldering"
+      - "LED polarity and orientation"
+      - "Using resistors in a simple circuit"
+      - "Mechanical assembly with PCBs and fixings"
     included:
       - "PCB"
       - "LEDs and electronic components"
@@ -190,9 +190,9 @@ kits:
     build_time: "30–60 minutes"
     age_guidance: "Good for Cubs, Scouts and similar groups with suitable adult support."
     skills:
-      - "Component identification"
-      - "Soldering accuracy"
-      - "Circuit assembly"
+      - "Through-hole soldering practice"
+      - "Component identification and placement"
+      - "LED polarity and visual effect"
       - "Testing and troubleshooting"
     included:
       - "PCB"
@@ -213,10 +213,10 @@ kits:
     build_time: "20–45 minutes"
     age_guidance: "Designed for supervised group sessions and first-time soldering practice."
     skills:
-      - "Making clean solder joints"
-      - "Following a build sequence"
-      - "Checking orientation"
-      - "Taking pride in a finished object"
+      - "First solder joints"
+      - "Following a simple build sequence"
+      - "Component placement and orientation"
+      - "Safe tool use and quality checking"
     included:
       - "PCB"
       - "Simple electronic components"
