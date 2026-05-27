@@ -7,10 +7,11 @@ toc: false
 
 <link rel="stylesheet" href="{{ '/assets/css/maker-kits.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/maker-kits-refinements.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/maker-kits-hotfix.css' | relative_url }}">
 
 {% assign mk = site.data.maker_kits %}
 
-<div class="mk-content-shell">
+<div class="mk-content-shell" markdown="1">
 
 <h1>Maker Kits FAQ and Support</h1>
 

@@ -1,0 +1,115 @@
+/* Maker Kits emergency layout hotfix: restore Markdown parsing layout and map centering. */
+
+/* Break Maker Kit content pages out of the theme article column, then centre the content shell. */
+.maker-kits-content-page .page,
+.maker-kits-content-page .page__inner-wrap,
+.maker-kits-content-page .archive,
+.maker-kits-content-page .page__content {
+  float: none !important;
+  max-width: none !important;
+  width: 100vw !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.maker-kits-content-page .page__content,
+.maker-kits-content-page .archive {
+  position: relative !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+.mk-content-shell {
+  box-sizing: border-box !important;
+  width: min(1320px, calc(100vw - 2rem)) !important;
+  max-width: none !important;
+  margin: 1rem auto 2rem !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  transform: none !important;
+}
+
+.mk-content-shell > h1 {
+  margin-top: .5rem !important;
+}
+
+/* Keep headings and text outside cards readable and naturally spaced. */
+.mk-content-shell h2 {
+  margin-top: 1.5rem;
+}
+
+.mk-content-shell p,
+.mk-content-shell li {
+  line-height: 1.6;
+}
+
+.mk-content-shell ul {
+  margin-top: .4rem;
+  margin-bottom: 1rem;
+}
+
+/* Restore the impact map as a centred dashboard independent of the theme column. */
+.maker-kits-map-page .page,
+.maker-kits-map-page .page__inner-wrap,
+.maker-kits-map-page .archive,
+.maker-kits-map-page .page__content {
+  float: none !important;
+  max-width: none !important;
+  width: 100vw !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.maker-kits-map-page .page__content,
+.maker-kits-map-page .archive {
+  position: relative !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+.maker-kits-map-page .mk-map-dashboard {
+  box-sizing: border-box !important;
+  width: min(1560px, calc(100vw - 2rem)) !important;
+  max-width: none !important;
+  margin: 1rem auto 1.5rem !important;
+  transform: none !important;
+}
+
+.maker-kits-map-page .mk-map-summary {
+  grid-template-columns: repeat(4, minmax(160px, 1fr)) !important;
+}
+
+.maker-kits-map-page .mk-map-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(290px, 330px) !important;
+  gap: .75rem !important;
+}
+
+.maker-kits-map-page .mk-map,
+.maker-kits-map-page .mk-map-side-panel {
+  min-height: 660px !important;
+  height: min(74vh, 800px) !important;
+}
+
+/* The subnav should sit inside the centred shell/dashboard, not stretch across the whole viewport. */
+.mk-content-shell .mk-subnav,
+.maker-kits-map-page .mk-map-dashboard .mk-subnav {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+  .maker-kits-map-page .mk-map-summary { grid-template-columns: repeat(2, minmax(160px, 1fr)) !important; }
+  .maker-kits-map-page .mk-map-layout { grid-template-columns: 1fr !important; }
+  .maker-kits-map-page .mk-map-side-panel { min-height: 340px !important; height: 420px !important; }
+}
+
+@media (max-width: 760px) {
+  .mk-content-shell,
+  .maker-kits-map-page .mk-map-dashboard {
+    width: min(100%, calc(100vw - 1rem)) !important;
+  }
+}
