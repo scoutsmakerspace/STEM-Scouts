@@ -583,3 +583,72 @@
     align-items: start;
   }
 }
+
+
+/* Homepage navigation cards moved directly under hero */
+.mk-hero { margin-bottom: 1rem; }
+.mk-next-links--top { margin: 0 0 1.25rem; }
+.mk-next-links--top .mk-card { min-height: 8.2rem; }
+
+/* Price table: lot price is the main value because groups pay by lot. */
+.mk-price-card {
+  padding: 1.25rem;
+}
+.mk-price-card .mk-table-wrap {
+  width: 100%;
+  margin-top: 1rem;
+  overflow-x: auto;
+  border: 1px solid rgba(0,0,0,.13);
+  border-radius: 12px;
+  background: #fff;
+}
+.mk-price-card table.mk-price-table,
+.mk-price-card table.mk-price-table--tiers {
+  width: 100% !important;
+  min-width: 780px;
+  table-layout: fixed;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+}
+.mk-price-card .mk-price-table th,
+.mk-price-card .mk-price-table td {
+  border: 0 !important;
+  border-right: 1px solid rgba(0,0,0,.12) !important;
+  border-bottom: 1px solid rgba(0,0,0,.12) !important;
+  padding: .8rem .65rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.mk-price-card .mk-price-table th:last-child,
+.mk-price-card .mk-price-table td:last-child { border-right: 0 !important; }
+.mk-price-card .mk-price-table tbody tr:last-child td { border-bottom: 0 !important; }
+.mk-price-card .mk-price-table th {
+  background: rgba(0,0,0,.045);
+  font-weight: 800;
+}
+.mk-price-card .mk-price-table th:nth-child(1),
+.mk-price-card .mk-price-table td:nth-child(1),
+.mk-price-card .mk-price-table th:nth-child(2),
+.mk-price-card .mk-price-table td:nth-child(2) { width: 7rem; }
+.mk-price-lot {
+  display: block;
+  font-size: 1.16rem;
+  line-height: 1.15;
+  font-weight: 850;
+  letter-spacing: .01em;
+}
+.mk-price-unit {
+  display: block;
+  margin-top: .22rem;
+  font-size: .78rem;
+  opacity: .68;
+}
+@media (max-width: 700px) {
+  .mk-price-card .mk-price-table th,
+  .mk-price-card .mk-price-table td {
+    padding: .65rem .5rem;
+  }
+  .mk-price-lot { font-size: 1.02rem; }
+}

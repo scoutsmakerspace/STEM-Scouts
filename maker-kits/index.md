@@ -13,12 +13,22 @@ toc: false
     <p class="mk-kicker">Scout / community kit fundraiser</p>
     <h1>{{ mk.section.title }}</h1>
     <p class="mk-hero__intro">{{ mk.section.intro }}</p>
-    <div class="mk-actions">
-      <a class="btn btn--primary" href="{{ mk.section.primary_cta_url | relative_url }}">{{ mk.section.primary_cta_label }}</a>
-      <a class="btn" href="{{ '/maker-kits/instructions/' | relative_url }}">Instructions</a>
-      <a class="btn" href="{{ mk.section.secondary_cta_url | relative_url }}">{{ mk.section.secondary_cta_label }}</a>
-    </div>
   </div>
+</section>
+
+<section class="mk-grid mk-grid--3 mk-next-links mk-next-links--top">
+  <a class="mk-card mk-card--link" href="{{ '/maker-kits/how-to-order/' | relative_url }}">
+    <h2>How ordering works</h2>
+    <p>Batch ordering, packing options, what is included, what is not included, payment timing and delivery estimates.</p>
+  </a>
+  <a class="mk-card mk-card--link" href="{{ '/maker-kits/instructions/' | relative_url }}">
+    <h2>Instructions and support</h2>
+    <p>Build guides, activity notes and example safety documents for planning a group session.</p>
+  </a>
+  <a class="mk-card mk-card--link" href="{{ '/maker-kits/map/' | relative_url }}">
+    <h2>Impact map</h2>
+    <p>Public supporter names, repeat support and Scout districts reached by the project.</p>
+  </a>
 </section>
 
 <section class="mk-card mk-order-status-card">
@@ -107,27 +117,12 @@ toc: false
         <tr>
           <td>{{ tier.discount }}</td>
           <td>{{ tier.quantity }}</td>
-          <td><strong>{{ tier.i_can_solder.unit }}</strong><br><span class="mk-muted">lot {{ tier.i_can_solder.lot }}</span></td>
-          <td><strong>{{ tier.rocket.unit }}</strong><br><span class="mk-muted">lot {{ tier.rocket.lot }}</span></td>
-          <td><strong>{{ tier.camp_fire.unit }}</strong><br><span class="mk-muted">lot {{ tier.camp_fire.lot }}</span></td>
+          <td><span class="mk-price-lot">{{ tier.i_can_solder.lot }}</span><span class="mk-price-unit">{{ tier.i_can_solder.unit }} each</span></td>
+          <td><span class="mk-price-lot">{{ tier.rocket.lot }}</span><span class="mk-price-unit">{{ tier.rocket.unit }} each</span></td>
+          <td><span class="mk-price-lot">{{ tier.camp_fire.lot }}</span><span class="mk-price-unit">{{ tier.camp_fire.unit }} each</span></td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
-</section>
-
-<section class="mk-grid mk-grid--3 mk-next-links">
-  <a class="mk-card mk-card--link" href="{{ '/maker-kits/how-to-order/' | relative_url }}">
-    <h2>How ordering works</h2>
-    <p>Batch ordering, packing options, what is included, what is not included, payment timing and delivery estimates.</p>
-  </a>
-  <a class="mk-card mk-card--link" href="{{ '/maker-kits/instructions/' | relative_url }}">
-    <h2>Instructions and support</h2>
-    <p>Build guides, activity notes and example safety documents for planning a group session.</p>
-  </a>
-  <a class="mk-card mk-card--link" href="{{ '/maker-kits/map/' | relative_url }}">
-    <h2>Impact map</h2>
-    <p>Public supporter names, repeat support and Scout districts reached by the project.</p>
-  </a>
 </section>

@@ -45,7 +45,7 @@ price_list:
   title: "Current price list"
   note: >-
     Prices are quantity-based. Use the Quantity column for the standard orderable quantities.
-    Lot price is the total kit cost for that quantity before delivery.
+    The lot price is the total kit cost for that quantity before delivery; the unit price is shown underneath for reference.
   important:
     - "CR2032 battery cells are not included."
     - "Royal Mail delivery is not included and depends on parcel size and quantity."
@@ -163,7 +163,7 @@ kits:
     name: "I can solder badge kit"
     short_description: "The simplest starter kit for first-time soldering and confidence-building."
     difficulty: "Easiest"
-    build_time: "around 5–10 minutes per kit/workstation, depending on confidence"
+    build_time: "about 5 minutes per kit/workstation once set up; longer for beginners"
     age_guidance: "Designed for supervised group sessions and first-time soldering practice."
     skills:
       - "First solder joints"
@@ -186,7 +186,7 @@ kits:
     name: "Rocket soldering kit"
     short_description: "A beginner-friendly LED soldering kit with more components to place and check."
     difficulty: "Easy+"
-    build_time: "around 10–20 minutes per kit/workstation, depending on confidence"
+    build_time: "about 5–10 minutes per kit/workstation once set up; longer for beginners"
     age_guidance: "Best with adult supervision; suitable for youth groups where soldering safety is managed properly."
     skills:
       - "Through-hole soldering with more components"
@@ -210,7 +210,7 @@ kits:
     name: "Camp fire soldering kit"
     short_description: "An easy themed light-up electronics kit for practising soldering and testing."
     difficulty: "Easy"
-    build_time: "around 10–20 minutes per kit/workstation, depending on confidence"
+    build_time: "about 5–10 minutes per kit/workstation once set up; longer for beginners"
     age_guidance: "Good for Cubs, Scouts and similar groups with suitable adult support."
     skills:
       - "Through-hole soldering practice"
