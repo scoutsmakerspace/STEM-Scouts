@@ -10,6 +10,8 @@ toc: false
 
 {% assign mk = site.data.maker_kits %}
 
+<div class="mk-content-shell">
+
 <section class="mk-hero">
   <div>
     <p class="mk-kicker">Scout / community kit fundraiser</p>
@@ -19,41 +21,21 @@ toc: false
 </section>
 
 <section class="mk-grid mk-grid--3 mk-next-links mk-next-links--top">
-  <a class="mk-card mk-card--link" href="{{ '/maker-kits/how-to-order/' | relative_url }}" target="_blank" rel="noopener">
+  <a class="mk-card mk-card--link" href="{{ '/maker-kits/how-to-order/' | relative_url }}">
     <h2>How ordering works</h2>
     <p>Batch ordering, packing options, what is included, what is not included, payment timing and delivery estimates.</p>
   </a>
-  <a class="mk-card mk-card--link" href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">
+  <a class="mk-card mk-card--link" href="{{ '/maker-kits/instructions/' | relative_url }}">
     <h2>Instructions and support</h2>
     <p>Build guides, activity notes and example safety documents for planning a group session.</p>
   </a>
-  <a class="mk-card mk-card--link" href="{{ '/maker-kits/map/' | relative_url }}" target="_blank" rel="noopener">
+  <a class="mk-card mk-card--link" href="{{ '/maker-kits/map/' | relative_url }}">
     <h2>Impact map</h2>
     <p>Public supporter names, repeat support and Scout districts reached by the project.</p>
   </a>
 </section>
 
-<section class="mk-card mk-order-status-card">
-  <div>
-    <p class="mk-kicker">Current ordering</p>
-    {% if mk.ordering.orders_open == true %}
-      <h2>{{ mk.ordering.status_label_open }}</h2>
-      <p>{{ mk.ordering.open_note }}</p>
-    {% else %}
-      <h2>{{ mk.ordering.status_label_closed }}</h2>
-      <p>{{ mk.ordering.closed_note }}</p>
-    {% endif %}
-    <p class="mk-muted"><strong>Lead time:</strong> {{ mk.ordering.delivery_estimate }}</p>
-  </div>
-  <div class="mk-order-status-card__actions">
-    {% if mk.ordering.orders_open == true and mk.ordering.order_link and mk.ordering.order_link != "" %}
-      <a class="btn btn--primary" href="{{ mk.ordering.order_link }}" target="_blank" rel="noopener">{{ mk.ordering.order_link_label }}</a>
-    {% else %}
-      <span class="mk-status-pill mk-status-pill--closed">Ordering closed</span>
-    {% endif %}
-    <a class="btn" href="{{ '/maker-kits/how-to-order/' | relative_url }}" target="_blank" rel="noopener">Read the ordering notes</a>
-  </div>
-</section>
+{% include maker-kits-order-status.html %}
 
 ## Kits
 
@@ -85,11 +67,13 @@ toc: false
         {% if kit.instructions_url and kit.instructions_url != "" %}
           <a class="btn btn--primary" href="{{ kit.instructions_url | relative_url }}" target="_blank" rel="noopener">Instructions</a>
         {% endif %}
-        <a class="btn" href="{{ '/maker-kits/how-to-order/' | relative_url }}" target="_blank" rel="noopener">Ordering notes</a>
+        <a class="btn" href="{{ '/maker-kits/how-to-order/' | relative_url }}">Ordering notes</a>
       </div>
     </div>
   </article>
 {% endfor %}
 </div>
 
-{% include maker-kits-price-list.html id="price-list" %}
+{% include maker-kits-price-list.html %}
+
+</div>

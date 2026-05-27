@@ -1,39 +1,31 @@
-/* Maker Kits refinements: wide content pages, subpage navigation, and clearer price tables. */
+/* Maker Kits refinements: centred wide pages, reusable page navigation, order status and clearer price tables. */
 
-/* Centre the Maker Kits content pages as true wide pages rather than leaving them in the theme article column. */
+/* Hard override Minimal Mistakes article widths for Maker Kit content pages. */
 .maker-kits-content-page .page,
 .maker-kits-content-page .page__inner-wrap,
-.maker-kits-content-page .archive {
-  max-width: none !important;
-}
-
-.maker-kits-content-page .page {
-  box-sizing: border-box;
-  float: none !important;
-  width: 100vw !important;
-  max-width: none !important;
-  margin-left: 50% !important;
-  margin-right: 0 !important;
-  padding-right: 0 !important;
-  transform: translateX(-50%);
-}
-
-.maker-kits-content-page .page__inner-wrap {
-  box-sizing: border-box;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
+.maker-kits-content-page .archive,
 .maker-kits-content-page .page__content {
-  box-sizing: border-box;
-  width: min(1320px, calc(100vw - 2rem)) !important;
+  float: none !important;
   max-width: none !important;
-  margin: 1rem auto 2rem !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
 
+.mk-content-shell {
+  box-sizing: border-box;
+  width: min(1320px, calc(100vw - 2rem));
+  max-width: none;
+  margin: 1rem auto 2rem;
+}
+
+.mk-content-shell > h1 {
+  margin-top: .5rem;
+}
+
+/* Internal Maker Kits link bar. Internal links stay in the same tab. */
 .mk-subnav {
   display: flex;
   flex-wrap: wrap;
@@ -66,6 +58,7 @@
   text-decoration: none;
 }
 
+/* The hero should introduce the project, not act as a button bar. */
 .mk-hero .mk-actions {
   display: none !important;
 }
@@ -75,9 +68,154 @@
   margin-bottom: 1.25rem;
 }
 
+/* Ordering status card. */
+.mk-order-status-card {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem 0 1.25rem;
+}
+
+.mk-order-status-card h2 {
+  margin-top: 0;
+  border-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.mk-order-status-card__actions {
+  display: flex;
+  gap: .6rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.mk-status-pill {
+  display: inline-block;
+  border-radius: 999px;
+  padding: .45rem .75rem;
+  font-weight: 800;
+  font-size: .85rem;
+  border: 1px solid rgba(0,0,0,.16);
+}
+
+.mk-status-pill--closed { background: rgba(0,0,0,.06); }
+
+/* Kit card alignment and readability fixes. */
+.mk-kit-grid {
+  align-items: stretch;
+}
+
+.mk-kit-card {
+  height: 100%;
+}
+
+.mk-kit-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+  height: 100%;
+}
+
+.mk-kit-card__body h2,
+.mk-kit-card__body h3,
+.mk-kit-card__body p {
+  margin-bottom: 0;
+}
+
+.mk-kit-card__body h3 {
+  margin-top: .25rem;
+  font-size: 1rem;
+}
+
+.mk-meta-list {
+  margin: .85rem 0 .4rem;
+  display: grid;
+  gap: .5rem;
+}
+
+.mk-meta-list div {
+  display: grid;
+  grid-template-columns: minmax(7rem, 8.8rem) minmax(0, 1fr);
+  column-gap: .75rem;
+  align-items: start;
+  padding: .45rem .55rem;
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 10px;
+  background: rgba(0,0,0,.018);
+}
+
+.mk-meta-list dt {
+  margin: 0;
+  font-weight: 800;
+  font-size: .83rem;
+  line-height: 1.35;
+}
+
+.mk-meta-list dd {
+  margin: 0;
+  text-align: left;
+  font-size: .9rem;
+  line-height: 1.35;
+}
+
+.mk-kit-card ul {
+  margin: .15rem 0 0;
+  padding-left: 1.15rem;
+  line-height: 1.45;
+}
+
+.mk-kit-card li + li {
+  margin-top: .18rem;
+}
+
+.mk-card-actions {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: .85rem;
+}
+
+/* Instructions and FAQ page cards. */
+.mk-doc-list--grid {
+  grid-template-columns: repeat(3, minmax(0,1fr));
+}
+
+.mk-doc-card {
+  min-height: 170px;
+}
+
+.mk-faq-list {
+  display: grid;
+  gap: .85rem;
+  margin: 1rem 0;
+}
+
+.mk-faq-card h2,
+.mk-support-card h2 {
+  margin-top: 0;
+  border-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Current quantity-based price list. Same include is used on main and ordering pages. */
 .mk-price-card {
   width: 100%;
-  margin: 1rem 0 1.35rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.mk-price-notes {
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 12px;
+  background: rgba(0,0,0,.025);
+  padding: .8rem .95rem;
+  margin: .85rem 0;
+}
+
+.mk-price-notes ul {
+  margin: .35rem 0 0 1.2rem;
 }
 
 .mk-table-wrap {
@@ -88,11 +226,11 @@
 .mk-price-table,
 .mk-price-table--tiers {
   width: 100% !important;
-  min-width: 860px;
+  min-width: 780px;
   table-layout: fixed;
   border-collapse: collapse !important;
   border-spacing: 0 !important;
-  margin-top: .9rem;
+  margin-top: .85rem;
 }
 
 .mk-price-table--tiers th,
@@ -104,59 +242,90 @@
 }
 
 .mk-price-table--tiers th {
-  background: rgba(0,0,0,.055);
+  background: rgba(0,0,0,.045);
   font-weight: 900;
   font-size: 1rem;
-  line-height: 1.25;
-  padding: .95rem .75rem;
+  padding: .95rem .8rem;
 }
 
 .mk-price-table--tiers td {
-  padding: 1.05rem .85rem;
+  padding: .95rem .8rem;
 }
 
 .mk-price-table--tiers th:first-child,
 .mk-price-table--tiers td:first-child,
 .mk-price-table--tiers th:nth-child(2),
 .mk-price-table--tiers td:nth-child(2) {
-  width: 8.4rem;
+  width: 8rem;
 }
 
 .mk-price-table__meta,
 .mk-price-table--tiers td:first-child,
 .mk-price-table--tiers td:nth-child(2) {
-  font-size: 1.05rem;
-  line-height: 1.2;
-  font-weight: 850;
+  font-size: 1.08rem;
+  font-weight: 800;
 }
 
 .mk-price-main {
   display: block;
-  font-size: 1.42rem;
+  font-size: 1.38rem;
   line-height: 1.15;
   font-weight: 900;
 }
 
 .mk-price-sub {
   display: block;
-  margin-top: .25rem;
-  font-size: .92rem;
+  margin-top: .18rem;
+  font-size: .86rem;
   line-height: 1.2;
   opacity: .72;
 }
 
-.mk-meta-list div {
-  grid-template-columns: minmax(7rem, 8.8rem) minmax(0, 1fr);
+/* Keep the public map centred independently of the content page shell. */
+.maker-kits-map-page .page__content {
+  max-width: none !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
-.mk-card-actions a[target="_blank"]::after,
-.mk-subnav a[target="_blank"]::after {
-  content: "";
+.maker-kits-map-page .mk-map-dashboard {
+  box-sizing: border-box;
+  width: min(1560px, calc(100vw - 2rem));
+  max-width: none;
+  margin: 1rem auto 1.5rem;
+}
+
+.maker-kits-map-page .mk-map-summary {
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+}
+
+.maker-kits-map-page .mk-map-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(290px, 330px);
+  gap: .75rem;
+}
+
+.maker-kits-map-page .mk-map,
+.maker-kits-map-page .mk-map-side-panel {
+  min-height: 660px;
+  height: min(74vh, 800px);
+}
+
+@media (max-width: 1200px) {
+  .maker-kits-map-page .mk-map-summary { grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+  .maker-kits-map-page .mk-map-layout { grid-template-columns: 1fr; }
+  .maker-kits-map-page .mk-map-side-panel { min-height: 340px; height: 420px; }
 }
 
 @media (max-width: 900px) {
-  .maker-kits-content-page .page__content {
-    width: min(100%, calc(100vw - 1rem)) !important;
+  .mk-order-status-card { grid-template-columns: 1fr; }
+  .mk-order-status-card__actions { justify-content: flex-start; }
+  .mk-doc-list--grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  .mk-content-shell {
+    width: min(100%, calc(100vw - 1rem));
   }
 
   .mk-subnav {
@@ -169,10 +338,13 @@
 
   .mk-price-table,
   .mk-price-table--tiers {
-    min-width: 780px;
+    min-width: 700px;
   }
+}
 
-  .mk-price-main {
-    font-size: 1.25rem;
+@media (max-width: 520px) {
+  .mk-meta-list div {
+    grid-template-columns: 1fr;
+    row-gap: .15rem;
   }
 }

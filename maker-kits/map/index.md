@@ -12,19 +12,13 @@ toc: false
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
 
 <div class="mk-map-dashboard">
-  <nav class="mk-subnav" aria-label="Maker Kits pages">
-    <a href="{{ '/maker-kits/' | relative_url }}" target="_blank" rel="noopener">Overview</a>
-    <a href="{{ '/maker-kits/how-to-order/' | relative_url }}" target="_blank" rel="noopener">Ordering</a>
-    <a href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">Instructions</a>
-    <a href="{{ '/maker-kits/map/' | relative_url }}" target="_blank" rel="noopener">Impact map</a>
-    <a href="{{ '/maker-kits/faq/' | relative_url }}" target="_blank" rel="noopener">FAQ</a>
-  </nav>
-
   <div class="mk-map-page-title">
     <p class="mk-kicker">Public impact map</p>
     <h1>Where Maker Kits have reached</h1>
     <p>This map brings the project’s public impact statistics and supporter map together in one place.</p>
   </div>
+
+  {% include maker-kits-subnav.html %}
 
   <div class="mk-map-summary" aria-label="Maker Kits public impact summary">
     <div class="mk-mini-stat"><span id="mk-map-stat-groups" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">unique groups supported</span></div>

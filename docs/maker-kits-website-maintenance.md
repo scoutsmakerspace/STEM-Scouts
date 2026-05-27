@@ -1,31 +1,28 @@
-# Maker Kits public website maintenance
+# Maker Kits website maintenance
 
-This page is the working checklist for updating the public Maker Kits pages.
+This page is for maintaining the public Maker Kits pages on the STEM Scouts website.
 
-The public repo is visible to everyone. Only publish information you would be happy for a member of the public, a parent, a Scout leader, or a search engine to see.
+The public repo is public. Only upload information you are happy for visitors and search engines to see.
 
-## 1. Updating the impact map after a batch
+## Main files
 
-The public map is generated from:
+### Public page content
+
+Most public wording, ordering settings, kit details and prices are controlled here:
+
+```text
+_data/maker_kits.yml
+```
+
+### Public map source
+
+After a batch, replace this file:
 
 ```text
 assets/data/source/Region_report.csv
 ```
 
-At the end of a batch:
-
-1. Update `Region_report.csv` locally.
-2. Check that it only contains public-safe fields.
-3. Upload/replace this file in the repo:
-
-   ```text
-   assets/data/source/Region_report.csv
-   ```
-
-4. Commit to `main`.
-5. GitHub Actions will run automatically.
-6. Check that the workflow finishes successfully.
-7. Check the public map page.
+Keep the filename exactly as `Region_report.csv`.
 
 Expected columns:
 
@@ -37,147 +34,156 @@ Scouts District Name
 Kits
 ```
 
-`District Code` is the manually checked postcode district used for the map marker. Do not use the order/delivery postcode unless it genuinely matches the group’s public location.
+`District Code` is the manually verified public map postcode district. Do not use a leader/customer delivery postcode unless it genuinely matches the group location.
 
-`Scouts District Name` is the public Scout district label shown on the map and supporter list.
+`Scouts District Name` is shown publicly as the Scout district label on the supporter list and map popup.
 
-Do not add contact names, emails, phone numbers, addresses, full postcodes, payment data, delivery details, tracking details, packing notes, or private issue notes to this CSV.
+Do not add private fields such as contact names, emails, phone numbers, addresses, full postcodes, payment details, tracking details or packing notes.
 
-## 2. Updating the postcode lookup
+## Updating the impact map
 
-The postcode lookup is:
+1. Update your safe `Region_report.csv` locally.
+2. Upload/replace:
 
 ```text
-assets/data/source/postcode_districts.csv
+assets/data/source/Region_report.csv
 ```
 
-Normally this should not change. Update it only if the build fails because a new postcode district is missing.
+3. Commit to `main`.
+4. GitHub Actions will run automatically.
+5. The workflow generates:
 
-## 3. Opening or closing orders
+```text
+assets/data/maker_kits_public_map.geojson
+assets/data/maker_kits_impact_summary.json
+```
 
-Ordering is controlled in:
+6. Check the deployed map:
+
+```text
+https://stemscouts.space/maker-kits/map/
+```
+
+If the workflow fails, open the failed run and check the “Build Maker Kits public data” step first. Strict mode usually fails because a postcode district or Scout district is missing from the CSV.
+
+## Opening and closing the order form
+
+Edit:
 
 ```text
 _data/maker_kits.yml
 ```
 
-To open ordering, change:
-
-```yaml
-orders_open: false
-```
-
-to:
-
-```yaml
-orders_open: true
-```
-
-To close ordering, change it back to:
-
-```yaml
-orders_open: false
-```
-
-When orders are open, also check:
-
-```yaml
-order_link
-order_link_label
-open_note
-order_deadline
-payment_deadline_note
-delivery_estimate
-postage_note
-```
-
-The order button only appears when `orders_open` is set to `true`.
-
-## 4. Updating the Google Form link
-
-The form link is stored here:
+Find:
 
 ```yaml
 ordering:
-  order_link: "..."
+  orders_open: false
 ```
 
-Use the full Google Forms link if needed. A long link is fine.
-
-Current field:
+Set to `true` when orders are open:
 
 ```yaml
-order_link: "https://docs.google.com/forms/d/e/1FAIpQLScluP5gHF1V9YUD6fFruxkhKF9VGdKraecJWKs5ZW4BvHZwcA/viewform?usp=sharing&ouid=100348817326081150191"
+ordering:
+  orders_open: true
 ```
 
-## 5. Updating the order message
+Set back to `false` when the order window closes.
 
-The message shown when ordering is closed is:
+The form URL is here:
+
+```yaml
+order_link: "https://docs.google.com/forms/d/e/..."
+```
+
+External order form links open in a new tab. Internal Maker Kits page links stay in the same tab.
+
+## Updating the ordering message
+
+Still in `_data/maker_kits.yml`, update these fields:
 
 ```yaml
 closed_note: >-
-  ...
+  Orders are taken in batches. The ordering form will be linked from this page when the next batch opens.
+
+open_note: >-
+  Please read the packing, payment, price and delivery notes before submitting the order form.
+
+order_deadline: "To be confirmed for the next batch"
+
+delivery_estimate: "7–8 weeks from order close, unless stated otherwise for the current batch."
 ```
 
-The message shown when ordering is open is:
+Normal order windows are described with:
 
 ```yaml
-open_note: >-
-  ...
+batch_cycle_note: >-
+  Batch orders are usually organised twice a year, around spring and autumn.
 ```
 
-Keep the public message short. Put detailed packing and payment information on the How to order page unless it is specific to that batch.
+Large-order guidance is described with:
 
-## 6. Updating the price list
+```yaml
+large_order_note: >-
+  Larger orders can be discussed separately, especially for camps, district activities or whole-district orders.
+```
 
-The current price table is stored in:
+## Updating prices
+
+Prices are also in:
+
+```text
+_data/maker_kits.yml
+```
+
+Update the `price_list:` section.
+
+The public table is generated from:
 
 ```yaml
 price_list:
+  tiers:
 ```
 
-The important sections are:
+The headline kit-card prices are generated from:
 
 ```yaml
-important:
-items:
-tiers:
+price_list:
+  items:
 ```
 
-The public table treats the lot price as the main price, because groups normally order and pay for lots.
+The same shared include is used on both the overview page and the ordering page:
 
-## 7. Updating instruction PDFs
+```text
+_includes/maker-kits-price-list.html
+```
 
-Current PDFs live in:
+So the two pages should show the same price table.
+
+## Updating instruction PDFs
+
+The current instruction PDFs are stored here:
 
 ```text
 docs/instructions/
 ```
 
-After replacing or adding a PDF, update the relevant entry in:
+The public links are listed in:
 
 ```yaml
 documents:
 ```
 
-and, if needed, the relevant kit entry:
+inside `_data/maker_kits.yml`.
 
-```yaml
-kits:
-  instructions_url:
+When replacing a PDF, either keep the same filename or update the relevant `file:` value.
+
+## Useful pages to check after changes
+
+```text
+https://stemscouts.space/maker-kits/
+https://stemscouts.space/maker-kits/how-to-order/
+https://stemscouts.space/maker-kits/instructions/
+https://stemscouts.space/maker-kits/map/
+https://stemscouts.space/maker-kits/faq/
 ```
-
-## 8. If the workflow fails
-
-Check the failing step in GitHub Actions.
-
-If `Build Maker Kits public data` fails, the most likely causes are:
-
-- `Region_report.csv` is missing
-- a required column name changed
-- a row has a blank postcode district
-- a row has a blank Scout district
-- a postcode district is missing from `postcode_districts.csv`
-- the validator found something private-looking in the generated public files
-
-Fix the source CSV, commit again, and let the workflow rerun.

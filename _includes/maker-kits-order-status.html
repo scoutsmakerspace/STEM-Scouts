@@ -1,0 +1,24 @@
+{% assign mk = site.data.maker_kits %}
+<section class="mk-card mk-order-status-card">
+  <div>
+    <p class="mk-kicker">Current ordering</p>
+    {% if mk.ordering.orders_open == true %}
+      <h2>{{ mk.ordering.status_label_open }}</h2>
+      <p>{{ mk.ordering.open_note }}</p>
+    {% else %}
+      <h2>{{ mk.ordering.status_label_closed }}</h2>
+      <p>{{ mk.ordering.closed_note }}</p>
+    {% endif %}
+    <p class="mk-muted"><strong>Lead time:</strong> {{ mk.ordering.delivery_estimate }}</p>
+    <p class="mk-muted"><strong>Normal order windows:</strong> {{ mk.ordering.batch_cycle_note }}</p>
+    <p class="mk-muted"><strong>Large orders:</strong> {{ mk.ordering.large_order_note }} <a href="mailto:{{ mk.ordering.contact_email }}">Email {{ mk.ordering.contact_email }}</a> to discuss.</p>
+  </div>
+  <div class="mk-order-status-card__actions">
+    {% if mk.ordering.orders_open == true and mk.ordering.order_link and mk.ordering.order_link != "" %}
+      <a class="btn btn--primary" href="{{ mk.ordering.order_link }}" target="_blank" rel="noopener">{{ mk.ordering.order_link_label }}</a>
+    {% else %}
+      <span class="mk-status-pill mk-status-pill--closed">Ordering closed</span>
+    {% endif %}
+    <a class="btn" href="{{ '/maker-kits/how-to-order/' | relative_url }}">Read the ordering notes</a>
+  </div>
+</section>

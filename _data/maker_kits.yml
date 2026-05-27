@@ -25,6 +25,11 @@ ordering:
     Orders are taken in batches. The ordering form will be linked from this page when the next batch opens.
   open_note: >-
     Please read the packing, payment, price and delivery notes before submitting the order form.
+  batch_cycle_note: >-
+    Batch orders are usually organised twice a year, around spring and autumn.
+  large_order_note: >-
+    Larger orders can be discussed separately, especially for camps, district activities or whole-district orders.
+    As a guide, this usually means more than 200 kits of the same design with the same group name, district name or logo/writing on the PCB.
   order_deadline: "To be confirmed for the next batch"
   payment_deadline_note: >-
     Payments are completed during the order window so supplier orders can be placed promptly after the window closes.

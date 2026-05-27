@@ -10,36 +10,12 @@ toc: false
 
 {% assign mk = site.data.maker_kits %}
 
-<nav class="mk-subnav" aria-label="Maker Kits pages">
-  <a href="{{ '/maker-kits/' | relative_url }}" target="_blank" rel="noopener">Overview</a>
-  <a href="{{ '/maker-kits/how-to-order/' | relative_url }}" target="_blank" rel="noopener">Ordering</a>
-  <a href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">Instructions</a>
-  <a href="{{ '/maker-kits/map/' | relative_url }}" target="_blank" rel="noopener">Impact map</a>
-  <a href="{{ '/maker-kits/faq/' | relative_url }}" target="_blank" rel="noopener">FAQ</a>
-</nav>
+<div class="mk-content-shell">
 
-<section class="mk-card mk-order-status-card">
-  <div>
-    <p class="mk-kicker">Current ordering</p>
-    {% if mk.ordering.orders_open == true %}
-      <h2>{{ mk.ordering.status_label_open }}</h2>
-      <p>{{ mk.ordering.open_note }}</p>
-    {% else %}
-      <h2>{{ mk.ordering.status_label_closed }}</h2>
-      <p>{{ mk.ordering.closed_note }}</p>
-    {% endif %}
-    <p><strong>Order deadline:</strong> {{ mk.ordering.order_deadline }}</p>
-    <p><strong>Lead time:</strong> {{ mk.ordering.delivery_estimate }}</p>
-  </div>
-  <div class="mk-order-status-card__actions">
-    {% if mk.ordering.orders_open == true and mk.ordering.order_link and mk.ordering.order_link != "" %}
-      <a class="btn btn--primary" href="{{ mk.ordering.order_link }}" target="_blank" rel="noopener">{{ mk.ordering.order_link_label }}</a>
-    {% else %}
-      <span class="mk-status-pill mk-status-pill--closed">Ordering closed</span>
-    {% endif %}
-    <a class="btn" href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">View instructions</a>
-  </div>
-</section>
+<h1>How to order Maker Kits</h1>
+
+{% include maker-kits-subnav.html %}
+{% include maker-kits-order-status.html %}
 
 ## Before you order
 
@@ -53,7 +29,7 @@ Before placing an order, check:
 - whether your group has the tools, batteries, workspace and adult support needed for soldering
 - the payment deadline and delivery estimate for the active batch
 
-{% include maker-kits-price-list.html id="price-list" %}
+{% include maker-kits-price-list.html %}
 
 ## Packing approach
 
@@ -69,6 +45,8 @@ For orders over **125 pcs of the same design with the same logo/writing**:
 - bulk packing is normally the most sensible option
 - individual packing may still be possible if needed
 - individual packing uses more plastic, although some cost can be offset through bulk buying
+
+For **large orders** — usually more than **200 kits of the same design** with the same group name, district name or PCB wording/logo — please get in touch before planning around a fixed date. Camps, district activities and whole-district orders can often be discussed separately.
 
 ## Example: 50 Rocket badges
 
@@ -105,12 +83,14 @@ Tools and consumables are not included. Groups will normally need to provide:
 
 {{ mk.ordering.delivery_estimate }}
 
-For ordering or batch questions, contact: <a href="mailto:{{ mk.ordering.contact_email }}" target="_blank" rel="noopener">{{ mk.ordering.contact_email }}</a>.
+For ordering or batch questions, contact: <a href="mailto:{{ mk.ordering.contact_email }}">{{ mk.ordering.contact_email }}</a>.
 
 ## Instructions and safety planning
 
 Build instructions and support documents are available here:
 
-<p><a class="btn btn--primary" href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">Open the instruction documents</a></p>
+<p><a class="btn btn--primary" href="{{ '/maker-kits/instructions/' | relative_url }}">Open the instruction documents</a></p>
 
 The kits involve soldering or practical making. Leaders should prepare a suitable workspace, supervision plan and risk assessment for their own setting. The public documents are there to help, but they do not replace local safety planning.
+
+</div>

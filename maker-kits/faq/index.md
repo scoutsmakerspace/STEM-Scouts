@@ -10,23 +10,25 @@ toc: false
 
 {% assign mk = site.data.maker_kits %}
 
-<nav class="mk-subnav" aria-label="Maker Kits pages">
-  <a href="{{ '/maker-kits/' | relative_url }}" target="_blank" rel="noopener">Overview</a>
-  <a href="{{ '/maker-kits/how-to-order/' | relative_url }}" target="_blank" rel="noopener">Ordering</a>
-  <a href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">Instructions</a>
-  <a href="{{ '/maker-kits/map/' | relative_url }}" target="_blank" rel="noopener">Impact map</a>
-  <a href="{{ '/maker-kits/faq/' | relative_url }}" target="_blank" rel="noopener">FAQ</a>
-</nav>
+<div class="mk-content-shell">
 
+<h1>Maker Kits FAQ and Support</h1>
+
+{% include maker-kits-subnav.html %}
+
+<div class="mk-faq-list">
 {% for item in mk.faq %}
-## {{ item.question }}
-
-{{ item.answer }}
-
+  <section class="mk-card mk-faq-card">
+    <h2>{{ item.question }}</h2>
+    <p>{{ item.answer }}</p>
+  </section>
 {% endfor %}
+</div>
 
-## Support requests
+<section class="mk-card mk-support-card">
+  <h2>Support requests</h2>
+  <p>When asking for help with an order, include the kit type, approximate quantity, batch/order reference if you have one, and a clear description of the issue.</p>
+  <p>Please do not post private order details, addresses, payment information or personal contact details in public comments or on social media.</p>
+</section>
 
-When asking for help with an order, include the kit type, approximate quantity, batch/order reference if you have one, and a clear description of the issue.
-
-Please do not post private order details, addresses, payment information or personal contact details in public comments or on social media.
+</div>
