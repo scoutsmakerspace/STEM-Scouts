@@ -1,6 +1,6 @@
 # Public configuration for the Maker Kits section.
 # Keep this file public-safe. Do not add customer contact names, emails, addresses, payment notes,
-# private issue notes, packing assignments, tracking numbers, full postcodes, or raw order data.
+# private issue notes, packing assignments, tracking numbers, full postcodes, or raw private order data.
 
 section:
   title: "Maker Kits"
@@ -14,26 +14,149 @@ section:
   secondary_cta_url: "/maker-kits/map/"
 
 ordering:
-  status: "Batch ordering"
-  order_link: ""
-  order_link_label: "Current order form"
-  contact_note: >-
-    Kits are normally produced and packed in batches rather than held as shop stock.
-    If you are interested in ordering, please check the current order information and get in touch before planning a session.
+  # Change this to true when a batch order window is open.
+  orders_open: false
+  status_label_open: "Orders open"
+  status_label_closed: "Orders currently closed"
+  order_link: "https://forms.gle/hyNhVBvYjpcWF8bz5"
+  order_link_label: "Open the ordering form"
+  contact_email: "scouts.makerspace@gmail.com"
+  closed_note: >-
+    Orders are taken in batches. The ordering form will be linked from this page when the next batch opens.
+  open_note: >-
+    Please read the packing, payment, price and delivery notes before submitting the order form.
+  order_deadline: "To be confirmed for the next batch"
+  payment_deadline_note: >-
+    Payments are completed during the order window so supplier orders can be placed promptly after the window closes.
+    The exact deadline is confirmed for each batch.
+  delivery_estimate: "7–8 weeks from order close, unless stated otherwise for the current batch."
+  postage_note: >-
+    Royal Mail delivery is not included in the kit prices. Postage depends on parcel size and quantity, and is confirmed once parcels are packed and ready to send.
   pricing_note: >-
-    Prices are confirmed for each batch because component, PCB and postage costs can change.
-    Postage is normally confirmed once parcels are packed and ready to send.
-
-privacy:
-  map_note: >-
-    Locations are shown approximately by postcode district. Public supporter names may be shown where available,
-    but no contact names, emails, full addresses, full postcodes, payment details or private order records are published.
-  public_data_note: >-
-    Public statistics are aggregated or rounded and are intended to show broad community reach, not private order details.
+    The current price list is shown below. Prices do not include CR2032 batteries or Royal Mail delivery.
+  packing_summary: >-
+    To reduce waste and keep costs sensible, PCBs are normally protected individually where needed, while the remaining components are supplied in labelled bulk bags.
 
 instructions:
   folder_url: "/docs/instructions/"
   folder_label: "Open the instruction documents folder"
+
+price_list:
+  title: "Current price list"
+  note: >-
+    Prices are quantity-based. Use the Quantity column for the standard orderable quantities.
+    Lot price is the total kit cost for that quantity before delivery.
+  important:
+    - "CR2032 battery cells are not included."
+    - "Royal Mail delivery is not included and depends on parcel size and quantity."
+    - "Lead time is normally 7–8 weeks from order close."
+    - "Orderable quantities are shown in the Quantity column."
+    - "For ordering, use the order form when a batch is open, or email scouts.makerspace@gmail.com if asked to do so in the current batch notice."
+  items:
+    - kit_slug: "i-can-solder"
+      name: "I can solder badge kit"
+      price: "£2.20 at 30 pcs; from £1.65 at 300 pcs"
+      unit: "quantity-based"
+      notes: "Simple confidence-building soldering activity."
+    - kit_slug: "rocket"
+      name: "Rocket soldering kit"
+      price: "£2.75 at 30 pcs; from £2.06 at 300 pcs"
+      unit: "quantity-based"
+      notes: "Beginner-friendly LED soldering kit."
+    - kit_slug: "camp-fire"
+      name: "Camp fire soldering kit"
+      price: "£3.30 at 30 pcs; from £2.48 at 300 pcs"
+      unit: "quantity-based"
+      notes: "Themed light-up electronics kit."
+  tiers:
+    - discount: "0%"
+      quantity: 30
+      i_can_solder:
+        unit: "£2.20"
+        lot: "£66.00"
+      rocket:
+        unit: "£2.75"
+        lot: "£82.50"
+      camp_fire:
+        unit: "£3.30"
+        lot: "£99.00"
+    - discount: "5%"
+      quantity: 50
+      i_can_solder:
+        unit: "£2.09"
+        lot: "£104.50"
+      rocket:
+        unit: "£2.61"
+        lot: "£130.63"
+      camp_fire:
+        unit: "£3.14"
+        lot: "£156.75"
+    - discount: "7.5%"
+      quantity: 75
+      i_can_solder:
+        unit: "£2.04"
+        lot: "£152.63"
+      rocket:
+        unit: "£2.54"
+        lot: "£190.78"
+      camp_fire:
+        unit: "£3.05"
+        lot: "£228.94"
+    - discount: "10%"
+      quantity: 100
+      i_can_solder:
+        unit: "£1.98"
+        lot: "£198.00"
+      rocket:
+        unit: "£2.48"
+        lot: "£247.50"
+      camp_fire:
+        unit: "£2.97"
+        lot: "£297.00"
+    - discount: "12%"
+      quantity: 125
+      i_can_solder:
+        unit: "£1.94"
+        lot: "£242.00"
+      rocket:
+        unit: "£2.42"
+        lot: "£302.50"
+      camp_fire:
+        unit: "£2.90"
+        lot: "£363.00"
+    - discount: "15%"
+      quantity: 150
+      i_can_solder:
+        unit: "£1.87"
+        lot: "£280.50"
+      rocket:
+        unit: "£2.34"
+        lot: "£350.63"
+      camp_fire:
+        unit: "£2.81"
+        lot: "£420.75"
+    - discount: "20%"
+      quantity: 200
+      i_can_solder:
+        unit: "£1.76"
+        lot: "£352.00"
+      rocket:
+        unit: "£2.20"
+        lot: "£440.00"
+      camp_fire:
+        unit: "£2.64"
+        lot: "£528.00"
+    - discount: "25%"
+      quantity: 300
+      i_can_solder:
+        unit: "£1.65"
+        lot: "£495.00"
+      rocket:
+        unit: "£2.06"
+        lot: "£618.75"
+      camp_fire:
+        unit: "£2.48"
+        lot: "£742.50"
 
 kits:
   - slug: rocket
@@ -137,15 +260,17 @@ faq:
       a sensible workspace and adults who can help with soldering and troubleshooting.
   - question: "Are the kits individually packed?"
     answer: >-
-      It depends on the order size and packing option. Smaller orders are usually supplied with PCBs individually bagged and
-      other components grouped in labelled bulk bags. Larger orders may use bulk packing unless individual packing is agreed.
-  - question: "Why are locations on the map approximate?"
+      Smaller orders are normally supplied with PCBs individually protected and the other components grouped in labelled bulk bags.
+      For larger orders, individual packing may still be possible if requested, but it uses more plastic.
+  - question: "Are batteries included?"
     answer: >-
-      To protect privacy. The public map shows broad postcode-district reach only, not full addresses or private order details.
+      No. CR2032 battery cells are not included, unless a specific batch notice says otherwise.
+  - question: "Is delivery included in the price?"
+    answer: >-
+      No. Royal Mail delivery is confirmed separately once parcels are packed and ready to send.
   - question: "What should I do if something is missing?"
     answer: >-
       Check the packing list in the parcel first, then contact the organiser with the kit type, quantity and missing item.
-      Do not send private order details through public comments or social media.
   - question: "How are funds used?"
     answer: >-
       The project helps fund practical STEM activities and supports young people learning by making.

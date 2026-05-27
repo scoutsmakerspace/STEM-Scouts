@@ -299,3 +299,117 @@
   .maker-kits-map-page .mk-map-dashboard { width: calc(100vw - 1rem); }
   .maker-kits-map-page .mk-map-summary { grid-template-columns: 1fr; }
 }
+
+
+/* Ordering and pricing */
+.mk-section-intro { max-width: 760px; }
+.mk-order-status-card {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem 0 1.25rem;
+}
+.mk-order-status-card h2 {
+  margin-top: 0;
+  border-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+.mk-order-status-card__actions {
+  display: flex;
+  gap: .6rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+.mk-status-pill {
+  display: inline-block;
+  border-radius: 999px;
+  padding: .45rem .75rem;
+  font-weight: 800;
+  font-size: .85rem;
+  border: 1px solid rgba(0,0,0,.16);
+}
+.mk-status-pill--closed { background: rgba(0,0,0,.06); }
+.mk-card-actions {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-top: .75rem;
+}
+.mk-price-card { margin: 1rem 0 1.25rem; }
+.mk-table-wrap { overflow-x: auto; }
+.mk-price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: .75rem 0 0;
+}
+.mk-price-table th,
+.mk-price-table td {
+  border: 1px solid rgba(0,0,0,.12);
+  padding: .65rem .75rem;
+  text-align: left;
+  vertical-align: top;
+}
+.mk-price-table th { background: rgba(0,0,0,.035); }
+.mk-next-links { margin-top: 1.25rem; }
+@media (max-width: 900px) {
+  .mk-order-status-card { grid-template-columns: 1fr; }
+  .mk-order-status-card__actions { justify-content: flex-start; }
+  .maker-kits-wide .page__content,
+  .maker-kits-map-page .page__content { width: min(100%, calc(100vw - 1.25rem)); }
+}
+
+/* Refined public impact map sizing for normal 100% browser zoom. */
+.maker-kits-map-page .mk-map-dashboard {
+  width: min(1560px, calc(100vw - 2rem));
+  max-width: none;
+  margin: 1rem 0 1.5rem 50%;
+  transform: translateX(-50%);
+}
+.maker-kits-map-page .mk-map-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(290px, 330px);
+  gap: .75rem;
+}
+.maker-kits-map-page .mk-map,
+.maker-kits-map-page .mk-map-side-panel {
+  min-height: 660px;
+  height: min(74vh, 800px);
+}
+@media (max-width: 1200px) {
+  .maker-kits-map-page .mk-map-layout { grid-template-columns: 1fr; }
+  .maker-kits-map-page .mk-map-side-panel { min-height: 340px; height: 420px; }
+}
+
+/* Current quantity-based price list */
+.mk-price-notes {
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 12px;
+  background: rgba(0,0,0,.025);
+  padding: .8rem .95rem;
+  margin: .85rem 0;
+}
+.mk-price-notes ul {
+  margin: .35rem 0 0 1.2rem;
+}
+.mk-price-table--tiers th,
+.mk-price-table--tiers td {
+  text-align: center;
+  white-space: nowrap;
+}
+.mk-price-table--tiers th:first-child,
+.mk-price-table--tiers td:first-child,
+.mk-price-table--tiers th:nth-child(2),
+.mk-price-table--tiers td:nth-child(2) {
+  width: 7rem;
+}
+.mk-price-table--tiers td strong {
+  font-size: 1rem;
+}
+@media (max-width: 700px) {
+  .mk-price-table--tiers th,
+  .mk-price-table--tiers td {
+    padding: .55rem .5rem;
+    font-size: .86rem;
+  }
+}

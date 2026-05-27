@@ -27,7 +27,7 @@ from typing import Any, Dict, Iterable, List, Tuple
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE_DIR = ROOT / "assets" / "data" / "source"
-DEFAULT_REGION_REPORT = DEFAULT_SOURCE_DIR / "maker_kits_region_report.csv"
+DEFAULT_REGION_REPORT = DEFAULT_SOURCE_DIR / "Region_report.csv"
 DEFAULT_POSTCODE_DISTRICTS = DEFAULT_SOURCE_DIR / "postcode_districts.csv"
 LEGACY_REGION_REPORT = ROOT / "Region_report.csv"
 LEGACY_POSTCODE_DISTRICTS = ROOT / "Postcode_districts.csv"

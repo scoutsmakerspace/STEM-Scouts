@@ -15,31 +15,37 @@ toc: false
     <p class="mk-hero__intro">{{ mk.section.intro }}</p>
     <div class="mk-actions">
       <a class="btn btn--primary" href="{{ mk.section.primary_cta_url | relative_url }}">{{ mk.section.primary_cta_label }}</a>
+      <a class="btn" href="{{ '/maker-kits/instructions/' | relative_url }}">Instructions</a>
       <a class="btn" href="{{ mk.section.secondary_cta_url | relative_url }}">{{ mk.section.secondary_cta_label }}</a>
     </div>
   </div>
 </section>
 
-<section class="mk-warning-card">
-  <strong>Community fundraiser:</strong> these kits are produced in batches to support practical STEM activities for young people. Orders are handled directly with groups, schools and community organisations.
-</section>
-
-<section class="mk-grid mk-grid--3">
-  <a class="mk-card mk-card--link" href="{{ '/maker-kits/how-to-order/' | relative_url }}">
-    <h2>How to order</h2>
-    <p>Find out how batch ordering works, what to check before ordering, and how packing and postage are normally handled.</p>
-  </a>
-  <a class="mk-card mk-card--link" href="{{ '/maker-kits/instructions/' | relative_url }}">
-    <h2>Instructions</h2>
-    <p>Download build guides, leader notes, safety reminders and troubleshooting documents for the kits.</p>
-  </a>
-  <a class="mk-card mk-card--link" href="{{ '/maker-kits/map/' | relative_url }}">
-    <h2>Impact map</h2>
-    <p>See where Maker Kits have reached, including public supporter names, repeat support and postcode districts reached.</p>
-  </a>
+<section class="mk-card mk-order-status-card">
+  <div>
+    <p class="mk-kicker">Current ordering</p>
+    {% if mk.ordering.orders_open == true %}
+      <h2>{{ mk.ordering.status_label_open }}</h2>
+      <p>{{ mk.ordering.open_note }}</p>
+    {% else %}
+      <h2>{{ mk.ordering.status_label_closed }}</h2>
+      <p>{{ mk.ordering.closed_note }}</p>
+    {% endif %}
+    <p class="mk-muted"><strong>Lead time:</strong> {{ mk.ordering.delivery_estimate }}</p>
+  </div>
+  <div class="mk-order-status-card__actions">
+    {% if mk.ordering.orders_open == true and mk.ordering.order_link and mk.ordering.order_link != "" %}
+      <a class="btn btn--primary" href="{{ mk.ordering.order_link }}">{{ mk.ordering.order_link_label }}</a>
+    {% else %}
+      <span class="mk-status-pill mk-status-pill--closed">Ordering closed</span>
+    {% endif %}
+    <a class="btn" href="{{ '/maker-kits/how-to-order/' | relative_url }}">Read the ordering notes</a>
+  </div>
 </section>
 
 ## Kits
+
+<p class="mk-section-intro">The kits are intended for supervised group sessions. They include the electronic components and fixings needed for the build, but not tools, batteries or delivery.</p>
 
 <div class="mk-kit-grid">
 {% for kit in mk.kits %}
@@ -53,32 +59,75 @@ toc: false
       <dl class="mk-meta-list">
         <div><dt>Difficulty</dt><dd>{{ kit.difficulty }}</dd></div>
         <div><dt>Build time</dt><dd>{{ kit.build_time }}</dd></div>
+        {% for price in mk.price_list.items %}
+          {% if price.kit_slug == kit.slug %}
+            <div><dt>Price guide</dt><dd>{{ price.price }}</dd></div>
+          {% endif %}
+        {% endfor %}
       </dl>
       <h3>Skills</h3>
       <ul>
       {% for skill in kit.skills %}<li>{{ skill }}</li>{% endfor %}
       </ul>
-      {% if kit.instructions_url and kit.instructions_url != "" %}
-        <a class="btn btn--primary" href="{{ kit.instructions_url }}">Download instructions</a>
-      {% else %}
-        <p class="mk-muted">Instructions link to be added.</p>
-      {% endif %}
+      <div class="mk-card-actions">
+        {% if kit.instructions_url and kit.instructions_url != "" %}
+          <a class="btn btn--primary" href="{{ kit.instructions_url | relative_url }}">Instructions</a>
+        {% endif %}
+        <a class="btn" href="{{ '/maker-kits/how-to-order/' | relative_url }}">Ordering notes</a>
+      </div>
     </div>
   </article>
 {% endfor %}
 </div>
 
-## Public reach
+<section class="mk-card mk-price-card" id="price-list">
+  <h2>{{ mk.price_list.title }}</h2>
+  <p>{{ mk.price_list.note }}</p>
 
-<div class="mk-grid mk-grid--2">
-  <div class="mk-card">
-    <h2>Impact map</h2>
-    <p>Public supporter names and broad reach statistics are shown together on the impact map. Locations are approximate and shown by postcode district, not exact address.</p>
-    <p><a class="btn" href="{{ '/maker-kits/map/' | relative_url }}">Open the impact map</a></p>
+  <div class="mk-price-notes">
+    <strong>Important:</strong>
+    <ul>
+      {% for note in mk.price_list.important %}<li>{{ note }}</li>{% endfor %}
+    </ul>
   </div>
-  <div class="mk-card">
+
+  <div class="mk-table-wrap">
+    <table class="mk-price-table mk-price-table--tiers">
+      <thead>
+        <tr>
+          <th>Discount</th>
+          <th>Quantity</th>
+          <th>I Can Solder</th>
+          <th>Rocket</th>
+          <th>Camp Fire</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tier in mk.price_list.tiers %}
+        <tr>
+          <td>{{ tier.discount }}</td>
+          <td>{{ tier.quantity }}</td>
+          <td><strong>{{ tier.i_can_solder.unit }}</strong><br><span class="mk-muted">lot {{ tier.i_can_solder.lot }}</span></td>
+          <td><strong>{{ tier.rocket.unit }}</strong><br><span class="mk-muted">lot {{ tier.rocket.lot }}</span></td>
+          <td><strong>{{ tier.camp_fire.unit }}</strong><br><span class="mk-muted">lot {{ tier.camp_fire.lot }}</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="mk-grid mk-grid--3 mk-next-links">
+  <a class="mk-card mk-card--link" href="{{ '/maker-kits/how-to-order/' | relative_url }}">
+    <h2>How ordering works</h2>
+    <p>Batch ordering, packing options, what is included, what is not included, payment timing and delivery estimates.</p>
+  </a>
+  <a class="mk-card mk-card--link" href="{{ '/maker-kits/instructions/' | relative_url }}">
     <h2>Instructions and support</h2>
-    <p>Build guides, safety notes and support information are kept together so leaders can plan sessions confidently.</p>
-    <p><a class="btn" href="{{ '/maker-kits/instructions/' | relative_url }}">Open the instructions</a></p>
-  </div>
-</div>
+    <p>Build guides, activity notes and example safety documents for planning a group session.</p>
+  </a>
+  <a class="mk-card mk-card--link" href="{{ '/maker-kits/map/' | relative_url }}">
+    <h2>Impact map</h2>
+    <p>Public supporter names, repeat support and Scout districts reached by the project.</p>
+  </a>
+</section>

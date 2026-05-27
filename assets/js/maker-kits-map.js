@@ -268,7 +268,6 @@
         setText('mk-map-stat-groups', totals.uniqueGroups);
         setText('mk-map-stat-entries', totals.publicEntries);
         setText('mk-map-stat-repeat', totals.repeatEntries);
-        setText('mk-map-stat-districts', totals.districts);
         setText('mk-map-stat-scout-districts', totals.scoutDistricts);
 
         var rows = flattenGroupRows(features);

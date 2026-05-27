@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Maker Kit Instructions and Documents"
+title: "Maker Kit Instructions"
 toc: true
 ---
 
@@ -8,13 +8,7 @@ toc: true
 
 {% assign mk = site.data.maker_kits %}
 
-The current public build guides and leader documents are stored in the instructions folder below. Please check that you are using the latest version for your kit batch before printing or running a session.
-
-<p><a class="btn btn--primary" href="{{ mk.instructions.drive_folder_url }}">{{ mk.instructions.drive_folder_label }}</a></p>
-
-<div class="mk-warning-card">
-  <strong>Session safety:</strong> soldering activities need suitable adult supervision, safety glasses, a sensible workspace and a local risk assessment.
-</div>
+Build guides and support documents for running Maker Kit sessions are kept here so leaders can find the latest public versions in one place.
 
 <div class="mk-doc-list">
 {% for doc in mk.documents %}
@@ -24,7 +18,7 @@ The current public build guides and leader documents are stored in the instructi
     {% if doc.version and doc.version != "" %}<p><strong>Version:</strong> {{ doc.version }}</p>{% endif %}
     {% if doc.date and doc.date != "" %}<p><strong>Date:</strong> {{ doc.date }}</p>{% endif %}
     {% if doc.file and doc.file != "" %}
-      <p><a class="btn btn--primary" href="{{ doc.file }}">Open</a></p>
+      <p><a class="btn btn--primary" href="{{ doc.file | relative_url }}">Download PDF</a></p>
     {% else %}
       <p class="mk-muted">Download not added yet.</p>
     {% endif %}
@@ -32,17 +26,16 @@ The current public build guides and leader documents are stored in the instructi
 {% endfor %}
 </div>
 
-## Suggested document set
+## Planning a session
 
-The public instructions folder should eventually include:
+Before running a kit session, leaders should check:
 
-- build instructions for each kit
-- leader notes for running a session
-- soldering safety briefing
-- troubleshooting sheet
-- packing/content checklist for receiving groups
-- optional youth worksheet or reflection sheet
+- the correct build guide for the kit version being used
+- component quantities against the packing list
+- soldering irons, solder, side cutters, batteries and safety glasses
+- adult supervision and workstation layout
+- local risk assessment and safety briefing
 
-## Version control
+## Notes
 
-Put a version and date on each public document. When a kit changes, update the document and the public page together so leaders do not use old instructions with new parts.
+The documents are intended to support planning and delivery. They do not replace local supervision, safety planning or group-specific risk assessment.

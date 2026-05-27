@@ -8,43 +8,133 @@ toc: true
 
 {% assign mk = site.data.maker_kits %}
 
-<div class="mk-warning-card">
-  <strong>Ordering status:</strong> {{ mk.ordering.status }}. {{ mk.ordering.contact_note }}
-</div>
-
-{% if mk.ordering.order_link and mk.ordering.order_link != "" %}
-<p><a class="btn btn--primary" href="{{ mk.ordering.order_link }}">{{ mk.ordering.order_link_label }}</a></p>
-{% endif %}
+<section class="mk-card mk-order-status-card">
+  <div>
+    <p class="mk-kicker">Current ordering</p>
+    {% if mk.ordering.orders_open == true %}
+      <h2>{{ mk.ordering.status_label_open }}</h2>
+      <p>{{ mk.ordering.open_note }}</p>
+    {% else %}
+      <h2>{{ mk.ordering.status_label_closed }}</h2>
+      <p>{{ mk.ordering.closed_note }}</p>
+    {% endif %}
+    <p><strong>Order deadline:</strong> {{ mk.ordering.order_deadline }}</p>
+    <p><strong>Lead time:</strong> {{ mk.ordering.delivery_estimate }}</p>
+  </div>
+  <div class="mk-order-status-card__actions">
+    {% if mk.ordering.orders_open == true and mk.ordering.order_link and mk.ordering.order_link != "" %}
+      <a class="btn btn--primary" href="{{ mk.ordering.order_link }}">{{ mk.ordering.order_link_label }}</a>
+    {% else %}
+      <span class="mk-status-pill mk-status-pill--closed">Ordering closed</span>
+    {% endif %}
+    <a class="btn" href="{{ '/maker-kits/instructions/' | relative_url }}">View instructions</a>
+  </div>
+</section>
 
 ## Before you order
 
-Maker Kits are normally organised as batch orders rather than a permanent shop. This helps keep the project practical, reduces waste and makes packing manageable for larger group orders.
+Maker Kits are organised in batches rather than held as shop stock. Please check the current order window, price list, delivery estimate and packing approach before planning your activity date.
 
 Before placing an order, check:
 
 - which kit designs are currently available
-- whether you need individually packed kits or labelled bulk component bags
-- whether you need custom logo or wording on the PCB
-- the expected packing and dispatch window
-- the current price list and postage process
-- whether your group has enough adult support and equipment to run the activity safely
+- whether you need custom logo or writing on the PCB
+- whether your order needs individual packing or labelled bulk bags
+- whether your group has the tools, batteries, workspace and adult support needed for soldering
+- the payment deadline and delivery estimate for the active batch
 
-## Packing approach
-
-Smaller orders may be supplied with PCBs individually bagged and the other components grouped in labelled bulk bags. Larger orders are usually easier and less wasteful to manage with bulk-packed components, unless individual packing has been agreed.
-
-Each parcel should include a packing list so the receiving leader can check the contents before running a session.
-
-## Payment and postage
-
-Payment and postage are confirmed directly with the organiser. Postage is normally confirmed once parcels are packed and ready to send.
+## Current price list
 
 {{ mk.ordering.pricing_note }}
 
-## Safety and session planning
+<div class="mk-price-notes">
+  <strong>Important:</strong>
+  <ul>
+    {% for note in mk.price_list.important %}<li>{{ note }}</li>{% endfor %}
+  </ul>
+</div>
 
-The kits involve soldering or practical making. Leaders should prepare a suitable workspace, supervision plan and risk assessment for their own setting. Public instructions can help, but they do not replace local safety planning.
+<div class="mk-table-wrap">
+  <table class="mk-price-table mk-price-table--tiers">
+    <thead>
+      <tr>
+        <th>Discount</th>
+        <th>Quantity</th>
+        <th>I Can Solder</th>
+        <th>Rocket</th>
+        <th>Camp Fire</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tier in mk.price_list.tiers %}
+      <tr>
+        <td>{{ tier.discount }}</td>
+        <td>{{ tier.quantity }}</td>
+        <td><strong>{{ tier.i_can_solder.unit }}</strong><br><span class="mk-muted">lot {{ tier.i_can_solder.lot }}</span></td>
+        <td><strong>{{ tier.rocket.unit }}</strong><br><span class="mk-muted">lot {{ tier.rocket.lot }}</span></td>
+        <td><strong>{{ tier.camp_fire.unit }}</strong><br><span class="mk-muted">lot {{ tier.camp_fire.lot }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
-## Need help?
+## Packing approach
 
-If something is missing or unclear, contact the organiser with the kit type, approximate quantity and a clear description of the issue. Avoid posting private order details, addresses or payment information in public comments or on social media.
+The packing approach is designed to reduce waste and keep costs as low as possible while still protecting the PCBs.
+
+For orders under **125 pcs of the same design with the same logo/writing**:
+
+- PCB sets are individually packed for protection
+- the rest of the components are supplied in labelled bulk bags by component type
+
+For orders over **125 pcs of the same design with the same logo/writing**:
+
+- bulk packing is normally the most sensible option
+- individual packing may still be possible if needed
+- individual packing uses more plastic, although some cost can be offset through bulk buying
+
+## Example: 50 Rocket badges
+
+For example, if you order 50 Rocket badges, you would normally receive:
+
+- 50 sets of the 2 PCBs, with each PCB set in its own protective bag
+- 1 labelled bag with 50 red LEDs
+- 1 labelled bag with 50 blue LEDs
+- 1 labelled bag with 50 of one resistor type
+- 1 labelled bag with 50 of the other resistor type
+- 1 labelled bag with 150 nylon standoffs
+- 1 labelled bag with 300 bolts, metal or nylon depending on the kit version
+
+Once received, you can either pre-pack the kits before your session or distribute components directly at workstations. Use whichever approach works best for your group and helpers.
+
+## What is included
+
+Kits include the electronic components and fixings required for the kit build.
+
+Tools and consumables are not included. Groups will normally need to provide:
+
+- soldering irons
+- solder
+- side cutters
+- safety glasses
+- CR2032 batteries or other power items where required by the kit version
+- a suitable workspace and adult supervision
+
+## Payment, postage and delivery
+
+{{ mk.ordering.payment_deadline_note }}
+
+{{ mk.ordering.postage_note }}
+
+{{ mk.ordering.delivery_estimate }}
+
+For ordering or batch questions, contact: [{{ mk.ordering.contact_email }}](mailto:{{ mk.ordering.contact_email }}).
+
+## Instructions and safety planning
+
+Build instructions and support documents are available here:
+
+<p><a class="btn btn--primary" href="{{ '/maker-kits/instructions/' | relative_url }}">Open the instruction documents</a></p>
+
+The kits involve soldering or practical making. Leaders should prepare a suitable workspace, supervision plan and risk assessment for their own setting. The public documents are there to help, but they do not replace local safety planning.
