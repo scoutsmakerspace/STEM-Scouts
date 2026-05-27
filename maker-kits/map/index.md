@@ -14,14 +14,13 @@ toc: false
   <div class="mk-map-page-title">
     <p class="mk-kicker">Public impact map</p>
     <h1>Where Maker Kits have reached</h1>
-    <p>This map brings the project’s public impact statistics and supporter map together in one place. It shows broad reach by postcode district, not exact addresses.</p>
+    <p>This map brings the project’s public impact statistics and supporter map together in one place.</p>
   </div>
 
   <div class="mk-map-summary" aria-label="Maker Kits public impact summary">
     <div class="mk-mini-stat"><span id="mk-map-stat-groups" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">unique groups supported</span></div>
     <div class="mk-mini-stat"><span id="mk-map-stat-entries" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">public support entries</span></div>
     <div class="mk-mini-stat"><span id="mk-map-stat-repeat" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">repeat entries</span></div>
-    <div class="mk-mini-stat"><span id="mk-map-stat-districts" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">postcode districts reached</span></div>
     <div class="mk-mini-stat"><span id="mk-map-stat-scout-districts" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">Scout districts listed</span></div>
   </div>
 
@@ -54,9 +53,6 @@ toc: false
     </aside>
   </div>
 
-  <div class="mk-map-note">
-    Locations are approximate postcode-district centroids. Scout district names are included where supplied in the public map source. Kit quantities are shown as bands on the map, not exact per-group order quantities. No contact details, full addresses, full postcodes, payment details, tracking details or private order records are published.
-  </div>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
