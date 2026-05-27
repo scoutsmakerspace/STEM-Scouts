@@ -24,7 +24,7 @@ toc: false
   <div class="mk-map-summary" aria-label="Maker Kits public impact summary">
     <div class="mk-mini-stat"><span id="mk-map-stat-groups" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">unique groups supported</span></div>
     <div class="mk-mini-stat"><span id="mk-map-stat-entries" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">public support entries</span></div>
-    <div class="mk-mini-stat"><span id="mk-map-stat-repeat" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">repeat entries</span></div>
+    <div class="mk-mini-stat"><span id="mk-map-stat-repeat" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">returning groups</span></div>
     <div class="mk-mini-stat"><span id="mk-map-stat-scout-districts" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">Scout districts listed</span></div>
   </div>
 
