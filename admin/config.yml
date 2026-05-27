@@ -4,8 +4,8 @@ backend:
   branch: main
   base_url: https://stemscouts-oauth.scouts-makerspace.workers.dev
   auth_endpoint: auth
-site_url: https://scoutsmakerspace.github.io/STEM-Scouts
-display_url: https://scoutsmakerspace.github.io/STEM-Scouts
+site_url: https://stemscouts.space
+display_url: https://stemscouts.space
 publish_mode: editorial_workflow
 media_folder: assets/images/uploads
 public_folder: /assets/images/uploads
