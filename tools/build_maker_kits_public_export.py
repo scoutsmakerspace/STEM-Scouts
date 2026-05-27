@@ -26,6 +26,11 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Tuple
 
 ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_SOURCE_DIR = ROOT / "assets" / "data" / "source"
+DEFAULT_REGION_REPORT = DEFAULT_SOURCE_DIR / "maker_kits_region_report.csv"
+DEFAULT_POSTCODE_DISTRICTS = DEFAULT_SOURCE_DIR / "postcode_districts.csv"
+LEGACY_REGION_REPORT = ROOT / "Region_report.csv"
+LEGACY_POSTCODE_DISTRICTS = ROOT / "Postcode_districts.csv"
 SCOUT_DISTRICT_COLUMNS = [
     "Scout District",
     "Scout District Name",
@@ -37,6 +42,15 @@ SCOUT_DISTRICT_COLUMNS = [
 
 def _clean(value: Any) -> str:
     return str(value or "").strip()
+
+
+def _resolve_default_input(path: Path, fallback: Path) -> Path:
+    """Use repo source data by default, but keep legacy root-level CSV use working."""
+    if path.exists():
+        return path
+    if fallback.exists():
+        return fallback
+    return path
 
 
 def _as_int(value: Any) -> int:
@@ -110,15 +124,15 @@ def _read_region_report(path: Path) -> Tuple[Dict[str, Dict[str, Any]], Dict[str
     total_kits = 0
     global_group_counter: Counter[str] = Counter()
     global_scout_district_counter: Counter[str] = Counter()
-    missing_map_district_rows: List[int] = []
-    missing_scout_district_rows: List[str] = []
+    missing_map_district_csv_lines: List[int] = []
+    missing_scout_district_group_names: List[str] = []
 
     with path.open("r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         for idx, row in enumerate(reader, start=2):
             district = _clean(row.get("District Code")).upper()
             if not district:
-                missing_map_district_rows.append(idx)
+                missing_map_district_csv_lines.append(idx)
                 continue
 
             kits = _as_int(row.get("Kits"))
@@ -139,7 +153,7 @@ def _read_region_report(path: Path) -> Tuple[Dict[str, Dict[str, Any]], Dict[str
                 stats["scout_district_counter"][scout_district] += 1
                 global_scout_district_counter[scout_district] += 1
             elif group_name:
-                missing_scout_district_rows.append(group_name)
+                missing_scout_district_group_names.append(group_name)
 
             total_rows += 1
             total_kits += kits
@@ -155,8 +169,8 @@ def _read_region_report(path: Path) -> Tuple[Dict[str, Dict[str, Any]], Dict[str
         "returning_groups": returning_groups,
         "repeat_entries": repeat_entries,
         "unique_scout_districts": len(global_scout_district_counter),
-        "missing_map_district_rows": missing_map_district_rows,
-        "missing_scout_district_rows": missing_scout_district_rows,
+        "missing_map_district_csv_lines": missing_map_district_csv_lines,
+        "missing_scout_district_group_names": missing_scout_district_group_names,
     }
     return dict(by_district), totals
 
@@ -165,7 +179,7 @@ def _most_common_name(counter: Counter[str]) -> str:
     return counter.most_common(1)[0][0] if counter else ""
 
 
-def build(region_report: Path, postcode_districts: Path, out_geojson: Path, out_summary: Path, source_tool_version: str, show_group_names: bool) -> None:
+def build(region_report: Path, postcode_districts: Path, out_geojson: Path, out_summary: Path, source_tool_version: str, show_group_names: bool) -> Dict[str, Any]:
     postcode_lookup = _read_postcode_lookup(postcode_districts)
     by_district, totals = _read_region_report(region_report)
 
@@ -268,8 +282,8 @@ def build(region_report: Path, postcode_districts: Path, out_geojson: Path, out_
         },
         "warnings": {
             "missing_postcode_districts": missing_postcode_districts,
-            "missing_map_district_rows": totals["missing_map_district_rows"],
-            "missing_scout_district_rows": totals["missing_scout_district_rows"],
+            "missing_map_district_csv_lines": totals["missing_map_district_csv_lines"],
+            "missing_scout_district_group_names": totals["missing_scout_district_group_names"],
         },
     }
 
@@ -281,28 +295,45 @@ def build(region_report: Path, postcode_districts: Path, out_geojson: Path, out_
     print(f"Wrote {out_summary}")
     if missing_postcode_districts:
         print("Warning: missing postcode districts:", ", ".join(missing_postcode_districts))
-    if totals["missing_scout_district_rows"]:
-        print("Warning: rows missing Scout district:", len(totals["missing_scout_district_rows"]))
+    if totals["missing_scout_district_group_names"]:
+        print("Warning: rows missing Scout district:", len(totals["missing_scout_district_group_names"]))
+    return summary
 
 
 def main(argv: Iterable[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--region-report", default="Region_report.csv")
-    parser.add_argument("--postcode-districts", default="Postcode_districts.csv")
+    parser.add_argument("--region-report", default=str(DEFAULT_REGION_REPORT))
+    parser.add_argument("--postcode-districts", default=str(DEFAULT_POSTCODE_DISTRICTS))
     parser.add_argument("--out-geojson", default=str(ROOT / "assets/data/maker_kits_public_map.geojson"))
     parser.add_argument("--out-summary", default=str(ROOT / "assets/data/maker_kits_impact_summary.json"))
     parser.add_argument("--source-tool-version", default="V1.16.3")
     parser.add_argument("--hide-group-names", action="store_true", help="Generate aggregate-only public map data.")
+    parser.add_argument("--strict", action="store_true", help="Fail if required public-map lookup data is missing.")
     args = parser.parse_args(list(argv) if argv is not None else None)
 
-    build(
-        region_report=Path(args.region_report),
-        postcode_districts=Path(args.postcode_districts),
+    summary = build(
+        region_report=_resolve_default_input(Path(args.region_report), LEGACY_REGION_REPORT),
+        postcode_districts=_resolve_default_input(Path(args.postcode_districts), LEGACY_POSTCODE_DISTRICTS),
         out_geojson=Path(args.out_geojson),
         out_summary=Path(args.out_summary),
         source_tool_version=args.source_tool_version,
         show_group_names=not args.hide_group_names,
     )
+    if args.strict:
+        warnings = summary.get("warnings", {})
+        blocking = {
+            key: value for key, value in warnings.items()
+            if value and key in {
+                "missing_postcode_districts",
+                "missing_map_district_csv_lines",
+                "missing_scout_district_group_names",
+            }
+        }
+        if blocking:
+            print("Strict public export check FAILED:")
+            for key, value in blocking.items():
+                print(f"- {key}: {value}")
+            return 1
     return 0
 
 
