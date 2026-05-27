@@ -96,8 +96,7 @@
       }).join('') + '</ul>';
     }
     var district = scoutDistrictText({}, p);
-    return '<div class="mk-popup-title">' + escapeHtml(p.postcode_district || 'Approximate area') + '</div>' +
-      (district ? '<div class="mk-popup-line"><strong>Scout district:</strong> ' + escapeHtml(district) + '</div>' : '') +
+    return (district ? '<div class="mk-popup-line"><strong>Scout district:</strong> ' + escapeHtml(district) + '</div>' : '') +
       '<div class="mk-popup-line"><strong>Postcode district:</strong> ' + escapeHtml(p.postcode_district || '—') + '</div>' +
       '<div class="mk-popup-line"><strong>Groups supported here:</strong> ' + formatNumber(p.groups_supported) + '</div>' +
       '<div class="mk-popup-line"><strong>Public entries:</strong> ' + formatNumber(p.public_entries || p.groups_supported) + '</div>' +
