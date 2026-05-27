@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2",
-  "generated_at": "2026-05-27T08:25:04Z",
+  "generated_at": "2026-05-27T09:04:32Z",
   "source_tool_version": "V1.16.3",
   "privacy_level": "public_group_names",
   "totals": {
@@ -25,7 +25,7 @@
   },
   "warnings": {
     "missing_postcode_districts": [],
-    "missing_map_district_rows": [],
-    "missing_scout_district_rows": []
+    "missing_map_district_csv_lines": [],
+    "missing_scout_district_group_names": []
   }
 }
