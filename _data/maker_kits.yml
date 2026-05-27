@@ -32,7 +32,7 @@ privacy:
     Public statistics are aggregated or rounded and are intended to show broad community reach, not private order details.
 
 instructions:
-  folder_url: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
+  folder_url: "/docs/instructions/"
   folder_label: "Open the instruction documents folder"
 
 kits:
@@ -58,7 +58,7 @@ kits:
       - "Safety glasses"
       - "Adult supervision and a suitable risk assessment"
     image: ""
-    instructions_url: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
+    instructions_url: "/docs/instructions/Rocket%20badge%20instructions%20v2.pdf"
 
   - slug: camp-fire
     name: "Camp fire soldering kit"
@@ -81,7 +81,7 @@ kits:
       - "Safety glasses"
       - "Adult supervision and a suitable risk assessment"
     image: ""
-    instructions_url: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
+    instructions_url: "/docs/instructions/Camp%20Fire%20badge%20instructions%20v2.pdf"
 
   - slug: i-can-solder
     name: "I can solder badge kit"
@@ -104,15 +104,27 @@ kits:
       - "Safety glasses"
       - "Adult supervision and a suitable risk assessment"
     image: ""
-    instructions_url: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
+    instructions_url: "/docs/instructions/I%20Can%20Solder%20badge%20instructions%20v2.pdf"
 
 documents:
-  - title: "Instruction documents folder"
-    kit_slug: "all"
-    type: "Build guides and leader notes"
-    version: "current"
+  - title: "Rocket badge instructions"
+    kit_slug: "rocket"
+    type: "Build guide"
+    version: "v2"
     date: ""
-    file: "https://drive.google.com/drive/folders/11Brb_JYxlajrYVbA0n_m6q4q98P6U3Es?usp=drive_link"
+    file: "/docs/instructions/Rocket%20badge%20instructions%20v2.pdf"
+  - title: "Camp Fire badge instructions"
+    kit_slug: "camp-fire"
+    type: "Build guide"
+    version: "v2"
+    date: ""
+    file: "/docs/instructions/Camp%20Fire%20badge%20instructions%20v2.pdf"
+  - title: "I Can Solder badge instructions"
+    kit_slug: "i-can-solder"
+    type: "Build guide"
+    version: "v2"
+    date: ""
+    file: "/docs/instructions/I%20Can%20Solder%20badge%20instructions%20v2.pdf"
 
 faq:
   - question: "Who are the kits for?"
