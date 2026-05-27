@@ -17,6 +17,15 @@ toc: false
     <p>This map brings the project’s public impact statistics and supporter map together in one place.</p>
   </div>
 
+  <nav class="mk-subnav" aria-label="Maker Kits pages">
+    <span class="mk-subnav__label">Maker Kits</span>
+    <a href="{{ '/maker-kits/' | relative_url }}" target="_blank" rel="noopener">Overview</a>
+    <a href="{{ '/maker-kits/how-to-order/' | relative_url }}" target="_blank" rel="noopener">Ordering</a>
+    <a href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">Instructions</a>
+    <a href="{{ '/maker-kits/map/' | relative_url }}" target="_blank" rel="noopener">Impact map</a>
+    <a href="{{ '/maker-kits/faq/' | relative_url }}" target="_blank" rel="noopener">FAQ</a>
+  </nav>
+
   <div class="mk-map-summary" aria-label="Maker Kits public impact summary">
     <div class="mk-mini-stat"><span id="mk-map-stat-groups" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">unique groups supported</span></div>
     <div class="mk-mini-stat"><span id="mk-map-stat-entries" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">public support entries</span></div>

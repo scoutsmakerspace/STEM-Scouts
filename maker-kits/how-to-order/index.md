@@ -1,12 +1,22 @@
 ---
-layout: single
+layout: splash
 title: "How to order Maker Kits"
-toc: true
+classes: wide maker-kits-wide maker-kits-subpage
+toc: false
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/maker-kits.css' | relative_url }}">
 
 {% assign mk = site.data.maker_kits %}
+
+<nav class="mk-subnav" aria-label="Maker Kits pages">
+  <span class="mk-subnav__label">Maker Kits</span>
+  <a href="{{ '/maker-kits/' | relative_url }}" target="_blank" rel="noopener">Overview</a>
+  <a href="{{ '/maker-kits/how-to-order/' | relative_url }}" target="_blank" rel="noopener">Ordering</a>
+  <a href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">Instructions</a>
+  <a href="{{ '/maker-kits/map/' | relative_url }}" target="_blank" rel="noopener">Impact map</a>
+  <a href="{{ '/maker-kits/faq/' | relative_url }}" target="_blank" rel="noopener">FAQ</a>
+</nav>
 
 <section class="mk-card mk-order-status-card">
   <div>
@@ -23,11 +33,11 @@ toc: true
   </div>
   <div class="mk-order-status-card__actions">
     {% if mk.ordering.orders_open == true and mk.ordering.order_link and mk.ordering.order_link != "" %}
-      <a class="btn btn--primary" href="{{ mk.ordering.order_link }}">{{ mk.ordering.order_link_label }}</a>
+      <a class="btn btn--primary" href="{{ mk.ordering.order_link }}" target="_blank" rel="noopener">{{ mk.ordering.order_link_label }}</a>
     {% else %}
       <span class="mk-status-pill mk-status-pill--closed">Ordering closed</span>
     {% endif %}
-    <a class="btn" href="{{ '/maker-kits/instructions/' | relative_url }}">View instructions</a>
+    <a class="btn" href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">View instructions</a>
   </div>
 </section>
 
@@ -70,9 +80,9 @@ Before placing an order, check:
       <tr>
         <td>{{ tier.discount }}</td>
         <td>{{ tier.quantity }}</td>
-        <td><strong>{{ tier.i_can_solder.unit }}</strong><br><span class="mk-muted">lot {{ tier.i_can_solder.lot }}</span></td>
-        <td><strong>{{ tier.rocket.unit }}</strong><br><span class="mk-muted">lot {{ tier.rocket.lot }}</span></td>
-        <td><strong>{{ tier.camp_fire.unit }}</strong><br><span class="mk-muted">lot {{ tier.camp_fire.lot }}</span></td>
+        <td><span class="mk-price-lot">{{ tier.i_can_solder.lot }}</span><span class="mk-price-unit">{{ tier.i_can_solder.unit }} each</span></td>
+        <td><span class="mk-price-lot">{{ tier.rocket.lot }}</span><span class="mk-price-unit">{{ tier.rocket.unit }} each</span></td>
+        <td><span class="mk-price-lot">{{ tier.camp_fire.lot }}</span><span class="mk-price-unit">{{ tier.camp_fire.unit }} each</span></td>
       </tr>
       {% endfor %}
     </tbody>
@@ -129,12 +139,12 @@ Tools and consumables are not included. Groups will normally need to provide:
 
 {{ mk.ordering.delivery_estimate }}
 
-For ordering or batch questions, contact: [{{ mk.ordering.contact_email }}](mailto:{{ mk.ordering.contact_email }}).
+For ordering or batch questions, contact: <a href="mailto:{{ mk.ordering.contact_email }}" target="_blank" rel="noopener">{{ mk.ordering.contact_email }}</a>.
 
 ## Instructions and safety planning
 
 Build instructions and support documents are available here:
 
-<p><a class="btn btn--primary" href="{{ '/maker-kits/instructions/' | relative_url }}">Open the instruction documents</a></p>
+<p><a class="btn btn--primary" href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">Open the instruction documents</a></p>
 
 The kits involve soldering or practical making. Leaders should prepare a suitable workspace, supervision plan and risk assessment for their own setting. The public documents are there to help, but they do not replace local safety planning.

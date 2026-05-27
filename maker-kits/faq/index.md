@@ -1,12 +1,22 @@
 ---
-layout: single
+layout: splash
 title: "Maker Kits FAQ and Support"
-toc: true
+classes: wide maker-kits-wide maker-kits-subpage
+toc: false
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/maker-kits.css' | relative_url }}">
 
 {% assign mk = site.data.maker_kits %}
+
+<nav class="mk-subnav" aria-label="Maker Kits pages">
+  <span class="mk-subnav__label">Maker Kits</span>
+  <a href="{{ '/maker-kits/' | relative_url }}" target="_blank" rel="noopener">Overview</a>
+  <a href="{{ '/maker-kits/how-to-order/' | relative_url }}" target="_blank" rel="noopener">Ordering</a>
+  <a href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">Instructions</a>
+  <a href="{{ '/maker-kits/map/' | relative_url }}" target="_blank" rel="noopener">Impact map</a>
+  <a href="{{ '/maker-kits/faq/' | relative_url }}" target="_blank" rel="noopener">FAQ</a>
+</nav>
 
 {% for item in mk.faq %}
 ## {{ item.question }}

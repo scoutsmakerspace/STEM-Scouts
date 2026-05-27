@@ -652,3 +652,67 @@
   }
   .mk-price-lot { font-size: 1.02rem; }
 }
+
+
+/* Maker Kits page-wide layout and compact cross-links */
+.maker-kits-home-page .page__content,
+.maker-kits-subpage .page__content {
+  max-width: min(1320px, calc(100vw - 2rem)) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.maker-kits-home-page .page,
+.maker-kits-home-page .page__inner-wrap,
+.maker-kits-home-page .archive,
+.maker-kits-subpage .page,
+.maker-kits-subpage .page__inner-wrap,
+.maker-kits-subpage .archive {
+  max-width: none !important;
+}
+.mk-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  align-items: center;
+  margin: .5rem 0 1.25rem;
+  padding: .65rem;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 999px;
+  background: rgba(0,0,0,.018);
+}
+.mk-subnav__label {
+  font-size: .78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  opacity: .7;
+  margin: 0 .15rem 0 .25rem;
+}
+.mk-subnav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: .35rem .7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1.15;
+}
+.mk-subnav a:hover {
+  background: rgba(0,0,0,.045);
+}
+@media (max-width: 700px) {
+  .maker-kits-home-page .page__content,
+  .maker-kits-subpage .page__content {
+    max-width: min(100%, calc(100vw - 1rem)) !important;
+  }
+  .mk-subnav {
+    border-radius: 16px;
+  }
+  .mk-subnav__label {
+    width: 100%;
+    margin-bottom: .1rem;
+  }
+}

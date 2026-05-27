@@ -1,12 +1,22 @@
 ---
-layout: single
+layout: splash
 title: "Maker Kit Instructions"
-toc: true
+classes: wide maker-kits-wide maker-kits-subpage
+toc: false
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/maker-kits.css' | relative_url }}">
 
 {% assign mk = site.data.maker_kits %}
+
+<nav class="mk-subnav" aria-label="Maker Kits pages">
+  <span class="mk-subnav__label">Maker Kits</span>
+  <a href="{{ '/maker-kits/' | relative_url }}" target="_blank" rel="noopener">Overview</a>
+  <a href="{{ '/maker-kits/how-to-order/' | relative_url }}" target="_blank" rel="noopener">Ordering</a>
+  <a href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">Instructions</a>
+  <a href="{{ '/maker-kits/map/' | relative_url }}" target="_blank" rel="noopener">Impact map</a>
+  <a href="{{ '/maker-kits/faq/' | relative_url }}" target="_blank" rel="noopener">FAQ</a>
+</nav>
 
 Build guides and support documents for running Maker Kit sessions are kept here so leaders can find the latest public versions in one place.
 
@@ -18,7 +28,7 @@ Build guides and support documents for running Maker Kit sessions are kept here 
     {% if doc.version and doc.version != "" %}<p><strong>Version:</strong> {{ doc.version }}</p>{% endif %}
     {% if doc.date and doc.date != "" %}<p><strong>Date:</strong> {{ doc.date }}</p>{% endif %}
     {% if doc.file and doc.file != "" %}
-      <p><a class="btn btn--primary" href="{{ doc.file | relative_url }}">Download PDF</a></p>
+      <p><a class="btn btn--primary" href="{{ doc.file | relative_url }}" target="_blank" rel="noopener">Download PDF</a></p>
     {% else %}
       <p class="mk-muted">Download not added yet.</p>
     {% endif %}
