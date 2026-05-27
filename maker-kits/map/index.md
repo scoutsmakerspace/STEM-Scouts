@@ -22,10 +22,11 @@ toc: false
     <div class="mk-mini-stat"><span id="mk-map-stat-entries" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">public support entries</span></div>
     <div class="mk-mini-stat"><span id="mk-map-stat-repeat" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">repeat entries</span></div>
     <div class="mk-mini-stat"><span id="mk-map-stat-districts" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">postcode districts reached</span></div>
+    <div class="mk-mini-stat"><span id="mk-map-stat-scout-districts" class="mk-mini-stat__value">—</span><span class="mk-mini-stat__label">Scout districts listed</span></div>
   </div>
 
   <div class="mk-map-toolbar">
-    <input id="maker-kits-map-search" class="mk-map-search" type="search" placeholder="Search group name, postcode district, town or area…" aria-label="Search public impact map">
+    <input id="maker-kits-map-search" class="mk-map-search" type="search" placeholder="Search group name, Scout district, postcode district, town or area…" aria-label="Search public impact map">
     <button id="maker-kits-clear-search" class="mk-map-button" type="button">Clear search</button>
     <button id="maker-kits-reset-map" class="mk-map-button" type="button">Reset map</button>
     <button id="maker-kits-toggle-list" class="mk-map-button" type="button">Show/hide list</button>
@@ -54,7 +55,7 @@ toc: false
   </div>
 
   <div class="mk-map-note">
-    Locations are approximate postcode-district centroids. Kit quantities are shown as bands on the map, not exact per-group order quantities. No contact details, full addresses, full postcodes, payment details, tracking details or private order records are published.
+    Locations are approximate postcode-district centroids. Scout district names are included where supplied in the public map source. Kit quantities are shown as bands on the map, not exact per-group order quantities. No contact details, full addresses, full postcodes, payment details, tracking details or private order records are published.
   </div>
 </div>
 
