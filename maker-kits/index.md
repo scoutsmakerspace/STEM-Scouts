@@ -1,11 +1,12 @@
 ---
 layout: splash
 title: "Maker Kits"
-classes: wide maker-kits-wide maker-kits-home-page
+classes: wide maker-kits-wide maker-kits-content-page
 toc: false
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/maker-kits.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/maker-kits-refinements.css' | relative_url }}">
 
 {% assign mk = site.data.maker_kits %}
 
@@ -72,7 +73,7 @@ toc: false
         <div><dt>Build time</dt><dd>{{ kit.build_time }}</dd></div>
         {% for price in mk.price_list.items %}
           {% if price.kit_slug == kit.slug %}
-            <div><dt>Price guide</dt><dd>{{ price.price }}</dd></div>
+            <div><dt>Lot price guide</dt><dd>{{ price.price }}<br><span class="mk-muted">{{ price.unit }}</span></dd></div>
           {% endif %}
         {% endfor %}
       </dl>
@@ -118,9 +119,9 @@ toc: false
         <tr>
           <td>{{ tier.discount }}</td>
           <td>{{ tier.quantity }}</td>
-          <td><span class="mk-price-lot">{{ tier.i_can_solder.lot }}</span><span class="mk-price-unit">{{ tier.i_can_solder.unit }} each</span></td>
-          <td><span class="mk-price-lot">{{ tier.rocket.lot }}</span><span class="mk-price-unit">{{ tier.rocket.unit }} each</span></td>
-          <td><span class="mk-price-lot">{{ tier.camp_fire.lot }}</span><span class="mk-price-unit">{{ tier.camp_fire.unit }} each</span></td>
+          <td><strong class="mk-price-main">{{ tier.i_can_solder.lot }}</strong><br><span class="mk-price-sub">{{ tier.i_can_solder.unit }} each</span></td>
+          <td><strong class="mk-price-main">{{ tier.rocket.lot }}</strong><br><span class="mk-price-sub">{{ tier.rocket.unit }} each</span></td>
+          <td><strong class="mk-price-main">{{ tier.camp_fire.lot }}</strong><br><span class="mk-price-sub">{{ tier.camp_fire.unit }} each</span></td>
         </tr>
         {% endfor %}
       </tbody>

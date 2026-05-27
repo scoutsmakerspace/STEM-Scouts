@@ -1,0 +1,140 @@
+/* Maker Kits refinements: wide content pages, subpage navigation, and clearer price tables. */
+
+.maker-kits-content-page .page,
+.maker-kits-content-page .page__inner-wrap,
+.maker-kits-content-page .archive {
+  max-width: none !important;
+}
+
+.maker-kits-content-page .page__content {
+  box-sizing: border-box;
+  width: min(1320px, calc(100vw - 2rem)) !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.mk-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+  margin: .75rem 0 1.15rem;
+  padding: .55rem;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 999px;
+  background: rgba(0,0,0,.025);
+}
+
+.mk-subnav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: .45rem .75rem;
+  font-weight: 800;
+  font-size: .86rem;
+  line-height: 1.2;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.10);
+}
+
+.mk-subnav a:hover {
+  background: rgba(0,0,0,.055);
+  text-decoration: none;
+}
+
+.mk-hero .mk-actions {
+  display: none !important;
+}
+
+.mk-next-links--top {
+  margin-top: .25rem;
+  margin-bottom: 1.25rem;
+}
+
+.mk-price-card {
+  width: 100%;
+}
+
+.mk-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.mk-price-table,
+.mk-price-table--tiers {
+  width: 100% !important;
+  min-width: 760px;
+  table-layout: fixed;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  margin-top: .85rem;
+}
+
+.mk-price-table--tiers th,
+.mk-price-table--tiers td {
+  border: 1px solid rgba(0,0,0,.13) !important;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.mk-price-table--tiers th {
+  background: rgba(0,0,0,.045);
+  font-weight: 900;
+}
+
+.mk-price-table--tiers th:first-child,
+.mk-price-table--tiers td:first-child,
+.mk-price-table--tiers th:nth-child(2),
+.mk-price-table--tiers td:nth-child(2) {
+  width: 7.5rem;
+}
+
+.mk-price-main {
+  display: block;
+  font-size: 1.08rem;
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.mk-price-sub {
+  display: block;
+  margin-top: .15rem;
+  font-size: .78rem;
+  line-height: 1.2;
+  opacity: .72;
+}
+
+.mk-meta-list div {
+  grid-template-columns: minmax(7rem, 8.8rem) minmax(0, 1fr);
+}
+
+.mk-card-actions a[target="_blank"]::after,
+.mk-subnav a[target="_blank"]::after {
+  content: "";
+}
+
+@media (max-width: 760px) {
+  .maker-kits-content-page .page__content {
+    width: min(100%, calc(100vw - 1rem)) !important;
+  }
+
+  .mk-subnav {
+    border-radius: 16px;
+  }
+
+  .mk-subnav a {
+    flex: 1 1 9rem;
+  }
+
+  .mk-price-table,
+  .mk-price-table--tiers {
+    min-width: 680px;
+  }
+}

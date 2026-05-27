@@ -2,6 +2,12 @@
 
 This folder contains the public-safe source files used by GitHub Actions to rebuild the Maker Kits impact map.
 
+For the full website maintenance checklist, see:
+
+```text
+docs/maker-kits-website-maintenance.md
+```
+
 ## Main file to update after a batch
 
 Replace this file when a batch is complete:

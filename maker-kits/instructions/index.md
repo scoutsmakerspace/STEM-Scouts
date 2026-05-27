@@ -1,16 +1,16 @@
 ---
-layout: splash
+layout: single
 title: "Maker Kit Instructions"
-classes: wide maker-kits-wide maker-kits-subpage
+classes: wide maker-kits-wide maker-kits-content-page
 toc: false
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/maker-kits.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/maker-kits-refinements.css' | relative_url }}">
 
 {% assign mk = site.data.maker_kits %}
 
 <nav class="mk-subnav" aria-label="Maker Kits pages">
-  <span class="mk-subnav__label">Maker Kits</span>
   <a href="{{ '/maker-kits/' | relative_url }}" target="_blank" rel="noopener">Overview</a>
   <a href="{{ '/maker-kits/how-to-order/' | relative_url }}" target="_blank" rel="noopener">Ordering</a>
   <a href="{{ '/maker-kits/instructions/' | relative_url }}" target="_blank" rel="noopener">Instructions</a>

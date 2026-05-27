@@ -18,7 +18,7 @@ ordering:
   orders_open: false
   status_label_open: "Orders open"
   status_label_closed: "Orders currently closed"
-  order_link: "https://forms.gle/hyNhVBvYjpcWF8bz5"
+  order_link: "https://docs.google.com/forms/d/e/1FAIpQLScluP5gHF1V9YUD6fFruxkhKF9VGdKraecJWKs5ZW4BvHZwcA/viewform?usp=sharing&ouid=100348817326081150191"
   order_link_label: "Open the ordering form"
   contact_email: "scouts.makerspace@gmail.com"
   closed_note: >-
@@ -45,7 +45,7 @@ price_list:
   title: "Current price list"
   note: >-
     Prices are quantity-based. Use the Quantity column for the standard orderable quantities.
-    The lot price is the total kit cost for that quantity before delivery; the unit price is shown underneath for reference.
+    Lot price is the total kit cost for that quantity before delivery.
   important:
     - "CR2032 battery cells are not included."
     - "Royal Mail delivery is not included and depends on parcel size and quantity."
@@ -55,18 +55,18 @@ price_list:
   items:
     - kit_slug: "i-can-solder"
       name: "I can solder badge kit"
-      price: "£2.20 at 30 pcs; from £1.65 at 300 pcs"
-      unit: "quantity-based"
+      price: "£66.00 for 30 pcs; from £495.00 for 300 pcs"
+      unit: "from £1.65 each"
       notes: "Simple confidence-building soldering activity."
     - kit_slug: "rocket"
       name: "Rocket soldering kit"
-      price: "£2.75 at 30 pcs; from £2.06 at 300 pcs"
-      unit: "quantity-based"
+      price: "£82.50 for 30 pcs; from £618.75 for 300 pcs"
+      unit: "from £2.06 each"
       notes: "Beginner-friendly LED soldering kit."
     - kit_slug: "camp-fire"
       name: "Camp fire soldering kit"
-      price: "£3.30 at 30 pcs; from £2.48 at 300 pcs"
-      unit: "quantity-based"
+      price: "£99.00 for 30 pcs; from £742.50 for 300 pcs"
+      unit: "from £2.48 each"
       notes: "Themed light-up electronics kit."
   tiers:
     - discount: "0%"
@@ -161,15 +161,15 @@ price_list:
 kits:
   - slug: i-can-solder
     name: "I can solder badge kit"
-    short_description: "The simplest starter kit for first-time soldering and confidence-building."
+    short_description: "A simple confidence-building soldering activity for young makers."
     difficulty: "Easiest"
     build_time: "about 5 minutes per kit/workstation once set up; longer for beginners"
     age_guidance: "Designed for supervised group sessions and first-time soldering practice."
     skills:
       - "First solder joints"
-      - "Safe soldering setup"
       - "Following a simple build sequence"
-      - "Checking solder joint quality"
+      - "Component placement and orientation"
+      - "Safe tool use and quality checking"
     included:
       - "PCB"
       - "Simple electronic components"
@@ -184,15 +184,15 @@ kits:
 
   - slug: rocket
     name: "Rocket soldering kit"
-    short_description: "A beginner-friendly LED soldering kit with more components to place and check."
+    short_description: "A beginner-friendly LED soldering kit that works well as a first electronics build."
     difficulty: "Easy+"
     build_time: "about 5–10 minutes per kit/workstation once set up; longer for beginners"
     age_guidance: "Best with adult supervision; suitable for youth groups where soldering safety is managed properly."
     skills:
-      - "Through-hole soldering with more components"
+      - "Through-hole soldering"
       - "LED polarity and orientation"
-      - "Resistor placement and simple circuits"
-      - "Mechanical assembly with PCB fixings"
+      - "Using resistors in a simple circuit"
+      - "Mechanical assembly with PCBs and fixings"
     included:
       - "PCB"
       - "LEDs and electronic components"
@@ -208,15 +208,15 @@ kits:
 
   - slug: camp-fire
     name: "Camp fire soldering kit"
-    short_description: "An easy themed light-up electronics kit for practising soldering and testing."
+    short_description: "A themed electronics kit for practising soldering while building a small light-up project."
     difficulty: "Easy"
     build_time: "about 5–10 minutes per kit/workstation once set up; longer for beginners"
     age_guidance: "Good for Cubs, Scouts and similar groups with suitable adult support."
     skills:
       - "Through-hole soldering practice"
-      - "Component placement and orientation"
-      - "LED polarity and simple circuit testing"
-      - "Troubleshooting a light-up build"
+      - "Component identification and placement"
+      - "LED polarity and visual effect"
+      - "Testing and troubleshooting"
     included:
       - "PCB"
       - "LEDs and components"
