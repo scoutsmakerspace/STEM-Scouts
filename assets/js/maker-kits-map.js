@@ -23,12 +23,37 @@
     return Math.max(28, Math.min(48, 24 + Math.sqrt(n) * 8));
   }
 
-  function scoutDistrictText(g, p) {
-    var value = (g && (g.scout_district || g.scout_district_name)) ||
-      p.scout_district || p.scout_district_name || p.scouts_district || '';
+  function formatScoutDistrictName(value) {
     value = String(value || '').trim();
     if (!value) return '';
     return /district/i.test(value) ? value : value + ' Scout District';
+  }
+
+  function addScoutDistrict(values, value) {
+    if (Array.isArray(value)) {
+      value.forEach(function (item) { addScoutDistrict(values, item); });
+      return;
+    }
+    value = formatScoutDistrictName(value);
+    if (value && values.indexOf(value) === -1) values.push(value);
+  }
+
+  function scoutDistrictsFor(g, p) {
+    var values = [];
+    g = g || {};
+    p = p || {};
+    addScoutDistrict(values, g.scout_districts);
+    addScoutDistrict(values, g.scout_district);
+    addScoutDistrict(values, g.scout_district_name);
+    addScoutDistrict(values, p.scout_districts);
+    addScoutDistrict(values, p.scout_district);
+    addScoutDistrict(values, p.scout_district_name);
+    addScoutDistrict(values, p.scouts_district);
+    return values;
+  }
+
+  function scoutDistrictText(g, p) {
+    return scoutDistrictsFor(g, p).join(', ');
   }
 
   function supporterSubtitle(g, p) {
@@ -61,11 +86,13 @@
       groupList = '<ul class="mk-popup-groups">' + groupDetails.map(function (g) {
         var entries = Number(g.entries || 1);
         var badge = entries > 1 ? '<span class="mk-popup-badge">repeat supporter ×' + entries + '</span>' : '';
-        return '<li>' + escapeHtml(g.name || g) + badge + '</li>';
+        var district = scoutDistrictText(g, p);
+        var districtLine = district ? '<span class="mk-popup-group-district">' + escapeHtml(district) + '</span>' : '';
+        return '<li><strong>' + escapeHtml(g.name || g) + '</strong>' + badge + districtLine + '</li>';
       }).join('') + '</ul>';
     } else if (p.public_group_names && p.public_group_names.length) {
       groupList = '<ul class="mk-popup-groups">' + p.public_group_names.map(function (name) {
-        return '<li>' + escapeHtml(name) + '</li>';
+        return '<li><strong>' + escapeHtml(name) + '</strong></li>';
       }).join('') + '</ul>';
     }
     var district = scoutDistrictText({}, p);
@@ -117,16 +144,38 @@
   function calculateTotals(geojson) {
     var features = geojson.features || [];
     var groupSet = new Set();
+    var scoutDistrictSet = new Set();
     var publicEntries = 0;
     var repeatEntries = 0;
+
+    function addDistrict(value) {
+      if (Array.isArray(value)) {
+        value.forEach(addDistrict);
+        return;
+      }
+      value = formatScoutDistrictName(value);
+      if (value) scoutDistrictSet.add(value);
+    }
+
     features.forEach(function (feature) {
       var p = feature.properties || {};
       publicEntries += Number(p.public_entries || p.groups_supported || 0);
       repeatEntries += Number(p.repeat_entries || 0);
       (p.public_group_names || []).forEach(function (name) { if (name) groupSet.add(name); });
+      addDistrict(p.scout_districts);
+      addDistrict(p.scout_district);
+      addDistrict(p.scout_district_name);
+      addDistrict(p.scouts_district);
+      (p.group_details || []).forEach(function (g) {
+        if (g && g.name) groupSet.add(g.name);
+        addDistrict(g && g.scout_districts);
+        addDistrict(g && g.scout_district);
+        addDistrict(g && g.scout_district_name);
+      });
     });
     return {
       districts: features.length,
+      scoutDistricts: scoutDistrictSet.size,
       uniqueGroups: groupSet.size || features.reduce(function (sum, f) { return sum + Number((f.properties || {}).groups_supported || 0); }, 0),
       publicEntries: publicEntries,
       repeatEntries: repeatEntries
@@ -201,6 +250,8 @@
             p.scout_district,
             p.scout_district_name,
             p.scouts_district,
+            (p.scout_districts || []).join(' '),
+            (p.group_details || []).map(function (g) { return [g.scout_district, (g.scout_districts || []).join(' ')].join(' '); }).join(' '),
             (p.public_group_names || []).join(' ')
           ].join(' '));
           layerGroup.addLayer(marker);
@@ -218,6 +269,7 @@
         setText('mk-map-stat-entries', totals.publicEntries);
         setText('mk-map-stat-repeat', totals.repeatEntries);
         setText('mk-map-stat-districts', totals.districts);
+        setText('mk-map-stat-scout-districts', totals.scoutDistricts);
 
         var rows = flattenGroupRows(features);
         var list = document.getElementById('maker-kits-group-list');
