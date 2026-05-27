@@ -94,6 +94,33 @@
   height: min(74vh, 800px) !important;
 }
 
+/* Align the search box and action buttons in the map toolbar. */
+.maker-kits-map-page .mk-map-toolbar {
+  align-items: stretch !important;
+}
+
+.maker-kits-map-page .mk-map-search,
+.maker-kits-map-page .mk-map-button {
+  box-sizing: border-box !important;
+  min-height: 44px !important;
+  height: 44px !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+  font-size: .95rem !important;
+  border-radius: 999px !important;
+}
+
+.maker-kits-map-page .mk-map-search {
+  padding: 0 .95rem !important;
+}
+
+.maker-kits-map-page .mk-map-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 .95rem !important;
+}
+
 /* The subnav should sit inside the centred shell/dashboard, not stretch across the whole viewport. */
 .mk-content-shell .mk-subnav,
 .maker-kits-map-page .mk-map-dashboard .mk-subnav {
