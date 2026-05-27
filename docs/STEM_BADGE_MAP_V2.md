@@ -1,29 +1,23 @@
-# STEM Badge Map V2 judgement framework
+# STEM Badge Map V2.1
 
-This badge map is not trying to claim that every Scout badge is automatically STEM.
+This is a curated first-pass map for spotting honest STEM opportunities inside Scout badge requirements.
 
-The purpose is to help leaders put meaningful STEM thinking into normal Scout activities where it genuinely fits.
+It deliberately separates:
 
-## Public relevance levels
+- **Direct STEM** — the requirement is already STEM by nature.
+- **STEM through framing** — the requirement can support STEM when the leader adds evidence, measurement, testing, comparison, design constraints, modelling, debugging, or explanation.
 
-- **Direct STEM**: the requirement already uses STEM knowledge or methods.
-- **STEM through framing**: the requirement can become STEM when the leader adds evidence, testing, measuring, design constraints, comparison, modelling or explanation.
+The map is generated from `_data/badges_master.json` by `tools/build_stem_badge_map_v2.py`. It does **not** remove or edit the main badge database. It only rebuilds `_data/stem_badge_map.yml`, which is the public planning layer used by `/badges/`.
 
-Weak, decorative, purely administrative and purely discussion-based links should stay out of the public map.
+This is still a review baseline, not final gospel. The intended workflow is:
 
-## Rule of thumb
+1. Generate the first pass.
+2. Review weak or surprising links on the public page.
+3. Tune the rules or edit selected entries in the CMS.
+4. Keep only links that can be explained honestly to a leader.
 
-A requirement belongs in the map only if we can honestly say:
+Rule of thumb:
 
-> This supports STEM because young people will observe, measure, test, design, build, compare, improve, model, calculate, communicate or explain a real object, process, system, material, living thing, data set, route, signal, mechanism or result.
+> A link belongs in the map only when a leader can realistically ask young people to observe, measure, compare, classify, predict, test, record, calculate, design, build, debug, improve, model, control, communicate or evaluate something.
 
-## Keep it honest
-
-Examples:
-
-- Building a model can be STEM if young people test it, compare materials, work to constraints or improve it.
-- Cooking can be STEM if young people measure, scale, control heat/time, compare results or explain food science.
-- Naturalist work can be STEM if young people observe, classify, record evidence and compare habitats.
-- Making a poster, card or decorated object is not STEM unless it communicates evidence/data or involves design constraints, testing or a technical process.
-
-The first V2 map is a generated first pass. It should be reviewed and refined through the CMS over time.
+Do not count a requirement as STEM just because it involves making, talking, drawing, cooking or being outdoors. The STEM part has to come from the thinking and evidence added to the activity.

@@ -169,9 +169,9 @@
             <p class="stem-req__text">${escapeHtml(summary)}</p>
             ${areas}
             ${thinking}
-            ${why ? `<p class="stem-req__why"><strong>Why STEM:</strong> ${escapeHtml(why)}</p>` : ""}
-            ${framing ? `<p class="stem-req__framing"><strong>Leader framing:</strong> ${escapeHtml(framing)}</p>` : ""}
-            ${evidence ? `<p class="stem-req__evidence"><strong>Evidence:</strong> ${escapeHtml(evidence)}</p>` : ""}
+            ${why ? `<p class="stem-req__why"><strong>STEM opportunity:</strong> ${escapeHtml(why)}</p>` : ""}
+            ${framing ? `<p class="stem-req__framing"><strong>How to run it as STEM:</strong> ${escapeHtml(framing)}</p>` : ""}
+            ${evidence ? `<p class="stem-req__evidence"><strong>Look for:</strong> ${escapeHtml(evidence)}</p>` : ""}
             ${caution ? `<p class="stem-req__caution"><strong>Keep it honest:</strong> ${escapeHtml(caution)}</p>` : ""}
           </div>
         `;
